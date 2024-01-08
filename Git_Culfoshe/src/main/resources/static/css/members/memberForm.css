@@ -78,19 +78,17 @@
     .indicment, .partnerment, .interestlocal{padding-bottom: 20px;}
     .indicment, .partnerment{margin-top: 100px;}
     .interestlocal{margin-top: 100px;}
-    .interestInfor{margin-top: 120px; padding-bottom: 120px;}
+    .interestInfor{margin-top: 120px; padding-bottom: 120px; display: none;}
     .interestment{padding-bottom: 15px;}
 
-    .indexbox1{position: relative; bottom: 873px; left: 219px;
-        background-color: #ccc; opacity:0.2; display: none; z-index: 1;}
-    .indexbox2{position: relative; bottom: 870px; left: 795px;
-        background-color: #ccc; opacity:0.2; display: none; z-index: 1;}
-
-    /* interestInfor 부터 */
+    .indexbox1{position: relative; bottom: 953px; left: 219px;
+        background-color: #bbb; opacity:0.5; display: none; z-index: 1;}
+    .indexbox2{position: relative; bottom: 1368px; left: 795px;
+        background-color: #bbb; opacity:0.5; display: none; z-index: 1;}
+    .box{display: none;}
 
    /* #selectBox > button:hover{background-color: rgb(16, 104, 63); color: white;} */
 
-    .interestInfor{display: none;}
     .selectbox{margin-top: 5px;}
 
     .ckeckInterest{width: 80px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
@@ -115,5 +113,7 @@
     /* interestlocal 부터*/
     .arraybox1, .arraybox2{display: flex;}
 
-    .joinbtn{width: 200px; height: 50px; font-size: 17px; margin-left: 1060px;
+    .indic_joinbtn{width: 200px; height: 50px; font-size: 17px; margin-left: 1060px;
+        color: white; background-color: green; border: none; border-radius: 5px; margin-top: 65px; display: none;}
+    .part_joinbtn{width: 200px; height: 50px; font-size: 17px; margin-left: 1060px;
     color: white; background-color: green; border: none; border-radius: 5px; margin-top: 30px; display: none;}

@@ -1,6 +1,5 @@
 package com.culfoshe.dto;
 
-import com.culfoshe.constant.LocationSellStatus;
 import com.culfoshe.entity.Location;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,8 +37,6 @@ public class LocationFormDTO {
 
     @NotBlank(message = "예약 가능 여부는 필수 입력 값입니다.")
     private Integer SellStatusCd;
-
-    private LocationSellStatus locationSellStatus;
 
     private List<LocationFormDTO> locationFormDTOS = new ArrayList<>();
 

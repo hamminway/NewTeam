@@ -1,6 +1,5 @@
 package com.culfoshe.entity;
 
-import com.culfoshe.constant.LocationSellStatus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -43,7 +42,6 @@ public class Location {
     private String locationDetail;  //장소 설명
 
 //    @Enumerated(EnumType.STRING)
-//    private LocationSellStatus locationSellStatus;  //상품 예약 상태
 
     private LocalDateTime regTime;  //등록 시간
 
