@@ -1,8 +1,7 @@
 package com.culfoshe.repository;
 
 
-import com.culfoshe.constant.LocationSellStatus;
-import com.culfoshe.entity.Location;
+import com.culfoshe.entity.location.Location;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

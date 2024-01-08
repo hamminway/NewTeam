@@ -1,6 +1,5 @@
 package com.culfoshe.entity;
 
-import com.culfoshe.constant.LocationSellStatus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
