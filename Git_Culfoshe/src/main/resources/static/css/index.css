@@ -1,0 +1,336 @@
+@charset "UTF-8";
+
+/* main */
+.border {
+	width: 1500px;
+	height: 100%;
+	margin-left:auto;
+	margin-right:auto; /*여백 자동으로 맞추기*/
+}
+
+.border hr {
+	width: 95%;
+}
+
+/* main 1 시작 */
+/*검색창과 카테고리*/
+.main{
+	align-content: center;
+}
+
+.main-1{
+	margin-top: 170px;
+	margin-bottom: 100px;
+}
+
+.main-search{
+	position:relative;
+	z-index: 2;
+}
+
+.main-search input, button{
+	border: 2px solid #c3c3c3;
+}
+
+.main-search-int{
+	width : 386px;
+	height : 50px;
+	background-color: #fff;
+	border-right: none;
+
+	font-size: 17px;
+	text-align: center;
+
+	position: relative;
+	left: 33.45%;
+	top:563px;
+}
+
+.main-section input:focus{
+	outline :3px solid green;
+}
+
+.main-category :focus{
+	outline :3px solid green;
+}
+
+.main-category option :hover{
+	background-color: green;
+}
+
+.main-search button{
+	width:52px;
+	height: 56px;
+	background: #fff;
+
+	border-right: none;
+	border-left: none;
+
+	position: relative;
+	left:33.3%;
+	top: 568px;
+	margin-left: -5.5px;
+}
+
+.main-search button:hover{
+	background-color: rgb(144, 231, 168);
+	border-left:2px solid #c3c3c3;
+}
+
+/* .main-search-btn{
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+} */
+
+.main-search i{
+	font-size: 25px;
+	padding:2px;
+}
+
+.main-category {
+	background-color: #fff;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	position:relative;
+	z-index: 2;
+}
+
+.main-category select{
+	width: 244px;
+	height:50px;
+	border: 2px solid #c3c3c3;
+	font-size: 15px;
+	text-align: center;
+	position: relative;
+	top: 563px;
+	margin-top: 7px;
+	margin-right: 2px;
+}
+
+.center {
+	font-family:Arial;
+	width: 100%;
+	display:block;
+	margin:0 auto;
+}
+
+.center img {
+	width: 98%;
+	height : 600px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+}
+/* main 1 끝 */
+
+
+/* main-2 */
+/* 지역 추천 */
+.commend {
+	width: 95%;
+	margin-top: 100px;
+	margin-bottom: 80px;
+}
+
+.commend h2{
+	margin-top: 30px;
+	margin-left: 15px;
+	margin-bottom: 70px;
+}
+
+.commend-li {
+  font-size: 21px;
+  display: inline-flex;
+  margin-bottom: 30px;
+  margin-left: 80px;
+  margin-right: 20px;
+}
+
+/*지역 선택 언더바*/
+.commend-li li:hover {
+	color: green;
+}
+
+.commend .commend-li li>a {
+	position: relative;
+}
+
+
+.commend .commend-li li>a::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	bottom: -16px;
+	right: 33%;
+	background-color: green;
+	transition: width 0.4s;
+}
+
+.commend .commend-li li>a::before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	bottom: -16px;
+	left: 67%;
+	background-color: green;
+	transition: width 0.4s;
+}
+
+.commend .commend-li li:hover>a::after {
+	width: 110%;
+}
+
+.commend .commend-li li:hover>a::before {
+	width: 110%;
+}
+
+.commend-box{
+	margin: 0px;
+	border: 1px solid #C3C3C3;
+	width: 100%;
+	border-radius: 5px;
+	padding-bottom: 30px;
+}
+
+.commend-box-left-btn{
+	position: relative;
+    top: 384px;
+	left: 3.2%;
+	font-size: 32px;
+}
+
+.commend-box-right-btn{
+	position: relative;
+    left: 95.8%;
+	bottom: 323px;
+	font-size: 32px;
+}
+
+.commend-box ul li{
+	list-style: none;
+}
+
+.commend-box img {
+	width: 350px;
+	height: 300px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.commend-box-in{
+	width: 350px;
+	height: 540px; /*500px*/
+	border: 2px solid #C3C3C3;
+	background-color: #fff;
+	border-radius: 5px;
+	margin-top: 80px;
+	margin-bottom: 27px;
+}
+
+.commend-box-in-margin{
+	margin-left: 100px;
+}
+
+.commend-box-in-margin-left{
+	margin-left: 61px;
+	margin-right: 0;
+}
+
+.commend-box-in-margin-right{
+	margin-left: 19px;
+	margin-right: 0;
+}
+
+.commend-box-li-margin{
+	position: relative;
+    bottom: 4px;
+}
+
+.commend-box-li-re{
+	position: relative;
+	bottom:23px;
+}
+
+.commend-box-in li {
+	margin: 25px 22px 35px;
+	font-size:17px;
+}
+
+.commend-box-in a{
+	padding-left: 0;
+}
+
+/* .commend-box-in i :hover{
+	color: green;
+} */
+
+.bMark-icon-1 {
+	position: relative;
+	left: 52%;
+	bottom: -4px;
+	font-size: 28px;
+}
+
+.bMark-icon-2 {
+	position: relative;
+	left: 47%;
+	bottom: -4px;
+	font-size: 28px;
+}
+
+.bMark-icon-3 {
+	position: relative;
+	left: 6%;
+	bottom: -4px;
+	font-size: 28px;
+}
+
+.bMark-icon-4 {
+	position: relative;
+	left: 11%;
+	bottom: -4px;
+	font-size: 28px;
+}
+
+/* main3 시작 */
+/* 지도 이미지*/
+.main-3{
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+.main-3 h2{
+	margin-top: 50px;
+	margin-left: 53px;
+}
+
+.map-box {
+	width: 95%;
+	height:600px;
+	background-color: #fff;
+	border: 2px solid #C3C3C3;
+	border-radius: 5px;
+	margin-top: 30px;
+	margin-bottom: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#map {
+    width:1200px;
+    height:550px;
+
+    background-color: #fff;
+    border: 2px solid #C3C3C3;
+    border-radius: 5px;
+
+    margin-top: 30px;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+
+
+
+}

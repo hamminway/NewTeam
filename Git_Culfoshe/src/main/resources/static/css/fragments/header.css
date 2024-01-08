@@ -1,0 +1,394 @@
+@charset "UTF-8";
+
+/* header */
+
+.navbar {
+	float: right;
+	margin: 10px;
+	margin-top: 10px;
+}
+
+.navbar a {
+	margin-right: 20px;
+	position: relative;
+	bottom: -2.5px;
+}
+
+.navbar a:hover {
+	color: #9acd32;
+}
+
+#join {
+	margin-right: 0px;
+	position: relative;
+	bottom: -2px;
+}
+
+.navbar img {
+	height: 28px;
+	position: relative;
+	bottom: -6px;
+	margin-right: 6px;
+}
+
+#mini-Search {
+	width: 250px;
+	height: 23px;
+	margin-left: 1240px;
+	border: 1px solid #C3C3C3;
+	border-radius: 5px;
+}
+
+.icon input:focus {
+	outline: 1px solid green;
+	border-radius: 5px;
+}
+
+.icon a{
+	padding: 0;
+}
+
+.icon-search-btn{
+	height: 20px;
+	position: relative;
+	left: 1463px;
+	top: -25px;
+	border: none;
+	background-color: #fff;
+}
+
+
+/* 라이브러리 */
+/* 메뉴 시작*/
+.con {
+	margin: 0 auto;
+	width: 1500px;
+	max-width: 1500px;
+	min-width: 200px;
+}
+
+.row::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.cell {
+	float: left;
+	box-sizing: border-box;
+}
+
+.cell-right {
+	float: right;
+	box-sizing: border-box;
+}
+
+.margin-0-auto {
+	margin: 0 auto;
+}
+
+.block {
+	display: block;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.line-height-0-ch-only {
+	line-height: 0;
+}
+
+.line-height-0-ch-only>* {
+	line-height: normal;
+}
+
+.relative {
+	position: relative;
+}
+
+.absolute-left {
+	position: absolute;
+	left: 0;
+}
+
+.absolute-right {
+	position: absolute;
+	right: 0;
+}
+
+.absolute-middle {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+
+/* 커스텀 */
+
+
+html,
+body {
+	overflow-x: hidden;
+}
+
+body {
+	overflow-y: hidden;
+}
+
+/*탑바메뉴 시작*/
+
+.top-bar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 196px;
+
+	overflow: hidden;
+	transition: height 0.7s;
+	z-index: 200;
+
+	background-color: #ffffff;
+	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+}
+
+/*1차메뉴 회색밑줄 조절*/
+
+.top-bar::after {
+	content: "";
+	position: absolute;
+	top: 195px;
+	width: 100%;
+	height: 1px;
+	background-color: rgba(0, 0, 0, 0.1);
+	z-index: 10;
+}
+
+/*마우스올릴 시 2차메뉴 높이조절*/
+.top-bar:hover {
+	height: 500px;
+}
+
+.top-bar .logo {
+	margin-top: 20px;
+	width: 147px;
+}
+
+.top-bar .menu-box-1 {
+	width: calc(100% - 206.44px);
+}
+
+.top-bar .menu-box-1>ul>li {
+	width: 25%;
+}
+
+/* 1차 메뉴선택효과 시작 */
+.top-bar .menu-box-1>ul>li>a {
+	position: relative;
+}
+
+/*마우스 올릴 시 underbar 표시*/
+.top-bar .menu-box-1>ul>li>a::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	bottom: -22px;
+	right: 50%;
+	background-color: green;
+	transition: width 0.4s;
+}
+
+.top-bar .menu-box-1>ul>li>a::before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	bottom: -22px;
+	left: 50%;
+	background-color: green;
+	transition: width 0.4s;
+}
+
+.top-bar .menu-box-1>ul>li:hover>a::after {
+	width: 50%;
+}
+
+.top-bar .menu-box-1>ul>li:hover>a::before {
+	width: 50%;
+}
+
+/* 1차메뉴 선택효과 끝 */
+
+/*1차메뉴 선 효과*/
+.top-bar .menu-box-1>ul>li>a {
+	text-align: center;
+	padding: 0 10px;
+	font-size: 23px;
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	letter-spacing: 2px;
+}
+
+.top-bar .menu-box-1>ul>li:hover>a {
+	color: green;
+}
+
+/* 2차 메뉴 왼쪽 오른쪽 선 높이*/
+.top-bar .menu-box-1>ul>li>div>ul {
+	position: absolute;
+	top: 22px;
+	width: 100%;
+	height: 260px;
+	border-left: 1px solid #e8e8e8;
+}
+
+.top-bar .menu-box-1>ul>li:last-child>div>ul {
+	border-right: 1px solid #e8e8e8;
+}
+
+/*2차 메뉴 안에 글자 마진*/
+
+.top-bar .menu-box-1>ul>li>div>ul>li {
+	text-align: left;
+	margin-left: 20%;
+}
+
+.top-bar .menu-box-1>ul>li>div>ul>li:first-child {
+	margin-top: 23px;
+}
+
+/* nth-child(2) : 2번째 요소를 선택하게 하는 것*/
+.top-bar .menu-box-1>ul>li:nth-child(2)>div>ul>li {
+	margin-left: 20%;
+}
+
+.top-bar .menu-box-1>ul>li:nth-child(3)>div>ul>li {
+	margin-left: 20%;
+}
+
+.top-bar .menu-box-1>ul>li:nth-child(4)>div>ul>li {
+	margin-left: 20%;
+}
+
+.top-bar .menu-box-1>ul>li>div>ul>li>a {
+	font-size: 18px;
+	padding: 10px 0;
+	display: inline-block;
+	font-weight: 400;
+	position: relative;
+	font-style: normal;
+ 	font-stretch: normal;
+}
+
+/* 2차메뉴클릭효과 시작*/
+/* 2차 메뉴 클릭 시 점표시*/
+.top-bar .menu-box-1>ul>li>div>ul>li>a::after {
+	content: ".";
+	position: absolute;
+	top: 26%;
+	transform: translatey(-50%);	/*정렬*/
+	left: -13px;
+	font-size: 1.7rem;
+	color: green;
+	opacity: 0;
+	transform: translateX(5px);
+	transition: opacity 0.1s, transform 0.2s;
+}
+
+.top-bar .menu-box-1>ul>li>div>ul>li:hover>a::after {
+	transform: translateX(0) translatey(-50%);
+	opacity: 1;
+}
+
+/* 2차메뉴클릭효과 끝 */
+
+.top-bar .menu-box-1>ul>li>div>ul>li:hover>a {
+	color: green;
+}
+
+/*2차 메뉴 안에 제목 위치 조절*/
+.top-bar .menu-box-1>ul>li>.menu-text {
+	position: absolute;
+	top: 222px;
+	left: 48%;
+	width: 250px;
+	height: 400px;
+	transform: translateX(-670px);
+	opacity: 0;
+	transform: opacity 5s;
+}
+
+.top-bar .menu-box-1>ul>li:hover>.menu-text {
+	opacity: 1;
+}
+
+/*2차 메뉴 안에 제목(영어)*/
+.top-bar .menu-box-1>ul>li>.menu-text>.menu-title {
+	font-size: 35px;
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: -1px;
+	color: green;
+	border-bottom: 2px solid green;
+}
+
+.top-bar .menu-box-1>ul>li>.menu-text>.menu-title-text {
+	display: block;
+	margin-top: 20px;
+	font-size: 25px;
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.22;
+	letter-spacing: -2px;
+	color: #222222;
+}
+
+/*탑바 메뉴 끝*/
+
+/* cell 너비*/
+
+.main-grid .row .cell {
+	width: 283px;
+}
+
+.main-grid>.row:first-child .cell:first-child,
+.main-grid>.row:nth-child(2) .cell:nth-child(2) {
+	width: calc(100% - 283px * 2);
+}
+
+/* row 높이*/
+
+.main-grid>.row:first-child .cell {
+	height: 400px;
+}
+
+.main-grid>.row:nth-child(2) .cell {
+	height: 300px;
+}
+
+.main-grid .row .cell>nav {
+	height: 50%;
+}
+
+.main-grid .row .cell .grid-item2 {
+	height: 50%;
+}
+
+.main-grid .row .cell .grid-item4 {
+	height: 50%;
+}
+
+.main-grid .row .cell nav>.grid-item-base {
+	height: 100%;
+	box-sizing: border-box;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: relative;
+}

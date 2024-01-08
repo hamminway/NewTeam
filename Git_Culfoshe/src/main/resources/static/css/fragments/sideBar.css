@@ -1,0 +1,349 @@
+@charset "UTF-8";
+
+/*사이드 스크롤 바*/
+
+.scroll-btn-group {
+	margin: 20px;
+
+	position: fixed;
+	Z-index: 100;
+	right: 30px;
+	bottom: 30px;
+	transition: opacity 0.5s, visibility 0.5s background 0.5s;
+	text-align: right;
+}
+
+.scroll-btn-group.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+.scroll-btn-group button {
+	border: 0 none;
+	/*background-color: transparent;	버튼에 투명*/
+	overflow: visible;
+}
+
+.scroll-btn-group p {
+	padding: 0px;
+	margin: 0px;
+}
+
+/*글쓰기 버튼*/
+.write-btn {
+	width: 100%;
+	height: 45px;
+	position: reative;
+}
+
+
+.user-write {
+	width: 65px;
+	height: 65px;
+	background: yellowgreen;
+
+	position: absolute;
+	right: 0;
+	top: -123px;
+	display: inline-block;
+
+	transition: width 0.5s, background 0s;
+	transition-duration: 0.5s;
+	border-radius: 35px;
+	cursor: pointer;
+	/*마우스커서 변경*/
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+  .user-write p {
+	font-size: 18px;
+	color: white;
+	font-weight: 400;
+
+	margin-top: 5px;
+	margin-right: 4px;
+
+	transition: width 0s;
+	white-space: nowrap;
+	/*줄바꿈x*/
+	position: relative;
+	bottom: 10px;
+	opacity: 0;
+	/*p태그 안보이게하기*/
+}
+
+.user-write-i {
+	width: 45px;
+	height: 45px;
+
+	position: absolute;
+	right: 8px;
+	top: 16px;
+	font-size: 30px;
+}
+
+/*글쓰기 버튼 hover효과*/
+.user-write:hover {
+	width: 200px;
+	background-color: yellowgreen;
+}
+
+.user-write:hover p {
+	opacity: 1;
+}
+
+
+/*북마크 버튼*/
+.save-btn {
+	width: 100%;
+	height: 45px;
+	position: reative;
+}
+
+.user-save {
+	width: 65px;
+	height: 65px;
+	background: royalblue;
+
+	position: absolute;
+	right: 0;
+	top: 24px;
+	display: inline-block;
+
+	transition: width 0.5s, background 0s;
+	transition-duration: 0.5s;
+	border-radius: 35px;
+	cursor: pointer;
+	/*마우스커서 변경*/
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.user-save p {
+	font-size: 18px;
+	color: white;
+	font-weight: 400;
+
+	margin-top: 5px;
+	margin-right: 4px;
+
+	transition: width 0s;
+	white-space: nowrap;
+	/*줄바꿈x*/
+	position: relative;
+	bottom: 10px;
+	opacity: 0;
+	/*p태그 안보이게하기*/
+}
+
+
+.user-save-i {
+	width: 45px;
+	height: 45px;
+
+	position: absolute;
+	right: 10px;
+	top: 18px;
+	font-size: 28px;
+}
+
+/*북마크 버튼 hover 효과*/
+.user-save:hover {
+	width: 200px;
+	background-color: royalblue;
+}
+
+.user-save:hover p {
+	opacity: 1;
+}
+
+
+/*나의 페이지 버튼*/
+.myPage-btn {
+	width: 100%;
+	height: 45px;
+	position: reative;
+}
+
+
+.user-page {
+	width: 65px;
+	height: 65px;
+	background: skyblue;
+
+	position: absolute;
+	right: 0;
+	top: -50px;
+	display: inline-block;
+
+	transition: width 0.5s, background 0s;
+	transition-duration: 0.5s;
+	border-radius: 35px;
+	cursor: pointer;
+	/*마우스커서 변경*/
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.user-page p {
+	font-size: 18px;
+	color: white;
+	font-weight: 400;
+
+	margin-top: 5px;
+	margin-right: 26px;
+
+	transition: width 0s;
+	white-space: nowrap;
+	/*줄바꿈x*/
+	position: relative;
+	bottom: 10px;
+	opacity: 0;
+	/*p태그 안보이게하기*/
+}
+
+.user-page-i {
+	width: 45px;
+	height: 45px;
+
+	position: absolute;
+	right: 9px;
+	top: 17px;
+	font-size: 30px;
+}
+
+/*나의 페이지 버튼 hover 효과*/
+.user-page:hover {
+	width: 200px;
+	background-color: skyblue;
+}
+
+.user-page:hover p {
+	opacity: 1;
+}
+
+
+/* 공지사항 버튼*/
+.notice-btn {
+	width: 100%;
+	height: 45px;
+	position: reative;
+}
+
+
+.notice-service {
+	width: 65px;
+	height: 65px;
+	background: salmon;
+
+	position: absolute;
+	right: 0;
+	top: 97px;
+	display: inline-block;
+
+	transition: width 0.5s, background 0s;
+	transition-duration: 0.5s;
+	border-radius: 35px;
+	cursor: pointer;
+	/*마우스커서 변경*/
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.notice-service p {
+	font-size: 18px;
+	color: white;
+	font-weight: 400;
+
+	margin-top: 5px;
+	margin-right: 11px;
+
+	transition: width 0s;
+	white-space: nowrap;
+	/*줄바꿈x*/
+	position: relative;
+	bottom: 10px;
+	opacity: 0;
+	/*p태그 안보이게하기*/
+}
+
+.notice-service-i {
+	width: 45px;
+	height: 45px;
+
+	position: absolute;
+	right: 10px;
+	top: 17px;
+	font-size: 30px;
+ }
+
+/*공지사항 버튼 hover 효과*/
+.notice-service:hover {
+	width: 200px;
+	background-color: salmon;
+}
+
+.notice-service:hover p {
+	opacity: 1;
+}
+
+
+/*카카오톡 문의 버튼*/
+.kakao-btn {
+	width: 100%;
+	height: 45px;
+	position: reative;
+}
+
+
+.user-kakao {
+	width: 65px;
+	height: 65px;
+	background: gold;
+
+	position: absolute;
+	right: 0;
+	top: 170px;
+	display: inline-block;
+
+	transition: width 0.5s, background 0s;
+	transition-duration: 0.5s;
+	border-radius: 35px;
+	cursor: pointer;
+	/*마우스커서 변경*/
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.user-kakao p {
+	font-size: 18px;
+	color: white;
+	font-weight: 400;
+
+	margin-top: 5px;
+	margin-right: 30px;
+
+	transition: width 0s;
+	white-space: nowrap;
+	/*줄바꿈x*/
+	position: relative;
+	bottom: 10px;
+	opacity: 0;
+	/*p태그 안보이게하기*/
+}
+
+.user-kakao-i {
+	width: 45px;
+	height: 45px;
+
+	position: absolute;
+	right: 9px;
+	top: 16px;
+	font-size: 30px;
+}
+
+/*카카오톡 문의 버튼 hover 효과*/
+.user-kakao:hover {
+	width: 200px;
+	background-color: gold;
+}
+
+.user-kakao:hover p {
+	opacity: 1;
+}

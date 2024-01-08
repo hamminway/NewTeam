@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+    <!-- css 연결 -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+        <link th:href="@{/css/index.css}" rel="stylesheet" type="text/css" />
+    </th:block>
+
+
+
+    <body>
+    <!-- main -->
+    <div layout:fragment="content" class="main con border">
+        <div class="main-1">
+            <div class="main-section">
+
+                <div class="main-search">
+                    <input class="main-search-int" type="text" placeholder="검색어를 입력하세요.">
+                    <button><i class="fa-solid fa-xmark" style="color: #c8d2e5;"></i></button>
+                    <button class="main-search-btn"><i class="fa-solid fa-magnifying-glass" style="color: #c8d2e5"></i> </button>
+                </div> <!--main-search-int-->
+
+                <div class="main-category">
+                    <select>
+                        <option>카테고리</option>
+                        <option>컬처</option>
+                        <option>푸드</option>
+                        <option>쉘터</option>
+                        <option>그 외</option>
+                    </select>
+                    <select>
+                        <option>지역 </option>
+                        <option>서울</option>
+                        <option>경기</option>
+                        <option>인천</option>
+                        <option>강원</option>
+                        <option>충북</option>
+                        <option>충남</option>
+                        <option>대전</option>
+                        <option>대구</option>
+                        <option>부산</option>
+                        <option>울산</option>
+                        <option>경북</option>
+                        <option>경남</option>
+                        <option>광주</option>
+                        <option>전북</option>
+                        <option>전남</option>
+                        <option>제주</option>
+                    </select>
+                </div> <!--main-category-->
+            </div>
+
+            <div class="center">
+                <div><img th:src="@{/img/main_img_1.png}"></div>
+                <div><img th:src="@{/img/main_img_2.png}"></div>
+                <div><img th:src="@{/img/main_img_3.jpg}"></div>
+                <div><img th:src="@{/img/main_img_4.jpg}"></div>
+                <div><img th:src="@{/img/main_img_5.jpg}"></div>
+            </div>
+        </div><!--main-1-->
+
+        <div class="main-2">
+            <div class="commend con">
+                <h2>지역별 추천 👍🏻</h2>
+                <br>
+                <div class="commend-header">
+                    <ul class="commend-li">
+                        <li><a href="#">서울</a></li>
+                    </ul>
+                    <ul class="commend-li">
+                        <li><a href="#">부산</a></li>
+                    </ul>
+                    <ul class="commend-li">
+                        <li><a href="#">대구</a></li>
+                    </ul>
+                    <ul class="commend-li">
+                        <li><a href="#">울산</a></li>
+                    </ul>
+                    <ul class="commend-li">
+                        <li><a href="#">대전</a></li>
+                    </ul>
+                    <ul class="commend-li">
+                        <li><a href="#">인천</a></li>
+                    </ul>
+                    <ul class="commend-li">
+                        <li><a href="#">광주</a></li>
+                    </ul>
+                    <ul class="commend-li">
+                        <li><a href="#">제주</a></li>
+                    </ul>
+                </div>
+
+                <div class="commend-box">
+                    <i class="fa-solid fa-angle-left commend-box-left-btn" style="color: #247b29;"></i>
+
+                    <div id="slider-div">
+                        <div>
+                            <ul class="commend-box-in commend-box-in-margin">
+                                <a href="#"><img th:src="@{/img/food_1.jpg}">
+                                    <li>가게이름 : 난포
+                                        <i class="fa-regular fa-bookmark bMark-icon-1" style="color: #000000;"></i>
+                                    </li></a>
+                                <li>대표메뉴 : 강된장쌈밥, 곰탕</li>
+                                <li>가게주소 : 서울 성동구 서울숲 4길</li>
+                                <li class="commend-box-li-re"> 18-8 지층</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="commend-box-in commend-box-in-margin-left">
+                                <a href="#"><img th:src="@{/img/food_2.jpg}">
+                                    <li>가게이름 : 포피나
+                                        <i class="fa-regular fa-bookmark bMark-icon-2" style="color: #000000;"></i>
+                                    </li></a>
+                                <li>대표메뉴 : 뇨끼, 라자냐</li>
+                                <li>가게주소 : 서울 성동구 서울숲</li>
+                                <li class="commend-box-li-re">2길 13 1층</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="commend-box-in " style="margin-left: 21px;">
+                                <a href="#"><img th:src="@{/img/food_3.jpg}">
+                                    <li>가게이름 : 구아바
+                                        <i class="fa-regular fa-bookmark bMark-icon-2" style="color: #000000;"></i>
+                                    </li></a>
+                                <li>대표메뉴 : Guabar Lime Cooler</li>
+                                <li>가게주소 : 서울 성동구 성수이로</li>
+                                <li class="commend-box-li-re">14길 7 3층</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="commend-box-in commend-box-in-margin">
+                                <a href="#"><img th:src="@{/img/food_4.jpg}">
+                                    <li>가게이름 : 핏제리아오 대학로본점
+                                        <i class="fa-regular fa-bookmark bMark-icon-3" style="color: #000000;"></i>
+                                    </li></a>
+                                <li>대표메뉴 : 스텔라, 오'핏자</li>
+                                <li>가게주소 : 서울 종로구 동숭길 86</li>
+                                <li class="commend-box-li-re">2, 3층</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="commend-box-in commend-box-in-margin-left">
+                                <a href="#"><img th:src="@{/img/food_5.jpg}">
+                                    <li>가게이름 : 하이디라오 건대지점
+                                        <i class="fa-regular fa-bookmark bMark-icon-4" style="color: #000000;"></i>
+                                    </li></a>
+                                <li>대표메뉴 : 훠궈, 새우완자</li>
+                                <li class="commend-box-li-margin">가게주소 : 서울 광진구 능동로 110</li>
+                                <li class="commend-box-li-re">스타시티 영존 A동 2F</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="commend-box-in commend-box-in-margin-right">
+                                <a href="#"><img th:src="@{/img/food_6.jpg}">
+                                    <li>가게이름 : 너프
+                                        <i class="fa-regular fa-bookmark bMark-icon-1" style="color: #000000;"></i>
+                                    </li></a>
+                                <li>대표메뉴 : 바나나푸딩, 너프크림라떼</li>
+                                <li class="commend-box-li-margin">가게주소 : 서울 마포구 어울마당로 5길 </li>
+                                <li class="commend-box-li-re">50 1층 201호</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-angle-right commend-box-right-btn" style="color: #247b29;"></i>
+                </div>
+            </div>
+        </div> <!-- main-2 -->
+
+        <div class="main-3 con">
+
+            <h2>지도 🗺️</h2>
+
+            <div class="map-box">
+                <div id="map"></div>
+            </div>
+
+            <th:block layout:fragment="script">
+                <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+                <script type="text/javascript" th:src="@{/js/index.js}"></script>
+                <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f2dc242c6b2cf0cb26d5a0a32d7f4ca3"></script>
+                <script>
+                    kakao.maps.load(function() {
+                       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                            mapOption = {
+                                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                                level: 3 // 지도의 확대 레벨
+                            };
+
+                        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+                        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+                        var mapTypeControl = new kakao.maps.MapTypeControl();
+
+                        // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+                        // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+                        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+                        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+                        var zoomControl = new kakao.maps.ZoomControl();
+                        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+                     });
+                </script>
+            </th:block>
+
+        </div> <!--main-3-->
+
+    </div><!-- main -->
+
+
+
+
+</body>
+</html>

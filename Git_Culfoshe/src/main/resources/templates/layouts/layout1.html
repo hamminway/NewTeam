@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+        <!-- CSS only -->
+        <!-- 링크 써야 아이콘이 들어감!! -->
+        <link th:href="@{/css/layouts/layout1.css}" rel="stylesheet">
+        <link th:href="@{/css/fragments/header.css}" rel="stylesheet" type="text/css" />
+        <link th:href="@{/css/fragments/footer.css}" rel="stylesheet" type="text/css" />
+        <link th:href="@{/css/fragments/sideBar.css}" rel="stylesheet" type="text/css" />
+
+
+        <!-- JS, Popper.js, and jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://kit.fontawesome.com/2c827c8cca.js" crossorigin="anonymous"></script>
+
+        <th:block layout:fragment="css"></th:block>
+    </head>
+
+    <body>
+        <div th:replace="fragments/header::header"></div>
+
+        <div layout:fragment="content" class="content"></div>
+        <th:block layout:fragment="script"></th:block>
+<!--        <div th:replace="extras/map::map"></div>-->
+
+        <div th:replace="fragments/footer::footer"></div>
+
+        <div th:replace="fragments/sideBar::sideBar"></div>
+
+    </body>
+
+</html>
