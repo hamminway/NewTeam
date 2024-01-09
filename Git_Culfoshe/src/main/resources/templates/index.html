@@ -66,33 +66,34 @@
         </div><!--main-1-->
 
         <div class="main-2">
+            <div id="map"></div>
             <div class="commend con">
                 <h2>지역별 추천 👍🏻</h2>
                 <br>
                 <div class="commend-header">
                     <ul class="commend-li">
-                        <li><a href="#">서울</a></li>
+                        <li><button onclick="seoul()">서울</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">부산</a></li>
+                        <li><button>부산</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">대구</a></li>
+                        <li><button>대구</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">울산</a></li>
+                        <li><button>울산</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">대전</a></li>
+                        <li><button>대전</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">인천</a></li>
+                        <li><button>인천</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">광주</a></li>
+                        <li><button>광주</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">제주</a></li>
+                        <li><button>제주</button></li>
                     </ul>
                 </div>
 
@@ -177,16 +178,17 @@
             <h2>지도 🗺️</h2>
 
             <div class="map-box">
-                <div id="map"></div>
+                <div id="map1"></div>
             </div>
 
             <th:block layout:fragment="script">
                 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
                 <script type="text/javascript" th:src="@{/js/index.js}"></script>
                 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f2dc242c6b2cf0cb26d5a0a32d7f4ca3"></script>
-                <script>
+                <script th:inline="javascript">
                     kakao.maps.load(function() {
-                       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+
+                       var mapContainer = document.getElementById('map1'), // 지도를 표시할 div
                             mapOption = {
                                 center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
                                 level: 3 // 지도의 확대 레벨
@@ -194,16 +196,14 @@
 
                         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-                        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-                        var mapTypeControl = new kakao.maps.MapTypeControl();
+                       function seoul() {
+                            // 이동할 위도 경도 위치를 생성합니다
+                            var moveLatLon = new kakao.maps.LatLng(33.450580, 126.574942);
 
-                        // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-                        // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-                        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-                        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-                        var zoomControl = new kakao.maps.ZoomControl();
-                        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+                            // 지도 중심을 부드럽게 이동시킵니다
+                            // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+                            map.seoul(moveLatLon);
+                        }
                      });
                 </script>
             </th:block>

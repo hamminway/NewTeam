@@ -1,7 +1,6 @@
 package com.culfoshe.repository;
 
 
-import com.culfoshe.constant.LocationSellStatus;
 import com.culfoshe.entity.Location;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
