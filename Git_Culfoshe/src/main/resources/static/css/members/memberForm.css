@@ -1,0 +1,119 @@
+    @charset "UTF-8";
+
+    *{margin: 0px; padding: 0px;}
+    ul, li{list-style:none;}
+
+    .array{display: flex;}
+
+    .joinbox{width: 1500px; padding-top: 220px; margin: 0px auto; margin-bottom: 150px;}
+    .joinment{margin-top: 40px; margin-left: 225px;}
+
+    .member{margin-top: 50px; padding-top: 110px; width: 680px; margin-left: 410px;}
+    .memberselect{display: flex;}
+    .indicBox{display: inline-flex; margin-left: 50px;}
+    .indicBox p{position: relative; top: 5px;}
+    .indic, .partner, .alluser{margin-right: 5px;}
+
+    .agree{display: flex; margin-top: 20px;}
+    .agreebox{display: flex; padding: 5px;}
+    .agreebox2{margin-left: 30px;}
+
+    .agreebox1, .agreebox2{width: 325px; height: 225px; border: 1px solid #C3C3C3;
+        border-radius: 5px; background-color: white;}
+    .agreebox1 p, .agreebox2 p{margin-left: 5px;}
+
+    .indicAgree{font-size: 18px; font-weight: bold; padding: 18px 0px 10px 17px; text-decoration: underline;}
+    .Allcheckbox{margin-left: 20px;}
+    .Allcheckbox2{padding-left: 5px;}
+
+    .inforInputBox{display: flex; padding-bottom: 90px;}
+    .inficInfor{margin-left: 240px;}
+    .partnerInfor{margin-left: 50px; z-index: 0;}
+    .td1{width: 150px; height: 40px;}
+    .td2{width: 300px; height: 40px;}
+
+    .td2_1{width: 300px; height: 70px;}
+    .td2_2{width: 300px; height: 60px;}
+    .td2_3{width: 370px; height: 70px;}
+
+    .td3{width: 150px; height: 54px;}
+    .td4{width: 300px; height: 55px;}
+
+    .td3_1{width: 150px; height: 42px;}
+    .td4_1{width: 300px; height: 45px;}
+    .td3_2{width: 150px; height: 77px;}
+    .td4_2{width: 300px; height: 80px;}
+    .td3_3{width: 150px; height: 62px;}
+    .td4_3{width: 300px; height: 65px;}
+
+    .partnerInformini{margin-top: 37px;}
+
+    .checkitem{width: 300px; height: 32px; border: 1px solid #666;
+        border-radius: 2px; background-color: white;}
+    .checkitem1{width: 170px; height: 32px; border: 1px solid #666;
+        border-radius: 2px; background-color: white; margin-left: 3px;}
+
+    .id, .phonecheck{width: 210px; border: none;}
+    .domain{width: 85px; border: none;}
+
+    .btn{width: 75px; height: 25px; position: relative; bottom: -3px; left: 7px;
+        background-color: green; color: white; border: none; border-radius: 5px;
+        font-size: 11px;}
+    .domainBtn{width: 75px; height: 25px; position: relative; bottom: -3px; left: 2px;
+        background-color: green; color: white; border: none; border-radius: 5px;
+        font-size: 11px;}
+
+    .idchk, .pwdchk, .pwdchk1, .numchk{font-size: 12px;}
+    .pwdchk1{padding-top: 10px;}
+    .pwd, .name, .phone, .company, .storeplace, .reprename, .managername, .managerphone{width: 300px; height: 30px;}
+    .email{width: 130px; height: 30px;}
+    .email2{padding: 0px 4.5px;}
+
+    .culfosheDomain{font-size: 11px; position: relative; top: 9px;}
+
+    .phonereplac{margin-left: 20px;}
+    .phonereplace2{margin-left: 7px; font-size: 12px;}
+    .phonereplacebox{margin-top: 2.5px;}
+
+    .indicment, .partnerment, .interestlocal{padding-bottom: 20px;}
+    .indicment, .partnerment{margin-top: 100px;}
+    .interestlocal{margin-top: 100px;}
+    .interestInfor{margin-top: 120px; padding-bottom: 120px; display: none;}
+    .interestment{padding-bottom: 15px;}
+
+    .indexbox1{position: relative; bottom: 953px; left: 219px;
+        background-color: #bbb; opacity:0.5; display: none; z-index: 1;}
+    .indexbox2{position: relative; bottom: 1368px; left: 795px;
+        background-color: #bbb; opacity:0.5; display: none; z-index: 1;}
+    .box{display: none;}
+
+   /* #selectBox > button:hover{background-color: rgb(16, 104, 63); color: white;} */
+
+    .selectbox{margin-top: 5px;}
+
+    .ckeckInterest{width: 80px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+    .ckeckInterest1{width: 80px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 30px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+    .ckeckInterest2{width: 80px; height: 35px; line-height: 35px; margin-top: 5px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+    .ckeckInterest3{width: 93px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+    .ckeckInterest4{width: 112px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+    .ckeckInterest4_1{width: 112px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 30px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+    .ckeckInterest5{width: 125px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+    .ckeckInterest6{width: 140px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+
+    .interestbox{width: 710px; margin-left: 395px;}
+
+    /* interestlocal 부터*/
+    .arraybox1, .arraybox2{display: flex;}
+
+    .indic_joinbtn{width: 200px; height: 50px; font-size: 17px; margin-left: 1060px;
+        color: white; background-color: green; border: none; border-radius: 5px; margin-top: 65px; display: none;}
+    .part_joinbtn{width: 200px; height: 50px; font-size: 17px; margin-left: 1060px;
+    color: white; background-color: green; border: none; border-radius: 5px; margin-top: 30px; display: none;}

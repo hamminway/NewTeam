@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/members/memberLoginForm.css}" />
+    </th:block>
+
+<th:block layout:fragment="content">
+    <div>
+        <div class="All_login">
+
+            <div class="mainlogin">
+                <p class="login">로그인</p>
+
+                <div class="loginbox">
+
+                    <div class="id_pwd">
+                        <input type="text" class="idbox" placeholder="아이디" minlength="6" maxlength="20"><br>
+                        <input type="password" class="pwdbox" placeholder="비밀번호" minlength="10" maxlength="20">
+
+                        <button class="loginbtn">로그인</button>
+                    </div>
+
+                    <div class="find_login">
+                        <a href="">아이디 찾기</a>
+                        <div class="miniline"></div>
+                        <a href="">비밀번호 찾기</a>
+                        <div class="miniline"></div>
+                        <a onClick="location.href='/members/new'">회원가입</a>
+                    </div>
+
+                </div>
+            </div><!--.mainlogin-->
+
+            <div class="sublogin">
+                <p class="login2">간편 로그인</p>
+
+                <div class="sublogin_icon">
+                    <a href="" class="Web_icon"><img src="/img/kakaoicon.png" alt=""></a>
+                    <a href="" class="Web_icon"><img src="/img/navericon.png" alt=""></a>
+                    <a href="" class="Web_icon"><img src="/img/googleicon.png" alt=""></a>
+                </div>
+            </div>
+            <!--.sublogin-->
+        </div>
+        <!--.All_login-->
+    </div>
+</th:block>
+
+</html>
