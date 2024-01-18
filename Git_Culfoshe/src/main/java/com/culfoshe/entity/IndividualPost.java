@@ -11,6 +11,7 @@ public class IndividualPost extends BaseEntity{
 
     @Id
     @Column(name = "post_code")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long PostCode;
 
     @Enumerated(EnumType.STRING)
@@ -28,6 +29,7 @@ public class IndividualPost extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "store_location")
+    @JoinColumn(name = "partnermem_id")
     private PartnerMem partnerMem;
 
     private String location;

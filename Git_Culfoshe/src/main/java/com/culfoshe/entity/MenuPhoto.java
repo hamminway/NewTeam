@@ -15,6 +15,7 @@ public class MenuPhoto {
     private String imgUrl;
 
     @ManyToOne
+    @JoinColumn(name = "store_location")
     @JoinColumn(name = "partnermem_id")
     private PartnerMem partnerMem;
 

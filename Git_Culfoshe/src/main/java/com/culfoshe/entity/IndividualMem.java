@@ -16,7 +16,6 @@ public class IndividualMem {
 
     @Id
     @Column(name = "individualmem_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
 
     @Email
