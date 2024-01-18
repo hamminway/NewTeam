@@ -1,7 +1,7 @@
 package com.culfoshe.service;
 
-import com.culfoshe.dto.members.IndividualMemFormDTO;
-import com.culfoshe.dto.members.PartnerMemFormDTO;
+import com.culfoshe.join.dto.IndividualMemFormDTO;
+import com.culfoshe.partnerPage.dto.PartnerMemFormDTO;
 import com.culfoshe.entity.members.IndividualMem;
 import com.culfoshe.entity.members.PartnerMem;
 import com.culfoshe.repository.members.IndividualMemRepository;
