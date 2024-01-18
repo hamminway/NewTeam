@@ -140,11 +140,20 @@
 }
 
 .commend-li {
-  font-size: 21px;
+
   display: inline-flex;
   margin-bottom: 30px;
   margin-left: 80px;
   margin-right: 20px;
+}
+
+.commend-li button{
+    color: inherit;
+    background : #fff;
+    font-size: 21px;
+    padding-left: 17px;
+    border:none;
+
 }
 
 /*지역 선택 언더바*/
@@ -152,12 +161,12 @@
 	color: green;
 }
 
-.commend .commend-li li>a {
+.commend .commend-li li>button {
 	position: relative;
 }
 
 
-.commend .commend-li li>a::after {
+.commend .commend-li li>button::after {
 	content: "";
 	position: absolute;
 	width: 0;
@@ -168,7 +177,7 @@
 	transition: width 0.4s;
 }
 
-.commend .commend-li li>a::before {
+.commend .commend-li li>button::before {
 	content: "";
 	position: absolute;
 	width: 0;
@@ -179,11 +188,11 @@
 	transition: width 0.4s;
 }
 
-.commend .commend-li li:hover>a::after {
+.commend .commend-li li:hover>button::after {
 	width: 110%;
 }
 
-.commend .commend-li li:hover>a::before {
+.commend .commend-li li:hover>button::before {
 	width: 110%;
 }
 
@@ -318,7 +327,7 @@
 	margin-right: auto;
 }
 
-#map {
+#map1 {
     width:1200px;
     height:550px;
 

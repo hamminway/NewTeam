@@ -27,12 +27,14 @@
         <div th:replace="fragments/header::header"></div>
 
         <div layout:fragment="content" class="content"></div>
-        <th:block layout:fragment="script"></th:block>
+
 <!--        <div th:replace="extras/map::map"></div>-->
 
         <div th:replace="fragments/footer::footer"></div>
 
         <div th:replace="fragments/sideBar::sideBar"></div>
+
+        <th:block layout:fragment="script"></th:block>
 
     </body>
 
