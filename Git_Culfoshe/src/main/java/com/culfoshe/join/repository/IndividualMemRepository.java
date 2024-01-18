@@ -1,6 +1,6 @@
 package com.culfoshe.join.repository;
 
-import com.culfoshe.entity.members.IndividualMem;
+import com.culfoshe.entity.IndividualMem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IndividualMemRepository extends JpaRepository<IndividualMem, Long> {

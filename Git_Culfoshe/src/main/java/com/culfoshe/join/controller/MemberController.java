@@ -1,7 +1,7 @@
 package com.culfoshe.join.controller;
 
-import com.culfoshe.dto.members.IndividualMemFormDTO;
-import com.culfoshe.main.service.MemService;
+import com.culfoshe.join.dto.IndividualMemFormDTO;
+import com.culfoshe.join.service.MemberService;
 import com.culfoshe.partnerPage.dto.PartnerMemFormDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemService memService;
+    private final MemberService memService;
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping(value = "/login")
@@ -71,7 +71,7 @@ public class MemberController {
             System.out.println(partnerMemFormDTO.toString());
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "member/memberForm";
+            return "members/memberForm";
         }
 
         return "redirect:/";

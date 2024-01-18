@@ -1,6 +1,6 @@
 package com.culfoshe.partnerPage.dto;
 
-import com.culfoshe.entity.members.PartnerMem;
+import com.culfoshe.entity.PartnerMem;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;

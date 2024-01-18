@@ -1,8 +1,9 @@
-package com.culfoshe.main.service;
+package com.culfoshe.join.service;
 
+import com.culfoshe.join.dto.IndividualMemFormDTO;
 import com.culfoshe.partnerPage.dto.PartnerMemFormDTO;
-import com.culfoshe.entity.members.IndividualMem;
-import com.culfoshe.entity.members.PartnerMem;
+import com.culfoshe.entity.IndividualMem;
+import com.culfoshe.entity.PartnerMem;
 import com.culfoshe.join.repository.IndividualMemRepository;
 import com.culfoshe.partnerPage.repository.PartnerMemRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,18 +15,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
+
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class MemService implements UserDetailsService {
+public class MemberService implements UserDetailsService {
 
     private final IndividualMemRepository individualMemRepository;
     private final PartnerMemRepository partnerMemRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public IndividualMem saveIndividualMem(com.culfoshe.dto.members.IndividualMemFormDTO individualMemFormDTO) {
-        IndividualMem individualMem = com.culfoshe.dto.members.IndividualMemFormDTO.createIndividualMem(individualMemFormDTO, passwordEncoder);
+    public IndividualMem saveIndividualMem(@Valid IndividualMemFormDTO individualMemFormDTO) {
+        IndividualMem individualMem = IndividualMemFormDTO.createIndividualMem(individualMemFormDTO, passwordEncoder);
 
         validateDulicateMember(individualMem.getEmail());
         return individualMemRepository.save(individualMem);
