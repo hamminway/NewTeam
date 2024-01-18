@@ -1,8 +1,8 @@
-package com.culfoshe.controller;
+package com.culfoshe.join.controller;
 
 import com.culfoshe.dto.members.IndividualMemFormDTO;
-import com.culfoshe.dto.members.PartnerMemFormDTO;
 import com.culfoshe.main.service.MemService;
+import com.culfoshe.partnerPage.dto.PartnerMemFormDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;

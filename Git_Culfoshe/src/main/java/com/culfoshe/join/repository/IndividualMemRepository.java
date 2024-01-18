@@ -1,4 +1,4 @@
-package com.culfoshe.main.repository;
+package com.culfoshe.join.repository;
 
 import com.culfoshe.entity.members.IndividualMem;
 import org.springframework.data.jpa.repository.JpaRepository;
