@@ -9,15 +9,15 @@ public class MainViewDTO {
 
     private Long id;
     private String storeName;    //상호명
-    private String storeReview;   //한줄평
+    private String PostReview;   //한줄평
     private String storeImage;
 
     @QueryProjection
     public MainViewDTO(Long id, String storeName,
-                       String storeReview, String storeImage) {
+                       String PostReview, String storeImage) {
         this.id = id;
         this.storeName = storeName;
-        this.storeReview = storeReview;
+        this.PostReview = PostReview;
         this.storeImage = storeImage;
     }
 }
