@@ -1,120 +1,493 @@
-    @charset "UTF-8";
+@charset "UTF-8";
 
-    *{margin: 0px; padding: 0px;}
-    ul, li{list-style:none;}
+* {
+    margin: auto;
+    padding: 0px;
+}
+ul,
+li {
+    list-style: none;
+}
 
-    .array{display: flex;}
+.navbar {
+    float: right;
+    margin: 10px;
+    margin-top: 10px;
+}
 
-    .joinbox{width: 1500px; padding-top: 220px; margin: 0px auto; margin-bottom: 150px;}
-    .joinment{margin-top: 40px; margin-left: 225px;}
+a {
+    color: inherit;
+    text-decoration: none;
+    padding-left: 20px;
+}
 
-    .member{margin-top: 50px; padding-top: 110px; width: 680px; margin-left: 410px;}
-    .memberselect{display: flex;}
-    .indicBox{display: inline-flex; margin-left: 50px;}
-    .indicBox p{position: relative; top: 5px;}
-    .indic, .partner, .alluser{margin-right: 5px;}
+.navbar a {
+    margin-right: 20px;
+    position: relative;
+    bottom: -2.5px;
+}
 
-    .agree{display: flex; margin-top: 20px;}
-    .agreebox{display: flex; padding: 5px;}
-    .agreebox2{margin-left: 30px;}
+.navbar a:hover {
+    color: #9acd32;
+}
 
-    .agreebox1, .agreebox2{width: 325px; height: 225px; border: 1px solid #C3C3C3;
-        border-radius: 5px; background-color: white;}
-    .agreebox1 p, .agreebox2 p{margin-left: 5px;}
+#join {
+    margin-right: 0px;
+    position: relative;
+    bottom: -2px;
+}
 
-    .indicAgree{font-size: 18px; font-weight: bold; padding: 18px 0px 10px 17px; text-decoration: underline;}
-    .Allcheckbox{margin-left: 20px;}
-    .Allcheckbox2{padding-left: 5px;}
+.navbar img {
+    height: 28px;
+    position: relative;
+    bottom: -6px;
+    margin-right: 6px;
+}
 
-    .inforInputBox{display: flex; padding-bottom: 90px;}
-    .inficInfor{margin-left: 240px; width: 510px;}
-    .partnerInfor{margin-left: 50px; z-index: 0;}
-    .td1{width: 150px; height: 40px;}
-    .td2{width: 300px; height: 40px;}
+#minisearch {
+    width: 250px;
+    height: 23px;
+    margin-left: 1240px;
+    border: 1px solid #c3c3c3;
+    border-radius: 5px;
+}
 
-    .td2_1{width: 300px; height: 70px;}
-    .td2_2{width: 300px; height: 60px;}
-    .td2_3{width: 370px; height: 70px;}
+.icon :focus {
+    outline: 1px solid green;
+    border-radius: 5px;
+}
 
-    .td3{width: 150px; height: 54px;}
-    .td4{width: 300px; height: 55px;}
+.icon img {
+    height: 20px;
+    position: relative;
+    left: 1467px;
+    top: -22px;
+}
 
-    .td3_1{width: 150px; height: 42px;}
-    .td4_1{width: 300px; height: 45px;}
-    .td3_2{width: 150px; height: 77px;}
-    .td4_2{width: 300px; height: 80px;}
-    .td3_3{width: 150px; height: 62px;}
-    .td4_3{width: 300px; height: 65px;}
+/* 라이브러리 */
+/* 메뉴 시작*/
+.con {
+    margin: 0 auto;
+    width: 1500px;
+    max-width: 1500px;
+    min-width: 200px;
+}
 
-    .partnerInformini{margin-top: 37px;}
+.row::after {
+    content: "";
+    display: block;
+    clear: both;
+}
 
-    .checkitem{width: 300px; height: 32px; border: 1px solid #666;
-        border-radius: 2px; background-color: white;}
-    .checkitem1{width: 170px; height: 32px; border: 1px solid #666;
-        border-radius: 2px; background-color: white; margin-left: 3px;}
+.cell {
+    float: left;
+    box-sizing: border-box;
+}
 
-    .id, .phonecheck{width: 210px; border: none;}
-    .domain{width: 85px; border: none;}
+.cell-right {
+    float: right;
+    box-sizing: border-box;
+}
 
-    .btn{width: 75px; height: 25px; position: relative; bottom: -3px; left: 7px;
-        background-color: green; color: white; border: none; border-radius: 5px;
-        font-size: 11px;}
-    .domainBtn{width: 75px; height: 25px; position: relative; bottom: -3px; left: 2px;
-        background-color: green; color: white; border: none; border-radius: 5px;
-        font-size: 11px;}
+.margin-0-auto {
+    margin: 0 auto;
+}
 
-    .idchk, .pwdchk, .pwdchk1, .numchk{font-size: 12px;}
-    .pwdchk1{padding-top: 10px;}
-    .pwd, .name, .phone, .company, .storeplace, .reprename, .managername, .managerphone{width: 300px; height: 30px;}
-    .email{width: 130px; height: 30px;}
-    .email2{padding: 0px 4.5px;}
+.block {
+    display: block;
+}
 
-    .culfosheDomain{font-size: 11px; position: relative; top: 9px;}
+.inline-block {
+    display: inline-block;
+}
 
-    .phonereplac{margin-left: 20px;}
-    .phonereplace2{margin-left: 7px; font-size: 12px;}
-    .phonereplacebox{margin-top: 2.5px;}
+.line-height-0-ch-only {
+    line-height: 0;
+}
 
-    .indicment, .partnerment, .interestlocal{padding-bottom: 20px;}
-    .indicment, .partnerment{margin-top: 100px;}
-    .interestlocal{margin-top: 100px;}
-    .interestInfor{margin-top: 120px; padding-bottom: 120px;}
-    .interestment{padding-bottom: 15px;}
+.line-height-0-ch-only > * {
+    line-height: normal;
+}
 
-    .indexbox1{position: relative; bottom: 1016px; left: 219px;
-        background-color: #ccc; opacity:0.2; display: none; z-index: 1;}
-    .indexbox2{position: relative; bottom: 1400px; left: 795px;
-        background-color: #ccc; opacity:0.2; display: none; z-index: 1;}
+.relative {
+    position: relative;
+}
 
-    /* interestInfor 부터 */
+.absolute-left {
+    position: absolute;
+    left: 0;
+}
 
-   /* #selectBox > button:hover{background-color: rgb(16, 104, 63); color: white;} */
+.absolute-right {
+    position: absolute;
+    right: 0;
+}
 
-    .interestInfor{display: none;}
-    .selectbox{margin-top: 5px;}
+.absolute-middle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
-    .ckeckInterest{width: 80px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
-    .ckeckInterest1{width: 80px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 30px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
-    .ckeckInterest2{width: 80px; height: 35px; line-height: 35px; margin-top: 5px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
-    .ckeckInterest3{width: 93px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
-    .ckeckInterest4{width: 112px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
-    .ckeckInterest4_1{width: 112px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 30px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
-    .ckeckInterest5{width: 125px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
-    .ckeckInterest6{width: 140px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+/* 커스텀 */
 
-    .interestbox{width: 710px; margin-left: 395px;}
+html,
+body {
+    overflow-x: hidden;
+}
 
-    /* interestlocal 부터*/
-    .arraybox1{display: flex; margin-left: 57px;}
-    .arraybox2{display: flex; margin-left: 55px;}
+body {
+    overflow-y: hidden;
+}
 
-    .joinbtn{width: 200px; height: 50px; font-size: 17px; margin-left: 1060px;
-    color: white; background-color: green; border: none; border-radius: 5px; margin-top: 100px; display: none;}
+/*탑바메뉴 시작*/
+
+.top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    height: 196px;
+    transition: height 0.7s;
+    background-color: #ffffff;
+    z-index: 200;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+}
+
+/*1차메뉴 회색밑줄 조절*/
+.top-bar::after {
+    content: "";
+    position: absolute;
+    top: 195px;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+/*마우스올릴 시 2차메뉴 높이조절*/
+.top-bar:hover {
+    height: 500px;
+}
+
+.top-bar .logo {
+    margin-top: 20px;
+    width: 147px;
+}
+
+.top-bar .menu-box-1 {
+    width: calc(100% - 206.44px);
+}
+
+.top-bar .menu-box-1 > ul > li {
+    width: 25%;
+}
+
+/* 1차 메뉴선택효과 시작 */
+.top-bar .menu-box-1 > ul > li > a {
+    position: relative;
+}
+
+/*마우스 올릴 시 underbar 표시*/
+.top-bar .menu-box-1 > ul > li > a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 5px;
+    bottom: -33px;
+    right: 50%;
+    background-color: green;
+    transition: width 0.4s;
+}
+
+.top-bar .menu-box-1 > ul > li > a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 5px;
+    bottom: -33px;
+    left: 50%;
+    background-color: green;
+    transition: width 0.4s;
+}
+
+.top-bar .menu-box-1 > ul > li:hover > a::after {
+    width: 50%;
+}
+
+.top-bar .menu-box-1 > ul > li:hover > a::before {
+    width: 50%;
+}
+
+/* 1차메뉴선택효과 끝 */
+/*1차메뉴 선 효과*/
+.top-bar .menu-box-1 > ul > li > a {
+    text-align: center;
+    padding: 0 10px;
+    font-size: 23px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 2px;
+}
+
+.top-bar .menu-box-1 > ul > li:hover > a {
+    color: green;
+}
+
+/* 2차 메뉴 왼쪽 오른쪽 선 높이*/
+.top-bar .menu-box-1 > ul > li > div > ul {
+    position: absolute;
+    top: 37px;
+    width: 100%;
+    height: 260px;
+    border-left: 1px solid #e8e8e8;
+}
+
+.top-bar .menu-box-1 > ul > li:last-child > div > ul {
+    border-right: 1px solid #e8e8e8;
+}
+
+/*2차메뉴안에 글자 마진*/
+
+.top-bar .menu-box-1 > ul > li > div > ul > li {
+    text-align: left;
+    margin-left: 20%;
+}
+
+.top-bar .menu-box-1 > ul > li > div > ul > li:first-child {
+    margin-top: 23px;
+}
+
+.top-bar .menu-box-1 > ul > li:nth-child(2) > div > ul > li {
+    margin-left: 20%;
+}
+
+.top-bar .menu-box-1 > ul > li:nth-child(3) > div > ul > li {
+    margin-left: 20%;
+}
+
+.top-bar .menu-box-1 > ul > li:nth-child(4) > div > ul > li {
+    margin-left: 20%;
+}
+
+.top-bar .menu-box-1 > ul > li > div > ul > li > a {
+    font-size: 18px;
+    padding: 10px 0;
+    display: inline-block;
+    font-weight: 400;
+    position: relative;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+/* 2차메뉴클릭효과 시작*/
+/* 2차 메뉴 클릭 시 점표시*/
+.top-bar .menu-box-1 > ul > li > div > ul > li > a::after {
+    content: ".";
+    position: absolute;
+    top: 31%;
+    transform: translatey(-50%); /*정렬*/
+    left: -13px;
+    font-size: 1.7rem;
+    color: green;
+    opacity: 0;
+    transform: translateX(5px);
+    transition: opacity 0.1s, transform 0.2s;
+}
+
+.top-bar .menu-box-1 > ul > li > div > ul > li:hover > a::after {
+    transform: translateX(0) translatey(-50%);
+    opacity: 1;
+}
+
+/* 2차메뉴클릭효과 끝 */
+
+.top-bar .menu-box-1 > ul > li > div > ul > li:hover > a {
+    color: green;
+}
+
+/*2차 메뉴 안에 제목 위치 조절*/
+.top-bar .menu-box-1 > ul > li > .menu-text {
+    position: absolute;
+    top: 222px;
+    left: 48%;
+    width: 250px;
+    height: 400px;
+    transform: translateX(-670px);
+    opacity: 0;
+    transform: opacity 5s;
+}
+
+.top-bar .menu-box-1 > ul > li:hover > .menu-text {
+    opacity: 1;
+}
+
+/*2차 메뉴 안에 제목(영어)*/
+.top-bar .menu-box-1 > ul > li > .menu-text > .menu-title {
+    font-size: 35px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -1px;
+    color: green;
+    border-bottom: 2px solid green;
+}
+
+.top-bar .menu-box-1 > ul > li > .menu-text > .menu-title-text {
+    display: block;
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.22;
+    letter-spacing: -2px;
+    color: #222222;
+}
+
+/*탑바 메뉴 끝*/
+
+/* cell 너비*/
+
+.main-grid .row .cell {
+    width: 283px;
+}
+
+.main-grid > .row:first-child .cell:first-child,
+.main-grid > .row:nth-child(2) .cell:nth-child(2) {
+    width: calc(100% - 283px * 2);
+}
+
+/* row 높이*/
+
+.main-grid > .row:first-child .cell {
+    height: 400px;
+}
+
+.main-grid > .row:nth-child(2) .cell {
+    height: 300px;
+}
+
+.main-grid .row .cell > nav {
+    height: 50%;
+}
+
+.main-grid .row .cell .grid-item2 {
+    height: 50%;
+}
+
+.main-grid .row .cell .grid-item4 {
+    height: 50%;
+}
+
+.main-grid .row .cell nav > .grid-item-base {
+    height: 100%;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+a {
+    text-decoration-line: none;
+    color: #333;
+    font-size: 7px;
+}
+
+.All_login {
+    width: 1900px;
+}
+
+.mainlogin {
+    width: 550px;
+    height: 420px;
+    border: 1px solid #c3c3c3;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 400px;
+}
+.login {
+    font-size: 30px;
+    margin-top: 52px;
+    margin-left: 230px;
+}
+
+.loginbox {
+    padding: 30px 0px 60px 0px;
+}
+.id_pwd {
+    width: 410px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.idbox,
+.pwdbox {
+    width: 400px;
+    height: 50px;
+    background-color: aliceblue;
+    color: white;
+    border: none;
+    margin: 5px 0px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.loginbtn {
+    width: 410px;
+    height: 50px;
+    background-color: green;
+    color: white;
+    border: none;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+.loginbtn1 {
+    width: 75px;
+    height: 90px;
+    position: relative;
+    left: 20px;
+    bottom: 20px;
+}
+
+.find_login {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 76px;
+}
+.miniline {
+    width: 1px;
+    height: 12px;
+    background-color: #c3c3c3;
+    margin-top: 2px;
+    margin-left: 45px;
+    margin-right: 27px;
+}
+
+.sublogin {
+    width: 550px;
+    height: 190px;
+    border: 1px solid #c3c3c3;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.login2 {
+    width: 550px;
+    font-size: 17px;
+    padding: 30px 0px 30px 0px;
+    text-align: center;
+}
+
+.sublogin_icon {
+    margin-left: 51px;
+}
+.Web_icon {
+    margin: 0px 27px;
+}
