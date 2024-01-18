@@ -1,11 +1,10 @@
-package com.culfoshe.service;
+package com.culfoshe.main.service;
 
-import com.culfoshe.dto.members.IndividualMemFormDTO;
-import com.culfoshe.dto.members.PartnerMemFormDTO;
+import com.culfoshe.partnerPage.dto.PartnerMemFormDTO;
 import com.culfoshe.entity.members.IndividualMem;
 import com.culfoshe.entity.members.PartnerMem;
-import com.culfoshe.repository.members.IndividualMemRepository;
-import com.culfoshe.repository.members.PartnerMemRepository;
+import com.culfoshe.join.repository.IndividualMemRepository;
+import com.culfoshe.partnerPage.repository.PartnerMemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,8 +24,8 @@ public class MemService implements UserDetailsService {
     private final PartnerMemRepository partnerMemRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public IndividualMem saveIndividualMem(IndividualMemFormDTO individualMemFormDTO) {
-        IndividualMem individualMem = IndividualMemFormDTO.createIndividualMem(individualMemFormDTO, passwordEncoder);
+    public IndividualMem saveIndividualMem(com.culfoshe.dto.members.IndividualMemFormDTO individualMemFormDTO) {
+        IndividualMem individualMem = com.culfoshe.dto.members.IndividualMemFormDTO.createIndividualMem(individualMemFormDTO, passwordEncoder);
 
         validateDulicateMember(individualMem.getEmail());
         return individualMemRepository.save(individualMem);

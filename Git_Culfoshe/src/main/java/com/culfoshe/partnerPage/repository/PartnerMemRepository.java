@@ -1,4 +1,4 @@
-package com.culfoshe.repository.members;
+package com.culfoshe.partnerPage.repository;
 
 import com.culfoshe.entity.members.IndividualMem;
 import com.culfoshe.entity.members.PartnerMem;

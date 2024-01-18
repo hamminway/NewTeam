@@ -66,33 +66,34 @@
         </div><!--main-1-->
 
         <div class="main-2">
+            <div id="map"></div>
             <div class="commend con">
                 <h2>지역별 추천 👍🏻</h2>
                 <br>
                 <div class="commend-header">
                     <ul class="commend-li">
-                        <li><a href="#">서울</a></li>
+                        <li><button id="seoul" onclick="setDir(seoul)">서울</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">부산</a></li>
+                        <li><button id="busan" onclick="setDir(busan)">부산</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">대구</a></li>
+                        <li><button id="daegu" onclick="setDir(daegu)">대구</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">울산</a></li>
+                        <li><button id="ulsan" onclick="setDir(ulsan)">울산</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">대전</a></li>
+                        <li><button id="daejeon" onclick="setDir(daejeon)">대전</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">인천</a></li>
+                        <li><button id="incheon" onclick="setDir(incheon)">인천</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">광주</a></li>
+                        <li><button id="gwangju" onclick="setDir(gwangju)">광주</button></li>
                     </ul>
                     <ul class="commend-li">
-                        <li><a href="#">제주</a></li>
+                        <li><button id="jeju" onclick="setDir(jeju)">제주</button></li>
                     </ul>
                 </div>
 
@@ -168,52 +169,67 @@
                         </div>
                     </div>
                     <i class="fa-solid fa-angle-right commend-box-right-btn" style="color: #247b29;"></i>
+
+
                 </div>
             </div>
         </div> <!-- main-2 -->
 
         <div class="main-3 con">
-
             <h2>지도 🗺️</h2>
 
             <div class="map-box">
-                <div id="map"></div>
+                <div id="map1"></div>
             </div>
-
-            <th:block layout:fragment="script">
-                <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-                <script type="text/javascript" th:src="@{/script/index.js}"></script>
-                <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f2dc242c6b2cf0cb26d5a0a32d7f4ca3"></script>
-                <script>
-                    kakao.maps.load(function() {
-                       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-                            mapOption = {
-                                center: new kakao.maps.LatLng(37.565643683342, 126.95524147826), // 지도의 중심좌표
-                                level: 3 // 지도의 확대 레벨
-                            };
-
-                        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-                        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-                        var mapTypeControl = new kakao.maps.MapTypeControl();
-
-                        // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-                        // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-                        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-                        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-                        var zoomControl = new kakao.maps.ZoomControl();
-                        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-                     });
-                </script>
-            </th:block>
-
         </div> <!--main-3-->
 
     </div><!-- main -->
 
+    <th:block layout:fragment="script">
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script type="text/javascript" th:src="@{/js/index.js}"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1a0eb3f58f1563617955cae9ce9cf0ac"></script>
+        <script th:inline="javascript">
+            
+            var map;    //안에 있으면 증발해서 밖에 정의해줌
 
+            //setDir()에 매개변수로 들어갈 값들
+            let seoul = [37.5430834, 127.0417933];
+            let busan = [35.1570630, 129.0631356];
+            let daegu = [35.8667192, 128.5906289];
+            let ulsan = [35.5395918, 129.3358006];
+            let daejeon = [36.3525239, 127.3778334];
+            let incheon = [37.4475652, 126.7000750];
+            let gwangju = [35.1503822, 126.9108122];
+            let jeju = [33.4999506, 126.5302894];
 
+            //panTo(x,y)의 좌표를 설정하는 메서드
+            function setDir(location){
+                var moveLatLon = new kakao.maps.LatLng(location[0], location[1])
+                map.panTo(moveLatLon);
+            }
 
+            kakao.maps.load(()=> {
+
+               var mapContainer = document.getElementById('map1'), // 지도를 표시할 div
+                    mapOption = {
+                        center: new kakao.maps.LatLng(37.5666103, 126.9783882), // 지도의 중심좌표
+                        level: 3 // 지도의 확대 레벨
+                    };
+                map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+            })
+
+            function panTo(x, y) {
+                    // 이동할 위도 경도 위치를 생성합니다
+                    var moveLatLon = new kakao.maps.LatLng(x, y);
+
+                    // 지도 중심을 부드럽게 이동시킵니다
+                    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+                    map.panTo(moveLatLon);  //우리가 정의 해준 것이 아니라 카카오 측에서 만든 메서드라 이름을 같게 하는 것이 아니었다.
+            }
+            
+
+        </script>
+    </th:block>
 </body>
 </html>

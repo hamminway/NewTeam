@@ -3,9 +3,12 @@
 /* header */
 
 .navbar {
-	float: right;
+/*	float: right;*/
 	margin: 10px;
 	margin-top: 10px;
+	position relative;
+    left: 31%;
+    top: 24px;
 }
 
 .navbar a {
@@ -37,6 +40,11 @@
 	margin-left: 1240px;
 	border: 1px solid #C3C3C3;
 	border-radius: 5px;
+}
+
+.icon {
+    position: relative;
+    bottom: 40px;
 }
 
 .icon input:focus {

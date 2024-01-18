@@ -1,10 +1,8 @@
 package com.culfoshe.entity.members;
 
-import com.culfoshe.dto.members.PartnerMemFormDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

@@ -1,9 +1,8 @@
-package com.culfoshe.controller;
+package com.culfoshe.join.controller;
 
 import com.culfoshe.dto.members.IndividualMemFormDTO;
-import com.culfoshe.dto.members.PartnerMemFormDTO;
-import com.culfoshe.entity.members.IndividualMem;
-import com.culfoshe.service.MemService;
+import com.culfoshe.main.service.MemService;
+import com.culfoshe.partnerPage.dto.PartnerMemFormDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/members")

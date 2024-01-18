@@ -1,6 +1,5 @@
-package com.culfoshe.dto.members;
+package com.culfoshe.partnerPage.dto;
 
-import com.culfoshe.entity.members.IndividualMem;
 import com.culfoshe.entity.members.PartnerMem;
 import lombok.Getter;
 import lombok.Setter;
