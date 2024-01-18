@@ -101,7 +101,7 @@
                 <!--.member-->
 
                 <div class="inforInputBox">
-                    <form>
+                    <form th:object="${individualMemFormDTO}">
                         <div class="inficInfor" id="inficInfor">
                             <h2 class="indicment">개인회원 정보 💁🏻</h2>
 
@@ -109,7 +109,7 @@
                                 <tr>
                                     <td class="td1">성명</td>
                                     <td class="td2">
-                                        <input type="text" class="name" id="nameInput" /><br />
+                                        <input th:field="*{name}" type="text" class="name" id="nameInput" /><br />
                                     </td>
                                 </tr>
 
@@ -119,6 +119,8 @@
                                         <input type="text" class="email" id="indicemail1" />
                                         <label class="email2">@</label>
                                         <input type="text" class="email" id="indicemail2" /><br />
+
+                                        <input th:field="*{email}" type="hidden" id="indicEmailBox">
                                         <label class="idchk" id="indicEmailchk">* 6~20자 영문 또는 영문, 숫자 조합</label>
                                     </td>
                                 </tr>
@@ -126,7 +128,7 @@
                                 <tr>
                                     <td class="td1">비밀번호</td>
                                     <td class="td2_1">
-                                        <input type="password" minlength="8" maxlength="20" class="pwd" id="indicPwInput" /><br />
+                                        <input th:field="*{password}" type="password" minlength="8" maxlength="20" class="pwd" id="indicPwInput" /><br />
                                         <label class="pwdchk" id="indicPwdChk">* 8~20자 문자, 숫자, 특수문자 조합</label>
                                     </td>
                                 </tr>
@@ -160,7 +162,7 @@
                                     <td class="td1">휴대폰 번호</td>
                                     <td class="td2_2">
                                         <div class="checkitem">
-                                            <input type="text" class="phonecheck" id="indicPhone" value="010-" />
+                                            <input th:field="*{phoneNum}" type="text" class="phonecheck" id="indicPhone" value="010-" />
                                             <button class="btn">인증하기</button><br />
                                         </div>
                                         <label class="pwdchk1" id="indicPhoneChk">* 010 - 0000 - 0000 양식에 맞춰 입력</label>
@@ -173,7 +175,7 @@
                                         <div class="array">
                                             <label class="culfosheDomain">http://www.culfoshe.com/</label>
                                             <div class="checkitem1">
-                                                <input type="text" class="domain" id="indicDomain" />
+                                                <input th:field="*{individualDomain}" type="text" class="domain" id="indicDomain" />
                                                 <button class="domainBtn">중복확인</button><br />
                                             </div>
                                         </div>
@@ -187,7 +189,7 @@
                         <div class="interestInfor" id="interestInfor">
                             <div class="interestbox">
                                 <h2 class="interestment">나의 관심사(선택: 최대 3개)</h2>
-                                <div id="selectBoxAll">
+                                <div th:field="*{interest}" id="selectBoxAll">
                                     <div class="selectbox">
                                         <button type="button" class="ckeckInterest1" id="interest1" onclick="cssChange1()">#예술</button>
                                         <button type="button" class="ckeckInterest" id="interest2" onclick="cssChange2()">#공연</button>
@@ -221,7 +223,7 @@
 
                             <div class="interestbox">
                                 <h2 class="interestlocal">관심 지역(선택: 최대 3개)</h2>
-                                <div>
+                                <div th:field="*{interestArea}">
                                     <div class="arraybox1">
                                         <div class="array">
                                             <input type="radio" class="phonereplace" />
@@ -301,7 +303,7 @@
                     </form>
                     <!--.inficInfor-->
 
-                    <form>
+                    <form th:object="${partnerMemFormDTO}">
                         <div class="partnerInfor" id="partnerInfor">
                             <h2 class="partnerment">파트너회원 정보 👨🏼‍🌾</h2>
 
@@ -312,6 +314,8 @@
                                         <input type="text" class="email" id="partemail1" />
                                         <label class="email2">@</label>
                                         <input type="text" class="email" id="partemail2" /><br />
+
+                                        <input th:field="*{email}" type="hidden" id="partEmailBox">
                                         <label class="idchk" id="partEmailchk">* 6~20자 영문 또는 영문, 숫자 조합</label>
                                     </td>
                                 </tr>
@@ -319,7 +323,7 @@
                                 <tr>
                                     <td class="td3">비밀번호</td>
                                     <td class="td4_1">
-                                        <input type="password" minlength="8" maxlength="20" class="pwd" id="partPwInput" /><br />
+                                        <input th:field="*{password}" type="password" minlength="8" maxlength="20" class="pwd" id="partPwInput" /><br />
                                         <label class="pwdchk" id="partPwdChk">* 8~20자 문자, 숫자, 특수문자 조합</label>
                                     </td>
                                 </tr>
@@ -337,7 +341,7 @@
                                 <tr>
                                     <td class="td3_1">가게 이름(법인명)</td>
                                     <td class="td4_1">
-                                        <input type="text" class="company" />
+                                        <input th:field="*{storeName}" type="text" class="company" />
                                     </td>
                                 </tr>
 
@@ -345,7 +349,7 @@
                                     <td class="td3_2">사업자 등록번호</td>
                                     <td class="td4_2">
                                         <div class="checkitem">
-                                            <input type="text" maxlength="12" class="id" id="storeNum" />
+                                            <input th:field="*{storeNum}" type="text" maxlength="12" class="id" id="storeNum" />
                                             <button class="btn">중복확인</button>
                                         </div>
                                         <label class="numchk" id="numchk">* 000 - 00 - 0000 양식에 맞춰 입력</label>
@@ -355,28 +359,28 @@
                                 <tr>
                                     <td class="td3">사업장 소재지</td>
                                     <td class="td4">
-                                        <input type="text" class="storeplace" />
+                                        <input th:field="*{storeLocation}" type="text" class="storeplace" />
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="td3">대표자명</td>
                                     <td class="td4">
-                                        <input type="text" class="reprename" />
+                                        <input th:field="*{presidentName}" type="text" class="reprename" />
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="td3">담당자명</td>
                                     <td class="td4">
-                                        <input type="text" class="managername" />
+                                        <input th:field="*{name}" type="text" class="managername" />
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="td3_3">담당자 전화번호</td>
                                     <td class="td4_3">
-                                        <input type="text" class="managerphone" value="010-" id="partnerPhone" />
+                                        <input th:field="*{phoneNum}" type="text" class="managerphone" value="010-" id="partnerPhone" />
                                         <label class="numchk" id="partnerPhoneChk">* 010 - 0000 - 0000 양식에 맞춰 입력</label>
                                     </td>
                                 </tr>
@@ -387,7 +391,7 @@
                                         <div class="array">
                                             <label class="culfosheDomain">http://www.culfoshe.com/</label>
                                             <div class="checkitem1">
-                                                <input type="text" class="domain" id="partDomain" />
+                                                <input th:field="*{partnerDomain}" type="text" class="domain" id="partDomain" />
                                                 <button class="domainBtn">중복확인</button><br />
                                             </div>
                                         </div>

@@ -445,15 +445,47 @@ function checkStoreNum(){
   }
 }
 
+/*
+4. 이메일 합치기
+- 개인
+*/
+
+let indicEmailBox = document.getElementById("indicEmailBox");
+
+indicemail1.addEventListener("blur", function(){
+  indicEmailBox.value = indicemail1.value + "@" + indicemail2.value;
+})
+
+indicemail2.addEventListener("blur", function(){
+  indicEmailBox.value = indicemail1.value + "@" + indicemail2.value;
+})
+
+/*
+4. 이메일 합치기
+- 파트너
+*/
+
+let partEmailBox = document.getElementById("partEmailBox");
+
+let a = [];
+
+for(let i = 1; i < 3 ; i++){
+  a.push(partemail+i);
+}
+for(let i = 0 ; i < a.length ; i++){
+  a[i].addEventListener("blur", ()=> {
+    partEmailBox.value = a[0].value + "@" + a[1].value;
+  })
+}
 
 /*
     - 비밀번호 양식에 맞지 않을 때, '양식에 맞지 않습니다'를 추가로 띄워주기
     - 비밀번호와 비밀번호 확인이 일치하지 않을 때,
       '입력한 비밀번호가 일치하지 않습니다'로 멘트를 변경하기
 
-4. 사업장 소재지의 주소 입력창 후, 가져오기
+5. 사업장 소재지의 주소 입력창 후, 가져오기
 
-5. 선택 제한
+6. 선택 제한
     - 나의 관심사 선택 최대 3곳
     - 관심지역 선택 최대 3곳
 */
