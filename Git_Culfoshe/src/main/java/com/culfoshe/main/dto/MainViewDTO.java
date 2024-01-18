@@ -1,4 +1,4 @@
-package com.culfoshe.dto;
+package com.culfoshe.main.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;

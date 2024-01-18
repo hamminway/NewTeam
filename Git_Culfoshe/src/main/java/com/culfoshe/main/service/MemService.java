@@ -1,11 +1,11 @@
-package com.culfoshe.service;
+package com.culfoshe.main.service;
 
 import com.culfoshe.join.dto.IndividualMemFormDTO;
 import com.culfoshe.partnerPage.dto.PartnerMemFormDTO;
 import com.culfoshe.entity.members.IndividualMem;
 import com.culfoshe.entity.members.PartnerMem;
-import com.culfoshe.repository.members.IndividualMemRepository;
-import com.culfoshe.repository.members.PartnerMemRepository;
+import com.culfoshe.main.repository.IndividualMemRepository;
+import com.culfoshe.partnerPage.repository.PartnerMemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
