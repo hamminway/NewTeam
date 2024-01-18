@@ -1,4 +1,4 @@
-package com.culfoshe.entity.members;
+package com.culfoshe.entity;
 
 
 
@@ -15,7 +15,7 @@ import javax.validation.constraints.Email;
 public class IndividualMem {
 
     @Id
-    @Column(name = "individualMem_Id")
+    @Column(name = "individualmem_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
 

@@ -1,4 +1,4 @@
-package com.culfoshe.entity.members;
+package com.culfoshe.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,10 +12,14 @@ import javax.validation.constraints.Email;
 @Getter @Setter @ToString
 public class PartnerMem {
 
-    @javax.persistence.Id
-    @Column(name = "partnerMem_Id")
+    @Id
+    @Column(name = "partnermem_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
+
+    @Id
+    @Column(name = "store_location")
+    private String storeLocation;
 
     @Email
     @Column(unique = true)
@@ -38,8 +42,6 @@ public class PartnerMem {
     @Column(nullable = false)
     private String storeNum;
 
-    @Column(nullable = false)
-    private String storeLocation;
 
     private String partnerDomain;
 

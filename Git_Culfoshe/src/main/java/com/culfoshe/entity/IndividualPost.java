@@ -1,0 +1,40 @@
+package com.culfoshe.entity;
+
+
+import com.culfoshe.constant.HeaderCategory;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "IndividualPost")
+public class IndividualPost extends BaseEntity{
+
+    @Id
+    @Column(name = "post_code")
+    private Long PostCode;
+
+    @Enumerated(EnumType.STRING)
+    private HeaderCategory postCategory;
+
+    private String MenuCategory;
+
+    private String postTitle;
+
+    private String postReview;
+
+    private int postViewCount;
+
+    private int postSaveCount;
+
+    @ManyToOne
+    @JoinColumn(name = "store_location")
+    private PartnerMem partnerMem;
+
+    private String location;
+
+    @ManyToOne
+    @JoinColumn(name = "individualmem_id")
+    private IndividualMem individualMem;
+
+
+}

@@ -1,6 +1,6 @@
-package com.culfoshe.dto.members;
+package com.culfoshe.join.dto;
 
-import com.culfoshe.entity.members.IndividualMem;
+import com.culfoshe.entity.IndividualMem;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
