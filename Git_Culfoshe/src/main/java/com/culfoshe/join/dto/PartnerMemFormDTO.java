@@ -41,7 +41,9 @@ public class PartnerMemFormDTO {
 
     public static PartnerMem createPartnerMem(PartnerMemFormDTO partnerMemFormDTO, PasswordEncoder passwordEncoder) {
 
+        System.err.println("createParterMem 실행");
         PartnerMem partnerMem = new PartnerMem();
+
         PartnerMemPK partnerMemPK = new PartnerMemPK();
         partnerMemPK.setStore_location(partnerMemFormDTO.getStoreLocation());
 
@@ -58,8 +60,8 @@ public class PartnerMemFormDTO {
         partnerMem.setPartnerMemPK(partnerMemPK);
 
         //값이 어떻게 들어가는지 확일을 위한 메서드
-        System.err.println(partnerMem.getPartnerMemPK().getStore_location());
-        System.err.println(partnerMem.getPartnerMemPK().getPartnermem_id());
+        System.err.println("Location : "+partnerMem.getPartnerMemPK().getStore_location());
+        System.err.println("code : "+partnerMem.getPartnerMemPK().getPartnermem_id());
 
 
         partnerMem.setPartnerDomain(createPartnerDomain(partnerMemFormDTO));

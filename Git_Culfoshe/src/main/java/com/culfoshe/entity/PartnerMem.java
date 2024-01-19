@@ -16,6 +16,7 @@ public class PartnerMem{
     @EmbeddedId
     private PartnerMemPK partnerMemPK;
 
+
     @Email
     @Column(unique = true)
     private String email;
