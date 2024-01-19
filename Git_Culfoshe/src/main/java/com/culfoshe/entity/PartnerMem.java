@@ -10,16 +10,11 @@ import javax.validation.constraints.Email;
 @Entity
 @Table(name = "partnerMem")
 @Getter @Setter @ToString
-public class PartnerMem {
+public class PartnerMem{
 
-    @Id
-    @Column(name = "partnermem_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
 
-    @Id
-    @Column(name = "store_location")
-    private String storeLocation;
+    @EmbeddedId
+    private PartnerMemPK partnerMemPK;
 
     @Email
     @Column(unique = true)

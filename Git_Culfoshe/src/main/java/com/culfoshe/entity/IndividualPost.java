@@ -32,6 +32,7 @@ public class IndividualPost extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "store_location")
+    @JoinColumn(name = "partnermem_id")
     private PartnerMem partnerMem;
 
     private String location;

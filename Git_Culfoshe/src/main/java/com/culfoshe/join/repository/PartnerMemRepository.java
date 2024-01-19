@@ -1,4 +1,4 @@
-package com.culfoshe.partnerPage.repository;
+package com.culfoshe.join.repository;
 
 import com.culfoshe.entity.PartnerMem;
 import org.springframework.data.jpa.repository.JpaRepository;
