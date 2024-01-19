@@ -2,15 +2,19 @@ package com.culfoshe.entity;
 
 
 import com.culfoshe.constant.HeaderCategory;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "IndividualPost")
+@Getter @Setter
 public class IndividualPost extends BaseEntity{
 
     @Id
     @Column(name = "post_code")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long PostCode;
 
     @Enumerated(EnumType.STRING)
