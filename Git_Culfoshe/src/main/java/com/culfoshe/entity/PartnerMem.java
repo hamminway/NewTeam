@@ -12,7 +12,6 @@ import javax.validation.constraints.Email;
 @Getter @Setter @ToString
 public class PartnerMem{
 
-
     @EmbeddedId
     private PartnerMemPK partnerMemPK;
 
