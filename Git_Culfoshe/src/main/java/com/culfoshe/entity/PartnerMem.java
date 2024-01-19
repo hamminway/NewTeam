@@ -42,7 +42,6 @@ public class PartnerMem {
     @Column(nullable = false)
     private String storeNum;
 
-
     private String partnerDomain;
 
     private String businessHours;

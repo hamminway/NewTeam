@@ -9,6 +9,7 @@ public class SavedPost {
 
     @Id
     @Column(name = "save_code")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long savedCode;
 
     private String individualFolder;
