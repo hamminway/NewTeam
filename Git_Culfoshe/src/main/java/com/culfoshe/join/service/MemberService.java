@@ -28,6 +28,7 @@ public class MemberService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
     public IndividualMem saveIndividualMem(@Valid IndividualMemFormDTO individualMemFormDTO) {
+        System.err.println("memberService 동작");
         IndividualMem individualMem = IndividualMemFormDTO.createIndividualMem(individualMemFormDTO, passwordEncoder);
 
         validateDulicateMember(individualMem.getEmail());

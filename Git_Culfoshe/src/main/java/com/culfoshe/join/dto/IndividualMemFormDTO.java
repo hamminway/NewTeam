@@ -3,32 +3,36 @@ package com.culfoshe.join.dto;
 import com.culfoshe.entity.IndividualMem;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Getter @Setter
+@ToString
 public class IndividualMemFormDTO {
 
+    @NotBlank
     private String name;
 
     @Email
+    @NotBlank
     private String email;
+
+    @NotBlank
+    @Length(min = 8, max = 20)
     private String password;
 
+    @NotBlank
     private String phoneNum;
 
     private String interest;
     private String interestArea;
+
+    @NotBlank
     private String individualDomain;
-
-    private String pageName;
-    private String characterName;
-    private String introduction;
-
-    private String individualFolder;
-    private String individualCategory;
-    private int postNum;
 
     public static IndividualMem createIndividualMem(IndividualMemFormDTO individualMemFormDTO, PasswordEncoder passwordEncoder) {
 
@@ -43,7 +47,14 @@ public class IndividualMemFormDTO {
 
         individualMem.setInterest(individualMemFormDTO.getInterest());
         individualMem.setInterestArea(individualMemFormDTO.getInterestArea());
+        individualMem.setIndividualDomain(createIndividualDomain(individualMemFormDTO));
 
         return individualMem;
+    }
+
+    public static String createIndividualDomain(IndividualMemFormDTO individualMemFormDTO){
+
+        return individualMemFormDTO.getEmail().split("@")[0];
+
     }
 }

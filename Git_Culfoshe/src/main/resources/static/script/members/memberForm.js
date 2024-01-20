@@ -235,7 +235,7 @@ let partemail1 = document.getElementById('partemail1')
 let partemail2 = document.getElementById('partemail2')
 let partEmailchk = document.getElementById('partEmailchk')
 
-indicemail1.addEventListener("blur", function(){
+partemail1.addEventListener("blur", function(){
   checkPartemail2();
 })
 
@@ -243,15 +243,15 @@ function checkPartemail2(){
   let emailexp=/^[a-zA-Z0-9+-\_.]/
 
   if(indicemail1.value.length == 0){
-    emailResult.innerHTML = "* 필수 입력입니다"
+    partEmailchk.innerHTML = "* 필수 입력입니다"
   }else if(emailexp.test(indicemail1.value)){
-    emailResult.innerHTML = " "
+    partEmailchk.innerHTML = " "
   }else{
-    emailResult.innerHTML = "* 이메일 주소를 입력하세요"
+    partEmailchk.innerHTML = "* 이메일 주소를 입력하세요"
   }
 }
 
-indicemail2.addEventListener("blur", function(){
+partemail2.addEventListener("blur", function(){
   checkPartemail3();
 })
 
@@ -259,11 +259,11 @@ function checkPartemail3(){
   let emailexp2=/^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]/
 
   if(indicemail2.value.length == 0){
-    emailResult.innerHTML = "* 필수 입력입니다"
+    partEmailchk.innerHTML = "* 필수 입력입니다"
   }else if(emailexp2.test(indicemail2.value)){
-    emailResult.innerHTML = " "
+    partEmailchk.innerHTML = " "
   }else{
-    emailResult.innerHTML = "* 이메일 주소를 양식에 맞춰 입력하세요"
+    partEmailchk.innerHTML = "* 이메일 주소를 양식에 맞춰 입력하세요"
   }
 }
 
@@ -466,23 +466,19 @@ indicemail2.addEventListener("blur", function(){
 */
 
 let partEmailBox = document.getElementById("partEmailBox");
-
-let a = [];
+let emailaArr = [];
 
 for(let i = 1; i < 3 ; i++){
-  a.push(partemail+i);
+  emailaArr.push(document.getElementById('partemail'+i))
 }
-for(let i = 0 ; i < a.length ; i++){
-  a[i].addEventListener("blur", ()=> {
-    partEmailBox.value = a[0].value + "@" + a[1].value;
+
+for(let i = 0 ; i < emailaArr.length ; i++){
+  emailaArr[i].addEventListener("blur", function (){
+    partEmailBox.value = emailaArr[0].value + "@" + emailaArr[1].value;
   })
 }
 
 /*
-    - 비밀번호 양식에 맞지 않을 때, '양식에 맞지 않습니다'를 추가로 띄워주기
-    - 비밀번호와 비밀번호 확인이 일치하지 않을 때,
-      '입력한 비밀번호가 일치하지 않습니다'로 멘트를 변경하기
-
 5. 사업장 소재지의 주소 입력창 후, 가져오기
 
 6. 선택 제한

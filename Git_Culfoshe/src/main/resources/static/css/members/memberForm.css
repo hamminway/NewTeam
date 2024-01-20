@@ -65,7 +65,7 @@
 
     .idchk, .pwdchk, .pwdchk1, .numchk{font-size: 12px;}
     .pwdchk1{padding-top: 10px;}
-    .pwd, .name, .phone, .company, .storeplace, .reprename, .managername, .managerphone{width: 300px; height: 30px;}
+    .pwd, .name, .phone, .company, .reprename, .managername, .managerphone{width: 300px; height: 30px;}
     .email{width: 130px; height: 30px;}
     .email2{padding: 0px 4.5px;}
 
@@ -111,7 +111,9 @@
     .interestbox{width: 710px; margin-left: 395px;}
 
     /* interestlocal 부터*/
-    .arraybox1, .arraybox2{display: flex;}
+    .arraybox{margin-left: 55px; margin-top: 10px;}
+    .arraybox1{display: flex; margin-left: 2px;}
+    .arraybox2{display: flex;}
 
     .indic_joinbtn{width: 200px; height: 50px; font-size: 17px; margin-left: 1060px;
         color: white; background-color: green; border: none; border-radius: 5px; margin-top: 65px; display: none;}

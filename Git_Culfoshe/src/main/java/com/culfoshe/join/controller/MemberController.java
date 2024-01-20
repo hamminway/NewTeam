@@ -44,6 +44,9 @@ public class MemberController {
     @PostMapping(value = "/newIndividual")
     public String individualMemForm(@Valid IndividualMemFormDTO individualMemFormDTO, BindingResult bindingResult, Model model) {
 
+        System.err.println("controller 동작");
+        System.err.println("individualMemFormDTO : " + individualMemFormDTO);
+
         if(bindingResult.hasErrors()){
             return "members/memberForm";
         }
@@ -53,7 +56,7 @@ public class MemberController {
             System.out.println(individualMemFormDTO.toString());
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "member/memberForm";
+            return "members/memberForm";
         }
 
         return "redirect:/";

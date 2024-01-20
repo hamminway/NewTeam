@@ -101,7 +101,7 @@
                 <!--.member-->
 
                 <div class="inforInputBox">
-                    <form th:object="${individualMemFormDTO}">
+                    <form th:object="${individualMemFormDTO}" action="/members/newIndividual" method="post">
                         <div class="inficInfor" id="inficInfor">
                             <h2 class="indicment">개인회원 정보 💁🏻</h2>
 
@@ -145,15 +145,15 @@
                                     <td class="td1">통신사</td>
                                     <td class="td2_3">
                                         <div class="phonereplacebox">
-                                            <input type="radio" class="phonereplace" /><label class="phonereplace2">SKT</label>
-                                            <input type="radio" class="phonereplac" /><label class="phonereplace2">KT</label>
-                                            <input type="radio" class="phonereplac" /><label class="phonereplace2">LG U+</label>
+                                            <input type="radio" class="phonereplace" name="telecommunicationCompany"/><label class="phonereplace2">SKT</label>
+                                            <input type="radio" class="phonereplac" name="telecommunicationCompany"/><label class="phonereplace2">KT</label>
+                                            <input type="radio" class="phonereplac" name="telecommunicationCompany"/><label class="phonereplace2">LG U+</label>
                                         </div>
 
                                         <div class="phonereplacebox">
-                                            <input type="radio" class="phonereplace" /><label class="phonereplace2">SKT 알뜰폰</label>
-                                            <input type="radio" class="phonereplac" /><label class="phonereplace2">KT 알뜰폰</label>
-                                            <input type="radio" class="phonereplac" /><label class="phonereplace2">LG U+ 알뜰폰</label>
+                                            <input type="radio" class="phonereplace" name="telecommunicationCompany"/><label class="phonereplace2">SKT 알뜰폰</label>
+                                            <input type="radio" class="phonereplac" name="telecommunicationCompany"/><label class="phonereplace2">KT 알뜰폰</label>
+                                            <input type="radio" class="phonereplac" name="telecommunicationCompany"/><label class="phonereplace2">LG U+ 알뜰폰</label>
                                         </div>
                                     </td>
                                 </tr>
@@ -191,31 +191,31 @@
                                 <h2 class="interestment">나의 관심사(선택: 최대 3개)</h2>
                                 <div th:field="*{interest}" id="selectBoxAll">
                                     <div class="selectbox">
-                                        <button type="button" class="ckeckInterest1" id="interest1" onclick="cssChange1()">#예술</button>
-                                        <button type="button" class="ckeckInterest" id="interest2" onclick="cssChange2()">#공연</button>
-                                        <button type="button" class="ckeckInterest" id="interest3" onclick="cssChange3()">#전시</button>
-                                        <button type="button" class="ckeckInterest" id="interest4" onclick="cssChange4()">#독서</button>
-                                        <button type="button" class="ckeckInterest" id="interest5" onclick="cssChange5()">#음악</button>
-                                        <button type="button" class="ckeckInterest6" id="interest6" onclick="cssChange6()">#원데이클래스</button>
+                                        <button type="button" class="ckeckInterest1" id="interest1" th:field="*{interest}" th:value="art">#예술</button>
+                                        <button type="button" class="ckeckInterest" id="interest2" th:field="*{interest}" th:value="show">#공연</button>
+                                        <button type="button" class="ckeckInterest" id="interest3" th:field="*{interest}" th:value="exhibit">#전시</button>
+                                        <button type="button" class="ckeckInterest" id="interest4" th:field="*{interest}" th:value="reading">#독서</button>
+                                        <button type="button" class="ckeckInterest" id="interest5" th:field="*{interest}" th:value="music">#음악</button>
+                                        <button type="button" class="ckeckInterest6" id="interest6" th:field="*{interest}" th:value="onedayclass">#원데이클래스</button>
                                     </div>
 
                                     <div class="selectbox">
-                                        <button type="button" class="ckeckInterest2" id="interest7">#공예</button>
-                                        <button type="button" class="ckeckInterest" id="interest8">#요리</button>
-                                        <button type="button" class="ckeckInterest3" id="interest9">#베이킹</button>
+                                        <button type="button" class="ckeckInterest2" id="interest7" th:field="*{interest}" th:value="crafts">#공예</button>
+                                        <button type="button" class="ckeckInterest" id="interest8" th:field="*{interest}" th:value="cooking">#요리</button>
+                                        <button type="button" class="ckeckInterest3" id="interest9" th:field="*{interest}" th:value="baking">#베이킹</button>
 
-                                        <button type="button" class="ckeckInterest" id="interest10">#푸드</button>
-                                        <button type="button" class="ckeckInterest" id="interest11">#카페</button>
-                                        <button type="button" class="ckeckInterest3" id="interest12">#음식점</button>
-                                        <button type="button" class="ckeckInterest" id="interest13">#숙박</button>
+                                        <button type="button" class="ckeckInterest" id="interest10" th:field="*{interest}" th:value="food">#푸드</button>
+                                        <button type="button" class="ckeckInterest" id="interest11" th:field="*{interest}" th:value="cafe">#카페</button>
+                                        <button type="button" class="ckeckInterest3" id="interest12" th:field="*{interest}" th:value="foodstore">#음식점</button>
+                                        <button type="button" class="ckeckInterest" id="interest13" th:field="*{interest}" th:value="accommodation">#숙박</button>
                                     </div>
 
                                     <div class="selectbox">
-                                        <button type="button" class="ckeckInterest4_1" id="interest14">#액티비티</button>
-                                        <button type="button" class="ckeckInterest4" id="interest15">#아웃도어</button>
-                                        <button type="button" class="ckeckInterest4" id="interest16">#피트니스</button>
-                                        <button type="button" class="ckeckInterest3" id="interest17">#스포츠</button>
-                                        <button type="button" class="ckeckInterest5" id="interest18">#수상레포츠</button>
+                                        <button type="button" class="ckeckInterest4_1" id="interest14" th:field="*{interest}" th:value="activity">#액티비티</button>
+                                        <button type="button" class="ckeckInterest4" id="interest15" th:field="*{interest}" th:value="outdoor">#아웃도어</button>
+                                        <button type="button" class="ckeckInterest4" id="interest16" th:field="*{interest}" th:value="fitness">#피트니스</button>
+                                        <button type="button" class="ckeckInterest3" id="interest17" th:field="*{interest}" th:value="sports">#스포츠</button>
+                                        <button type="button" class="ckeckInterest5" id="interest18" th:field="*{interest}" th:value="watersports">#수상레포츠</button>
                                     </div>
                                 </div>
                             </div>
@@ -223,35 +223,35 @@
 
                             <div class="interestbox">
                                 <h2 class="interestlocal">관심 지역(선택: 최대 3개)</h2>
-                                <div th:field="*{interestArea}">
+                                <div th:field="*{interestArea}" class="arraybox">
                                     <div class="arraybox1">
                                         <div class="array">
-                                            <input type="radio" class="phonereplace" />
+                                            <input type="checkbox" class="phonereplace" name="interestArea" th:field="*{interestArea}" th:value="seoul" />
                                             <p class="phonereplace2">서울특별시</p>
                                         </div>
 
                                         <div class="array">
-                                            <input type="radio" class="phonereplac" />
+                                            <input type="checkbox" class="phonereplac" name="interestArea" th:field="*{interestArea}" th:value="incheon"/>
                                             <p class="phonereplace2">인천광역시</p>
                                         </div>
 
                                         <div class="array">
-                                            <input type="radio" class="phonereplac" />
+                                            <input type="checkbox" class="phonereplac" name="interestArea" th:field="*{interestArea}" th:value="busan"/>
                                             <p class="phonereplace2">부산광역시</p>
                                         </div>
 
                                         <div class="array">
-                                            <input type="radio" class="phonereplac" />
+                                            <input type="checkbox" class="phonereplac" name="interestArea" th:field="*{interestArea}" th:value="daegu"/>
                                             <p class="phonereplace2">대구광역시</p>
                                         </div>
 
                                         <div class="array">
-                                            <input type="radio" class="phonereplac" />
+                                            <input type="checkbox" class="phonereplac" name="interestArea" th:field="*{interestArea}" th:value="deajeon"/>
                                             <p class="phonereplace2">대전광역시</p>
                                         </div>
 
                                         <div class="array">
-                                            <input type="radio" class="phonereplac" />
+                                            <input type="checkbox" class="phonereplac" name="interestArea" th:field="*{interestArea}" th:value="ulsan"/>
                                             <p class="phonereplace2">울산광역시</p>
                                         </div>
                                     </div>
@@ -259,37 +259,37 @@
 
                                     <div class="arraybox2">
                                         <div class="array">
-                                            <input type="radio" class="phonereplace" />
+                                            <input type="checkbox" class="phonereplace" name="interestArea" th:field="*{interestArea}" th:value="gwangju"/>
                                             <p class="phonereplace2">광주광역시</p>
                                         </div>
 
                                         <div class="array">
-                                            <input type="radio" class="phonereplac" />
+                                            <input type="checkbox" class="phonereplac" name="interestArea" th:field="*{interestArea}" th:value="sejong">
                                             <p class="phonereplace2">세종특별자치시</p>
                                         </div>
 
                                         <div class="array">
-                                            <input type="radio" class="phonereplac" />
+                                            <input type="checkbox" class="phonereplac" name="interestArea" th:field="*{interestArea}" th:value="gyeonggido"/>
                                             <p class="phonereplace2">경기도</p>
                                         </div>
 
                                         <div class="array">
-                                            <input type="radio" class="phonereplac" />
+                                            <input type="checkbox" class="phonereplac" name="interestArea" th:field="*{interestArea}" th:value="gangwondo"/>
                                             <p class="phonereplace2">강원도</p>
                                         </div>
 
                                         <div class="array">
-                                            <input type="radio" class="phonereplac" />
+                                            <input type="checkbox" class="phonereplac" name="interestArea" th:field="*{interestArea}" th:value="gyeongsangdo"/>
                                             <p class="phonereplace2">경상도</p>
                                         </div>
 
                                         <div class="array">
-                                            <input type="radio" class="phonereplac" />
+                                            <input type="checkbox" class="phonereplac" name="interestArea" th:field="*{interestArea}" th:value="jeonraado"/>
                                             <p class="phonereplace2">전라도</p>
                                         </div>
 
                                         <div class="array">
-                                            <input type="radio" class="phonereplac" />
+                                            <input type="checkbox" class="phonereplac" name="interestArea" th:field="*{interestArea}" th:value="chungcheongdo"/>
                                             <p class="phonereplace2">충청도</p>
                                         </div>
                                     </div>
@@ -297,13 +297,14 @@
                             </div>
                             <!--.interestbox2-->
 
-                            <button class="indic_joinbtn" id="indicJoinBtn">개인회원 가입하기</button>
+                            <button type="submit" class="indic_joinbtn" id="indicJoinBtn">개인회원 가입하기</button>
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                         </div>
                         <!--.interestInfor-->
                     </form>
                     <!--.inficInfor-->
 
-                    <form th:object="${partnerMemFormDTO}">
+                    <form th:object="${partnerMemFormDTO}" action="/members/newPartner" method="post">
                         <div class="partnerInfor" id="partnerInfor">
                             <h2 class="partnerment">파트너회원 정보 👨🏼‍🌾</h2>
 
@@ -350,7 +351,7 @@
                                     <td class="td4_2">
                                         <div class="checkitem">
                                             <input th:field="*{storeNum}" type="text" maxlength="12" class="id" id="storeNum" />
-                                            <button class="btn">중복확인</button>
+                                            <button class="btn" id="storeNumChk">중복확인</button>
                                         </div>
                                         <label class="numchk" id="numchk">* 000 - 00 - 0000 양식에 맞춰 입력</label>
                                     </td>
@@ -359,7 +360,10 @@
                                 <tr>
                                     <td class="td3">사업장 소재지</td>
                                     <td class="td4">
-                                        <input th:field="*{storeLocation}" type="text" class="storeplace" />
+                                        <div class="checkitem">
+                                            <input th:field="*{storeLocation}" type="text" class="id" id="storePlace" />
+                                            <button class="btn" id="storePlaceChk">주소찾기</button>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -402,7 +406,8 @@
                         </div>
                         <!--.partnerInfor-->
 
-                        <button class="part_joinbtn" id="partJoinBtn">파트너회원 가입하기</button>
+                        <button type="submit" class="part_joinbtn" id="partJoinBtn">파트너회원 가입하기</button>
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </form>
                 </div>
                 <!--.inforInputBox-->
