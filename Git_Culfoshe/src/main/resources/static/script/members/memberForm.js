@@ -492,23 +492,26 @@ for(let i = 0 ; i < emailaArr.length ; i++){
 
 let checkNum = 0;
 let maxCheck = 3;
-
+let interestList = document.getElementsByClassName("InterestChkBox"); // input태그(체크박스) class명으로 검사(name값 안됨..)
 for(let i = 1 ; i < 19 ; i++){
   let eventAdd = document.getElementById('interest'+i);
 
   eventAdd.addEventListener('click', (e)=>{
 
-    if(e.target.checked){ // 체크박스가 체크 되어 있을 시
-      cssChange(e.target, true)
-      return true;
+    if(interestList[i-1].checked){          // input태그의 체크박스가 체크 여부 검사
+      cssChange(e.target, true)             //cssChange(해당label태그, 체크해제요청) - cssChange(e.target, true(checkDeleteAction))
+      return true;// 함수 (조기)종료(여기서는 return값 무의미)         //함수 조기 종료 : 코드의 가독성을 높이기 위하여 함수를 조건부에서 종료 시키는 행위.
     }
-    if(checkNum >= maxCheck){ //3개 이상 체크 되었을때
+
+
+    if(checkNum >= maxCheck){       //checkNum값 검사
       alert("3개라고");
-      e.preventDefault();
-      return false;
-    }else{//3개 이상이 아니면
-      cssChange(e.target, false);
+      e.preventDefault();           //체크박스의 체크 이벤트 해제
+      return false;                 //함수 조기 종료 (여기서는 return값 무의미)
+
     }
+                                    //3개 이상이 아니면(함수가 조기 종료 되지 않았으면)
+    cssChange(e.target, false);     //cssChange, 녹색으로
 
   })
 
@@ -520,21 +523,21 @@ for(let i = 1 ; i < 19 ; i++){
 //   cssChange(interest1);
 // })
 
-function cssChange(target, action) { //action 으로 하얀색으로 바꿀지 초록색으로 바꿀지 선택
+function cssChange(target, action) { //action이 true 일 때 체크 해제요청, false 일 때 체크 요청
 
-  if(action){ //action이 true로 들어올 시
-    // 선택된 것을 해제할 때 클릭(하얀 배걍 + 검정 글자로 바뀜)
+  if(action){               //체크 해제 요청이 들어올 시 (action이 true로 들어올 시)
+                            // 선택된 것을 해제할 때 클릭(하얀 배걍 + 검정 글자로 바뀜)
 
     target.style.color = "black";
     target.style.backgroundColor = "white";
-    checkNum--;
+    checkNum--;             //체크 개수 --
     console.log("aaaaa");
 
-  }else{ // 선택 시, 초록 배경 + 하얀 글자로 바뀜
+  }else{                    //체크 요청이 들어올 시 - 선택 시, 초록 배경 + 하얀 글자로 바뀜
 
     target.style.color = "white";
     target.style.backgroundColor = "rgb(16, 104, 63)";
-    checkNum++;
+    checkNum++;             //체크 개수 ++
 
   }
 }

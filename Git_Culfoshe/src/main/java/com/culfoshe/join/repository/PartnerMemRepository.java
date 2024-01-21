@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface PartnerMemRepository extends JpaRepository<PartnerMem, Long> {
     PartnerMem findByEmail(String email);
-//    Optional<PartnerMem>
+
 }
