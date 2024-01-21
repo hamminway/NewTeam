@@ -480,14 +480,15 @@ for(let i = 0 ; i < emailaArr.length ; i++){
 
 /*
 5. 사업장 소재지의 주소 입력창 후, 가져오기
-
-6. 선택 제한
-    - 나의 관심사 선택 최대 3곳
-    - 관심지역 선택 최대 3곳
 */
 
-// let interest1 = document.getElementById('interest1')
 
+/*
+6. 선택 css 변화 및 제한 두기
+*/
+
+// 변수 선언
+// let interest1 = document.getElementById('interest1')
 
 for(let i = 1 ; i < 19 ; i++){
   let eventAdd = document.getElementById('interest'+i);
@@ -496,6 +497,7 @@ for(let i = 1 ; i < 19 ; i++){
   })
 }
 
+// 클릭 시, 컬러 변화
 // interest1.addEventListener("click", function(){
 //   cssChange(interest1);
 // })
@@ -510,4 +512,38 @@ function cssChange(a) {
   }
 }
 
+// 3개로 클릭 제한(나의 관심사 선택 최대 3곳)
+let selectOption = document.getElementsByName("selectOption")
 
+let checkNum = 0;
+let maxCheck = 3;
+
+if(selectOption.checked){
+  checkNum++;
+} else {
+  checkNum--;
+}
+
+if(checkNum > maxCheck){
+  alert("나의 관심사는 최대 3개까지 선택이 가능합니다.");
+  selectOption.checked = false;
+  checkNum--;
+}
+
+// 3개로 클릭 제한(관심지역 선택 최대 3곳)
+
+let selectArea = document.getElementsByName("selectArea")
+
+let areaCheckNum = 0;
+
+if(areaCheckNum.checked){
+  areaCheckNum++;
+} else {
+  areaCheckNum--;
+}
+
+if(areaCheckNum > maxCheck) {
+  alert("관심 지역은 최대 3곳까지 선택이 가능합니다.");
+  selectArea.checked = false;
+  areaCheckNum--;
+}
