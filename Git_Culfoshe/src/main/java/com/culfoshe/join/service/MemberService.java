@@ -29,7 +29,7 @@ public class MemberService implements UserDetailsService {
     private static long partnerMemberId = 100000000;
 
     public static long makePartnerMemberId(){
-        partnerMemberId ++;
+//        if()
         return partnerMemberId;
     }
 
