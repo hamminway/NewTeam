@@ -3,7 +3,7 @@ package com.culfoshe.entity;
 import javax.persistence.*;
 
 @Entity
-public class individualPhoto {
+public class IndividualPhoto {
 
     @Id
     @Column(name = "individual_photo_code")
