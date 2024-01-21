@@ -89,24 +89,26 @@
 
    /* #selectBox > button:hover{background-color: rgb(16, 104, 63); color: white;} */
 
-    .selectbox{margin-top: 5px;}
+    .selectbox{margin-top: 15px;}
+
+    .InterestChkBox{display: none}
 
     .ckeckInterest{width: 80px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
     .ckeckInterest1{width: 80px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 30px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
     .ckeckInterest2{width: 80px; height: 35px; line-height: 35px; margin-top: 5px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
     .ckeckInterest3{width: 93px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
     .ckeckInterest4{width: 112px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
     .ckeckInterest4_1{width: 112px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 30px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
     .ckeckInterest5{width: 125px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
     .ckeckInterest6{width: 140px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
-        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white;}
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
 
     .interestbox{width: 710px; margin-left: 395px;}
 

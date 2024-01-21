@@ -490,11 +490,29 @@ for(let i = 0 ; i < emailaArr.length ; i++){
 // 변수 선언
 // let interest1 = document.getElementById('interest1')
 
+let checkNum = 0;
+let maxCheck = 3;
+
 for(let i = 1 ; i < 19 ; i++){
   let eventAdd = document.getElementById('interest'+i);
+
   eventAdd.addEventListener('click', (e)=>{
-    cssChange(e.target);
+
+    if(e.target.checked){ // 체크박스가 체크 되어 있을 시
+      cssChange(e.target, true)
+      return true;
+    }
+    if(checkNum >= maxCheck){ //3개 이상 체크 되었을때
+      alert("3개라고");
+      e.preventDefault();
+      return false;
+    }else{//3개 이상이 아니면
+      cssChange(e.target, false);
+    }
+
   })
+
+
 }
 
 // 클릭 시, 컬러 변화
@@ -502,48 +520,39 @@ for(let i = 1 ; i < 19 ; i++){
 //   cssChange(interest1);
 // })
 
-function cssChange(a) {
-  if(a.style.backgroundColor == "rgb(16, 104, 63)"){
-    a.style.color = "black";
-    a.style.backgroundColor = "white";
-  }else{
-    a.style.color = "white";
-    a.style.backgroundColor = "rgb(16, 104, 63)";
+function cssChange(target, action) { //action 으로 하얀색으로 바꿀지 초록색으로 바꿀지 선택
+
+  if(action){ //action이 true로 들어올 시
+    // 선택된 것을 해제할 때 클릭(하얀 배걍 + 검정 글자로 바뀜)
+
+    target.style.color = "black";
+    target.style.backgroundColor = "white";
+    checkNum--;
+    console.log("aaaaa");
+
+  }else{ // 선택 시, 초록 배경 + 하얀 글자로 바뀜
+
+    target.style.color = "white";
+    target.style.backgroundColor = "rgb(16, 104, 63)";
+    checkNum++;
+
   }
 }
 
-// 3개로 클릭 제한(나의 관심사 선택 최대 3곳)
-let selectOption = document.getElementsByName("selectOption")
-
-let checkNum = 0;
-let maxCheck = 3;
-
-if(selectOption.checked){
-  checkNum++;
-} else {
-  checkNum--;
-}
-
-if(checkNum > maxCheck){
-  alert("나의 관심사는 최대 3개까지 선택이 가능합니다.");
-  selectOption.checked = false;
-  checkNum--;
-}
 
 // 3개로 클릭 제한(관심지역 선택 최대 3곳)
-
-let interestArea = document.getElementsByName("interestArea")
-
 let areaCheckNum = 0;
 
-if(interestArea.checked){
-  areaCheckNum++;
-} else {
-  areaCheckNum--;
-}
+function selectLimitArea(target) {
+  if (target.checked) {
+    areaCheckNum++;
+  } else {
+    areaCheckNum--;
+  }
 
-if(areaCheckNum > maxCheck) {
-  alert("관심 지역은 최대 3곳까지 선택이 가능합니다.");
-  interestArea.checked = false;
-  areaCheckNum--;
+  if (areaCheckNum > maxCheck) {
+    alert("관심 지역은 최대 3곳까지 선택이 가능합니다.");
+    target.checked = false;
+    areaCheckNum--;
+  }
 }
