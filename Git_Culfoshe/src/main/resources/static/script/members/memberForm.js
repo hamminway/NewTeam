@@ -532,11 +532,11 @@ if(checkNum > maxCheck){
 
 // 3개로 클릭 제한(관심지역 선택 최대 3곳)
 
-let selectArea = document.getElementsByName("selectArea")
+let interestArea = document.getElementsByName("interestArea")
 
 let areaCheckNum = 0;
 
-if(areaCheckNum.checked){
+if(interestArea.checked){
   areaCheckNum++;
 } else {
   areaCheckNum--;
@@ -544,6 +544,6 @@ if(areaCheckNum.checked){
 
 if(areaCheckNum > maxCheck) {
   alert("관심 지역은 최대 3곳까지 선택이 가능합니다.");
-  selectArea.checked = false;
+  interestArea.checked = false;
   areaCheckNum--;
 }
