@@ -4,13 +4,14 @@ import com.culfoshe.entity.PartnerMem;
 import com.culfoshe.entity.PartnerMemPK;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Getter @Setter
+@Getter @Setter @ToString
 public class PartnerMemFormDTO {
 
     @NotBlank
@@ -41,11 +42,8 @@ public class PartnerMemFormDTO {
 
     public static PartnerMem createPartnerMem(PartnerMemFormDTO partnerMemFormDTO, PasswordEncoder passwordEncoder) {
 
-        System.err.println("createParterMem 실행");
         PartnerMem partnerMem = new PartnerMem();
-
         PartnerMemPK partnerMemPK = new PartnerMemPK();
-        partnerMemPK.setStore_location(partnerMemFormDTO.getStoreLocation());
 
         partnerMem.setEmail(partnerMemFormDTO.getEmail());
         String password = passwordEncoder.encode(partnerMemFormDTO.getPassword());
@@ -56,13 +54,16 @@ public class PartnerMemFormDTO {
 
         partnerMem.setStoreName(partnerMemFormDTO.getStoreName());
         partnerMem.setStoreNum(partnerMemFormDTO.getStoreNum());
+        partnerMemPK.setStore_location(partnerMemFormDTO.getStoreLocation());
+        partnerMem.setPresidentName(partnerMemFormDTO.getPresidentName());
 
         partnerMem.setPartnerMemPK(partnerMemPK);
 
-        //값이 어떻게 들어가는지 확일을 위한 메서드
-        System.err.println("Location : "+partnerMem.getPartnerMemPK().getStore_location());
-        System.err.println("code : "+partnerMem.getPartnerMemPK().getPartnermem_id());
-
+//        //값이 어떻게 들어가는지 확일을 위한 메서드
+//        System.err.println(partnerMem.getPartnerMemPK().getStore_location());
+//        System.err.println(partnerMem.getPartnerMemPK().getPartnermem_id());
+        System.err.println("PartnerMemFormDTO.createEntity.partnerMem : " + partnerMem);
+        System.err.println("PartnerMemFormDTO.createEntity.partnerMem.pkkey : " + partnerMem.getPartnerMemPK());
 
         partnerMem.setPartnerDomain(createPartnerDomain(partnerMemFormDTO));
 
