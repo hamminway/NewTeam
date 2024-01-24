@@ -192,7 +192,7 @@ function checkId(){
 
 let indicemail1 = document.getElementById('indicemail1')
 let indicemail2 = document.getElementById('indicemail2')
-let emailResult = document.getElementById('indicEmailchk')
+let indicEmailchk = document.getElementById('indicEmailchk')
 
 indicemail1.addEventListener("blur", function(){
   checklndicemail();
@@ -202,11 +202,11 @@ function checklndicemail(){
   let emailexp=/^[a-zA-Z0-9+-\_.]/
 
   if(indicemail1.value.length == 0){
-    emailResult.innerHTML = "* 필수 입력입니다"
+    indicEmailchk.innerHTML = "* 필수 입력입니다"
   }else if(emailexp.test(indicemail1.value)){
-    emailResult.innerHTML = " "
+    indicEmailchk.innerHTML = " "
   }else{
-    emailResult.innerHTML = "* 이메일 주소를 입력하세요"
+    indicEmailchk.innerHTML = "* 이메일 주소를 입력하세요"
   }
 }
 
@@ -218,11 +218,11 @@ function checklndicemail1(){
   let emailexp2=/^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]/
 
   if(indicemail2.value.length == 0){
-    emailResult.innerHTML = "* 필수 입력입니다"
+    indicEmailchk.innerHTML = "* 필수 입력입니다"
   }else if(emailexp2.test(indicemail2.value)){
-    emailResult.innerHTML = " "
+    indicEmailchk.innerHTML = " "
   }else{
-    emailResult.innerHTML = "* 이메일 주소를 양식에 맞춰 입력하세요"
+    indicEmailchk.innerHTML = "* 이메일 주소를 양식에 맞춰 입력하세요"
   }
 }
 
@@ -454,10 +454,16 @@ let indicEmailBox = document.getElementById("indicEmailBox");
 
 indicemail1.addEventListener("blur", function(){
   indicEmailBox.value = indicemail1.value + "@" + indicemail2.value;
+
+  let indicUrl = "/members/checkUser?email=" + indicEmailBox.value;
+  validateCheckEmail(indicEmailchk, indicUrl);
 })
 
 indicemail2.addEventListener("blur", function(){
   indicEmailBox.value = indicemail1.value + "@" + indicemail2.value;
+
+  let indicUrl = "/members/checkUser?email=" + indicEmailBox.value;
+  validateCheckEmail(indicEmailchk, indicUrl);
 })
 
 /*
@@ -468,91 +474,216 @@ indicemail2.addEventListener("blur", function(){
 let partEmailBox = document.getElementById("partEmailBox");
 let emailaArr = [];
 
+let emailCheckMsg = "";
+
 for(let i = 1; i < 3 ; i++){
   emailaArr.push(document.getElementById('partemail'+i))
 }
 
 for(let i = 0 ; i < emailaArr.length ; i++){
-  emailaArr[i].addEventListener("blur", function (){
+  emailaArr[i].addEventListener("blur", (e) => {
     partEmailBox.value = emailaArr[0].value + "@" + emailaArr[1].value;
+
+    let PartnerUrl = "/members/checkUser?email=" + partEmailBox.value;
+    validateCheckEmail(partEmailchk, PartnerUrl);
   })
 }
 
+function validateCheckEmail(target, url){
+
+  fetch(url)
+      .then(resp => {
+
+        if(resp.status == 200){ //가입이 가능한 상태
+
+          target.style.color = "green";
+          emailCheckMsg = "* 사용 가능한 이메일입니다."
+        } else {
+
+          target.style.color = "red";
+          emailCheckMsg = "* 중복된 이메일입니다. 다른 값을 입력해주세요."
+        }
+
+        target.innerHTML = emailCheckMsg;
+      })
+
+}
+
 /*
-5. 사업장 소재지의 주소 입력창 후, 가져오기
+5. 중복확인 버튼 누르면 중복 검사
+- 개인(도메인)
 */
 
 
+let indicDomain = document.getElementById("indicDomain");
+let indicDomainBtn = document.getElementById("indicDomainBtn");
+let indicDomainChk = document.getElementById("indicDomainChk");
+
+let domainCheckMsg = "";
+
+indicDomainBtn.addEventListener("click", function (e){
+  e.preventDefault();
+
+  let indicDomainUrl = "/members/checkDomain?domain=" + indicDomain.value;
+
+  validateCheckDomain(indicDomainChk, indicDomainUrl);
+})
+
 /*
-6. 선택 css 변화 및 제한 두기
+5. 중복확인 버튼 누르면 중복 검사
+- 파트너(도메인)
 */
+
+let partDomain = document.getElementById("partDomain");
+let partDomainBtn = document.getElementById("partDomainBtn");
+let partDomainChk = document.getElementById("partDomainChk");
+
+partDomainBtn.addEventListener("click", function (e){
+  e.preventDefault();
+
+  let partDomainUrl = "/members/checkDomain?domain=" + partDomain.value;
+
+  validateCheckDomain(partDomainChk, partDomainUrl);
+})
+
+function validateCheckDomain(target, domain) {
+
+  fetch(domain)
+      .then(resp => {
+
+        if (resp.status == 200) { //가입이 가능한 상태
+
+          target.style.color = "green";
+          domainCheckMsg = "* 사용 가능한 도메인입니다."
+        } else {
+
+          target.style.color = "red";
+          domainCheckMsg = "* 중복된 도메인입니다. 다른 값을 입력해주세요."
+        }
+
+        target.innerHTML = domainCheckMsg;
+      })
+
+  /*
+  5. 중복확인 버튼 누르면 중복 검사
+  - 파트너(사업자 등록 번호)
+  */
+
+  let storeNum = document.getElementById("storeNum");
+  let storeNumChkBtn = document.getElementById("storeNumChkBtn");
+  let storeNumChk = document.getElementById("storeNumChk");
+
+  let storeNumCheckMsg = "";
+
+  storeNumChkBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let partStoreNum = "/members/checkStoreNum?storeNum=" + storeNum.value;
+
+    validateCheckStoreNum(storeNumChk, partStoreNum);
+  })
+
+
+  function validateCheckStoreNum(target, num) {
+
+    fetch(num)
+        .then(resp => {
+
+          if (resp.status == 200) { //가입이 가능한 상태
+
+            target.style.color = "green";
+            storeNumCheckMsg = "* 가입 이력이 없는 사업자 번호입니다."
+          } else {
+
+            target.style.color = "red";
+            storeNumCheckMsg = "* 이미 가입된 사업자 번호입니다. 재확인 부탁드립니다."
+          }
+
+          target.innerHTML = storeNumCheckMsg;
+        })
+  }
+
+
+    /*
+    6. 사업장 소재지의 주소 입력창 후, 가져오기
+    */
+
+
+    /*
+    7. 선택할 때 css 변화 및 개수 제한 두기
+    */
 
 // 변수 선언
 // let interest1 = document.getElementById('interest1')
 
-let checkNum = 0;
-let maxCheck = 3;
+    let checkNum = 0;
+    let maxCheck = 3;
+    let inputArr = document.getElementsByClassName("InterestChkBox");
 
-for(let i = 1 ; i < 19 ; i++){
-  let eventAdd = document.getElementById('interest'+i);
+    for (let i = 1; i < 19; i++) {
+      let eventAdd = document.getElementById('interest' + i);
 
-  eventAdd.addEventListener('click', (e)=>{
+      eventAdd.addEventListener('click', (e) => {
 
-    if(e.target.checked){ // 체크박스가 체크 되어 있을 시
-      cssChange(e.target, true)
-      return true;
+        if (inputArr[i - 1].checked) { // 체크박스가 체크 되어 있을 시
+          cssChange(e.target, true)
+
+          return true;
+        }
+
+        if (checkNum >= maxCheck) { //3개 이상 체크 되었을때
+          alert("나의 관심사는 3개까지 선택 가능합니다.");
+          e.preventDefault();
+
+          return false;
+        }
+
+        //체크된 것이 3개 이상이 아닐 경우
+        cssChange(e.target, false);
+
+      })
+
+
     }
-    if(checkNum >= maxCheck){ //3개 이상 체크 되었을때
-      alert("3개라고");
-      e.preventDefault();
-      return false;
-    }else{//3개 이상이 아니면
-      cssChange(e.target, false);
-    }
-
-  })
-
-
-}
 
 // 클릭 시, 컬러 변화
 // interest1.addEventListener("click", function(){
 //   cssChange(interest1);
 // })
 
-function cssChange(target, action) { //action 으로 하얀색으로 바꿀지 초록색으로 바꿀지 선택
+    function cssChange(target, action) { //action 으로 하얀색으로 바꿀지 초록색으로 바꿀지 선택
 
-  if(action){ //action이 true로 들어올 시
-    // 선택된 것을 해제할 때 클릭(하얀 배걍 + 검정 글자로 바뀜)
+      if (action) { //action이 true로 들어올 시
+        // 선택된 것을 해제할 때 클릭함을 의미함. (하얀 배걍 + 검정 글자로 바뀜)
 
-    target.style.color = "black";
-    target.style.backgroundColor = "white";
-    checkNum--;
-    console.log("aaaaa");
+        target.style.color = "black";
+        target.style.backgroundColor = "white";
+        checkNum--;
 
-  }else{ // 선택 시, 초록 배경 + 하얀 글자로 바뀜
+      } else { //action이 false,로 들어올 시, 선택하겠다는 것을 의미함. (초록 배경 + 하얀 글자로 바뀜)
 
-    target.style.color = "white";
-    target.style.backgroundColor = "rgb(16, 104, 63)";
-    checkNum++;
+        target.style.color = "white";
+        target.style.backgroundColor = "rgb(16, 104, 63)";
+        checkNum++;
 
-  }
-}
+      }
+    }
 
 
 // 3개로 클릭 제한(관심지역 선택 최대 3곳)
-let areaCheckNum = 0;
+    let areaCheckNum = 0;
 
-function selectLimitArea(target) {
-  if (target.checked) {
-    areaCheckNum++;
-  } else {
-    areaCheckNum--;
-  }
+    function selectLimitArea(target) {
+      if (target.checked) {
+        areaCheckNum++;
+      } else {
+        areaCheckNum--;
+      }
 
-  if (areaCheckNum > maxCheck) {
-    alert("관심 지역은 최대 3곳까지 선택이 가능합니다.");
-    target.checked = false;
-    areaCheckNum--;
+      if (areaCheckNum > maxCheck) {
+        alert("관심 지역은 최대 3곳까지 선택이 가능합니다.");
+        target.checked = false;
+        areaCheckNum--;
+      }
+    }
   }
-}

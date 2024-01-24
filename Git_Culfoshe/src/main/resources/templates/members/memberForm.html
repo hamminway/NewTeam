@@ -177,7 +177,7 @@
                                             <label class="culfosheDomain">http://www.culfoshe.com/</label>
                                             <div class="checkitem1">
                                                 <input th:field="*{individualDomain}" type="text" class="domain" id="indicDomain" />
-                                                <button class="domainBtn">중복확인</button><br />
+                                                <button class="domainBtn" id="indicDomainBtn">중복확인</button><br />
                                             </div>
                                         </div>
                                         <label class="pwdchk" id="indicDomainChk"></label>
@@ -387,9 +387,9 @@
                                     <td class="td4_2">
                                         <div class="checkitem">
                                             <input th:field="*{storeNum}" type="text" maxlength="12" class="id" id="storeNum" />
-                                            <button class="btn" id="storeNumChk">중복확인</button>
+                                            <button class="btn" id="storeNumChkBtn">중복확인</button>
                                         </div>
-                                        <label class="numchk" id="numchk">* 000 - 00 - 0000 양식에 맞춰 입력</label>
+                                        <label class="numchk" id="storeNumChk">* 000 - 00 - 0000 양식에 맞춰 입력</label>
                                     </td>
                                 </tr>
 
@@ -432,7 +432,7 @@
                                             <label class="culfosheDomain">http://www.culfoshe.com/</label>
                                             <div class="checkitem1">
                                                 <input th:field="*{partnerDomain}" type="text" class="domain" id="partDomain" />
-                                                <button class="domainBtn">중복확인</button><br />
+                                                <button class="domainBtn" id="partDomainBtn">중복확인</button><br />
                                             </div>
                                         </div>
                                         <label class="pwdchk" id="partDomainChk"></label>

@@ -5,13 +5,13 @@ import com.culfoshe.join.dto.IndividualMemFormDTO;
 import com.culfoshe.join.service.MemberService;
 import com.culfoshe.join.dto.PartnerMemFormDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -84,4 +84,39 @@ public class MemberController {
         return "redirect:/";
     }
 
+    @GetMapping(value = "/checkUser")
+    public @ResponseBody ResponseEntity duplicatioEmailCheck(@RequestParam String email){
+
+        boolean flag = memService.validateDulicate(email);
+
+        if(flag){
+            return new ResponseEntity("msg", HttpStatus.OK);
+        }
+
+        return new ResponseEntity("msg", HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping(value="/checkDomain")
+    public @ResponseBody ResponseEntity duplicatioDomainCheck(@RequestParam String domain){ //domain은 fetch에서 설정한 이름을 의미함.(내가 설정하는 것임.)
+
+        boolean flag = memService.validateDulicateDomain(domain);
+
+        if(flag){
+            return new ResponseEntity("msg", HttpStatus.OK);
+        }
+
+       return new ResponseEntity("msg", HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping(value="/checkStoreNum")
+    public @ResponseBody ResponseEntity duplicatioStoreNumCheck(@RequestParam String storeNum){ //storeNum은 fetch에서 설정한 이름을 의미함.
+
+        boolean flag = memService.validateDulicateStoreNum(storeNum);
+
+        if(flag){
+            return new ResponseEntity("msg", HttpStatus.OK);
+        }
+
+        return new ResponseEntity("msg", HttpStatus.ACCEPTED);
+    }
 }

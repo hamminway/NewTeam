@@ -42,7 +42,7 @@ public class PartnerMem{
 
     private String businessHours;
 
-    private String signatureMenu; //이미지
+    private String signatureMenu;
     private String partnerNotice;
 
     private String storeImage;

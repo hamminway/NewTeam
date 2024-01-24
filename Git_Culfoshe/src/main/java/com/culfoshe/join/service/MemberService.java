@@ -29,7 +29,7 @@ public class MemberService implements UserDetailsService {
     private static long partnerMemberId = 100000000;
 
     public static long makePartnerMemberId(){
-//        if()
+
         return partnerMemberId;
     }
 
@@ -58,6 +58,44 @@ public class MemberService implements UserDetailsService {
         } else if(findPartnerMem != null){
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
+    }
+
+    public boolean validateDulicate(String email) {
+        IndividualMem findIndividualMem = individualMemRepository.findByEmail(email);
+        PartnerMem findPartnerMem = partnerMemRepository.findByEmail(email);
+
+        if(findIndividualMem != null) {
+            /*throw new IllegalStateException("이미 가입된 회원입니다.");*/
+            return false;
+        } else if(findPartnerMem != null){
+            /*throw new IllegalStateException("이미 가입된 회원입니다.");*/
+            return false;
+        }
+
+        return true; // 중복 가입한 이메일이 아닌 새로운 이메일일 경우
+    }
+
+    public boolean validateDulicateDomain(String domain){
+        IndividualMem findIndividualMem = individualMemRepository.findByIndividualDomain(domain);
+        PartnerMem findPartnerMem = partnerMemRepository.findByPartnerDomain(domain);
+
+        if(findIndividualMem != null) {
+            return false;
+        } else if(findPartnerMem != null){
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean validateDulicateStoreNum(String storeNum){
+        PartnerMem findPartnerMem = partnerMemRepository.findByStoreNum(storeNum);
+
+        if(findPartnerMem != null){
+            return false;
+        }
+
+        return true;
     }
 
     @Override
