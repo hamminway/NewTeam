@@ -12,10 +12,18 @@ public class IndividualPhoto {
 
     private String oriImgName;
 
+    private String imgName;
+
     private String imgUrl;
 
     @ManyToOne
     @JoinColumn(name = "post_code")
-    private PartnerMem partnerMem;
+    private IndividualPost individualPost;
+
+    public void updateImg(String oriImgName, String imgName, String imgUrl) {
+        this.oriImgName = oriImgName;
+        this.imgName = imgName;
+        this.imgUrl = imgUrl;
+    }
 
 }

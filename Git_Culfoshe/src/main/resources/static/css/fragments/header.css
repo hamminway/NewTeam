@@ -6,7 +6,7 @@
 /*	float: right;*/
 	margin: 10px;
 	margin-top: 10px;
-	position relative;
+	position : relative;
     left: 31%;
     top: 24px;
 }
@@ -15,6 +15,7 @@
 	margin-right: 20px;
 	position: relative;
 	bottom: -2.5px;
+	z-index : 39;
 }
 
 .navbar a:hover {

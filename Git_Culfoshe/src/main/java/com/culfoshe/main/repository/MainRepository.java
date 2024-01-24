@@ -1,12 +1,9 @@
 package com.culfoshe.main.repository;
 
-import com.culfoshe.main.dto.MainViewDTO;
-import com.culfoshe.main.dto.SearchDTO;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.culfoshe.entity.IndividualPost;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.QueryByExampleExecutor;
+import org.springframework.stereotype.Repository;
 
-public interface MainRepository {
-
-    Page<MainViewDTO> getMainViewPage(SearchDTO searchDTO, Pageable pageable);
-
+public interface MainRepository extends JpaRepository<IndividualPost, Long>, QueryByExampleExecutor<IndividualPost>, SearchRepository {
 }
