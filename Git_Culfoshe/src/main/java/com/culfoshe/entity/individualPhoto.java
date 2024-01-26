@@ -1,14 +1,19 @@
 package com.culfoshe.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
-public class individualPhoto {
+@Getter
+@Setter
+public class IndividualPhoto {
 
     @Id
     @Column(name = "individual_photo_code")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long photoCode;
+    private Long photoCode;
 
     private String oriImgName;
 
@@ -16,6 +21,6 @@ public class individualPhoto {
 
     @ManyToOne
     @JoinColumn(name = "post_code")
-    private PartnerMem partnerMem;
+    private IndividualPost individualPost;
 
 }
