@@ -235,7 +235,7 @@ let partemail1 = document.getElementById('partemail1')
 let partemail2 = document.getElementById('partemail2')
 let partEmailchk = document.getElementById('partEmailchk')
 
-indicemail1.addEventListener("blur", function(){
+partemail1.addEventListener("blur", function(){
   checkPartemail2();
 })
 
@@ -243,15 +243,15 @@ function checkPartemail2(){
   let emailexp=/^[a-zA-Z0-9+-\_.]/
 
   if(indicemail1.value.length == 0){
-    emailResult.innerHTML = "* 필수 입력입니다"
+    partEmailchk.innerHTML = "* 필수 입력입니다"
   }else if(emailexp.test(indicemail1.value)){
-    emailResult.innerHTML = " "
+    partEmailchk.innerHTML = " "
   }else{
-    emailResult.innerHTML = "* 이메일 주소를 입력하세요"
+    partEmailchk.innerHTML = "* 이메일 주소를 입력하세요"
   }
 }
 
-indicemail2.addEventListener("blur", function(){
+partemail2.addEventListener("blur", function(){
   checkPartemail3();
 })
 
@@ -259,11 +259,11 @@ function checkPartemail3(){
   let emailexp2=/^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]/
 
   if(indicemail2.value.length == 0){
-    emailResult.innerHTML = "* 필수 입력입니다"
+    partEmailchk.innerHTML = "* 필수 입력입니다"
   }else if(emailexp2.test(indicemail2.value)){
-    emailResult.innerHTML = " "
+    partEmailchk.innerHTML = " "
   }else{
-    emailResult.innerHTML = "* 이메일 주소를 양식에 맞춰 입력하세요"
+    partEmailchk.innerHTML = "* 이메일 주소를 양식에 맞춰 입력하세요"
   }
 }
 
@@ -445,41 +445,116 @@ function checkStoreNum(){
   }
 }
 
-
 /*
-    - 비밀번호 양식에 맞지 않을 때, '양식에 맞지 않습니다'를 추가로 띄워주기
-    - 비밀번호와 비밀번호 확인이 일치하지 않을 때,
-      '입력한 비밀번호가 일치하지 않습니다'로 멘트를 변경하기
-
-4. 사업장 소재지의 주소 입력창 후, 가져오기
-
-5. 선택 제한
-    - 나의 관심사 선택 최대 3곳
-    - 관심지역 선택 최대 3곳
+4. 이메일 합치기
+- 개인
 */
 
-// let interest1 = document.getElementById('interest1')
+let indicEmailBox = document.getElementById("indicEmailBox");
 
+indicemail1.addEventListener("blur", function(){
+  indicEmailBox.value = indicemail1.value + "@" + indicemail2.value;
+})
 
-for(let i = 1 ; i < 19 ; i++){
-  let eventAdd = document.getElementById('interest'+i);
-  eventAdd.addEventListener('click', (e)=>{
-    cssChange(e.target);
+indicemail2.addEventListener("blur", function(){
+  indicEmailBox.value = indicemail1.value + "@" + indicemail2.value;
+})
+
+/*
+4. 이메일 합치기
+- 파트너
+*/
+
+let partEmailBox = document.getElementById("partEmailBox");
+let emailaArr = [];
+
+for(let i = 1; i < 3 ; i++){
+  emailaArr.push(document.getElementById('partemail'+i))
+}
+
+for(let i = 0 ; i < emailaArr.length ; i++){
+  emailaArr[i].addEventListener("blur", function (){
+    partEmailBox.value = emailaArr[0].value + "@" + emailaArr[1].value;
   })
 }
 
+/*
+5. 사업장 소재지의 주소 입력창 후, 가져오기
+*/
+
+
+/*
+6. 선택 css 변화 및 제한 두기
+*/
+
+// 변수 선언
+// let interest1 = document.getElementById('interest1')
+
+let maxCheck = 3;
+let interestList = document.getElementsByClassName("InterestChkBox"); // input태그(체크박스) class명으로 검사(name값 안됨..)
+let checkNum = 0;
+for(let i = 0 ; i < 20 ; i++){
+  let eventAdd = document.getElementById('interest'+i);
+
+  interestList[i].addEventListener('change', ()=>{
+
+    if(interestList[i-1].checked){          // input태그의 체크박스가 체크 여부 검사
+      checkNum--;             //체크 개수 --
+      cssChange(e.target, true)             //cssChange(해당label태그, 체크해제요청) - cssChange(e.target, true(checkDeleteAction))
+      return true;// 함수 (조기)종료(여기서는 return값 무의미)         //함수 조기 종료 : 코드의 가독성을 높이기 위하여 함수를 조건부에서 종료 시키는 행위.
+    }
+
+
+    if(checkNum >= maxCheck){       //checkNum값 검사
+      alert("3개라고");
+      e.preventDefault();           //체크박스의 체크 이벤트 해제
+      return false;                 //함수 조기 종료 (여기서는 return값 무의미)
+
+    }
+    checkNum++;             //체크 개수 ++
+                                    //3개 이상이 아니면(함수가 조기 종료 되지 않았으면)
+    cssChange(e.target, false);     //cssChange, 녹색으로
+
+  })
+
+}
+
+
+
+// 클릭 시, 컬러 변화
 // interest1.addEventListener("click", function(){
 //   cssChange(interest1);
 // })
 
-function cssChange(a) {
-  if(a.style.backgroundColor == "rgb(16, 104, 63)"){
-    a.style.color = "black";
-    a.style.backgroundColor = "white";
-  }else{
-    a.style.color = "white";
-    a.style.backgroundColor = "rgb(16, 104, 63)";
+function cssChange(target, action) { //action이 true 일 때 체크 해제요청, false 일 때 체크 요청
+
+    if(action){               //체크 해제 요청이 들어올 시 (action이 true로 들어올 시)
+                            // 선택된 것을 해제할 때 클릭(하얀 배걍 + 검정 글자로 바뀜)
+
+        target.style.color = "black";
+        target.style.backgroundColor = "white";
+        console.log("aaaaa");
+
+    }else{                    //체크 요청이 들어올 시 - 선택 시, 초록 배경 + 하얀 글자로 바뀜
+
+        target.style.color = "white";
+        target.style.backgroundColor = "rgb(16, 104, 63)";
+
+     }
+}
+// 3개로 클릭 제한(관심지역 선택 최대 3곳)
+let areaCheckNum = 0;
+
+function selectLimitArea() {
+  if (target.checked) {
+    areaCheckNum++;
+  } else {
+    areaCheckNum--;
+  }
+
+  if (areaCheckNum > maxCheck) {
+    alert("관심 지역은 최대 3곳까지 선택이 가능합니다.");
+    target.checked = false;
+    areaCheckNum--;
   }
 }
-
-

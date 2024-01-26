@@ -1,4 +1,4 @@
-package com.culfoshe.controller;
+package com.culfoshe.main.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

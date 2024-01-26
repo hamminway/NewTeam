@@ -16,7 +16,7 @@ public class IndividualMem {
 
     @Id
     @Column(name = "individualmem_id")
-    private long Id;
+    private Long id;
 
     @Email
     @Column(unique = true)

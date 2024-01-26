@@ -16,6 +16,7 @@ public class PartnerMem{
     @EmbeddedId
     private PartnerMemPK partnerMemPK;
 
+
     @Email
     @Column(unique = true)
     private String email;
@@ -41,11 +42,9 @@ public class PartnerMem{
 
     private String businessHours;
 
-    @Column(nullable = false)
     private String signatureMenu; //이미지
     private String partnerNotice;
 
-    @Column(nullable = false)
     private String storeImage;
 
 }
