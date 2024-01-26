@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/individual/individualPage.css}" />
+    </th:block>
+
+<th:block layout:fragment="content">
+
+    <div class="All" th:if="${individualPageDTO != null}" th:object="${individualPageDTO}">
+        <div class="profile">
+            <div class="User_profile">
+                <div class="pr_back"><img src="" alt="" class="back01"></div>
+                <div class="pr_line"></div>
+                <div class="pr_img"><img src="Image/지성이.jpg" alt="" class="pr_img2"></div>
+
+                <div class="pageIntro">
+                    <div class="pagename">
+                        <p class="nickname">탐혬가</p>
+                        <div class="slash"></div>
+                        <p class="pagename">• 開花 •</p>
+                    </div>
+
+                    <div class="profile_text">
+                        <div class="introCon">
+                            <div class="introbox">
+                                <p class="pagetext">행운을 선사해드릴 수는 없지만 행복을 선물해줄 수 있는 공간을 기록합니다.<br>제가 느낀 행복의 감동을 공유하고 싶어요. 문의는 메세지 부탁드립니다.</p>
+                            </div><!--.introbox-->
+                            <br>
+
+                            <div class="localbox">
+                                <p>주요 활동 지역 (</p>
+                                <p class="local">부산, 울산)</p>
+                            </div><!--.localbox-->
+                        </div>
+
+                        <button class="icon_bottom"><a href="TeamProject3.html">글쓰기</a></button>
+                    </div>
+                </div><!--profile_text-->
+            </div><!--.User_profile-->
+
+            <hr class="line">
+
+            <div>
+                <h2 class="textbox">탐혬가님의 지도 🗺️</h2>
+                <div class="map"><img src=""></div>
+            </div>
+            <br><br>
+
+            <hr class="line">
+
+            <div class="profile_text">
+                <h2 class="textbox">탐혬가님의 장소 🚩</h2>
+                <div>
+                    <select class="seloption">
+                        <option class="sequence" value="">정렬</option>
+                        <option value="인기순">인기순</option>
+                        <option value="최신순">최신순</option>
+                        <option value="오래된순">오래된순</option>
+                        <option value="저장 많은순">저장 많은순</option>
+                        <option value="저장 적은순">저장 적은순</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="total_user_container">
+                <div class="user_container">
+                    <div class="mainbox">
+                        <div class="storebox"><br>
+                            <label class="shopname">네스토</label>
+                            <label>(일반음식점 / 일식)</label>
+                            <button class="storage1_1"><img src=Image/저장.png class="storage2"></button>
+
+                            <br><label>: 라멘 위에 올라가는 차슈가 굉장히 부드럽고 깔끔하면서도 진한 육수가 매력적이었음.</label>
+                        </div>
+                        <br>
+
+                        <div class="photobox">
+                            <img src= Image/네스토1.jpeg class="storepic1">
+                            <img src= Image/네스토2.jpeg class="storepic">
+                            <img src= Image/네스토3.jpeg class="storepic">
+                        </div>
+
+                        <br><br><input type="button" value="더보기" class="btn">
+                    </div>
+                </div><br><br>
+
+                <div class="user_container">
+                    <div class="mainbox">
+                        <div class="storebox"><br>
+                            <label class="shopname">셔셔</label>
+                            <label>(일반음식점 / 중식)</label>
+                            <button class="storage1_2"><img src=Image/저장.png class="storage2"></button>
+
+                            <br><label>: 먹는 순간 홍콩에 여행을 온 것 같은 착각이 들 정도로 현지 느낌이 물씬했으며 전반적으로 맛있었습니다.</label>
+                        </div>
+                        <br>
+
+                        <div class="photobox">
+                            <img src= Image/셔셔1.jpeg class="storepic">
+                            <img src= Image/셔셔2.jpeg class="storepic">
+                            <img src= Image/셔셔3.jpeg class="storepic">
+                        </div>
+
+                        <br><br><input type="button" value="더보기" class="btn">
+                    </div>
+                </div><br><br>
+
+                <div class="user_container">
+                    <div class="mainbox">
+                        <div class="storebox"><br>
+                            <label class="shopname">Pretzely 프레즐리</label>
+                            <label>(카페)</label>
+                            <button class="storage1_3"><img src=Image/저장.png class="storage2"></button>
+
+                            <br><label class="coment">: 요즘 유행하는 프레즐을 다양하게 만나볼 수 있었고 매장이 넓어 이용에 어려움이 없었어요! :-)</label>
+                        </div>
+                        <br>
+
+                        <div class="photobox">
+                            <img src= Image/프레즐리1.jpeg class="storepic">
+                            <img src= Image/프레즐리2.jpeg class="storepic">
+                            <img src= Image/프레즐리3.jpeg class="storepic">
+                        </div>
+
+                        <br><br><input type="button" value="더보기" class="btn">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="line1">
+
+            <div class="postlistbox">
+                <div>
+                    <select class="seloption1">
+                        <option value="">폴더명 선택</option>
+                        <option value="ulsancafe">울산 카페 투어</option>
+                        <option value="ulsandining">울산 맛집 투어</option>
+                        <option value="busancafe">부산 카페 투어</option>
+                        <option value="busandining">부산 맛집 투어</option>
+                        <option value="jeju">제주 현지 맛집</option>
+                    </select>
+                    <br>
+                    <br>
+
+                    <div>
+                        <label class="seloption1">전체글 수: 72</label>
+                        <button class="listopen">목록 닫기</button>
+                    </div>
+                </div>
+                <br>
+
+                <div>
+                    <div>
+                        <table class="postlist">
+                            <tr>
+                                <th class="a">제목</th>
+                                <th class="b">조회수</th>
+                                <th class="b">저장수</th>
+                                <th class="c">작성일자</th>
+                            </tr>
+
+                            <tr>
+                                <th class="a">[울산] 네스토</th>
+                                <th class="b">578</th>
+                                <th class="b">31</th>
+                                <th class="c">23-06-23</th>
+                            </tr>
+
+                            <tr>
+                                <th class="a">[울산] 셔셔</th>
+                                <th class="b">571</th>
+                                <th class="b">38</th>
+                                <th class="c">23-07-01</th>
+                            </tr>
+
+                            <tr>
+                                <th class="a">[울산] Pretzely 프레즐리</th>
+                                <th class="b">492</th>
+                                <th class="b">27</th>
+                                <th class="c">23-06-28</th>
+                            </tr>
+
+                            <tr>
+                                <th class="a">[울산] 대왕김밥</th>
+                                <th class="b">490</th>
+                                <th class="b">74</th>
+                                <th class="c">23-04-21</th>
+                            </tr>
+
+                            <tr>
+                                <th class="a">[울산] 토라소바</th>
+                                <th class="b">425</th>
+                                <th class="b">19</th>
+                                <th class="c">23-05-05</th>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <br>
+
+                    <div class="pagenum">
+                        <input type="button" value="<<" class="d">
+                        <input type="button" value="<" class="d">
+                        <label class="d">|</label>
+                        <input type="button" value="1" class="d">
+                        <input type="button" value="2" class="d">
+                        <input type="button" value="3" class="d">
+                        <input type="button" value="4" class="d">
+                        <input type="button" value="5" class="d">
+                        <label class="d">|</label>
+                        <input type="button" value=">" class="d">
+                        <input type="button" value=">>" class="d">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+        </div>
+
+
+    </div><!--.profile-->
+
+    </div>
+
+
+</th:block>
+
+</html>
