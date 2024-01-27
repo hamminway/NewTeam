@@ -5,17 +5,14 @@ import com.culfoshe.entity.QIndividualPost;
 import com.culfoshe.indiviidualPage.dto.IndividualPostPreviewDTO;
 import com.culfoshe.indiviidualPage.dto.QIndividualPostPreviewDTO;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-
+@Repository
 public class IndividualPostCustomImpl implements IndividualPostCustom{
 
     private JPAQueryFactory queryFactory;

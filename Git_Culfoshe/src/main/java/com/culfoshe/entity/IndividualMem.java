@@ -1,13 +1,12 @@
 package com.culfoshe.entity;
 
 
-
+import com.culfoshe.constant.OAuthType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 
 @Entity
 @Table(name = "individualMem")
@@ -15,20 +14,17 @@ import javax.validation.constraints.Email;
 public class IndividualMem {
 
     @Id
-    @Column(name = "individualmem_id")
+    @Column(name = "individualmem_id") @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Email
     @Column(unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private String phoneNum;
 
     private String interest;
@@ -44,5 +40,7 @@ public class IndividualMem {
     private String individualCategory;
     private int postNum;
 
+    @Enumerated(EnumType.STRING)
+    private OAuthType oauth;
 
 }

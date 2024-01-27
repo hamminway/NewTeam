@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
       layout:decorate="~{layouts/layout1}">
 
     <th:block layout:fragment="css">
@@ -38,9 +38,9 @@
                 <p class="login2">간편 로그인</p>
 
                 <div class="sublogin_icon">
-                    <a href="" class="Web_icon"><img src="/img/kakaoicon.png" alt=""></a>
-                    <a href="" class="Web_icon"><img src="/img/navericon.png" alt=""></a>
-                    <a href="" class="Web_icon"><img src="/img/googleicon.png" alt=""></a>
+                    <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=aafd81468e27c350bac9bfd4b9111489&redirect_uri=http://localhost:8000/members/login/kakao" class="Web_icon"><img src="/img/kakaoLoginBtn.png" alt="" height="38px"></a>
+                    <a href="" class="Web_icon"><img src="/img/naverLoginBtn.png" alt="" height="38px"></a>
+                    <a href="" class="Web_icon"><img src="/img/googleLoginBtn.png" alt="" height="38px"></a>
                 </div>
             </div>
             <!--.sublogin-->

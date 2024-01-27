@@ -7,7 +7,6 @@ import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Getter @Setter
@@ -17,7 +16,6 @@ public class IndividualMemFormDTO {
     @NotBlank
     private String name;
 
-    @Email
     @NotBlank
     private String email;
 
