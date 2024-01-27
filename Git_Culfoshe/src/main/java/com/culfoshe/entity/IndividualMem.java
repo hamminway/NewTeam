@@ -31,6 +31,8 @@ public class IndividualMem {
     @Column(nullable = false)
     private String phoneNum;
 
+    private String profilePicUrl;
+
     private String interest;
     private String interestArea;
 
