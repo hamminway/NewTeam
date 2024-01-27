@@ -2,12 +2,11 @@ package com.culfoshe.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
-
 @Entity
-@Getter
-@Setter
+@Getter @Setter @ToString
 public class IndividualPhoto {
 
     @Id
@@ -22,5 +21,4 @@ public class IndividualPhoto {
     @ManyToOne
     @JoinColumn(name = "post_code")
     private IndividualPost individualPost;
-
 }
