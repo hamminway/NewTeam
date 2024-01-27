@@ -578,7 +578,8 @@ function validateCheckDomain(target, domain) {
   storeNumChkBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    let partStoreNum = "/members/checkStoreNum?storeNum=" + storeNum.value;
+    let partStoreNum = "/members/chec" +
+        "kStoreNum?storeNum=" + storeNum.value;
 
     validateCheckStoreNum(storeNumChk, partStoreNum);
   })
