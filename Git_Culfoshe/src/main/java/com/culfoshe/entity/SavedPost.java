@@ -21,4 +21,5 @@ public class SavedPost {
     @ManyToOne
     @JoinColumn(name = "individualmem_id")
     private IndividualMem individualMem;
+
 }

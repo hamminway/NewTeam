@@ -26,8 +26,15 @@ public class MemberService implements UserDetailsService {
     private final IndividualMemRepository individualMemRepository;
     private final PartnerMemRepository partnerMemRepository;
     private final PasswordEncoder passwordEncoder;
+    private static long partnerMemberId = 100000000;
+
+    public static long makePartnerMemberId(){
+//        if()
+        return partnerMemberId;
+    }
 
     public IndividualMem saveIndividualMem(@Valid IndividualMemFormDTO individualMemFormDTO) {
+        System.err.println("memberService 동작");
         IndividualMem individualMem = IndividualMemFormDTO.createIndividualMem(individualMemFormDTO, passwordEncoder);
 
         validateDulicateMember(individualMem.getEmail());
@@ -37,6 +44,7 @@ public class MemberService implements UserDetailsService {
     public PartnerMem savePartnerMem(PartnerMemFormDTO partnerMemFormDTO){
         PartnerMem partnerMem = PartnerMemFormDTO.createPartnerMem(partnerMemFormDTO, passwordEncoder);
 
+        System.err.println("memberService.savePartnerMem.dto" + partnerMemFormDTO);
         validateDulicateMember(partnerMemFormDTO.getEmail());
         return partnerMemRepository.save(partnerMem);
     }

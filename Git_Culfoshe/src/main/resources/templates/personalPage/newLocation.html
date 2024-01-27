@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<!-- css 연결 -->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <link th:href="@{/css/index.css}" rel="stylesheet" type="text/css" />
+</th:block>
+
+
+
+<body>
+<!-- main -->
+<div layout:fragment="content" class="main con border">
+
+</div> <!--main-3-->
+
+</div><!-- main -->
+
+
+
+
+</body>
+</html>

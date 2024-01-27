@@ -1,5 +1,6 @@
 package com.culfoshe.join.controller;
 
+import com.culfoshe.entity.PartnerMem;
 import com.culfoshe.join.dto.IndividualMemFormDTO;
 import com.culfoshe.join.service.MemberService;
 import com.culfoshe.join.dto.PartnerMemFormDTO;
@@ -44,6 +45,9 @@ public class MemberController {
     @PostMapping(value = "/newIndividual")
     public String individualMemForm(@Valid IndividualMemFormDTO individualMemFormDTO, BindingResult bindingResult, Model model) {
 
+        System.err.println("controller 동작");
+        System.err.println("individualMemFormDTO : " + individualMemFormDTO);
+
         if(bindingResult.hasErrors()){
             return "members/memberForm";
         }
@@ -53,7 +57,7 @@ public class MemberController {
             System.out.println(individualMemFormDTO.toString());
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "member/memberForm";
+            return "members/memberForm";
         }
 
         return "redirect:/";
@@ -62,15 +66,18 @@ public class MemberController {
     @PostMapping(value = "/newPartner")
     public String partnerMemForm(@Valid PartnerMemFormDTO partnerMemFormDTO, BindingResult bindingResult, Model model) {
 
+
         if(bindingResult.hasErrors()){
             return "members/memberForm";
         }
 
         try {
-            memService.savePartnerMem(partnerMemFormDTO);
-            System.out.println(partnerMemFormDTO.toString());
+            PartnerMem savedPartnerMem = memService.savePartnerMem(partnerMemFormDTO);
+            System.err.println("savedPartnerMem : "+ savedPartnerMem);
+            System.out.println("테스"+partnerMemFormDTO.toString());
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
+            e.printStackTrace();
             return "members/memberForm";
         }
 

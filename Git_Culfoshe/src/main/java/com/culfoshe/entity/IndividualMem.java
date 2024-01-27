@@ -16,7 +16,7 @@ public class IndividualMem {
 
     @Id
     @Column(name = "individualmem_id")
-    private long Id;
+    private Long id;
 
     @Email
     @Column(unique = true)
@@ -30,6 +30,8 @@ public class IndividualMem {
 
     @Column(nullable = false)
     private String phoneNum;
+
+    private String profilePicUrl;
 
     private String interest;
     private String interestArea;
