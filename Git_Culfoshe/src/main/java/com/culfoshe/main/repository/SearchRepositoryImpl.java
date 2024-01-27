@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Primary
@@ -44,6 +45,7 @@ public class SearchRepositoryImpl implements SearchRepository {
     private BooleanExpression searchByLike(String searchBy, String searchQuery){
 
         QPartnerMemPK partnerMemPK = QPartnerMemPK.partnerMemPK;
+        QIndividualPost individualPost = QIndividualPost.individualPost;
 
         if(StringUtils.equals("seoul", searchBy)) {
             return partnerMemPK.store_location.like("%" + searchQuery + "%");
@@ -73,21 +75,56 @@ public class SearchRepositoryImpl implements SearchRepository {
             return partnerMemPK.store_location.like("%" + searchQuery + "%");
         }
 
+        if(StringUtils.equals("seoul", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("gyeonggi", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("incheon", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("gangwon", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("chungcheong", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("daejeon", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("daegu", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("busan", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("ulsan", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("gyeongsang", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("gwangju", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("jeonla", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        } else if (StringUtils.equals("jeju", searchBy)) {
+            return individualPost.location.like("%" + searchQuery + "%");
+        }
         return null;
     }
 
 
 
-//    //현재 시간 이후로 등록된 것을 조회하도록
-//    //기간으로 검색하는 것이 아니라서 필요없을 거 같기는 함
-//    private BooleanExpression regDtsAfter(String searchDateType) {
-//        LocalDateTime dateTime = LocalDateTime.now();
-//
-//        if(StringUtils.equals("all", searchDateType)){
-//            return null;
-//        }
-//        return null;
-//    }
+    //현재 시간 이후로 등록된 것을 조회하도록
+    //기간으로 검색하는 것이 아니라서 필요없을 거 같기는 함
+    private BooleanExpression regDtsAfter(String searchDateType) {
+        LocalDateTime dateTime = LocalDateTime.now();
+
+        if (StringUtils.equals("all", searchDateType) || searchDateType == null) {
+            return null;
+        } else if (StringUtils.equals("1d", searchDateType)) {
+            dateTime = dateTime.minusDays(1);
+        } else if (StringUtils.equals("1w", searchDateType)) {
+            dateTime = dateTime.minusWeeks(1);
+        } else if (StringUtils.equals("1m", searchDateType)) {
+            dateTime = dateTime.minusMonths(1);
+        } else if (StringUtils.equals("6m", searchDateType)) {
+            dateTime = dateTime.minusMonths(6);
+        }
+        return QIndividualPost.individualPost.regTime.after(dateTime);
+    }
 
 
 
