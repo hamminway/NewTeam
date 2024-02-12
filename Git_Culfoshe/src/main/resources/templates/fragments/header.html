@@ -7,7 +7,7 @@
 <div th:fragment="header">
     <div class="top-bar">
         <div class="con row">
-            <a href="#" class="logo block cell img-box">
+            <a th:href="@{/}" class="logo block cell img-box">
                 <img th:src="@{/img/main_logo.jpg}" alt="로고">
             </a>
 
@@ -31,10 +31,9 @@
                     </button>
                 </form>
             </div>
-            <br>
 
             <nav class="menu-box-1 cell-right">
-                <ul class="row">
+                <ul class="row" id = "target">
                     <li class="cell">
                         <a href="#" class="block">컬처</a>
                         <div class="relative">
@@ -95,6 +94,7 @@
             </nav>
         </div>
     </div>
+
 
 </div><!-- header -->
 </html>

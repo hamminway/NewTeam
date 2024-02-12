@@ -33,7 +33,7 @@
 }
 
 .main-search-int{
-	width : 386px;
+	width : 490px;
 	height : 50px;
 	background-color: #fff;
 	border-right: none;
@@ -42,7 +42,7 @@
 	text-align: center;
 
 	position: relative;
-	left: 33.45%;
+	left: 33.4%;
 	top:563px;
 }
 
@@ -60,22 +60,19 @@
 
 .main-search button{
 	width:52px;
-	height: 56px;
+	height: 54px;
 	background: #fff;
 
 	border-right: none;
 	border-left: none;
 
 	position: relative;
-	left:33.3%;
-	top: 568px;
+	left:26.4%;
+	top: 566px;
 	margin-left: -5.5px;
 }
 
-.main-search button:hover{
-	background-color: rgb(144, 231, 168);
-	border-left:2px solid #c3c3c3;
-}
+
 
 /* .main-search-btn{
 	border-top-right-radius: 5px;
@@ -85,6 +82,16 @@
 .main-search i{
 	font-size: 25px;
 	padding:2px;
+	color: #c8d2e5;
+}
+
+.main-search i:hover{
+/*	background-color: rgb(144, 231, 168);*/
+	color: #9acd32;
+	border-left:2px solid #c3c3c3;
+
+	border-right: none;
+    border-left: none;
 }
 
 .main-category {
@@ -140,9 +147,8 @@
 }
 
 .commend-li {
-
   display: inline-flex;
-  margin-bottom: 30px;
+  margin-bottom: 21px;
   margin-left: 80px;
   margin-right: 20px;
 }
@@ -171,7 +177,7 @@
 	position: absolute;
 	width: 0;
 	height: 5px;
-	bottom: -16px;
+	bottom: -25px;
 	right: 33%;
 	background-color: green;
 	transition: width 0.4s;
@@ -182,7 +188,7 @@
 	position: absolute;
 	width: 0;
 	height: 5px;
-	bottom: -16px;
+	bottom: -25px;
 	left: 67%;
 	background-color: green;
 	transition: width 0.4s;
@@ -292,8 +298,8 @@
 
 .bMark-icon-3 {
 	position: relative;
-	left: 6%;
-	bottom: -4px;
+	left: 99%;
+	bottom: 17px;
 	font-size: 28px;
 }
 

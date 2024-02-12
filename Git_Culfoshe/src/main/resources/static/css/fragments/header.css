@@ -1,14 +1,15 @@
 @charset "UTF-8";
 
+
 /* header */
 
 .navbar {
-/*	float: right;*/
 	margin: 10px;
 	margin-top: 10px;
+	text-align : center;
 	position : relative;
-    left: 31%;
-    top: 24px;
+    right : 66px;
+    top : 10px;
 }
 
 .navbar a {
@@ -36,16 +37,17 @@
 }
 
 #mini-Search {
+    float : right;
+
 	width: 250px;
-	height: 23px;
-	margin-left: 1240px;
+	height: 25px;
 	border: 1px solid #C3C3C3;
 	border-radius: 5px;
 }
 
 .icon {
     position: relative;
-    bottom: 40px;
+    bottom: 21px;
 }
 
 .icon input:focus {
@@ -60,10 +62,10 @@
 .icon-search-btn{
 	height: 20px;
 	position: relative;
-	left: 1463px;
-	top: -25px;
+	left: 88%;
 	border: none;
 	background-color: #fff;
+	border-radius: 5px;
 }
 
 
@@ -114,6 +116,8 @@
 
 .relative {
 	position: relative;
+	height:0;
+	transition:0.7s ;
 }
 
 .absolute-left {
@@ -132,42 +136,48 @@
 	transform: translateY(-50%);
 }
 
+.menu-box-1 {
+    overflow: hidden;
+    margin-top : 53px;
+}
 
 /* 커스텀 */
 
-
-html,
+/*html,
 body {
 	overflow-x: hidden;
 }
 
 body {
 	overflow-y: hidden;
-}
+}*/
 
 /*탑바메뉴 시작*/
 
 .top-bar {
+    display : flex;
+
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 196px;
+	height: 183px;
 
-	overflow: hidden;
 	transition: height 0.7s;
 	z-index: 200;
+	-webkit-transition: 0.7s;
+	-moz-transition: 0.7s;
 
-	background-color: #ffffff;
+	background-color: #fff;
 	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
-/*1차메뉴 회색밑줄 조절*/
 
+/*1차메뉴 회색밑줄 조절*/
 .top-bar::after {
 	content: "";
 	position: absolute;
-	top: 195px;
+	top: 183px;
 	width: 100%;
 	height: 1px;
 	background-color: rgba(0, 0, 0, 0.1);
@@ -176,7 +186,7 @@ body {
 
 /*마우스올릴 시 2차메뉴 높이조절*/
 .top-bar:hover {
-	height: 500px;
+	height: 470px;
 }
 
 .top-bar .logo {
@@ -203,7 +213,7 @@ body {
 	position: absolute;
 	width: 0;
 	height: 5px;
-	bottom: -22px;
+	bottom: -28px;
 	right: 50%;
 	background-color: green;
 	transition: width 0.4s;
@@ -214,7 +224,7 @@ body {
 	position: absolute;
 	width: 0;
 	height: 5px;
-	bottom: -22px;
+	bottom: -28px;
 	left: 50%;
 	background-color: green;
 	transition: width 0.4s;
@@ -234,11 +244,11 @@ body {
 .top-bar .menu-box-1>ul>li>a {
 	text-align: center;
 	padding: 0 10px;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: 500;
 	font-style: normal;
 	font-stretch: normal;
-	letter-spacing: 2px;
+	letter-spacing: 4px;
 }
 
 .top-bar .menu-box-1>ul>li:hover>a {
@@ -247,10 +257,11 @@ body {
 
 /* 2차 메뉴 왼쪽 오른쪽 선 높이*/
 .top-bar .menu-box-1>ul>li>div>ul {
-	position: absolute;
-	top: 22px;
+	/* position: absolute;
+	top: 22px; */
+
 	width: 100%;
-	height: 260px;
+	height: 245px;
 	border-left: 1px solid #e8e8e8;
 }
 
@@ -266,7 +277,7 @@ body {
 }
 
 .top-bar .menu-box-1>ul>li>div>ul>li:first-child {
-	margin-top: 23px;
+	margin-top: 50px;
 }
 
 /* nth-child(2) : 2번째 요소를 선택하게 하는 것*/
@@ -321,7 +332,7 @@ body {
 /*2차 메뉴 안에 제목 위치 조절*/
 .top-bar .menu-box-1>ul>li>.menu-text {
 	position: absolute;
-	top: 222px;
+	top: 250px;
 	left: 48%;
 	width: 250px;
 	height: 400px;
@@ -401,3 +412,20 @@ body {
 	background-size: cover;
 	position: relative;
 }
+
+/*탑바 전체를 고정하여 스크롤 내릴 시 크기를 변경*/
+.top-bar.scrolled {
+	position: fixed; /*헤더 고정*/
+    height : 110px;
+	background-color : #9acd32;
+	animation : topBarHeight 0.5s;
+}
+
+/*회색 밑줄 스크롤 시 높이 변경*/
+.top-bar.scrolled.top-bar::after {
+    position: absolute;
+    top: 110px;
+}
+
+/* */
+

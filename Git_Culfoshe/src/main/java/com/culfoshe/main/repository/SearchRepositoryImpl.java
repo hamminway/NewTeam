@@ -106,7 +106,6 @@ public class SearchRepositoryImpl implements SearchRepository {
     }
 
 
-
     //현재 시간 이후로 등록된 것을 조회하도록
     //기간으로 검색하는 것이 아니라서 필요없을 거 같기는 함
     private BooleanExpression regDtsAfter(String searchDateType) {
@@ -127,11 +126,7 @@ public class SearchRepositoryImpl implements SearchRepository {
     }
 
 
-
-
     //쿼리프로젝션 어노테이션 Q클래스가 만들어준다.
-    // dto 제목 작성자 사진 maindto
-
     //쿼리를 생성
     @Override
     public Page<PartnerMem> getPartnerSearchPage(SearchDTO searchDTO, Pageable pageable) {
@@ -172,7 +167,7 @@ public class SearchRepositoryImpl implements SearchRepository {
                 .selectFrom(QIndividualMem.individualMem)
                 .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
                         searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
-                .orderBy(QIndividualMem.individualMem.Id.desc())
+                .orderBy(QIndividualMem.individualMem.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -181,7 +176,7 @@ public class SearchRepositoryImpl implements SearchRepository {
                 .select(QIndividualMem.individualMem)
                 .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
                         searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
-                .orderBy(QIndividualMem.individualMem.Id.desc())
+                .orderBy(QIndividualMem.individualMem.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch());
@@ -204,7 +199,7 @@ public class SearchRepositoryImpl implements SearchRepository {
                 .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
                         searchByLike(searchDTO.getSearchBy(),
                                 searchDTO.getSearchQuery()))
-                .orderBy(QIndividualPost.individualPost.PostCode.desc())
+                .orderBy(QIndividualPost.individualPost.postCode.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -213,7 +208,7 @@ public class SearchRepositoryImpl implements SearchRepository {
                 .select(QIndividualPost.individualPost)
                 .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
                         searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
-                .orderBy(QIndividualPost.individualPost.PostCode.desc())
+                .orderBy(QIndividualPost.individualPost.postCode.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch());
@@ -225,7 +220,7 @@ public class SearchRepositoryImpl implements SearchRepository {
                                 searchDTO.getSearchQuery()))
                 .fetchOne();
 
-        return null;
+        return new PageImpl<>(content, pageable, total);
     }
 
 

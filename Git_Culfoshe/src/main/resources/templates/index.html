@@ -12,8 +12,6 @@
         <link th:href="@{/css/index.css}" rel="stylesheet" type="text/css" />
     </th:block>
 
-
-
     <body>
     <!-- main -->
     <div layout:fragment="content" class="main con border">
@@ -22,8 +20,8 @@
 
                 <div class="main-search">
                     <input class="main-search-int" type="text" placeholder="검색어를 입력하세요.">
-                    <button><i class="fa-solid fa-xmark" style="color: #c8d2e5;"></i></button>
-                    <button class="main-search-btn"><i class="fa-solid fa-magnifying-glass" style="color: #c8d2e5"></i> </button>
+                    <button><i onclick="iconColor()" class="tar fa-solid fa-xmark" style="color: #c8d2e5;"></i></button>
+                    <button class="main-search-btn"><i onclick="iconColor()" class="tar fa-solid fa-magnifying-glass"></i> </button>
                 </div> <!--main-search-int-->
 
                 <div class="main-category">

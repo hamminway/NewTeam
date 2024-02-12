@@ -14,6 +14,8 @@ public class IndividualPhoto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long photoCode;
 
+    private String imgName;
+
     private String oriImgName;
 
     private String imgUrl;
@@ -21,4 +23,10 @@ public class IndividualPhoto {
     @ManyToOne
     @JoinColumn(name = "post_code")
     private IndividualPost individualPost;
+
+    public void updateImg(String oriImgName, String imgName, String imgUrl) {
+        this.oriImgName = oriImgName;
+        this.imgName = imgName;
+        this.imgUrl = imgUrl;
+    }
 }
