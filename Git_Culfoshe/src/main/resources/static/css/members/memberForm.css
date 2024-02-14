@@ -45,13 +45,17 @@
     .td4_2{width: 300px; height: 80px;}
     .td3_3{width: 150px; height: 62px;}
     .td4_3{width: 300px; height: 65px;}
+    .td4_4{width: 300px; height: 90px;}
 
     .partnerInformini{margin-top: 37px;}
+    .partnerInformini1{margin-top: 20px;}
 
     .checkitem{width: 300px; height: 32px; border: 1px solid #666;
         border-radius: 2px; background-color: white;}
     .checkitem1{width: 170px; height: 32px; border: 1px solid #666;
         border-radius: 2px; background-color: white; margin-left: 3px;}
+    .checkitem2{width: 300px; height: 32px; border: 1px solid #666;
+        border-radius: 2px; background-color: white; margin-top: 10px;}
 
     .id, .phonecheck{width: 210px; border: none;}
     .domain{width: 85px; border: none;}
@@ -81,9 +85,9 @@
     .interestInfor{margin-top: 120px; padding-bottom: 120px; display: none;}
     .interestment{padding-bottom: 15px;}
 
-    .indexbox1{position: relative; bottom: 953px; left: 219px;
+    .indexbox1{position: relative; bottom: 1050px; left: 219px;
         background-color: #bbb; opacity:0.5; display: none; z-index: 1;}
-    .indexbox2{position: relative; bottom: 1368px; left: 795px;
+    .indexbox2{position: relative; bottom: 1415px; left: 795px;
         background-color: #bbb; opacity:0.5; display: none; z-index: 1;}
     .box{display: none;}
 
@@ -118,6 +122,6 @@
     .arraybox2{display: flex;}
 
     .indic_joinbtn{width: 200px; height: 50px; font-size: 17px; margin-left: 1060px;
-        color: white; background-color: green; border: none; border-radius: 5px; margin-top: 65px; display: none;}
+        color: white; background-color: green; border: none; border-radius: 5px; margin-top: 100px; display: none;}
     .part_joinbtn{width: 200px; height: 50px; font-size: 17px; margin-left: 1060px;
     color: white; background-color: green; border: none; border-radius: 5px; margin-top: 30px; display: none;}

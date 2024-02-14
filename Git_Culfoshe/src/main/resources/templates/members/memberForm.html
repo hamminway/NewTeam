@@ -384,22 +384,31 @@
                                     <td class="td4_2">
                                         <div class="checkitem">
                                             <input th:field="*{storeNum}" type="text" maxlength="12" class="id" id="storeNum" />
-                                            <button class="btn" id="storeNumChkBtn">중복확인</button>
+                                            <button type="button" class="btn" id="storeNumChkBtn">중복확인</button>
                                         </div>
                                         <label class="numchk" id="storeNumChk">* 000 - 00 - 0000 양식에 맞춰 입력</label>
                                     </td>
                                 </tr>
+                            </table>
 
+                            <table class="partnerInformini1">
                                 <tr>
                                     <td class="td3">사업장 소재지</td>
-                                    <td class="td4">
-                                        <div class="checkitem">
-                                            <input th:field="*{storeLocation}" type="text" class="id" id="storePlace" />
-                                            <button class="btn" id="storePlaceChk">주소찾기</button>
-                                        </div>
+                                    <td class="td4_4">
+                                        <div class="checkitem2">
+                                            <input type="text" class="id" id="storePlace" />
+                                            <button type="button" class="btn" id="storePlaceChk" onclick="execDaumPostcode()">주소찾기</button>
+                                        </div><br>
+
+                                        <input type="text" class="managerphone" id="storePlaceDetails" placeholder="상세주소 입력">
+
+                                        <input th:field="*{storeLocation}" type="hidden" id="storePlaceBox">
+                                        <span id="guide" style="color:#999;display:none"></span>
                                     </td>
                                 </tr>
+                            </table>
 
+                            <table class="partnerInformini">
                                 <tr>
                                     <td class="td3">대표자명</td>
                                     <td class="td4">
@@ -456,6 +465,8 @@
 
 <th:block layout:fragment="script">
     <script type="text/javascript" th:src="@{/script/members/memberForm.js}"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript" th:src="@{/script/members/postcode.v2.js}"></script>
 </th:block>
 
 </html>

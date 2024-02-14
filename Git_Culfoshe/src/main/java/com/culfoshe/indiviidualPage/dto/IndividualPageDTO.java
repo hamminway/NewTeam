@@ -5,9 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 @Getter @Setter @ToString
 public class IndividualPageDTO {
 
@@ -17,8 +19,6 @@ public class IndividualPageDTO {
     private String pageName;
     private String characterName;
     private String introduction;
-
-//    private
 
     private static ModelMapper modelMapper = new ModelMapper();
     public static IndividualPageDTO createIndividualPageDTO(IndividualMem individualMem){

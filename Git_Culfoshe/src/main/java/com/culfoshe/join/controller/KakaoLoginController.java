@@ -23,7 +23,7 @@ public class KakaoLoginController {
 
     private final MemberService memberService;
 
-    @Value("kakao")
+    @Value("${kakao.default.password}")
     private String kakaoPassword;
 
     @GetMapping("/members/login/kakao")
@@ -32,9 +32,9 @@ public class KakaoLoginController {
         //인증 서버로부터 받은 CODE를 이용하여 액세스 토큰을 얻어옴
         String accessToken = kakaoLoginService.getAccessToken(code);
 
-        System.err.println("kakaController.kakaoCallback().accessToken:" + accessToken);
+
         IndividualMem kakaoMember = kakaoLoginService.getMemberInfo(accessToken);
-        System.err.println("kakaController.kakaoCallback().kakaoMember: "+kakaoMember);
+
 
         try {
             IndividualMem findMember = memberService.saveIndividualMem(kakaoMember);

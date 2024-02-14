@@ -5,13 +5,11 @@ import com.culfoshe.indiviidualPage.dto.IndividualPageDTO;
 import com.culfoshe.indiviidualPage.dto.IndividualPageSearchDTO;
 import com.culfoshe.indiviidualPage.service.IndividualService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.http11.upgrade.UpgradeProcessorInternal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Optional;
@@ -22,7 +20,7 @@ public class IndividualController {
 
     private final IndividualService individualService;
 
-    @GetMapping(value = {"{UserUrl}", "/{UserUrl}/first={firstPage}&&second={secondPage}"})
+//    @GetMapping(value = {"{UserUrl}", "/{UserUrl}/first={firstPage}&&second={secondPage}"})
     public String userPage(@PathVariable String UserUrl, IndividualPageSearchDTO individualPageSearchDTO,
                            @PathVariable Optional<Integer> firstPage, @PathVariable Optional<Integer> secondPage,
                            Model model){

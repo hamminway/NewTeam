@@ -25,7 +25,7 @@ public class KakaoLoginService {
 
     private final PasswordEncoder passwordEncoder;
 
-    @Value("{kakao}")
+    @Value("${kakao.default.password}")
     private String kakaoPassword;
 
 
