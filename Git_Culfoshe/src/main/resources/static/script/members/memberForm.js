@@ -125,15 +125,15 @@ $(document).ready(function() {
     $("#interestInfor").show();
     $("#indicJoinBtn").show();
     $("#partJoinBtn").hide();
-    $(".footer").css({"marginTop": "650px"})
+    $(".footer").css({"marginTop": "770px"})
 
     $("#partnerInfor").css({"position":"relative", "right":"501px", "width": "490px"});
-    $("#interestInfor").css({"position":"relative", "top":"350px"});
+    $("#interestInfor").css({"position":"relative", "top":"420px"});
 
     $(".indexbox1").hide();
     $(".indexbox2").show();
-    $(".indexbox2").css({"width":"500px", "height":"790px"});
-    $("#allInfor").css({"width":"1500px", "height":"1400px"});
+    $(".indexbox2").css({"width":"500px", "height":"875px"});
+    $("#allInfor").css({"width":"1500px", "height":"1450px"});
 
   });
 
@@ -142,7 +142,7 @@ $(document).ready(function() {
     $("#interestInfor").hide();
     $("#indicJoinBtn").hide();
     $("#partJoinBtn").show();
-    $(".footer").css({"margin": "0px"})
+    $(".footer").css({"marginTop": "250px"})
 
     $("#partJoinBtn").css({"display": "block", "position": "relative", "right": "764px", "top": "180px"});
 
@@ -152,7 +152,7 @@ $(document).ready(function() {
     $(".indexbox1").show();
     $(".indexbox2").hide();
     $(".indexbox1").css({"width":"500px", "height":"550px"});
-    $("#allInfor").css({"width":"1500px", "height":"1400px"});
+    $("#allInfor").css({"width":"1500px", "height":"1450px"});
 
   });
 })
@@ -510,6 +510,22 @@ function validateCheckEmail(target, url){
 }
 
 /*
+4. 사업장 도로명 주소 + 상세 주소 합치기
+*/
+
+let storePlace = document.getElementById("storePlace");
+let storePlaceDetails = document.getElementById("storePlaceDetails");
+let storePlaceBox = document.getElementById("storePlaceBox");
+
+storePlace.addEventListener("blur", () => {
+  storePlaceBox.value = storePlace.value + " " + storePlaceDetails.value;
+})
+
+storePlaceDetails.addEventListener("blur", () => {
+  storePlaceBox.value = storePlace.value + " " + storePlaceDetails.value;
+})
+
+/*
 5. 중복확인 버튼 누르면 중복 검사
 - 개인(도메인)
 */
@@ -606,9 +622,21 @@ function validateCheckDomain(target, domain) {
 
 
     /*
-    6. 사업장 소재지의 주소 입력창 후, 가져오기
+    6. 사업장 소재지 버튼 클릭하면 카카오 주소 검색창 API 가져오기(-> 뿌려주기까지)
     */
 
+  /*let storePlaceChk = document.getElementById("storePlaceChk");
+
+  storePlaceChk.addEventListener("click", ()=> {
+    storeAddressPopup();
+  })
+
+  function storeAddressPopup(){
+    let name = "사업장 소재지 찾기";
+    let option = "width = 500, height = 500, top = 100, left = 200, location = no"
+
+    window.open(name, option);
+  }*/
 
     /*
     7. 선택할 때 css 변화 및 개수 제한 두기

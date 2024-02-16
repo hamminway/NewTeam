@@ -6,11 +6,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 
 @Configuration
 @EnableWebSecurity
@@ -30,10 +30,14 @@ public class SecurityConfig {
 
         http.authorizeRequests()
                 .mvcMatchers("/css/**", "/js/**", "/img/**", "/**").permitAll()
-                .mvcMatchers("/**","/members/**","/personalPage/new").permitAll()
+                .mvcMatchers("/**","/members/**").permitAll()
                 .anyRequest().authenticated(); // 나머지는 모두 인증을 요청하기 위한 코드
 
-
+        http.oauth2Login()
+                .loginPage("/members/login")
+                .defaultSuccessUrl("/")
+                .failureUrl("/members/login/error")
+                .userInfoEndpoint(); //로그인 성공 후 사용자 정보를 가져옴.
 
         http.exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint());
         return http.build();

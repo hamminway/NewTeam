@@ -2,8 +2,6 @@ package com.culfoshe.indiviidualPage.service;
 
 
 import com.culfoshe.entity.IndividualMem;
-import com.culfoshe.entity.IndividualPhoto;
-import com.culfoshe.entity.IndividualPost;
 import com.culfoshe.indiviidualPage.dto.IndividualPageDTO;
 import com.culfoshe.indiviidualPage.dto.IndividualPostPreviewDTO;
 import com.culfoshe.indiviidualPage.dto.SavedPostDTO;
@@ -17,12 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,6 +30,7 @@ public class IndividualService {
     private final IndividualPhotoRepository individualPhotoRepository;
     private final IndividualPostRepository individualPostRepository;
     private final SavedPostRepositoryCustom savedPostRepositoryCustom;
+
     @Transactional(readOnly = true)
     public IndividualPageDTO getUserPage(String domain){
 //        log.info("IndividualService.getUserPage");
