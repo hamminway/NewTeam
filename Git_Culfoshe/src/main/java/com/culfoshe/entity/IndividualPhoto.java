@@ -5,13 +5,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-
-@Getter @Setter @ToString @Entity
+@Entity
+@Getter @Setter @ToString
 public class IndividualPhoto {
+
     @Id
     @Column(name = "individual_photo_code")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long photoCode;
+
+    private String imgName;
 
     private String oriImgName;
 
@@ -20,4 +23,10 @@ public class IndividualPhoto {
     @ManyToOne
     @JoinColumn(name = "post_code")
     private IndividualPost individualPost;
+
+    public void updateImg(String oriImgName, String imgName, String imgUrl) {
+        this.oriImgName = oriImgName;
+        this.imgName = imgName;
+        this.imgUrl = imgUrl;
+    }
 }

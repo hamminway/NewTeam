@@ -1,5 +1,4 @@
 //메인 슬라이더
-
 $(document).ready(function() {
 
     $('.center').slick({
@@ -29,14 +28,27 @@ $(document).ready(function() {
         ]
       });
 
-    //지역 추천
-      $('#slider-div').slick({
+//hover
+//const icon = document.querySelector("#tar");
+//const search = document.querySelectorAll(".main-search");
+//
+//
+//icon.addEventListener('click', ()>= {
+//  search.style.color = "#9acd32";
+//})
+
+function iconColor() {
+    document.querySelectorAll(".tar").style.color="#9acd32";
+}
+
+//지역 추천
+$('#slider-div').slick({
         infinite: true,
         speed: 300,
         slidesToShow: 3,
         slidesToScroll: 3,
         dots: true
-      });
+    });
 })
 
   //지도
