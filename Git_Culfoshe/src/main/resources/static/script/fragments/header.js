@@ -1,3 +1,16 @@
+const topBar = document.querySelector(".top-bar");
+const dum = document.querySelector('.top-bar-dum');
+
+window.addEventListener('wheel',(e)=>{
+    if(e.deltaY>=0){
+        topBar.classList.add("blind");
+        dum.classList.remove("blind");
+    } else {
+        topBar.classList.remove("blind");
+        dum.classList.add("blind");
+    }
+})
+
 const targetRow = document.querySelector("#target");
 const relativeList = document.querySelectorAll(".relative");
 
@@ -11,8 +24,7 @@ for(let i = 0 ; i < relativeList.length ; i++){
 }
 
 //스크롤 내릴 시 top-bar가 줄게 하기
-const topBar = document.querySelector(".top-bar");
-const topBarHeight = topBar.offsetHeight;
+/*const topBarHeight = topBar.offsetHeight;
 
 window.onscroll = function () {
     const windowTop = window.scrollY;
@@ -22,21 +34,7 @@ window.onscroll = function () {
     } else {
         topBar.classList.remove("scrolled");
     }
-};
-
-//스크롤 시 위로 올리면 nav가 뜨게 하고
-// 내릴 시 nav가 숨겨짐
-const a = document.querySelector('.menu-box-1');
-
-window.addEventListener('wheel',(e)=>{
-    if(e.deltaY>=0){
-        a.style.display='none';
-    } else {
-        a.style.display='block';
-        a.style.background='transparent';
-    }
-})
-
+};*/
 
 //$(window).scroll(function() {
 //    if($(document).scrollTop()> 0) {

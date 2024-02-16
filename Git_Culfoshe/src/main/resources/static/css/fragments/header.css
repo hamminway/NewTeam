@@ -23,7 +23,7 @@
 	color: #9acd32;
 }
 
-#join {
+.join {
 	margin-right: 0px;
 	position: relative;
 	bottom: -2px;
@@ -36,7 +36,7 @@
 	margin-right: 6px;
 }
 
-#mini-Search {
+.mini-Search {
     float : right;
 
 	width: 250px;
@@ -90,8 +90,9 @@
 }
 
 .cell-right {
-	float: right;
 	box-sizing: border-box;
+	display : flex;
+	flex-flow : column;
 }
 
 .margin-0-auto {
@@ -141,23 +142,15 @@
     margin-top : 53px;
 }
 
-/* 커스텀 */
-
-/*html,
-body {
-	overflow-x: hidden;
+.blind {
+    display :  none !important;
 }
-
-body {
-	overflow-y: hidden;
-}*/
 
 /*탑바메뉴 시작*/
 
 .top-bar {
     display : flex;
-
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -171,7 +164,6 @@ body {
 	background-color: #fff;
 	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
 }
-
 
 /*1차메뉴 회색밑줄 조절*/
 .top-bar::after {
@@ -194,18 +186,64 @@ body {
 	width: 147px;
 }
 
-.top-bar .menu-box-1 {
+/*.top-bar .menu-box-1 {
 	width: calc(100% - 206.44px);
+}*/
+
+/* list 가짜 공간 높이*/
+.dum {
+    height : 78px;
 }
 
 .top-bar .menu-box-1>ul>li {
-	width: 25%;
+	width: 20%;
 }
 
 /* 1차 메뉴선택효과 시작 */
 .top-bar .menu-box-1>ul>li>a {
 	position: relative;
 }
+
+/*//////////////////////*/
+/* 스크롤 탑바 메뉴 시작*/
+
+.top-bar-dum {
+    display : flex;
+	position: fixed; /*헤더 고정*/
+    height : 110px;
+    background-color : #fff;
+	top: 0;
+	left: 0;
+	width: 100%;
+
+	z-index: 200;
+	-webkit-transition: 0.7s;
+	-moz-transition: 0.7s;
+
+	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+}
+
+/*1차메뉴 회색밑줄 조절*/
+.top-bar-dum::after {
+	content: "";
+	position: absolute;
+	top: 110px;
+	width: 100%;
+	height: 1px;
+	background-color: rgba(0, 0, 0, 0.1);
+	z-index: 10;
+}
+
+.top-bar-dum .logo {
+	margin-top: 20px;
+	width: 147px;
+}
+
+/* 1차 메뉴선택효과 시작 */
+.top-bar-dum .menu-box-1>ul>li>a {
+	position: relative;
+}
+/*//////////////////////*/
 
 /*마우스 올릴 시 underbar 표시*/
 .top-bar .menu-box-1>ul>li>a::after {
@@ -414,18 +452,21 @@ body {
 }
 
 /*탑바 전체를 고정하여 스크롤 내릴 시 크기를 변경*/
-.top-bar.scrolled {
-	position: fixed; /*헤더 고정*/
+/*.top-bar.scrolled {
+	position: fixed; *//*헤더 고정*//*
     height : 110px;
 	background-color : #9acd32;
 	animation : topBarHeight 0.5s;
 }
 
-/*회색 밑줄 스크롤 시 높이 변경*/
+*//*회색 밑줄 스크롤 시 높이 변경*//*
 .top-bar.scrolled.top-bar::after {
     position: absolute;
     top: 110px;
 }
 
-/* */
-
+*//*  *//*
+.menu-box-1.scrolled.block {
+    display:none;
+    background-color : #fff;
+}*/
