@@ -9,6 +9,8 @@
 	position relative;
     left: 31%;
     top: 24px;
+    z-index : 39;
+    position : relative;
 }
 
 .navbar a {

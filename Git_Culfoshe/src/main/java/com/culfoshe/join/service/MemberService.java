@@ -7,6 +7,7 @@ import com.culfoshe.entity.PartnerMem;
 import com.culfoshe.join.repository.IndividualMemRepository;
 import com.culfoshe.join.repository.PartnerMemRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +20,7 @@ import javax.validation.Valid;
 
 
 @Service
+@Slf4j
 @Transactional
 @RequiredArgsConstructor
 public class MemberService implements UserDetailsService {
@@ -33,9 +35,10 @@ public class MemberService implements UserDetailsService {
         return partnerMemberId;
     }
 
-    public IndividualMem saveIndividualMem(@Valid IndividualMemFormDTO individualMemFormDTO) {
+    public IndividualMem saveIndividualMem(IndividualMemFormDTO individualMemFormDTO) {
         System.err.println("memberService 동작");
         IndividualMem individualMem = IndividualMemFormDTO.createIndividualMem(individualMemFormDTO, passwordEncoder);
+        log.info("individualMem", individualMem);
 
         validateDulicateMember(individualMem.getEmail());
         return individualMemRepository.save(individualMem);

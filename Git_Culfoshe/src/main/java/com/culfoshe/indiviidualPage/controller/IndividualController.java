@@ -5,19 +5,24 @@ import com.culfoshe.indiviidualPage.dto.IndividualPageDTO;
 import com.culfoshe.indiviidualPage.dto.IndividualPageSearchDTO;
 import com.culfoshe.indiviidualPage.service.IndividualService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.http11.upgrade.UpgradeProcessorInternal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping(value = "/personalPage")
+@Slf4j
 public class IndividualController {
 
     private final IndividualService individualService;
@@ -41,6 +46,13 @@ public class IndividualController {
         model.addAttribute("savedPost", savedPost);
 
         return "personalPage/individualPage";
+    }
+    @CrossOrigin(origins = "*")
+    @GetMapping(value = "/newPost")
+    public String newPost(Model model){
+        log.info("individual.newPost");
+
+        return "personalPage/newPost";
     }
 
 }

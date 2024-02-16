@@ -18,6 +18,10 @@ public class IndividualPageDTO {
     private String characterName;
     private String introduction;
 
+    private String profilePicUrl;
+
+
+
 //    private
 
     private static ModelMapper modelMapper = new ModelMapper();

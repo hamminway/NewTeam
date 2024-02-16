@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -29,8 +30,10 @@ public class SecurityConfig {
 
         http.authorizeRequests()
                 .mvcMatchers("/css/**", "/js/**", "/img/**", "/**").permitAll()
-                .mvcMatchers("/**","/members/**").permitAll()
+                .mvcMatchers("/**","/members/**","/personalPage/new").permitAll()
                 .anyRequest().authenticated(); // 나머지는 모두 인증을 요청하기 위한 코드
+
+
 
         http.exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint());
         return http.build();
