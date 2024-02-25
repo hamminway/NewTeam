@@ -41,6 +41,7 @@ public class MemberService implements UserDetailsService {
     }
 
     public IndividualMem saveIndividualMem(@Valid IndividualMem individualMem) {
+
         validateDulicateMember(individualMem.getEmail());
         return individualMemRepository.save(individualMem);
     }
@@ -105,6 +106,7 @@ public class MemberService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email)
                                     throws UsernameNotFoundException {
+
         IndividualMem individualMem = individualMemRepository.findByEmail(email);
         PartnerMem partnerMem = partnerMemRepository.findByEmail(email);
 

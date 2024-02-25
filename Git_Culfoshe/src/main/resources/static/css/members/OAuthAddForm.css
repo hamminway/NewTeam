@@ -1,0 +1,77 @@
+    @charset "UTF-8";
+
+    *{margin: 0px; padding: 0px;}
+    ul, li{list-style:none;}
+
+    .array{display: flex;}
+    .OAuthContainer{margin-top: 100px; width: 700px; margin-left: auto; margin-right: auto;}
+
+    .inforContainer{height: 380px; padding-top: 50px; padding-bottom: 100px;}
+
+    .td1{width: 210px; height: 40px;}
+    .td2{width: 450px; height: 40px;}
+
+    .td2_1{width: 450px; height: 70px;}
+    .td2_2{width: 450px; height: 60px;}
+    .td2_3{width: 470px; height: 80px;}
+
+    .inforWord{margin-left: 55px;}
+    .oauthName, .oauthEmail, .oauthPassword, .oauthPhoneNum{width: 400px; height: 30px;}
+
+    .phoneReplaceBox1{margin-left: 18px;}
+    .phoneReplaceBox2{margin-left: 3px;}
+
+    .phonePlaceRadio{margin-left: 50px;}
+    .phonePlaceRadio1{margin-left: 25px;}
+    .oauthPhoneReplace{margin-left: 10px; font-size: 14px;}
+
+    .phoneNumChk{font-size: 12px;}
+
+    .culfosheDomain{font-size: 15px; margin-top: 6px;}
+    .oauthDomain{width: 150px; border: none;}
+    .domainChkBox{width: 217px; height: 32px; border: 1px solid #666;
+        border-radius: 2px; margin-left: 10px;}
+    .oauthDomainBtn{width: 70px; height: 30px; background-color: green; color: white;
+        border: none; border-radius: 5px; font-size: 11px; margin-left: 145px; margin-top: 1px;
+        position: relative; bottom: 21px;}
+
+
+    .interestInfor{margin-top: 120px; padding-bottom: 120px; display: none;}
+    .interestment{padding-bottom: 15px;}
+
+    /* #selectBox > button:hover{background-color: rgb(16, 104, 63); color: white;} */
+
+    .selectbox1{margin-top: 15px; margin-left: 28px;}
+    .selectbox2{margin-top: 15px; margin-left: 23px;}
+    .selectbox3{margin-top: 15px; margin-left: 34px;}
+
+    .InterestChkBox{display: none}
+
+    .ckeckInterest{width: 80px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
+    .ckeckInterest1{width: 80px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 30px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
+    .ckeckInterest2{width: 80px; height: 35px; line-height: 35px; margin-top: 5px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
+    .ckeckInterest3{width: 93px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
+    .ckeckInterest4{width: 112px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
+    .ckeckInterest4_1{width: 112px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 30px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
+    .ckeckInterest5{width: 125px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
+    .ckeckInterest6{width: 140px; height: 35px; line-height: 35px; margin-top: 5px; margin-left: 10px;
+        border: 1px solid rgb(16, 104, 63); border-radius: 15px; background-color: white; padding: 10px 20px; font-size: 13px;}
+
+    .interestbox{width: 710px; margin-top: 100px;}
+    .oauthInterestArea{margin-left: 26px;}
+    .location{margin-left: 10px; font-size: 12px;}
+
+    /* interestlocal 부터*/
+    .arraybox{margin-top: 30px;}
+    .arraybox1{display: flex; margin-left: 6px;}
+    .arraybox2{display: flex; margin-right: 5px;}
+
+    .oauthJoinBtn{width: 175px; height: 50px; font-size: 14px; color: white; background-color: green;
+        border: none; border-radius: 5px; margin-top: 85px; margin-left: 500px; margin-bottom: 100px;}

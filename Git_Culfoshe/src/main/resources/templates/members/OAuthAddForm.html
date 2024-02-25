@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:s="http://www.springframework.org/security/tags"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout2}">
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/members/OAuthAddForm.css}" />
+</th:block>
+
+<th:block layout:fragment="content">
+    <div class="OAuthContainer">
+
+        <form th:object="${individualMemFormDTO}" action="/members/newIndividual" method="post">
+            <h2 class="googlement" id="googlement">Google 회원가입(추가 정보 기입) 💁🏻</h2>
+            <h2 class="kakaoment" id="kakaoment">Kakao 회원가입(추가 정보 기입) 💁🏻</h2>
+
+            <div class="inforContainer">
+                <table>
+                    <tr id="oauthName">
+                        <td class="td1"><label class="inforWord">성명</label></td>
+                        <td class="td2">
+                            <input th:field="*{name}" type="text" class="oauthName" id="googleNameInput">
+                        </td>
+                    </tr>
+
+                   <!-- <tr>
+                        <td class="td1"><label class="inforWord">이메일</label></td>
+                        <td class="td2_1">
+                            <input th:field="*{email}" type="email" class="oauthEmail">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td1"><label class="inforWord">비밀번호</label></td>
+                        <td class="td2">
+                            <input th:field="*{password}" type="password" class="oauthPassword">
+                        </td>
+                    </tr>-->
+
+                    <tr>
+                        <td class="td1"><label class="inforWord">통신사</label></td>
+                        <td class="td2_3">
+                            <div class="phoneReplaceBox1">
+                                <input type="radio" class="phonePlaceRadio" name="phoneReplace"><label class="oauthPhoneReplace">SKT</label>
+                                <input type="radio" class="phonePlaceRadio" name="phoneReplace"><label class="oauthPhoneReplace">KT</label>
+                                <input type="radio" class="phonePlaceRadio" name="phoneReplace"><label class="oauthPhoneReplace">LG U+</label>
+                            </div>
+
+                            <div class="phoneReplaceBox2">
+                                <input type="radio" class="phonePlaceRadio1"><label class="oauthPhoneReplace">SKT 알뜰폰</label>
+                                <input type="radio" class="phonePlaceRadio1"><label class="oauthPhoneReplace">KT 알뜰폰</label>
+                                <input type="radio" class="phonePlaceRadio1"><label class="oauthPhoneReplace">LG U+ 알뜰폰</label>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td1"><label class="inforWord">휴대폰 번호</label></td>
+                        <td class="td2_2">
+                            <input th:field="*{phoneNum}" type="text" class="oauthPhoneNum" id="oauthPhoneNum"><br>
+                            <label class="phoneNumChk" id="phoneNumChk">* 010 - 0000 - 0000 양식에 맞춰 입력</label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td1"><label class="inforWord">홈페이지 주소</label></td>
+                        <td class="td2_2">
+                            <div class="array">
+                                <label class="culfosheDomain">http://www.culfoshe.com/</label>
+                                <div class="domainChkBox">
+                                    <input th:field="*{individualDomain}" type="text" class="oauthDomain" />
+                                    <button type="button" class="oauthDomainBtn">중복확인</button><br>
+                                </div>
+                            </div>
+
+                            <label class="phoneNumChk" id="oauthDomainChk"></label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="googleInterest">
+
+                <h2 class="interestment">나의 관심사(선택: 최대 3개)</h2>
+                <div th:field="*{interest}" id="selectBoxAll">
+                    <div class="selectbox1">
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="art" id="InterestChkBox1" class="InterestChkBox"/>
+                        <label class="ckeckInterest1" for="InterestChkBox1" id="interest1">#예술</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="show" id="InterestChkBox2" class="InterestChkBox"/>
+                        <label class="ckeckInterest" for="InterestChkBox2" id="interest2">#공연</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="exhibit" id="InterestChkBox3" class="InterestChkBox"/>
+                        <label class="ckeckInterest" for="InterestChkBox3" id="interest3">#전시</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="reading" id="InterestChkBox4" class="InterestChkBox"/>
+                        <label class="ckeckInterest" for="InterestChkBox4" id="interest4">#독서</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="music" id="InterestChkBox5" class="InterestChkBox"/>
+                        <label class="ckeckInterest" for="InterestChkBox5" id="interest5">#음악</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="onedayclass" id="InterestChkBox6" class="InterestChkBox"/>
+                        <label class="ckeckInterest6" for="InterestChkBox6" id="interest6">#원데이클래스</label>
+                    </div>
+
+                    <div class="selectbox2">
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="crafts" id="InterestChkBox7" class="InterestChkBox"/>
+                        <label class="ckeckInterest2" for="InterestChkBox7" id="interest7">#공예</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="cooking" id="InterestChkBox8" class="InterestChkBox"/>
+                        <label class="ckeckInterest" for="InterestChkBox8" id="interest8">#요리</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="baking" id="InterestChkBox9" class="InterestChkBox"/>
+                        <label class="ckeckInterest3" for="InterestChkBox9" id="interest9">#베이킹</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="food" id="InterestChkBox10" class="InterestChkBox"/>
+                        <label class="ckeckInterest" for="InterestChkBox10" id="interest10">#푸드</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="cafe" id="InterestChkBox11" class="InterestChkBox"/>
+                        <label class="ckeckInterest" for="InterestChkBox11" id="interest11">#카페</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="foodstore" id="InterestChkBox12" class="InterestChkBox"/>
+                        <label class="ckeckInterest3" for="InterestChkBox12" id="interest12">#음식점</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="accommodation" id="InterestChkBox13" class="InterestChkBox"/>
+                        <label class="ckeckInterest" for="InterestChkBox13" id="interest13">#숙박</label>
+                    </div>
+
+                    <div class="selectbox3">
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="activity" id="InterestChkBox14" class="InterestChkBox"/>
+                        <label class="ckeckInterest4_1" for="InterestChkBox14" id="interest14">#액티비티</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="outdoors" id="InterestChkBox15" class="InterestChkBox"/>
+                        <label class="ckeckInterest4" for="InterestChkBox15" id="interest15">#아웃도어</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="fitness" id="InterestChkBox16" class="InterestChkBox"/>
+                        <label class="ckeckInterest4" for="InterestChkBox16" id="interest16">#피트니스</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="sports" id="InterestChkBox17" class="InterestChkBox"/>
+                        <label class="ckeckInterest3" for="InterestChkBox17" id="interest17">#스포츠</label>
+
+                        <input type="checkbox" name="selectOption" th:field="*{interest}" th:value="watersports" id="InterestChkBox18" class="InterestChkBox"/>
+                        <label class="ckeckInterest5" for="InterestChkBox18" id="interest18">#수상레포츠</label>
+                    </div>
+                </div>
+
+                <div class="interestbox">
+                    <h2 class="interestlocal">관심 지역(선택: 최대 3개)</h2>
+                    <div th:field="*{interestArea}" class="arraybox">
+                        <div class="arraybox1">
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="seoul" onclick="selectLimitArea(this)"/>
+                                <p class="location">서울특별시</p>
+                            </div>
+
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="incheon" onclick="selectLimitArea(this)"/>
+                                <p class="location">인천광역시</p>
+                            </div>
+
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="busan" onclick="selectLimitArea(this)"/>
+                                <p class="location">부산광역시</p>
+                            </div>
+
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="daegu" onclick="selectLimitArea(this)"/>
+                                <p class="location">대구광역시</p>
+                            </div>
+
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="deajeon" onclick="selectLimitArea(this)"/>
+                                <p class="location">대전광역시</p>
+                            </div>
+
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="ulsan" onclick="selectLimitArea(this)"/>
+                                <p class="location">울산광역시</p>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="arraybox2">
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="gwangju" onclick="selectLimitArea(this)"/>
+                                <p class="location">광주광역시</p>
+                            </div>
+
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="sejong" onclick="selectLimitArea(this)"/>
+                                <p class="location">세종특별자치시</p>
+                            </div>
+
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="gyeonggido" onclick="selectLimitArea(this)"/>
+                                <p class="location">경기도</p>
+                            </div>
+
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="gangwondo" onclick="selectLimitArea(this)"/>
+                                <p class="location">강원도</p>
+                            </div>
+
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="gyeongsangdo" onclick="selectLimitArea(this)"/>
+                                <p class="location">경상도</p>
+                            </div>
+
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="jeonraado" onclick="selectLimitArea(this)"/>
+                                <p class="location">전라도</p>
+                            </div>
+
+                            <div class="array">
+                                <input type="checkbox" class="oauthInterestArea" name="interestArea" th:field="*{interestArea}" th:value="chungcheongdo" onclick="selectLimitArea(this)"/>
+                                <p class="location">충청도</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!--.googleInterest-->
+
+            <button type="submit" class="oauthJoinBtn">개인회원 가입하기</button>
+            <input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}"/>
+        </form>
+
+    </div>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script type="text/javascript" th:src="@{/script/members/OAuthAddForm.js}"></script>
+    <script th:inline="javascript">
+
+        /* 페이지가 로딩되자마자 oauth 값을 확인 후,
+        그에 맞는 멘트 띄워주기 */
+
+        let googlement = document.getElementById("googlement");
+        let kakaoment = document.getElementById("kakaoment");
+        let oauthName = document.getElementById("oauthName");
+
+        window.onload = function(){
+
+            oauthcheck();
+        }
+        function oauthcheck(){
+
+            let OAuth = [[${individualMemFormDTO.oauth}]];
+
+            if(OAuth == "KAKAO"){
+                googlement.style.display = "none";
+            }else{
+                kakaoment.style.display = "none";
+                oauthName.style.display = "none";
+            }
+        }
+
+    </script>
+</th:block>
+</html>
