@@ -1,5 +1,7 @@
 package com.culfoshe.join.service;
 
+import com.culfoshe.entity.SecurityIndividualMember;
+import com.culfoshe.entity.SecurityPartnerMem;
 import com.culfoshe.join.dto.IndividualMemFormDTO;
 import com.culfoshe.join.dto.PartnerMemFormDTO;
 import com.culfoshe.entity.IndividualMem;
@@ -7,6 +9,7 @@ import com.culfoshe.entity.PartnerMem;
 import com.culfoshe.join.repository.IndividualMemRepository;
 import com.culfoshe.join.repository.PartnerMemRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,6 +24,7 @@ import javax.validation.Valid;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class MemberService implements UserDetailsService {
 
     private final IndividualMemRepository individualMemRepository;
@@ -107,16 +111,26 @@ public class MemberService implements UserDetailsService {
                                     throws UsernameNotFoundException {
         IndividualMem individualMem = individualMemRepository.findByEmail(email);
         PartnerMem partnerMem = partnerMemRepository.findByEmail(email);
+//
+//       if(individualMem == null){
+//           throw new UsernameNotFoundException(email);
+//       } else if(partnerMem == null) {
+//           throw new UsernameNotFoundException(email);
+//       }
+        if(individualMem == null && partnerMem == null){
+            throw new UsernameNotFoundException(email);
+        }
 
-       if(individualMem == null){
-           throw new UsernameNotFoundException(email);
-       } else if(partnerMem == null) {
-           throw new UsernameNotFoundException(email);
-       }
+        UserDetails securityUser = individualMem != null ?
+                new SecurityIndividualMember(individualMem)
+                : new SecurityPartnerMem(partnerMem);
+
+
 
        return User.builder()
-               .username(individualMem.getEmail())
-               .password(individualMem.getPassword())
+               .username(securityUser.getUsername())
+               .password(securityUser.getPassword())
+               .roles(securityUser.getAuthorities().toString())
                .build();
     }
 }

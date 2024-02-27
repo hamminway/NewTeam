@@ -1,25 +1,25 @@
 const topBar = document.querySelector(".top-bar");
 const dum = document.querySelector('.top-bar-dum');
 
-window.addEventListener('wheel',(e)=>{
-    if(e.deltaY>=0){
-        topBar.classList.add("blind");
-        dum.classList.remove("blind");
-    } else {
-        topBar.classList.remove("blind");
-        dum.classList.add("blind");
-    }
-})
+//window.addEventListener('wheel',(e)=>{
+//    if(e.deltaY>=0){
+//        topBar.classList.add("blind");
+//        dum.classList.remove("blind");
+//    } else {
+//        topBar.classList.remove("blind");
+//        dum.classList.add("blind");
+//    }
+//})
 
 const targetRow = document.querySelector("#target");
 const relativeList = document.querySelectorAll(".relative");
 
 for(let i = 0 ; i < relativeList.length ; i++){
     targetRow.addEventListener('mouseover', ()=>{
-        relativeList[i].style.height = "260px"
+        relativeList[i].style.height = "260px !important"
     })
     targetRow.addEventListener('mouseout', ()=>{
-        relativeList[i].style.height = "0px"
+        relativeList[i].style.height = "0px !important"
     })
 }
 

@@ -5,8 +5,14 @@ import com.culfoshe.constant.OAuthType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "individualMem")
@@ -44,5 +50,6 @@ public class IndividualMem {
 
     @Enumerated(EnumType.STRING)
     private OAuthType oauth;
+
 
 }

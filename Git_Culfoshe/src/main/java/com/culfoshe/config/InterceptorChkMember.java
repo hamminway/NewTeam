@@ -20,6 +20,8 @@ public class InterceptorChkMember implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
 
+
+
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }
 

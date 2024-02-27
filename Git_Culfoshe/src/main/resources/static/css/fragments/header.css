@@ -178,7 +178,7 @@
 
 /*마우스올릴 시 2차메뉴 높이조절*/
 .top-bar:hover {
-	height: 470px;
+	height: 470px !important;
 }
 
 .top-bar .logo {
@@ -470,3 +470,9 @@
     display:none;
     background-color : #fff;
 }*/
+
+/* 지성 수정 */
+.wheelEventTopBar{
+
+}
+
