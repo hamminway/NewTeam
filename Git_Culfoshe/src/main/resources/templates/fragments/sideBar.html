@@ -7,13 +7,23 @@
     <!-- 픽스 버튼 4개 -->
     <div  th:fragment="sideBar">
         <div class="scroll-btn-group active">
+            <div class="myPage-btn">
+               <button class="user-page" title="나의 페이지로 들어가기">
+                   <a href="#">
+                       <p><strong>나의 페이지</strong></p>
+                       <span class="user-page-i">
+                           <i class="fa-regular fa-circle-user" style="color: #ffffff;"></i>
+                       </span>
+                   </a>
+               </button>
+           </div>
             <div class="write-btn">
                 <button class="user-write" title="글쓰기">
                     <a href="#">
                         <p id="write"><strong>글쓰기</strong></p>
                         <span class="user-write-i">
-                                    <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
-                                </span>
+                            <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
+                        </span>
                     </a>
                 </button>
             </div>
@@ -22,21 +32,20 @@
                     <a href="#">
                         <p><strong>북마크</strong></p>
                         <span class="user-save-i">
-                                    <i class="fa-solid fa-bookmark" style="color: #ffffff;"></i>
-                                </span>
+                            <i class="fa-solid fa-bookmark" style="color: #ffffff;"></i>
+                        </span>
                     </a>
                 </button>
             </div>
-            <!--<div class="myPage-btn">
-                <button class="user-page" title="나의 페이지로 들어가기">
-                    <a href="#">
-                        <p><strong>나의 페이지</strong></p>
-                        <span class="user-page-i">
-                                    <i class="fa-regular fa-circle-user" style="color: #ffffff;"></i>
-                                </span>
-                    </a>
+            <div class="up-btn" onclick="backTop()">
+                <button class="up" title="최상단">
+                    <span class="up-btn-i">
+                        <i class="fa-solid fa-arrow-up-long" style="color:#ffffff;"></i>
+                    </span>
                 </button>
-            </div>-->
+            </div>
+
+
 
             <!--<div class="notice-btn">
                 <button class="notice-service" title="공지사항으로 들어가기">
