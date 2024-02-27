@@ -9,6 +9,7 @@ import lombok.ToString;
 import org.modelmapper.ModelMapper;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "individualMem")
@@ -16,8 +17,7 @@ import javax.persistence.*;
 public class IndividualMem {
 
     @Id
-    @Column(name = "individualmem_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "individualmem_id") @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(unique = true)
@@ -29,6 +29,8 @@ public class IndividualMem {
     private String name;
 
     private String phoneNum;
+
+    private String profilePicUrl;
 
     private String interest;
     private String interestArea;

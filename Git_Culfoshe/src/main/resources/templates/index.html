@@ -12,8 +12,6 @@
         <link th:href="@{/css/index.css}" rel="stylesheet" type="text/css" />
     </th:block>
 
-
-
     <body>
     <!-- main -->
     <div layout:fragment="content" class="main con border">
@@ -22,8 +20,8 @@
 
                 <div class="main-search">
                     <input class="main-search-int" type="text" placeholder="검색어를 입력하세요.">
-                    <button><i class="fa-solid fa-xmark" style="color: #c8d2e5;"></i></button>
-                    <button class="main-search-btn"><i class="fa-solid fa-magnifying-glass" style="color: #c8d2e5"></i> </button>
+                    <button><i onclick="iconColor()" class="tar fa-solid fa-xmark" style="color: #c8d2e5;"></i></button>
+                    <button class="main-search-btn"><i onclick="iconColor()" class="tar fa-solid fa-magnifying-glass"></i> </button>
                 </div> <!--main-search-int-->
 
                 <div class="main-category">
@@ -35,22 +33,19 @@
                         <option>그 외</option>
                     </select>
                     <select>
-                        <option>지역 </option>
+                        <option>지역</option>
                         <option>서울</option>
                         <option>경기</option>
                         <option>인천</option>
                         <option>강원</option>
-                        <option>충북</option>
-                        <option>충남</option>
+                        <option>충정</option>
                         <option>대전</option>
                         <option>대구</option>
                         <option>부산</option>
                         <option>울산</option>
-                        <option>경북</option>
-                        <option>경남</option>
+                        <option>경상</option>
                         <option>광주</option>
-                        <option>전북</option>
-                        <option>전남</option>
+                        <option>전라</option>
                         <option>제주</option>
                     </select>
                 </div> <!--main-category-->
@@ -104,66 +99,66 @@
                         <div>
                             <ul class="commend-box-in commend-box-in-margin">
                                 <a href="#"><img th:src="@{/img/food_1.jpg}">
-                                    <li>가게이름 : 난포
+                                    <li>📍 가게이름 : 난포
                                         <i class="fa-regular fa-bookmark bMark-icon-1" style="color: #000000;"></i>
                                     </li></a>
-                                <li>대표메뉴 : 강된장쌈밥, 곰탕</li>
-                                <li>가게주소 : 서울 성동구 서울숲 4길</li>
-                                <li class="commend-box-li-re"> 18-8 지층</li>
+                                <li>📍 대표메뉴 : 강된장쌈밥, 곰탕</li>
+                                <li>📍 한줄평 : 곰탕 제발 먹어주세요....</li>
+                                <li class="commend-box-li-re"> 진짜 미텼음...</li>
                             </ul>
                         </div>
                         <div>
                             <ul class="commend-box-in commend-box-in-margin-left">
                                 <a href="#"><img th:src="@{/img/food_2.jpg}">
-                                    <li>가게이름 : 포피나
+                                    <li>📍 가게이름 : 포피나
                                         <i class="fa-regular fa-bookmark bMark-icon-2" style="color: #000000;"></i>
                                     </li></a>
-                                <li>대표메뉴 : 뇨끼, 라자냐</li>
-                                <li>가게주소 : 서울 성동구 서울숲</li>
+                                <li>📍 대표메뉴 : 뇨끼, 라자냐</li>
+                                <li>📍 한줄평 : 서울 성동구 서울숲</li>
                                 <li class="commend-box-li-re">2길 13 1층</li>
                             </ul>
                         </div>
                         <div>
                             <ul class="commend-box-in " style="margin-left: 21px;">
                                 <a href="#"><img th:src="@{/img/food_3.jpg}">
-                                    <li>가게이름 : 구아바
+                                    <li>📍 가게이름 : 구아바
                                         <i class="fa-regular fa-bookmark bMark-icon-2" style="color: #000000;"></i>
                                     </li></a>
-                                <li>대표메뉴 : Guabar Lime Cooler</li>
-                                <li>가게주소 : 서울 성동구 성수이로</li>
+                                <li>📍 대표메뉴 : Guabar Lime Cooler</li>
+                                <li>📍 한줄평 : 서울 성동구 성수이로</li>
                                 <li class="commend-box-li-re">14길 7 3층</li>
                             </ul>
                         </div>
                         <div>
                             <ul class="commend-box-in commend-box-in-margin">
                                 <a href="#"><img th:src="@{/img/food_4.jpg}">
-                                    <li>가게이름 : 핏제리아오 대학로본점
+                                    <li>📍 가게이름 : 핏제리아오 대학로본점
                                         <i class="fa-regular fa-bookmark bMark-icon-3" style="color: #000000;"></i>
                                     </li></a>
-                                <li>대표메뉴 : 스텔라, 오'핏자</li>
-                                <li>가게주소 : 서울 종로구 동숭길 86</li>
+                                <li>📍 대표메뉴 : 스텔라, 오'핏자</li>
+                                <li>📍 한줄평 : 서울 종로구 동숭길 86</li>
                                 <li class="commend-box-li-re">2, 3층</li>
                             </ul>
                         </div>
                         <div>
                             <ul class="commend-box-in commend-box-in-margin-left">
                                 <a href="#"><img th:src="@{/img/food_5.jpg}">
-                                    <li>가게이름 : 하이디라오 건대지점
+                                    <li>📍 가게이름 : 하이디라오 건대지점
                                         <i class="fa-regular fa-bookmark bMark-icon-4" style="color: #000000;"></i>
                                     </li></a>
-                                <li>대표메뉴 : 훠궈, 새우완자</li>
-                                <li class="commend-box-li-margin">가게주소 : 서울 광진구 능동로 110</li>
+                                <li>📍 대표메뉴 : 훠궈, 새우완자</li>
+                                <li class="commend-box-li-margin">📍 한줄평 : 서울 광진구 능동로 110</li>
                                 <li class="commend-box-li-re">스타시티 영존 A동 2F</li>
                             </ul>
                         </div>
                         <div>
                             <ul class="commend-box-in commend-box-in-margin-right">
                                 <a href="#"><img th:src="@{/img/food_6.jpg}">
-                                    <li>가게이름 : 너프
+                                    <li>📍 가게이름 : 너프
                                         <i class="fa-regular fa-bookmark bMark-icon-1" style="color: #000000;"></i>
                                     </li></a>
-                                <li>대표메뉴 : 바나나푸딩, 너프크림라떼</li>
-                                <li class="commend-box-li-margin">가게주소 : 서울 마포구 어울마당로 5길 </li>
+                                <li>📍 대표메뉴 : 바나나푸딩, 너프크림라떼</li>
+                                <li class="commend-box-li-margin">📍 한줄평 : 서울 마포구 어울마당로 5길 </li>
                                 <li class="commend-box-li-re">50 1층 201호</li>
                             </ul>
                         </div>
@@ -228,6 +223,7 @@
                     map.panTo(moveLatLon);  //우리가 정의 해준 것이 아니라 카카오 측에서 만든 메서드라 이름을 같게 하는 것이 아니었다.
             }
             
+           
 
         </script>
     </th:block>

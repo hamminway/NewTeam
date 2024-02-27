@@ -4,10 +4,12 @@ import com.culfoshe.entity.QIndividualPost;
 import com.culfoshe.entity.QSavedPost;
 import com.culfoshe.indiviidualPage.dto.QSavedPostDTO;
 import com.culfoshe.indiviidualPage.dto.SavedPostDTO;
+import com.culfoshe.indiviidualPage.repository.SavedPostRepositoryCustom;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.groovy.parser.antlr4.GroovyParser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +18,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-@Slf4j @Repository
+@Slf4j
+@Repository
 public class SavedPostRepositoryCustomImpl implements SavedPostRepositoryCustom {
     private JPAQueryFactory queryFactory;
 

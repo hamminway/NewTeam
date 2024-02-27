@@ -44,7 +44,7 @@
 
 	position: absolute;
 	right: 0;
-	top: -123px;
+	top: -65px;
 	display: inline-block;
 
 	transition: width 0.5s, background 0s;
@@ -55,7 +55,7 @@
 	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 }
 
-  .user-write p {
+.user-write p {
 	font-size: 18px;
 	color: white;
 	font-weight: 400;

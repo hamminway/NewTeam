@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:s="http://www.springframework.org/security/tags"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layoutSmartEditor}">
+
+<th:block layout:fragment="css">
+
+</th:block>
+<th:block layout:fragment="script">
+    <script type="text/javascript" th:src="@{/smartEditor/js/HuskyEZCreator.js}" charset="utf-8"></script>
+
+</th:block>
+
+<th:block layout:fragment="content">
+    <form action="/personalPage/newPost" method="post">
+        <input type="hidden" th:field="">
+        <div id ='smartEditor'>
+            <textarea name="editorTxt" id="editorTxt"
+                      placeholder="내용을 입력해주세요.">
+
+            </textarea>
+
+        </div>
+        <input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}"/>
+        <button type="submit" id="formSubmit">저장</button>
+    </form>
+    <th:block layout:fragment="scriptBottom">
+
+        <script th:inline="javascript">
+            let oEditors = [];
+
+            smartEditor = function(){
+                console.log("smartEditor")
+                nhn.husky.EZCreator.createInIFrame({
+                    oAppRef : oEditors,
+                    elPlaceHolder : "editorTxt",
+                    sSkinURI : "/smartEditor/SmartEditor2Skin.html",
+                    fCreator : "createSEditor2"
+                })
+            }
+            smartEditor();
+        </script>
+    </th:block>
+
+</th:block>
+
+</html>

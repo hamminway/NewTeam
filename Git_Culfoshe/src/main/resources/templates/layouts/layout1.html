@@ -6,6 +6,7 @@
     <head>
 
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
         <meta name="_csrf" th:content="${_csrf.token}"/>
         <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
         <title>Title</title>
@@ -22,6 +23,7 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="https://kit.fontawesome.com/2c827c8cca.js" crossorigin="anonymous"></script>
 
+
         <th:block layout:fragment="css"></th:block>
     </head>
 
@@ -37,6 +39,7 @@
         <div th:replace="fragments/sideBar::sideBar"></div>
 
         <th:block layout:fragment="script"></th:block>
+        <script type="text/javascript" th:src="@{/script/fragments/header.js}"></script>
     </body>
 
 </html>

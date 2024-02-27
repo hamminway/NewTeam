@@ -1,0 +1,28 @@
+<!DOCTYPE>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>CulFoShe :: Smart Editor 2 &#8482;</title>
+
+
+
+
+    <th:block layout:fragment="css"></th:block>
+    <th:block layout:fragment="script"></th:block>
+</head>
+
+<body>
+
+<div layout:fragment="content" class="content"></div>
+
+    <th:block layout:fragment="scriptBottom"></th:block>
+
+</body>
+
+</html>
