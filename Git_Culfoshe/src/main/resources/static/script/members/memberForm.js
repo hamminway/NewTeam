@@ -584,8 +584,14 @@ function validateCheckDomain(target, domain) {
   5. 중복확인 버튼 누르면 중복 검사
   - 파트너(사업자 등록 번호)
   */
+/*
+  let firstStoreNum = document.getElementById("storeNum1");
+  let secondStoreNum = document.getElementById("storeNum2");
+  let thirdStoreNum = document.getElementById("storeNum3");
+
 
   let storeNum = document.getElementById("storeNum");
+
   let storeNumChkBtn = document.getElementById("storeNumChkBtn");
   let storeNumChk = document.getElementById("storeNumChk");
 
@@ -594,7 +600,7 @@ function validateCheckDomain(target, domain) {
   storeNumChkBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    let partStoreNum = "/members/chec" +
+    let partStoreNum = "/members/check" +
         "kStoreNum?storeNum=" + storeNum.value;
 
     validateCheckStoreNum(storeNumChk, partStoreNum);
@@ -618,11 +624,12 @@ function validateCheckDomain(target, domain) {
 
           target.innerHTML = storeNumCheckMsg;
         })
-  }
+  }*/
 
 
     /*
-    6. 사업장 소재지 버튼 클릭하면 카카오 주소 검색창 API 가져오기(-> 뿌려주기까지)
+    6. 사업장 소재지 버튼 클릭하면 카카오 주소 검색창 API 가져오기
+    (-> 그 전에 숫자 합쳐주기 + 다 구현 후, 뿌려주기까지 작성하기)
     */
 
   /*let storePlaceChk = document.getElementById("storePlaceChk");

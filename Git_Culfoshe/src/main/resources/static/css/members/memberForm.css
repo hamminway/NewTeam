@@ -47,11 +47,16 @@
     .td4_3{width: 300px; height: 65px;}
     .td4_4{width: 300px; height: 90px;}
 
+    .storeNum1{width: 50px;}
+    .storeNum2{width: 40px; margin-left: 10px;}
+    .storeNum3{width: 60px; margin-left: 10px;}
+    .storeLabel{margin-left: 10px;}
+
     .partnerInformini{margin-top: 37px;}
     .partnerInformini1{margin-top: 20px;}
 
-    .checkitem{width: 300px; height: 32px; border: 1px solid #666;
-        border-radius: 2px; background-color: white;}
+    .checkitem{display: flex;}
+
     .checkitem1{width: 170px; height: 32px; border: 1px solid #666;
         border-radius: 2px; background-color: white; margin-left: 3px;}
     .checkitem2{width: 300px; height: 32px; border: 1px solid #666;
@@ -61,8 +66,9 @@
     .domain{width: 85px; border: none;}
 
     .btn{width: 75px; height: 25px; position: relative; bottom: -3px; left: 7px;
-        background-color: green; color: white; border: none; border-radius: 5px;
-        font-size: 11px;}
+        background-color: green; color: white; border: none; border-radius: 5px; font-size: 11px;}
+    .storeBtn{width: 75px; height: 25px; position: relative; left: 7px; font-size: 11px;
+        background-color: green; color: white; border: none; border-radius: 5px;}
     .domainBtn{width: 75px; height: 25px; position: relative; bottom: -3px; left: 2px;
         background-color: green; color: white; border: none; border-radius: 5px;
         font-size: 11px;}

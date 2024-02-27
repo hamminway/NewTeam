@@ -383,8 +383,14 @@
                                     <td class="td3_2">사업자 등록번호</td>
                                     <td class="td4_2">
                                         <div class="checkitem">
-                                            <input th:field="*{storeNum}" type="text" maxlength="12" class="id" id="storeNum" />
-                                            <button type="button" class="btn" id="storeNumChkBtn">중복확인</button>
+                                            <input type="text" maxlength="3" class="storeNum1">
+                                            <label class="storeLabel">-</label>
+                                            <input type="text" maxlength="2" class="storeNum2">
+                                            <label class="storeLabel">-</label>
+                                            <input type="text" maxlength="5" class="storeNum3">
+
+                                            <input th:field="*{storeNum}" type="hidden" id="storeNum">
+                                            <button type="button" class="storeBtn" id="storeNumChkBtn">중복확인</button>
                                         </div>
                                         <label class="numchk" id="storeNumChk">* 000 - 00 - 0000 양식에 맞춰 입력</label>
                                     </td>
