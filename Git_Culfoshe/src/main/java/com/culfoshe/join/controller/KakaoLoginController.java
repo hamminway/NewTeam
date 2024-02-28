@@ -1,7 +1,9 @@
 package com.culfoshe.join.controller;
 
 
+import com.culfoshe.constant.OAuthType;
 import com.culfoshe.entity.IndividualMem;
+import com.culfoshe.join.dto.OAuthMemFormDTO;
 import com.culfoshe.join.service.KakaoLoginService;
 import com.culfoshe.join.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -39,8 +41,17 @@ public class KakaoLoginController {
         try {
             IndividualMem findMember = memberService.saveIndividualMem(kakaoMember);
             System.err.println("kakaController.kakaoCallback().findMember: " + findMember);
+
+            OAuthMemFormDTO oauthMemFormDTO = new OAuthMemFormDTO();
+            oauthMemFormDTO.setOauth(OAuthType.KAKAO);
+
+            model.addAttribute("memberKey", findMember.getEmail());
+            model.addAttribute("oauthMemFormDTO", oauthMemFormDTO);
+            // 바로 위는 새롭게 정보를 기입받아 update할 정보들만 담은 DTO를 새롭게 만들어줌. OAuthAddForm에 타임리프로 매핑하기 위해 객체 전달(넣어줌)
+
         } catch (IllegalStateException e) {
             memberService.loadUserByUsername(kakaoMember.getEmail());
+            return "redirect:/";
         }
 
         UsernamePasswordAuthenticationToken authenticationToken =
@@ -49,9 +60,6 @@ public class KakaoLoginController {
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        // 정보가 저장된 kakaoMember를 OAuthAddForm에 타임리프로 매핑하기 위해 객체 전달(넣어줌)
-        model.addAttribute("individualMemFormDTO", kakaoMember);
 
         return "members/OAuthAddForm";
     }

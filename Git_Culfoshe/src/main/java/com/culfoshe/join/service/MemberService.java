@@ -3,6 +3,7 @@ package com.culfoshe.join.service;
 import com.culfoshe.entity.SecurityIndividualMember;
 import com.culfoshe.entity.SecurityPartnerMem;
 import com.culfoshe.join.dto.IndividualMemFormDTO;
+import com.culfoshe.join.dto.OAuthMemFormDTO;
 import com.culfoshe.join.dto.PartnerMemFormDTO;
 import com.culfoshe.entity.IndividualMem;
 import com.culfoshe.entity.PartnerMem;
@@ -48,6 +49,27 @@ public class MemberService implements UserDetailsService {
 
         validateDulicateMember(individualMem.getEmail());
         return individualMemRepository.save(individualMem);
+    }
+
+    public IndividualMem updateKaKaoIndividualMem(@Valid OAuthMemFormDTO oauthMemFormDTO, String oauthMemberKey){
+
+        IndividualMem findMember = individualMemRepository.findByEmail(oauthMemberKey);
+
+        findMember.setName(oauthMemFormDTO.getName());
+        findMember.setPhoneNum(oauthMemFormDTO.getPhoneNum());
+        findMember.setIndividualDomain(oauthMemFormDTO.getIndividualDomain());
+
+        return individualMemRepository.save(findMember);
+    }
+
+    public IndividualMem updateGoogleIndividualMem(@Valid OAuthMemFormDTO oauthMemFormDTO, String oauthMemberKey){
+
+        IndividualMem findMember = individualMemRepository.findByEmail(oauthMemberKey);
+
+        findMember.setPhoneNum(oauthMemFormDTO.getPhoneNum());
+        findMember.setIndividualDomain(oauthMemFormDTO.getIndividualDomain());
+
+        return individualMemRepository.save(findMember);
     }
 
     public PartnerMem savePartnerMem(PartnerMemFormDTO partnerMemFormDTO){
@@ -135,4 +157,5 @@ public class MemberService implements UserDetailsService {
                .roles(securityUser.getAuthorities().toString())
                .build();
     }
+
 }

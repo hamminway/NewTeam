@@ -11,7 +11,7 @@
 <th:block layout:fragment="content">
     <div class="OAuthContainer">
 
-        <form th:object="${individualMemFormDTO}" action="/members/newIndividual" method="post">
+        <form th:object="${oauthMemFormDTO}" action="/members/newIndividual/oauth" method="post">
             <h2 class="googlement" id="googlement">Google 회원가입(추가 정보 기입) 💁🏻</h2>
             <h2 class="kakaoment" id="kakaoment">Kakao 회원가입(추가 정보 기입) 💁🏻</h2>
 
@@ -24,14 +24,10 @@
                         </td>
                     </tr>
 
-                   <!-- <tr>
-                        <td class="td1"><label class="inforWord">이메일</label></td>
-                        <td class="td2_1">
-                            <input th:field="*{email}" type="email" class="oauthEmail">
-                        </td>
-                    </tr>
+                    <input th:value="${memberKey}" th:name="oauthMemberKey" type="hidden" class="oauthEmail">
+                    <input th:field="*{oauth}" type="hidden">
 
-                    <tr>
+                    <!--  <tr>
                         <td class="td1"><label class="inforWord">비밀번호</label></td>
                         <td class="td2">
                             <input th:field="*{password}" type="password" class="oauthPassword">
@@ -246,7 +242,7 @@
         }
         function oauthcheck(){
 
-            let OAuth = [[${individualMemFormDTO.oauth}]];
+            let OAuth = [[${oauthMemFormDTO.oauth}]];
 
             if(OAuth == "KAKAO"){
                 googlement.style.display = "none";

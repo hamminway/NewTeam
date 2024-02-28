@@ -4,6 +4,7 @@ import com.culfoshe.constant.OAuthType;
 import com.culfoshe.entity.IndividualMem;
 import com.culfoshe.entity.PartnerMem;
 import com.culfoshe.join.dto.IndividualMemFormDTO;
+import com.culfoshe.join.dto.OAuthMemFormDTO;
 import com.culfoshe.join.dto.PartnerMemFormDTO;
 import com.culfoshe.join.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -30,13 +31,6 @@ public class MemberController {
         return "members/memberLoginForm";
     }
 
-
-    /* @GetMapping(value = "/login/google")
-    public String googleAddInform(){
-        return "members/googleAddForm";
-    }*/
-
-
     @GetMapping(value = "/login/error")
     public String loginError(Model model){
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
@@ -51,12 +45,11 @@ public class MemberController {
         return "members/memberForm";
     }
 
-    @GetMapping(value = "/login/oauth")
+    /*@GetMapping(value = "/login/oauth")
     public String individualMemAddInform(@Valid IndividualMemFormDTO individualMemFormDTO, BindingResult bindingResult, Model model){
-        model.addAttribute("individualMemFormDTO", new IndividualMem());
-
+        //페이지 확인용(나중에 삭제 필요)
         return "members/OAuthAddForm";
-    }
+    }*/
 
     @PostMapping(value = "/newIndividual")
     public String individualMemForm(@Valid IndividualMemFormDTO individualMemFormDTO, BindingResult bindingResult, Model model) {
@@ -98,6 +91,22 @@ public class MemberController {
         return "redirect:/";
     }
 
+    @PostMapping(value = "/newIndividual/oauth")
+    public String oauthIndividualUpdate(@Valid OAuthMemFormDTO oauthMemFormDTO, @RequestParam String oauthMemberKey){
+        // html에서 넘어오는 DTO가 뭐인지도 체크해야함.(model.attribute)
+        // RequestParam은 OAuthAddForm.html에서 넘어오는 값. (= oauthMemberKey라는 이름을 가진 값을 찾아서 가져오라는 어노테이션임.)
+
+        if(oauthMemFormDTO.getOauth() == OAuthType.KAKAO) {
+            memService.updateKaKaoIndividualMem(oauthMemFormDTO, oauthMemberKey);
+            System.err.println("kakao");
+        } else if(oauthMemFormDTO.getOauth() == OAuthType.GOOGLE){
+            memService.updateGoogleIndividualMem(oauthMemFormDTO, oauthMemberKey);
+            System.err.println("google");
+        }
+
+        return "redirect:/";
+    }
+
     @PostMapping(value = "/newPartner")
     public String partnerMemForm(@Valid PartnerMemFormDTO partnerMemFormDTO, BindingResult bindingResult, Model model) {
 
@@ -108,7 +117,7 @@ public class MemberController {
         try {
             PartnerMem savedPartnerMem = memService.savePartnerMem(partnerMemFormDTO);
             System.err.println("savedPartnerMem : "+ savedPartnerMem);
-            System.out.println("테스"+partnerMemFormDTO.toString());
+
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
             e.printStackTrace();
