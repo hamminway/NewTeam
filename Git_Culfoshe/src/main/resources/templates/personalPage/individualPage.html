@@ -14,7 +14,7 @@
             <div class="User_profile">
                 <div class="pr_back"><img src="" alt="" class="back01"></div>
                 <div class="pr_line"></div>
-                <div class="pr_img"><img th:src="*{}" alt="" class="pr_img2"></div>
+                <div class="pr_img"><img th:src="*{profilePicUrl}" alt="이미지 없음" class="pr_img2"></div>
 
                 <div class="pageIntro">
                     <div class="pagename">
@@ -51,7 +51,7 @@
 
             <hr class="line">
 
-            <div class="profile_text">
+            <div class="profile_text" th:object="${}">
                 <h2 class="textbox">탐혬가님의 장소 🚩</h2>
                 <div>
                     <select class="seloption">
