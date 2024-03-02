@@ -15,38 +15,42 @@
     <body>
     <!-- main -->
     <div layout:fragment="content" class="main con border">
-        <div class="main-1">
-            <div class="main-section">
+        <form class="main-1">
+            <div class="main-section" th:object="${searchDTO}">
 
                 <div class="main-search">
-                    <input class="main-search-int" type="text" placeholder="검색어를 입력하세요.">
-                    <button><i onclick="iconColor()" class="tar fa-solid fa-xmark" style="color: #c8d2e5;"></i></button>
-                    <button class="main-search-btn"><i onclick="iconColor()" class="tar fa-solid fa-magnifying-glass"></i> </button>
+                    <input th:field="*{searchQuery}" name="searchQuery" type="search" class="main-search-int" placeholder="검색어를 입력하세요.">
+                    <button type="button" id="deleteBtn" >
+                        <i class="tar fa-solid fa-xmark"></i>
+                    </button>
+                    <button type="submit" class="main-search-btn">
+                        <i class="tar fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div> <!--main-search-int-->
 
                 <div class="main-category">
-                    <select>
-                        <option>카테고리</option>
-                        <option>컬처</option>
-                        <option>푸드</option>
-                        <option>쉘터</option>
-                        <option>그 외</option>
+                    <select th:field="*{headerCategory}">
+                        <option value="">카테고리</option>
+                        <option value="CULTURE">컬처</option>
+                        <option value="FOOD">푸드</option>
+                        <option value="SHELTER">쉘터</option>
+                        <option value="ETC">그 외</option>
                     </select>
-                    <select>
-                        <option>지역</option>
-                        <option>서울</option>
-                        <option>경기</option>
-                        <option>인천</option>
-                        <option>강원</option>
-                        <option>충정</option>
-                        <option>대전</option>
-                        <option>대구</option>
-                        <option>부산</option>
-                        <option>울산</option>
-                        <option>경상</option>
-                        <option>광주</option>
-                        <option>전라</option>
-                        <option>제주</option>
+                    <select th:field="*{searchBy}">
+                        <option value="">지역</option>
+                        <option value="seoul">서울</option>
+                        <option value="gyeonggi">경기</option>
+                        <option value="incheon">인천</option>
+                        <option value="gangwon">강원</option>
+                        <option value="chungcheong">충정</option>
+                        <option value="daejeon">대전</option>
+                        <option value="daegu">대구</option>
+                        <option value="busan">부산</option>
+                        <option value="ulsan">울산</option>
+                        <option value="gyeongsang">경상</option>
+                        <option value="gwangju">광주</option>
+                        <option value="jeonla">전라</option>
+                        <option value="jeju">제주</option>
                     </select>
                 </div> <!--main-category-->
             </div>
@@ -58,7 +62,7 @@
                 <div><img th:src="@{/img/main_img_4.jpg}"></div>
                 <div><img th:src="@{/img/main_img_5.jpg}"></div>
             </div>
-        </div><!--main-1-->
+        </form><!--main-1-->
 
         <div class="main-2">
             <div id="map"></div>
@@ -92,18 +96,18 @@
                     </ul>
                 </div>
 
-                <div class="commend-box">
+                <div class="commend-box" id="reg-box">
                     <i class="fa-solid fa-angle-left commend-box-left-btn" style="color: #247b29;"></i>
 
                     <div id="slider-div">
                         <div>
                             <ul class="commend-box-in commend-box-in-margin">
                                 <a href="#"><img th:src="@{/img/food_1.jpg}">
-                                    <li>📍 가게이름 : 난포
+                                    <li th:text="${partnerMem.storeName}">📍 가게이름 : 난포
                                         <i class="fa-regular fa-bookmark bMark-icon-1" style="color: #000000;"></i>
                                     </li></a>
-                                <li>📍 대표메뉴 : 강된장쌈밥, 곰탕</li>
-                                <li>📍 한줄평 : 곰탕 제발 먹어주세요....</li>
+                                <li th:text="${partnerMem.signatureMenu}">📍 대표메뉴 : 강된장쌈밥, 곰탕</li>
+                                <li th:text="${individualPost.postReview}">📍 한줄평 : 곰탕 제발 먹어주세요....</li>
                                 <li class="commend-box-li-re"> 진짜 미텼음...</li>
                             </ul>
                         </div>
@@ -185,7 +189,7 @@
         <script type="text/javascript" th:src="@{/script/index.js}"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1a0eb3f58f1563617955cae9ce9cf0ac"></script>
         <script th:inline="javascript">
-            
+
             var map;    //안에 있으면 증발해서 밖에 정의해줌
 
             //setDir()에 매개변수로 들어갈 값들

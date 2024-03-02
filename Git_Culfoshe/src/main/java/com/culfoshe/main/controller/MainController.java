@@ -1,5 +1,7 @@
 package com.culfoshe.main.controller;
 
+import com.culfoshe.entity.IndividualPost;
+import com.culfoshe.entity.PartnerMem;
 import com.culfoshe.main.dto.SearchDTO;
 import com.culfoshe.main.dto.SearchPreviewDTO;
 import com.culfoshe.main.service.SearchService;
@@ -20,7 +22,12 @@ public class MainController {
     private final SearchService searchService;
 
     @GetMapping(value = "/")
-    public String main() {
+    public String main(Model model) {
+        // main컨트롤러에 main commend를 띄어주는 것을 넣어줘야하는데 아직 넣어주지 않아서 오류가 뜬다
+
+        model.addAttribute("partnerMem", new PartnerMem());
+        model.addAttribute("individualPost", new IndividualPost());
+        model.addAttribute("searchDTO", new SearchDTO());
         return "index";
     }
 
