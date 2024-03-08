@@ -2,6 +2,7 @@ package com.culfoshe.join.service;
 
 import com.culfoshe.entity.SecurityIndividualMember;
 import com.culfoshe.entity.SecurityPartnerMem;
+import com.culfoshe.indiviidualPage.dto.LoginSessionDTO;
 import com.culfoshe.join.dto.IndividualMemFormDTO;
 import com.culfoshe.join.dto.PartnerMemFormDTO;
 import com.culfoshe.entity.IndividualMem;
@@ -109,14 +110,9 @@ public class MemberService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email)
                                     throws UsernameNotFoundException {
-        IndividualMem individualMem = individualMemRepository.findByEmail(email);
         PartnerMem partnerMem = partnerMemRepository.findByEmail(email);
-//
-//       if(individualMem == null){
-//           throw new UsernameNotFoundException(email);
-//       } else if(partnerMem == null) {
-//           throw new UsernameNotFoundException(email);
-//       }
+        IndividualMem individualMem = individualMemRepository.findByEmail(email);
+
         if(individualMem == null && partnerMem == null){
             throw new UsernameNotFoundException(email);
         }
@@ -125,12 +121,13 @@ public class MemberService implements UserDetailsService {
                 new SecurityIndividualMember(individualMem)
                 : new SecurityPartnerMem(partnerMem);
 
-
-
        return User.builder()
                .username(securityUser.getUsername())
                .password(securityUser.getPassword())
                .roles(securityUser.getAuthorities().toString())
                .build();
     }
+
+
+
 }

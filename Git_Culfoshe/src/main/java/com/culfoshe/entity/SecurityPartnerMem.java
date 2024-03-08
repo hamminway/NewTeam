@@ -1,9 +1,12 @@
 package com.culfoshe.entity;
 
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.servlet.http.Part;
+import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 

@@ -2,21 +2,25 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<th:block>
+    <script
+</th:block>
 
     <!-- 픽스 버튼 4개 -->
     <div  th:fragment="sideBar">
         <div class="scroll-btn-group active">
-            <div class="myPage-btn">
-               <button class="user-page" title="나의 페이지로 들어가기">
-                   <a href="#">
-                       <p><strong>나의 페이지</strong></p>
-                       <span class="user-page-i">
-                           <i class="fa-regular fa-circle-user" style="color: #ffffff;"></i>
-                       </span>
-                   </a>
-               </button>
-           </div>
+            <th:block th:if="${session.loginSessionDTO != null}">
+                <div class="myPage-btn">
+                   <button type="button" class="user-page" title="나의 페이지로 들어가기">
+                       <a th:href="${session.loginSessionDTO.individualDomain} ? : '#'}">
+                           <p><strong>나의 페이지</strong></p>
+                           <span class="user-page-i">
+                               <i class="fa-regular fa-circle-user" style="color: #ffffff;"></i>
+                           </span>
+                       </a>
+                   </button>
+               </div>
+            </th:block>
             <div class="write-btn">
                 <button class="user-write" title="글쓰기">
                     <a href="#">

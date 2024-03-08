@@ -13,6 +13,10 @@ import org.apache.coyote.http11.upgrade.UpgradeProcessorInternal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +33,7 @@ public class IndividualController {
     private final IndividualService individualService;
     private final IndividualMemRepository individualMemRepository;
 
-    @GetMapping(value = {"{domain}", "/{domain}/first={firstPage}&&second={secondPage}"})
+    @GetMapping(value = {"/{domain}", "/{domain}/first={firstPage}&&second={secondPage}"})
     public String userPage(@PathVariable String domain, Optional<IndividualPageSearchDTO> individualPageSearchDTO,
                            @PathVariable Optional<Integer> firstPage, @PathVariable Optional<Integer> secondPage,
                            Model model){
@@ -65,6 +69,7 @@ public class IndividualController {
         log.info("principal.getName : ", principal.getName());
         IndividualMem user = individualMemRepository.findByIndividualDomain(domain);
         log.info("user : ", user.getEmail());
+
 
         if(!principal.getName().equals(user.getEmail())){
             model.addAttribute("errorMessage", "로그인 후 이용해주세요");
