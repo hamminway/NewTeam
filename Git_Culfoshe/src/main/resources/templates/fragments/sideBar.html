@@ -3,16 +3,16 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block>
-    <script
+
 </th:block>
 
     <!-- 픽스 버튼 4개 -->
     <div  th:fragment="sideBar">
         <div class="scroll-btn-group active">
             <th:block th:if="${session.loginSessionDTO != null}">
-                <div class="myPage-btn">
+                <div class="myPage-btn" sec:authorize="isAuthenticated()">
                    <button type="button" class="user-page" title="나의 페이지로 들어가기">
-                       <a th:href="${session.loginSessionDTO.individualDomain} ? : '#'}">
+                       <a th:href="${session.loginSessionDTO.individualDomain} ? ${session.loginSessionDTO.individualDomain}: '#'">
                            <p><strong>나의 페이지</strong></p>
                            <span class="user-page-i">
                                <i class="fa-regular fa-circle-user" style="color: #ffffff;"></i>

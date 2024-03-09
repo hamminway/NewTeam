@@ -21,7 +21,7 @@ public class LoginSessionDTO {
 
     public static LoginSessionDTO transfer(IndividualMem individualMem){
         LoginSessionDTO loginSessionDTO = modelMapper.map(individualMem, LoginSessionDTO.class);
-        loginSessionDTO.setEmail("personalPage/"+loginSessionDTO.getEmail());
+        loginSessionDTO.setIndividualDomain("personalPage/"+loginSessionDTO.getIndividualDomain());
         return loginSessionDTO;
     }
     public static LoginSessionDTO transfer(PartnerMem partnerMem){
