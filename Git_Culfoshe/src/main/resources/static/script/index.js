@@ -28,18 +28,15 @@ $(document).ready(function() {
         ]
       });
 
-//hover
-//const icon = document.querySelector("#tar");
-//const search = document.querySelectorAll(".main-search");
-//
-//
-//icon.addEventListener('click', ()>= {
-//  search.style.color = "#9acd32";
-//})
+//delete 검색창 내용 삭제
+const pull = document.getElementsByClassName('main-search-int');
+const deleteBtn = document.getElementById('deleteBtn');
 
-function iconColor() {
-    document.querySelectorAll(".tar").style.color="#9acd32";
-}
+deleteBtn.addEventListener('click', (e)=>{
+    pull[0].value='';
+})
+
+
 
 //지역 추천
 $('#slider-div').slick({
@@ -51,7 +48,15 @@ $('#slider-div').slick({
     });
 })
 
-  //지도
+//지역 선택 시 해당 게시글로
+const reg = document.getElementsByClassName('commend-header');
+const commend = document.getElementById('reg-box')
+
+reg.addEventListener('click', (e)=> {
+
+})
+
+//지도
 
 
 

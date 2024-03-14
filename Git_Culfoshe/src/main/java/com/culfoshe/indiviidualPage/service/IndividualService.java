@@ -35,7 +35,11 @@ public class IndividualService {
     public IndividualPageDTO getUserPage(String domain){
 //        log.info("IndividualService.getUserPage");
         IndividualMem individualMem = individualMemRepository.findByIndividualDomain(domain);
+        log.info("domain : " , domain);
+        log.info("individualMem : " , individualMem);
+        System.err.println(individualMem);
         IndividualPageDTO individualPageDTO = IndividualPageDTO.createIndividualPageDTO(individualMem);
+        log.info("individualPageDTO : " , individualPageDTO);
         return individualPageDTO;
     }
 

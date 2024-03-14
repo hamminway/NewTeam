@@ -13,6 +13,10 @@ import org.apache.coyote.http11.upgrade.UpgradeProcessorInternal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +33,8 @@ public class IndividualController {
     private final IndividualService individualService;
     private final IndividualMemRepository individualMemRepository;
 
-    @GetMapping(value = {"{domain}", "/{domain}/first={firstPage}&&second={secondPage}"})
-    public String userPage(@PathVariable String domain, IndividualPageSearchDTO individualPageSearchDTO,
+    @GetMapping(value = {"/{domain}", "/{domain}/first={firstPage}&&second={secondPage}"})
+    public String userPage(@PathVariable String domain, Optional<IndividualPageSearchDTO> individualPageSearchDTO,
                            @PathVariable Optional<Integer> firstPage, @PathVariable Optional<Integer> secondPage,
                            Model model){
 
@@ -38,14 +42,23 @@ public class IndividualController {
         Pageable savedPageable = PageRequest.of(secondPage.isPresent() ? secondPage.get() : 0, 5);
 
 
-        IndividualPageDTO individualPageDTO = individualService.getUserPage(domain); // 페이지 전체의 dto
-        Page individualPostPreviewPage = individualService.getIndividualPostPreview(individualPageable, domain);//previewDTO의 page객체
-        Page savedPost = individualService.getSavedPost(savedPageable, domain);//savedPost의 page객체
+        System.err.println("domain : " + domain);
 
+        IndividualPageDTO individualPageDTO = individualService.getUserPage(domain); // 페이지 전체의 dtㅐ
+        System.err.println("individualPageDTO"+ individualPageDTO);
+
+        Page individualPostPreviewPage = individualService.getIndividualPostPreview(individualPageable, domain);//previewDTO의 page객체
+        System.err.println("individualPostPreviewPage"+ individualPostPreviewPage);
+
+        Page savedPost = individualService.getSavedPost(savedPageable, domain);//savedPost의 page객체
+        System.err.println("savedPost" + savedPost);
 
         model.addAttribute("individualPageDTO", individualPageDTO);
         model.addAttribute("individualPostPreviewPage",individualPostPreviewPage);
         model.addAttribute("savedPost", savedPost);
+        if(individualPageSearchDTO.isEmpty()){
+            model.addAttribute("individualPageSearchDTO",new IndividualPageSearchDTO());
+        }
 
         return "personalPage/individualPage";
     }
@@ -56,6 +69,7 @@ public class IndividualController {
         log.info("principal.getName : ", principal.getName());
         IndividualMem user = individualMemRepository.findByIndividualDomain(domain);
         log.info("user : ", user.getEmail());
+
 
         if(!principal.getName().equals(user.getEmail())){
             model.addAttribute("errorMessage", "로그인 후 이용해주세요");

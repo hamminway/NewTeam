@@ -46,7 +46,6 @@ public class MemberService implements UserDetailsService {
     }
 
     public IndividualMem saveIndividualMem(@Valid IndividualMem individualMem) {
-
         validateDulicateMember(individualMem.getEmail());
         return individualMemRepository.save(individualMem);
     }
@@ -135,12 +134,8 @@ public class MemberService implements UserDetailsService {
 
         IndividualMem individualMem = individualMemRepository.findByEmail(email);
         PartnerMem partnerMem = partnerMemRepository.findByEmail(email);
-//
-//       if(individualMem == null){
-//           throw new UsernameNotFoundException(email);
-//       } else if(partnerMem == null) {
-//           throw new UsernameNotFoundException(email);
-//       }
+        IndividualMem individualMem = individualMemRepository.findByEmail(email);
+
         if(individualMem == null && partnerMem == null){
             throw new UsernameNotFoundException(email);
         }
@@ -149,13 +144,14 @@ public class MemberService implements UserDetailsService {
                 new SecurityIndividualMember(individualMem)
                 : new SecurityPartnerMem(partnerMem);
 
-
-
        return User.builder()
                .username(securityUser.getUsername())
                .password(securityUser.getPassword())
                .roles(securityUser.getAuthorities().toString())
                .build();
     }
+
+
+
 
 }

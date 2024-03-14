@@ -1,8 +1,11 @@
 package com.culfoshe.entity;
 
+import com.culfoshe.constant.Role;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,7 +19,10 @@ public class SecurityIndividualMember implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(()->"IndividualMem");
+
+        List<GrantedAuthority> list = new ArrayList<>();
+        list.add(()->"ROLE_INDIVIDUAL");
+        return list;
     }
 
     @Override
