@@ -16,7 +16,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/members")
@@ -27,8 +30,14 @@ public class MemberController {
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping(value = "/login")
-    public String loginMember(){
-        return "members/memberLoginForm";
+    public String loginMember(Principal principal, HttpServletResponse response) throws IOException {
+
+        if(principal == null){
+            response.sendError(403, "잘못된 접근입니다.");
+            return "index";
+        } else {
+            return "members/memberLoginForm";
+        }
     }
 
     @GetMapping(value = "/login/error")
@@ -38,11 +47,20 @@ public class MemberController {
     }
 
     @GetMapping(value = "/new")
-    public String individualMemForm(Model model) {
-        model.addAttribute("individualMemFormDTO", new IndividualMemFormDTO());
-        model.addAttribute("partnerMemFormDTO", new PartnerMemFormDTO());
+    public String individualMemForm(Model model, Principal principal, HttpServletResponse response) throws IOException {
 
-        return "members/memberForm";
+        if(principal == null){
+            response.sendError(403, "잘못된 접근입니다.");
+            return "index";
+
+        } else {
+
+            model.addAttribute("individualMemFormDTO", new IndividualMemFormDTO());
+            model.addAttribute("partnerMemFormDTO", new PartnerMemFormDTO());
+
+            return "members/memberForm";
+
+        }
     }
 
     /*@GetMapping(value = "/login/oauth")
@@ -162,4 +180,6 @@ public class MemberController {
 
         return new ResponseEntity("msg", HttpStatus.ACCEPTED);
     }
+
+
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @Controller
@@ -22,12 +23,15 @@ public class MainController {
     private final SearchService searchService;
 
     @GetMapping(value = "/")
-    public String main(Model model) {
+    public String main(Model model, HttpServletRequest request) {
+
         // main컨트롤러에 main commend를 띄어주는 것을 넣어줘야하는데 아직 넣어주지 않아서 오류가 뜬다
 
+        System.err.println("main test : " + request.getSession().getAttribute("Test"));
         model.addAttribute("partnerMem", new PartnerMem());
         model.addAttribute("individualPost", new IndividualPost());
         model.addAttribute("searchDTO", new SearchDTO());
+
         return "index";
     }
 

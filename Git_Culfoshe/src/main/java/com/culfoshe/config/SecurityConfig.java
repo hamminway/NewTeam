@@ -1,7 +1,6 @@
 package com.culfoshe.config;
 
 import com.culfoshe.config.controller.CustomAuthenticationSuccessHandler;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
@@ -25,6 +23,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+
         http.formLogin()
                 .loginPage("/members/login")
                 .successHandler(customAuthenticationSuccessHandler) // 로그인 성공시 작동할 핸들러
@@ -39,6 +38,7 @@ public class SecurityConfig {
                 .mvcMatchers("/css/**", "/js/**", "/img/**", "/**").permitAll()
                 .mvcMatchers("/**","/members/**").permitAll()
                 .anyRequest().authenticated(); // 나머지는 모두 인증을 요청하기 위한 코드
+
         http.oauth2Login()
                 .loginPage("/members/login")
                 .defaultSuccessUrl("/")

@@ -475,6 +475,7 @@
     <script type="text/javascript" th:src="@{/script/members/postcode.v2.js}"></script>
 
     <script>
+
         var data = {
             "b_no": ["8921301484"] // 사업자번호 "xxxxxxx" 로 조회 시,
         };
@@ -487,9 +488,7 @@
                     "Content-Type": "application/json",
                 },
 
-                body: JSON.stringify({
-                    data
-                }), // json 을 string으로 변환하여 전송
+                body: JSON.stringify(data), // json 을 string으로 변환하여 전송
             })
 
                 .then((response) => {

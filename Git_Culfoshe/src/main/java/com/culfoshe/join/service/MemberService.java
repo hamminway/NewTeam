@@ -134,7 +134,6 @@ public class MemberService implements UserDetailsService {
 
         IndividualMem individualMem = individualMemRepository.findByEmail(email);
         PartnerMem partnerMem = partnerMemRepository.findByEmail(email);
-        IndividualMem individualMem = individualMemRepository.findByEmail(email);
 
         if(individualMem == null && partnerMem == null){
             throw new UsernameNotFoundException(email);
