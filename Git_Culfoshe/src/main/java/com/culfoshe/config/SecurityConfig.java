@@ -6,7 +6,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -40,6 +39,8 @@ public class SecurityConfig {
                 .userInfoEndpoint(); //로그인 성공 후 사용자 정보를 가져옴.
 
         http.headers().frameOptions().sameOrigin(); // iframe접근 여부
+
+        http.cors().disable();
 
         http.exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint());
         return http.build();
