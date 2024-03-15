@@ -2,6 +2,9 @@ package com.culfoshe.main.repository;
 
 import com.culfoshe.constant.HeaderCategory;
 import com.culfoshe.entity.*;
+import com.culfoshe.indiviidualPage.repository.IndividualPostRepository;
+import com.culfoshe.join.repository.IndividualMemRepository;
+import com.culfoshe.join.repository.PartnerMemRepository;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.DisplayName;
@@ -25,25 +28,77 @@ class MainRepositoryTest {
     @Autowired
     MainRepository mainRepository;
 
-    @Test
-    @DisplayName("저장 테스트")
-    public void createTestList() {
-        IndividualPost individualPost = new IndividualPost();
+    @Autowired
+    IndividualMemRepository individualMemRepository;
+    @Autowired
+    PartnerMemRepository partnerMemRepository;
+    @Autowired
+    SearchRepository searchRepository;
+    @Autowired
+    IndividualPostRepository individualPostRepository;
 
+    public IndividualMem saveIndividual(){
+        IndividualMem individualMem = new IndividualMem();
+        individualMem.setId(Long.valueOf("1111111"));
+        individualMem.setEmail("test@test.com");
+        individualMem.setPassword("1111");
+        individualMem.setName("테스트");
+        individualMem.setPhoneNum("010-0000-0000");
+        individualMem.setPageName("냐미 페이지");
+        individualMem.setCharacterName("냐미냐미");
+        return individualMemRepository.save(individualMem);
+    }
+
+    public PartnerMem savePartner() {
+        PartnerMem partnerMem = new PartnerMem();
+
+        PartnerMemPK partnerMemPK = new PartnerMemPK();
+        partnerMemPK.setPartnermem_id(Long.valueOf("222222"));
+        partnerMemPK.setStore_location("test_location");
+
+        partnerMem.setPartnerMemPK(partnerMemPK);
+        partnerMem.setEmail("partTest@test.com");
+        partnerMem.setPassword("2222");
+        partnerMem.setPresidentName("파트너테스트");
+        partnerMem.setName("파트너");
+        partnerMem.setPhoneNum("010-222-3333");
+        partnerMem.setStoreName("테스트 가게");
+        partnerMem.setStoreNum("000-000-0000");
+        return partnerMemRepository.save(partnerMem);
+    }
+
+    public IndividualPost saveIndividualPost() {
+        IndividualPost individualPost = new IndividualPost();
+        individualPost.setPostCode(Long.valueOf("333333"));
         individualPost.setPostCategory(HeaderCategory.CULTURE);
         individualPost.setPostTitle("테스트 제목");
         individualPost.setPostReview("냐미");
-
-        IndividualPost saved2 = mainRepository.save(individualPost);
-        System.out.println(saved2.toString());
-
+        return mainRepository.save(individualPost);
     }
+
+
+    @Test
+    @DisplayName("저장 테스트")
+    public void saveTestList() {
+        IndividualMem individualMem = saveIndividual();
+        PartnerMem partnerMem = savePartner();
+        IndividualPost individualPost = saveIndividualPost();
+
+        IndividualMem findIndividual = individualMemRepository.findByEmail(individualMem.getEmail());
+        PartnerMem findPartner = partnerMemRepository.findByEmail(partnerMem.getEmail());
+        IndividualPost findPost = mainRepository.findByPostCode(individualPost.getPostCode());
+
+        System.out.println(findIndividual);
+        System.out.println(findPartner);
+        System.out.println(findPost);
+    }
+
 
     @Test
     @DisplayName("QueryDSL 조회 테스트")
     public void queryDslTest() {
 
-        this.createTestList();
+        this.saveTestList();
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         QPartnerMem qPartnerMem = QPartnerMem.partnerMem;
         QIndividualPost qIndividualPost = QIndividualPost.individualPost;
@@ -85,8 +140,8 @@ class MainRepositoryTest {
             System.out.println(individualMem.toString());
         }
 
-
-
     }
+
+
 
 }
