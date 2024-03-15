@@ -1,8 +1,6 @@
 package com.culfoshe.crud;
 
-import com.culfoshe.entity.IndividualMem;
-import com.culfoshe.entity.IndividualPhoto;
-import com.culfoshe.entity.IndividualPost;
+import com.culfoshe.entity.*;
 import com.culfoshe.indiviidualPage.repository.IndividualPhotoRepository;
 import com.culfoshe.indiviidualPage.repository.IndividualPostRepository;
 import com.culfoshe.join.repository.IndividualMemRepository;
@@ -15,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.parameters.P;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -88,11 +87,31 @@ public class SearchQuery {
         individualPhotoRepository.save(photo);
         return k > 0 ? saveIndividualPhoto(individualPost,k-1) : -1;
     }
+    @Transactional
+    public int savePartnerMem(int i){
+        PartnerMem partnerMem = new PartnerMem();
+        PartnerMemPK partnerMemPK = new PartnerMemPK();
+        partnerMemPK.setStore_location("location" + i);
+        partnerMemPK.setPartnermem_id((long)i);
+        partnerMem.setPartnerMemPK(partnerMemPK);
+        partnerMem.setEmail("partner@test.com" + i);
+        partnerMem.setPassword("pass" + i);
+        partnerMem.setPresidentName("presidentName" + i);
+        partnerMem.setName("name" + i);
+        partnerMem.setPhoneNum("phone" + i);
+        partnerMem.setStoreName("storeNa" + i);
+        partnerMem.setStoreNum("num" + i);
+        partnerMem.setSignatureMenu("sig" + i);
+        partnerMemRepository.save(partnerMem);
+        return i > 0 ? savePartnerMem(i-1) : -1;
+    }
     @Test
     public void searchQueryTest(){
-        saveIndividualMem(2); // individualMem 5개를 생성하고 저장하는데
-                                // individualMem 하나당 5개의 individualPost를 만들고,
-                                // individualPost 하나당 5개의 individualPhoto를 생성
+        saveIndividualMem(2); // individualMem 3개를 생성하고 저장하는데
+                                // individualMem 하나당 3개의 individualPost를 만들고,
+                                // individualPost 하나당 3개의 individualPhoto를 생성
+        savePartnerMem(2);
+
         Pageable pageable = PageRequest.of(0,6);
         Page page = searchRepository.getSearchPrevPage(new SearchDTO(),pageable);
         System.err.println(page.getContent());
