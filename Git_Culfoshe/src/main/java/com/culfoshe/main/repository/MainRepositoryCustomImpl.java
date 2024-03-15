@@ -4,6 +4,7 @@ import com.culfoshe.entity.*;
 import com.culfoshe.main.dto.MainDTO;
 import com.culfoshe.main.dto.MainViewDTO;
 import com.culfoshe.main.dto.QMainViewDTO;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -23,6 +24,7 @@ public class MainRepositoryCustomImpl implements MainRepositoryCustom {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
+
     @Override
     public Page<MainViewDTO> getMainPage(Pageable pageable) {
 
@@ -35,16 +37,21 @@ public class MainRepositoryCustomImpl implements MainRepositoryCustom {
                         partnerMem,
                         individualPost)
                 )
-                .from(partnerMem)
+                .from(storePhoto)
+                .join(storePhoto.partnerMem, partnerMem)
                 .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
                 .where(storePhoto.repImgYn.eq("Y"))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
-      /*long total = queryFactory.select(Wildcard.count)
-              .from(partnerMem)*/
+      long total = queryFactory.select(Wildcard.count)
+              .from(storePhoto)
+              .join(storePhoto.partnerMem, partnerMem)
+              .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
+              .where()
+              .fetchOne();
 
-        return null;
+        return new PageImpl<>(content, pageable, total);
     }
 }
