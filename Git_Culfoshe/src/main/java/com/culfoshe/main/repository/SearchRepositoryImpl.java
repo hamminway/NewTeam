@@ -42,6 +42,24 @@ public class SearchRepositoryImpl implements SearchRepository {
                 null : QIndividualPost.individualPost.postCategory.eq(headerCategory);
     }
 
+    private BooleanExpression searchByLikeSearch(String searchBy, String searchQuery) {
+
+        QPartnerMem partnerMem = QPartnerMem.partnerMem;
+        QIndividualMem individualMem = QIndividualMem.individualMem;
+        QIndividualPost individualPost = QIndividualPost.individualPost;
+
+        if(StringUtils.equals("storeName", searchBy)) {
+            return partnerMem.storeName.like("%" + searchQuery + "%");
+        } else if(StringUtils.equals("pageName", searchBy)) {
+            return individualMem.pageName.like("%" + searchQuery + "%");
+        } else if(StringUtils.equals("characterName", searchBy)) {
+            return individualMem.characterName.like("%" + searchQuery + "%");
+        } else if(StringUtils.equals("postTitle", searchBy)) {
+            return individualPost.postTitle.like("%" + searchQuery + "%");
+        }
+        return null;
+    }
+
     private BooleanExpression searchByLike(String searchBy, String searchQuery){
 
         QPartnerMemPK partnerMemPK = QPartnerMemPK.partnerMemPK;
@@ -133,8 +151,9 @@ public class SearchRepositoryImpl implements SearchRepository {
 
         List<PartnerMem> content = queryFactory
                 .selectFrom(QPartnerMem.partnerMem)
-                .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                        searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
+                .where(regDtsAfter(searchDTO.getSearchDateType()),
+                        searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
+                        searchByLikeSearch(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
                 .orderBy(QPartnerMemPK.partnerMemPK.partnermem_id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -165,8 +184,9 @@ public class SearchRepositoryImpl implements SearchRepository {
 
         List<IndividualMem> content = queryFactory
                 .selectFrom(QIndividualMem.individualMem)
-                .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                        searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
+                .where(regDtsAfter(searchDTO.getSearchDateType()),
+                        searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
+                        searchByLikeSearch(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
                 .orderBy(QIndividualMem.individualMem.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -196,8 +216,9 @@ public class SearchRepositoryImpl implements SearchRepository {
 
         List<IndividualPost> content = queryFactory
                 .selectFrom(QIndividualPost.individualPost)
-                .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                        searchByLike(searchDTO.getSearchBy(),
+                .where(regDtsAfter(searchDTO.getSearchDateType()),
+                        searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
+                        searchByLikeSearch(searchDTO.getSearchBy(),
                                 searchDTO.getSearchQuery()))
                 .orderBy(QIndividualPost.individualPost.postCode.desc())
                 .offset(pageable.getOffset())
@@ -224,62 +245,108 @@ public class SearchRepositoryImpl implements SearchRepository {
     }
 
 
-    @Override
-    public Page<SearchPreviewDTO> getSearchPrevPage(SearchDTO searchDTO, Pageable pageable) {
+//    @Override
+//    public Page<SearchPreviewDTO> getSearchPrevPage(SearchDTO searchDTO, Pageable pageable) {
+//
+//        QPartnerMem partnerMem = QPartnerMem.partnerMem;
+//        QIndividualPost individualPost = QIndividualPost.individualPost;
+//        QIndividualPhoto individualPhoto = QIndividualPhoto.individualPhoto;
+//
+//        List<SearchPreviewDTO> content = queryFactory
+//                .select(new QSearchPreviewDTO(
+//                        partnerMem.partnerMemPK.partnermem_id,
+//                        partnerMem.storeName,
+//                        individualPost.postTitle,
+//                        individualPost.postReview,
+//                        individualPhoto.imgUrl,
+//                        individualPost.individualMem.pageName,
+//                        individualPost.individualMem.characterName)
+//                )
+//                .from(individualPhoto)
+//                .join(individualPhoto.individualPost, individualPost)
+//                .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
+////                .where(storePhoto.repImgYn.eq("Y"))   //대표 이미지
+//                .offset(pageable.getOffset())   //데이터를 가지고 올 시작인덱스 지정
+//                .limit(pageable.getPageSize())  //최대갯수 지정
+//                .fetch();
+//
+//        content.addAll(queryFactory
+//                .select(new QSearchPreviewDTO(
+//                        partnerMem.partnerMemPK.partnermem_id,
+//                        partnerMem.storeName,
+//                        individualPost.postTitle,
+//                        individualPost.postReview,
+//                        individualPhoto.imgUrl,
+//                        individualPost.individualMem.pageName,
+//                        individualPost.individualMem.characterName)
+//                )
+//                .from(individualPhoto)
+//                .join(individualPhoto.individualPost, individualPost)
+//                .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
+//                .offset(pageable.getOffset())
+//                .limit(pageable.getPageSize())
+//                .fetch());
+//
+//        long total = queryFactory.select(Wildcard.count)
+//                .from(individualPhoto)
+//                .join(individualPhoto.individualPost, individualPost)
+//                .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
+//                .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()
+//                ), searchByLike(searchDTO.getSearchBy(),
+//                                searchDTO.getSearchQuery()))
+//                .fetchOne();
+//
+//
+//        return new PageImpl<>(content, pageable, total);
+//    }
+@Override
+public Page<SearchPreviewDTO> getSearchPrevPage(SearchDTO searchDTO, Pageable pageable) {
 
-        QPartnerMem partnerMem = QPartnerMem.partnerMem;
-        QPartnerMemPK partnerMemPK = QPartnerMemPK.partnerMemPK;
-        QIndividualMem individualMem = QIndividualMem.individualMem;
-        QIndividualPost individualPost = QIndividualPost.individualPost;
-        QIndividualPhoto individualPhoto = QIndividualPhoto.individualPhoto;
+    QPartnerMem partnerMem = QPartnerMem.partnerMem;
+    QIndividualPost individualPost = QIndividualPost.individualPost;
+    QIndividualPhoto individualPhoto = QIndividualPhoto.individualPhoto;
+    QIndividualMem individualMem = QIndividualMem.individualMem;
+    QPartnerMemPK partnerMemPK = QPartnerMemPK.partnerMemPK;
 
-        List<SearchPreviewDTO> content = queryFactory
-                .select(new QSearchPreviewDTO(
-                        partnerMemPK.partnermem_id,
-                        partnerMem.storeName,
-                        individualPost.postTitle,
-                        individualPost.postReview,
-                        individualPhoto.imgUrl,
-                        individualMem.pageName,
-                        individualMem.characterName)
-                )
-                .from(individualPhoto)
-                .join(individualPhoto.individualPost, individualPost)
-                .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
-//                .where(storePhoto.repImgYn.eq("Y"))   //대표 이미지
-                .offset(pageable.getOffset())   //데이터를 가지고 올 시작인덱스 지정
-                .limit(pageable.getPageSize())  //최대갯수 지정
-                .fetch();
+    List<SearchPreviewDTO> content = queryFactory
+            .select(new QSearchPreviewDTO(
+                    individualPost.postTitle,
+                    individualMem.characterName,
+                    individualPost.postReview,
+                    individualPhoto.imgUrl,
+                    individualPost.location
+            ))
+            .from(individualPhoto)
+            .join(individualPhoto.individualPost, individualPost)
+            .leftJoin(individualPost.individualMem, individualMem)
+            .offset(pageable.getOffset())   //데이터를 가지고 올 시작인덱스 지정
+            .limit(pageable.getPageSize())  //최대갯수 지정
+            .fetch();
 
-        content.addAll(queryFactory
-                .select(new QSearchPreviewDTO(
-                        partnerMemPK.partnermem_id,
-                        partnerMem.storeName,
-                        individualPost.postTitle,
-                        individualPost.postReview,
-                        individualPhoto.imgUrl,
-                        individualMem.pageName,
-                        individualMem.characterName)
-                )
-                .from(individualPhoto)
-                .join(individualPhoto.individualPost, individualPost)
-                .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch());
+    content.addAll(queryFactory
+            .select(new QSearchPreviewDTO(
+                    partnerMem.storeName,
+                    partnerMem.signatureMenu,
+                    partnerMem.storeImage,
+                    partnerMemPK.store_location)
+            )
+            .from(partnerMem)
+            .offset(pageable.getOffset())
+            .limit(pageable.getPageSize())
+            .fetch());
 
-        long total = queryFactory.select(Wildcard.count)
-                .from(individualPhoto)
-                .join(individualPhoto.individualPost, individualPost)
-                .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
-                .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()
-                ), searchByLike(searchDTO.getSearchBy(),
-                                searchDTO.getSearchQuery()))
-                .fetchOne();
+    long total = queryFactory.select(Wildcard.count)
+            .from(individualPhoto)
+            .join(individualPhoto.individualPost, individualPost)
+            .join(individualPost.individualMem, individualMem)
+            .fetchOne();
 
+    total += queryFactory.select(Wildcard.count)
+            .from(partnerMem)
+            .fetchOne();
 
-        return new PageImpl<>(content, pageable, total);
-    }
+    return new PageImpl<>(content, pageable, total);
 
+}
 
 }

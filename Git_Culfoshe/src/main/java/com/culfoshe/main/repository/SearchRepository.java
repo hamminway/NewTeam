@@ -18,6 +18,4 @@ public interface SearchRepository  {
     Page<IndividualPost> getIndivPostSearchPage(SearchDTO searchDTO, Pageable pageable);
 
     Page<SearchPreviewDTO> getSearchPrevPage(SearchDTO searchDTO, Pageable pageable);
-
-
 }

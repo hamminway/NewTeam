@@ -2,28 +2,24 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<th:block>
 
-</th:block>
 
     <!-- 픽스 버튼 4개 -->
     <div  th:fragment="sideBar">
         <div class="scroll-btn-group active">
-            <th:block th:if="${session.loginSessionDTO != null}">
-                <div class="myPage-btn" sec:authorize="isAuthenticated()">
-                   <button type="button" class="user-page" title="나의 페이지로 들어가기">
-                       <a th:href="${session.loginSessionDTO.individualDomain} ? ${session.loginSessionDTO.individualDomain}: '#'">
-                           <p><strong>나의 페이지</strong></p>
-                           <span class="user-page-i">
-                               <i class="fa-regular fa-circle-user" style="color: #ffffff;"></i>
-                           </span>
-                       </a>
-                   </button>
-               </div>
-            </th:block>
+            <div class="myPage-btn">
+               <button class="user-page" title="나의 페이지로 들어가기">
+                   <a sec:authorize="isAuthenticated()" th:href="@{}">
+                       <p><strong>나의 페이지</strong></p>
+                       <span class="user-page-i">
+                           <i class="fa-regular fa-circle-user" style="color: #ffffff;"></i>
+                       </span>
+                   </a>
+               </button>
+           </div>
             <div class="write-btn">
                 <button class="user-write" title="글쓰기">
-                    <a href="#">
+                    <a sec:authorize="isAuthenticated()" th:href="@{}">
                         <p id="write"><strong>글쓰기</strong></p>
                         <span class="user-write-i">
                             <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
@@ -33,7 +29,7 @@
             </div>
             <div class="save-btn">
                 <button class="user-save" title="북마크로 들어가기">
-                    <a href="#">
+                    <a sec:authorize="isAuthenticated()" th:href="@{}">
                         <p><strong>북마크</strong></p>
                         <span class="user-save-i">
                             <i class="fa-solid fa-bookmark" style="color: #ffffff;"></i>

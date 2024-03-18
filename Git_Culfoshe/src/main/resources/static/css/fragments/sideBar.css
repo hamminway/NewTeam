@@ -100,7 +100,7 @@
 .user-write {
 	width: 65px;
 	height: 65px;
-	background: yellowgreen;
+	background: salmon;
 
 	position: absolute;
 	right: 0;
@@ -145,7 +145,7 @@
 /*글쓰기 버튼 hover효과*/
 .user-write:hover {
 	width: 200px;
-	background-color: yellowgreen;
+	background-color: salmon;
 }
 
 .user-write:hover p {
@@ -162,7 +162,7 @@
 .user-save {
 	width: 65px;
 	height: 65px;
-	background: royalblue;
+	background: skyblue;
 
 	position: absolute;
 	right: 0;
@@ -208,7 +208,7 @@
 /*북마크 버튼 hover 효과*/
 .user-save:hover {
 	width: 200px;
-	background-color: royalblue;
+	background-color: skyblue;
 }
 
 .user-save:hover p {
@@ -224,7 +224,7 @@
 .up {
 	width: 65px;
 	height: 65px;
-	background: skyblue;
+	background: yellowgreen;
 
 	position: absolute;
 	right: 0;
