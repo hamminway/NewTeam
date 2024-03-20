@@ -318,7 +318,7 @@ public Page<SearchPreviewDTO> getSearchPrevPage(SearchDTO searchDTO, Pageable pa
             ))
             .from(individualPhoto)
             .join(individualPhoto.individualPost, individualPost)
-            .leftJoin(individualPost.individualMem, individualMem)
+            .join(individualPost.individualMem, individualMem)
             .offset(pageable.getOffset())   //데이터를 가지고 올 시작인덱스 지정
             .limit(pageable.getPageSize())  //최대갯수 지정
             .fetch();

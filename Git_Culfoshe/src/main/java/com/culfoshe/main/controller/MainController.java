@@ -35,8 +35,8 @@ public class MainController {
 //        Page<MainViewDTO> mainViewDTOS = getPage(pageable);
 
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-        Page<MainViewDTO> mainViewDTOS = mainService.getMainPage(pageable);
-        model.addAttribute("mainViewDTOs", mainViewDTOS);
+//        Page<MainViewDTO> mainViewDTOS = mainService.getMainPage(pageable);
+        model.addAttribute("mainViewDTOs", null);
         model.addAttribute("searchDTO", searchDTO);
 
         return "index";
