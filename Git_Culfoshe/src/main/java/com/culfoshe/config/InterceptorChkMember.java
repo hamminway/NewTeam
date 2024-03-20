@@ -1,6 +1,7 @@
 package com.culfoshe.config;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,7 +28,6 @@ public class InterceptorChkMember implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
 
         HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
     }

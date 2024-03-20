@@ -45,12 +45,13 @@ public class SearchQuery {
     @Autowired
     private IndividualPhotoRepository individualPhotoRepository; // IndividualPhoto를 저장하기 위한 repository
 
+
     @Transactional
     //개인 회원을 저장하는 메서드
-    public int saveIndividualMem(int i){ // 개인회원의 email값을 다르게 하기 위한 변수를 받는역할
+    public IndividualMem saveIndividualMem(int i){ // 개인회원의 email값을 다르게 하기 위한 변수를 받는역할
         IndividualMem individualMem = new IndividualMem();
 
-        individualMem.setEmail("IndividualEmail@test.com" + i);
+        individualMem.setEmail("I" + i);
         individualMem.setPassword("1234" + i);
         individualMem.setPageName("pageName" + i);
         individualMem.setCharacterName("characterName" + i);
@@ -58,8 +59,10 @@ public class SearchQuery {
         individualMem.setIntroduction(i + "번쩨 멤버"); // 추후 유니크 값으로 사용
         IndividualMem savedMember = individualMemRepository.save(individualMem);
         saveIndividualPost(savedMember, 2);
-        return i > 0 ? saveIndividualMem(i-1) : -1;
+        System.err.println(saveIndividualPost(savedMember,2));
+        return savedMember;
     }
+
     @Transactional
     //개인 포스트를 저장하는 메서드
     public int saveIndividualPost(IndividualMem individualMem, int j){ //IndividualPost가 참조할 IndividualMem을 매개변수로 넣음
@@ -73,18 +76,21 @@ public class SearchQuery {
         individualPost.setPostReview(unique + j + "번째 글");
 
         IndividualPost saved = individualPostRepository.save(individualPost);
-        saveIndividualPhoto(saved, 2);
+        System.err.println("2");
+        saveIndividualPhoto(saved, 1);
+
         return j > 0 ? saveIndividualPost(individualMem, j-1) : -1;
     }
     @Transactional
     public int saveIndividualPhoto(IndividualPost individualPost, int k){ //individualPhoto가 참조할 individualPost를 매개변수로
-        String unique = individualPost.getPostReview(); // 추후 사용할 유니크값
 
         IndividualPhoto photo = new IndividualPhoto();
 
         photo.setIndividualPost(individualPost);
-        photo.setImgUrl(unique + k + "번째 사진");
+        System.err.println("3");
+        System.err.println(k);
         individualPhotoRepository.save(photo);
+
         return k > 0 ? saveIndividualPhoto(individualPost,k-1) : -1;
     }
     @Transactional
@@ -107,14 +113,15 @@ public class SearchQuery {
     }
     @Test
     public void searchQueryTest(){
-        saveIndividualMem(2); // individualMem 3개를 생성하고 저장하는데
-                                // individualMem 하나당 3개의 individualPost를 만들고,
-                                // individualPost 하나당 3개의 individualPhoto를 생성
-        savePartnerMem(2);
 
-        Pageable pageable = PageRequest.of(0,6);
-        Page page = searchRepository.getSearchPrevPage(new SearchDTO(),pageable);
-        System.err.println(page.getContent());
+//        System.err.println( saveIndividualMem(0));
+//        System.err.println();
+//
+//        IndividualMem individualMem = new IndividualMem();
+//        individualMem.setEmail("123");
+        System.err.println(saveIndividualMem(saveIndividualPost(saveIndividualMem(9),0)).getIntroduction());
+
+
     }
 
 }
