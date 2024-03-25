@@ -32,21 +32,18 @@ public class IndividualService {
     private final SavedPostRepositoryCustom savedPostRepositoryCustom;
 
     @Transactional(readOnly = true)
-    public IndividualPageDTO getUserPage(String domain){
+    public IndividualPageDTO getUserPage(String userName){
 //        log.info("IndividualService.getUserPage");
-        IndividualMem individualMem = individualMemRepository.findByIndividualDomain(domain);
-        log.info("domain : " , domain);
-        log.info("individualMem : " , individualMem);
-        System.err.println(individualMem);
+        IndividualMem individualMem = individualMemRepository.findByEmail(userName);
+        log.info("userName : " , userName);
         IndividualPageDTO individualPageDTO = IndividualPageDTO.createIndividualPageDTO(individualMem);
-        log.info("individualPageDTO : " , individualPageDTO);
         return individualPageDTO;
     }
 
-    public Page<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String domain){
+    public Page<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String userName){
         log.info("IndividualService.getIndividualPostPreview");
-        List<IndividualPostPreviewDTO> list = individualPostCustom.getIndividualPostPreview(pageable, domain);
-        long totalCount = individualPostRepository.countPost(domain);
+        List<IndividualPostPreviewDTO> list = individualPostCustom.getIndividualPostPreview(pageable, userName);
+        long totalCount = individualPostRepository.countPost(userName);
 
         for(int i = 0 ; i < list.size() ; i++){
             IndividualPostPreviewDTO postPreviewDTO =  list.get(i);
@@ -57,8 +54,8 @@ public class IndividualService {
 
         return new PageImpl<>(list, pageable, totalCount);
     }
-    public Page<SavedPostDTO> getSavedPost(Pageable pageable, String domain){
-        IndividualMem individualMem = individualMemRepository.findByIndividualDomain(domain);
+    public Page<SavedPostDTO> getSavedPost(Pageable pageable, String email){
+        IndividualMem individualMem = individualMemRepository.findByEmail(email);
         Long id = individualMem.getId();
 
         return savedPostRepositoryCustom.getSavedPost(pageable, id);

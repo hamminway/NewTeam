@@ -7,7 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IndividualMemRepository extends JpaRepository<IndividualMem, Long> {
     IndividualMem findByEmail(String email);
-
-    IndividualMem findByIndividualDomain(String domain);
-
 }

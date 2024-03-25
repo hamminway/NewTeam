@@ -465,6 +465,42 @@
 
 <th:block layout:fragment="script">
     <script type="text/javascript" th:src="@{/script/members/memberForm.js}"></script>
+    <script th:inline="javascript">
+        let test = null;
+        let test_text = null;
+        var data = {
+            "b_no": ["8921301484"] // 사업자번호 "xxxxxxx" 로 조회 시,
+        };
+
+        document.addEventListener("DOMContentLoaded", function(){
+            fetch("https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=uKPbZloC9gAvd0Q7bZT6YbeFoc3coVy1AOuez5RdZ2pCuGdGeM/KKGW5kwbhddw/l1xTBVU7F9kwGydMPRn9aA==", {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                },
+
+                body: JSON.stringify(data), // json 을 string으로 변환하여 전송
+            })
+
+                .then((response) => {
+                    test = response;
+                    console.log(response);
+                    return response.json()
+
+                })
+                .then((dataa) => {
+                    test_text = dataa;
+                    console.log(dataa)
+                    console.log(dataa["data"][0]["b_stt_cd"])
+
+                })
+
+
+
+        });
+
+    </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" th:src="@{/script/members/postcode.v2.js}"></script>
 </th:block>

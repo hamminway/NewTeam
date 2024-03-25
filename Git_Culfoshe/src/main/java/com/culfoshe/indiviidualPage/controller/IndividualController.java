@@ -4,6 +4,7 @@ package com.culfoshe.indiviidualPage.controller;
 import com.culfoshe.entity.IndividualMem;
 import com.culfoshe.indiviidualPage.dto.IndividualPageDTO;
 import com.culfoshe.indiviidualPage.dto.IndividualPageSearchDTO;
+import com.culfoshe.indiviidualPage.dto.LoginSessionDTO;
 import com.culfoshe.indiviidualPage.dto.newPost.NewPostDTO;
 import com.culfoshe.indiviidualPage.service.IndividualService;
 import com.culfoshe.join.repository.IndividualMemRepository;
@@ -21,6 +22,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.http.HttpResponse;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -33,25 +38,20 @@ public class IndividualController {
     private final IndividualService individualService;
     private final IndividualMemRepository individualMemRepository;
 
-    @GetMapping(value = {"/{domain}", "/{domain}/first={firstPage}&&second={secondPage}"})
-    public String userPage(@PathVariable String domain, Optional<IndividualPageSearchDTO> individualPageSearchDTO,
+    @GetMapping(value = {"/myPage/first={firstPage}&&second={secondPage}","/myPage"})
+    public String userPage( Optional<IndividualPageSearchDTO> individualPageSearchDTO,
                            @PathVariable Optional<Integer> firstPage, @PathVariable Optional<Integer> secondPage,
-                           Model model){
+                           Model model, HttpServletRequest request, Principal principal){
+
+        String userName = principal.getName();
 
         Pageable individualPageable = PageRequest.of(firstPage.isPresent()? firstPage.get() : 0,3);
         Pageable savedPageable = PageRequest.of(secondPage.isPresent() ? secondPage.get() : 0, 5);
 
+        IndividualPageDTO individualPageDTO = individualService.getUserPage(userName); // 페이지 전체의 dtㅐ
+        Page individualPostPreviewPage = individualService.getIndividualPostPreview(individualPageable, userName);//previewDTO의 page객체
 
-        System.err.println("domain : " + domain);
-
-        IndividualPageDTO individualPageDTO = individualService.getUserPage(domain); // 페이지 전체의 dtㅐ
-        System.err.println("individualPageDTO"+ individualPageDTO);
-
-        Page individualPostPreviewPage = individualService.getIndividualPostPreview(individualPageable, domain);//previewDTO의 page객체
-        System.err.println("individualPostPreviewPage"+ individualPostPreviewPage);
-
-        Page savedPost = individualService.getSavedPost(savedPageable, domain);//savedPost의 page객체
-        System.err.println("savedPost" + savedPost);
+        Page savedPost = individualService.getSavedPost(savedPageable, userName);//savedPost의 page객체
 
         model.addAttribute("individualPageDTO", individualPageDTO);
         model.addAttribute("individualPostPreviewPage",individualPostPreviewPage);
@@ -63,27 +63,21 @@ public class IndividualController {
         return "personalPage/individualPage";
     }
 
-    @GetMapping(value = "{domain}/newPost")
-    public String newPost(@PathVariable String domain, Model model, Principal principal){
+    @GetMapping(value = "/newPost")
+    public String newPost(Model model, Principal principal, HttpServletResponse response)
+    throws IOException {
         log.info("individual.newPost @GetMapping");
-        log.info("principal.getName : ", principal.getName());
-        IndividualMem user = individualMemRepository.findByIndividualDomain(domain);
-        log.info("user : ", user.getEmail());
+        String email = principal.getName();
+        IndividualMem user = individualMemRepository.findByEmail(email);
 
-
-        if(!principal.getName().equals(user.getEmail())){
-            model.addAttribute("errorMessage", "로그인 후 이용해주세요");
-            return "";
-        }
-        NewPostDTO newPostDTO = new NewPostDTO();
-
-
-        model.addAttribute("newPostDTO", newPostDTO);
-        return "personalPage/newPost";
+//        model.addAttribute("newPostDTO", newPostDTO);
+        return "personalPage/newIndividualPost";
     }
 
-    @PostMapping(value = "{UserUrl}/newPost")
+    @PostMapping(value = "/newPost")
     public String newPost(Principal principal, Model model, NewPostDTO newPostDTO){
+
+        System.err.println(newPostDTO);
 
         log.info("userName : ", principal.getName());
         return "personalPage/individualPage";
