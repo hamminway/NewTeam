@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+    </th:block>
+
+</head>
+
+<body>
+    <th:block th:fragment="myPageSide">
+        <link rel="stylesheet" href="/css/individual/myPageSide.css">
+        <div id="side_wrap">
+            <div class="in_side_title">
+                <h2>카테고리</h2>
+                <span>category</span>
+            </div>
+        </div>
+        <script src="/script/individual/myPageSide.js"></script>
+    </th:block>
+</body>
+
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+</th:block>
+
+</html>

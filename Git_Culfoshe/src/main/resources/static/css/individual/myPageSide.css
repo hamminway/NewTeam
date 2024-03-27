@@ -1,0 +1,12 @@
+#side_wrap h2{
+    display: inline;
+}
+#side_wrap{
+    position: sticky;
+    top: 220px;
+    left: 60px;
+    display: flex;
+}
+div{
+    display: block;
+}
