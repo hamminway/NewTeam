@@ -13,7 +13,7 @@
     <!-- CSS only -->
     <!-- 링크 써야 아이콘이 들어감!! -->
     <link th:href="@{/css/layouts/myPageLayout.css}" rel="stylesheet">
-    <link th:href="@{/css/fragments/header.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/fragments/individiualHeader.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/css/fragments/footer.css}" rel="stylesheet" type="text/css" />
 
 
@@ -26,18 +26,20 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container_all">
     <!-- 헤더 영역 -->
-    <th:block th:replace="~{fragments/header :: header}"></th:block>
-    <div class="myPage_layout_row">
-        <div class="myPage_sideBar">
-            <th:block th:replace="~{fragments/myPage_sideBar :: myPageSide}"></th:block>
+    <th:block th:replace="~{fragments/myPage_header :: header}"></th:block>
+    <div class="main_container">
+        <div class="myPage_layout_row">
+            <div class="myPage_sideBar">
+                <th:block th:replace="~{fragments/myPage_sideBar :: myPageSide}"></th:block>
+            </div>
+                <!-- 컨텐츠 영역 -->
+            <div class="individual_content">
+                <th:block layout:fragment="content"></th:block>
+            </div>
+            
         </div>
-            <!-- 컨텐츠 영역 -->
-        <div class="individual_content">
-            <th:block layout:fragment="content"></th:block>
-        </div>
-        
     </div>
     <!-- 푸터 메뉴 영역 -->
     <th:block th:replace="~{fragments/footer :: footer}"></th:block>

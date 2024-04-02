@@ -2,11 +2,15 @@
     display: inline;
 }
 #side_wrap{
+    margin: 25px;
     position: sticky;
-    top: 220px;
-    left: 60px;
-    display: flex;
+    top: 210px;
 }
 div{
     display: block;
+}
+.side_container{
+    position: relative;
+    top:10px;
+    transition: 0.3s;
 }

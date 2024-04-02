@@ -21,9 +21,9 @@ public class InterceptorChkMember implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Principal principal = SecurityContextHolder.getContext().getAuthentication();
+        Principal principal = request.getUserPrincipal();
         if(!chkLogin(principal)){
-            response.sendError(401,"로그인 후 이용해주세요");
+            response.sendRedirect("/members/login");
             return false;
         }
 

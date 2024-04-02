@@ -24,13 +24,24 @@ body{
 }
 
 .myPage_sideBar{
-    width: 250px;
+    flex-grow: 1;
+    min-width: 100px;
 }
 
 .individual_content{
-    margin: 0 auto;
-    width : 950px;
+    flex-grow: 5;
+    min-width: 600px;
 }
-.myPage_layout_row{
+.myPage_layout_row{ 
+    margin: 0 auto;
     display: flex;
+    max-width: 1450px;
+    width: 100%;
+}
+.main_container{
+
+}
+.container_all{
+    display: flex;
+    flex-flow: column;
 }

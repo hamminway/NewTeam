@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+
+/* header */
+
+.navbar a:hover {
+	color: #9acd32;
+}
+
+.navbar img {
+	height: 28px;
+}
+
+.mini-Search {
+	border: 1px solid #C3C3C3;
+}
+
+.icon input:focus {
+	outline: 1px solid green;
+	border-radius: 5px;
+}
+
+.icon a{
+	padding: 0;
+}
+
+.blind {
+    display:none !important;
+}
+
+
+.top-bar .menu-box>ul>li:hover>a {
+	color: green;
+}
+
+/* 2차메뉴클릭효과 시작*/
+/* 2차 메뉴 클릭 시 점표시*/
+.top-bar .menu-box>ul>li>div>ul>li>a::after {
+	color: green;
+
+}
+
+
+/* 2차메뉴클릭효과 끝 */
+.top-bar .menu-box>ul>li>div>ul>li:hover>a {
+	color: green;
+}
+
+/*2차 메뉴 안에 제목 위치 조절*/
+
+
+.top-bar .menu-box>ul>li:hover>.menu-text {
+	opacity: 1;
+}
+
+/*2차 메뉴 안에 제목(영어)*/
+.top-bar .menu-box>ul>li>.menu-text>.menu-title {
+	font-size: 35px;
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: -1px;
+	color: green;
+	border-bottom: 2px solid green;
+}
+
+.top-bar .menu-box>ul>li>.menu-text>.menu-title-text {
+	color: #222222;
+}
+
