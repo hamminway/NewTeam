@@ -3,13 +3,111 @@
 
 /* header */
 
-.navbar a:hover {
+
+.header_column{
+	display: flex;
+	flex-flow: column;
+}
+.row{
+	display: flex;
+	flex-flow: row;
+}
+.header_fist_column{
+	display: flex;
+	justify-content: space-between;
+}
+.myPageHeader_wrap{
+	position: sticky;
+	top: 0px;
+	width: 100%;
+	box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.2);
+
+}
+.header_container{
+	padding-top: 20px;
+	margin: 0 auto;
+	max-width: 1300px;
+	min-width: 1300px;
+	background-color: white;
+}
+#ico_weather{
+	height: 27px;
+}
+.userUI>a:hover{
 	color: #9acd32;
 }
-
-.navbar img {
-	height: 28px;
+.mini-Search {
+    float : right;
+	width: 245px;
+	height: 30px;
+	border: 1px solid #C3C3C3;
+	border-radius: 5px;
 }
+.icon-search-btn{
+	height: 25px;
+	position: relative;
+	top : 3px;
+	left: 88%;
+	border: none;
+	background-color: #fff;
+	border-radius: 5px;
+}
+.menu-box{
+	justify-content: space-between;
+	width: 100%;
+	height: 85px;
+	overflow: hidden;
+	transition: height 0.5s;
+}
+.menu-box>.cell>a{
+    font-size: 22px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 4px;
+	display: inline-block;
+	overflow: hidden;
+}
+.menu-box>.cell>a::after{
+	justify-content: center;
+	content: '';
+	margin-top: 20px;
+	display: block;
+	position: relative;
+	left: 50%;
+	width: 0;
+	height: 3px;
+	background-color: green;
+	transition: width 0.5s, left 0.5s;
+	transform: translateX(-50%)
+}
+.menu-box>.cell:hover>a::after{
+	width: 230px;
+}
+.menu-box>.cell>a:hover{
+	color: green;
+}
+.menu-box:hover{
+	height: 280px;
+}
+
+.cell{
+	text-align: center;
+	width: 25%;
+	height: 60px;
+	/* overflow: hidden; */
+}
+.cell_title{
+	margin: 30px auto;
+}
+.block{
+	display: inline-block;
+}
+
+
+
+
+
 
 .mini-Search {
 	border: 1px solid #C3C3C3;
@@ -27,45 +125,3 @@
 .blind {
     display:none !important;
 }
-
-
-.top-bar .menu-box>ul>li:hover>a {
-	color: green;
-}
-
-/* 2차메뉴클릭효과 시작*/
-/* 2차 메뉴 클릭 시 점표시*/
-.top-bar .menu-box>ul>li>div>ul>li>a::after {
-	color: green;
-
-}
-
-
-/* 2차메뉴클릭효과 끝 */
-.top-bar .menu-box>ul>li>div>ul>li:hover>a {
-	color: green;
-}
-
-/*2차 메뉴 안에 제목 위치 조절*/
-
-
-.top-bar .menu-box>ul>li:hover>.menu-text {
-	opacity: 1;
-}
-
-/*2차 메뉴 안에 제목(영어)*/
-.top-bar .menu-box>ul>li>.menu-text>.menu-title {
-	font-size: 35px;
-	font-weight: 500;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: -1px;
-	color: green;
-	border-bottom: 2px solid green;
-}
-
-.top-bar .menu-box>ul>li>.menu-text>.menu-title-text {
-	color: #222222;
-}
-

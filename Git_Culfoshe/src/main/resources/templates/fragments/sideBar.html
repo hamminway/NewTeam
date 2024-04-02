@@ -6,6 +6,7 @@
 
     <!-- 픽스 버튼 4개 -->
     <div  th:fragment="sideBar">
+        <link th:href="@{/css/fragments/sideBar.css}" rel="stylesheet" type="text/css" />
         <div class="scroll-btn-group active">
             <div sec:authorize="isAuthenticated()" class="myPage-btn">
                <button class="user-page" title="나의 페이지로 들어가기">

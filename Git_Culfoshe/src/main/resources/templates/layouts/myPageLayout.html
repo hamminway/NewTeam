@@ -13,7 +13,7 @@
     <!-- CSS only -->
     <!-- 링크 써야 아이콘이 들어감!! -->
     <link th:href="@{/css/layouts/myPageLayout.css}" rel="stylesheet">
-    <link th:href="@{/css/fragments/individiualHeader.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/fragments/myPage_header.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/css/fragments/footer.css}" rel="stylesheet" type="text/css" />
 
 
@@ -38,6 +38,9 @@
             <div class="individual_content">
                 <th:block layout:fragment="content"></th:block>
             </div>
+            <div class="side_bar">
+                <th:block th:replace="fragments/sideBar::sideBar"></th:block>
+            </div>
             
         </div>
     </div>
@@ -45,7 +48,8 @@
     <th:block th:replace="~{fragments/footer :: footer}"></th:block>
 </div>
 <!-- js -->
-<script type="text/javascript" th:src="@{/script/fragments/header.js}"></script>
+<script type="text/javascript" th:src="@{/script/fragments/sideBar.js}"></script>
+<script type="text/javascript" th:src="@{/script/fragments/myPage_header.js}"></script>
 <th:block layout:fragment="content_js"></th:block>
 </body>
 
