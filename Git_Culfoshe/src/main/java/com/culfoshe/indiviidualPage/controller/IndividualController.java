@@ -38,24 +38,12 @@ public class IndividualController {
     private final IndividualService individualService;
     private final IndividualMemRepository individualMemRepository;
 
-    @GetMapping(value = {"/myPage/first={firstPage}&&second={secondPage}","/myPage"})
+    @GetMapping(value = {"/myPage"})
     public String userPage( Optional<IndividualPageSearchDTO> individualPageSearchDTO,
-                           @PathVariable Optional<Integer> firstPage, @PathVariable Optional<Integer> secondPage,
                            Model model, HttpServletRequest request, Principal principal){
 
         String userName = principal.getName();
-
-        Pageable individualPageable = PageRequest.of(firstPage.isPresent()? firstPage.get() : 0,3);
-        Pageable savedPageable = PageRequest.of(secondPage.isPresent() ? secondPage.get() : 0, 5);
-
-        IndividualPageDTO individualPageDTO = individualService.getUserPage(userName); // 페이지 전체의 dtㅐ
-        Page individualPostPreviewPage = individualService.getIndividualPostPreview(individualPageable, userName);//previewDTO의 page객체
-
-        Page savedPost = individualService.getSavedPost(savedPageable, userName);//savedPost의 page객체
-
-        model.addAttribute("individualPageDTO", individualPageDTO);
-        model.addAttribute("individualPostPreviewPage",individualPostPreviewPage);
-        model.addAttribute("savedPost", savedPost);
+        individualService.getUserPage(userName);
         if(individualPageSearchDTO.isEmpty()){
             model.addAttribute("individualPageSearchDTO",new IndividualPageSearchDTO());
         }

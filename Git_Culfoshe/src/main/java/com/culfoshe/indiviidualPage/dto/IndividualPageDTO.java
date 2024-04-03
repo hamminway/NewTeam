@@ -24,8 +24,12 @@ public class IndividualPageDTO { // 개인페이지 메인 DTO
 
 //    private
 
-    private static ModelMapper modelMapper = new ModelMapper();
-    public static IndividualPageDTO createIndividualPageDTO(IndividualMem individualMem){
+    private ModelMapper modelMapper = new ModelMapper();
+    public IndividualPageDTO createIndividualPageDTO(IndividualMem individualMem){
         return modelMapper.map(individualMem, IndividualPageDTO.class);
+    }
+    public IndividualPageDTO withFolder(String folderList){
+
+        return this;
     }
 }

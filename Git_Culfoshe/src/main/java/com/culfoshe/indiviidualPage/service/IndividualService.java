@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,32 +34,16 @@ public class IndividualService {
 
     @Transactional(readOnly = true)
     public IndividualPageDTO getUserPage(String userName){
-//        log.info("IndividualService.getUserPage");
         IndividualMem individualMem = individualMemRepository.findByEmail(userName);
-        log.info("userName : " , userName);
-        IndividualPageDTO individualPageDTO = IndividualPageDTO.createIndividualPageDTO(individualMem);
+        IndividualPageDTO individualPageDTO = new IndividualPageDTO().createIndividualPageDTO(individualMem);
         return individualPageDTO;
     }
 
-    public Page<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String userName){
-        log.info("IndividualService.getIndividualPostPreview");
-        List<IndividualPostPreviewDTO> list = individualPostCustom.getIndividualPostPreview(pageable, userName);
-        long totalCount = individualPostRepository.countPost(userName);
+    private List<String> getCateList(){
+        List<String> list = new ArrayList<>();
 
-        for(int i = 0 ; i < list.size() ; i++){
-            IndividualPostPreviewDTO postPreviewDTO =  list.get(i);
-            List<String> individualPhotoList = individualPhotoRepository.findPhoto(postPreviewDTO.getPostCode());
-            postPreviewDTO.setImgUrlList(individualPhotoList);
-            list.set(i, postPreviewDTO);
-        }
 
-        return new PageImpl<>(list, pageable, totalCount);
-    }
-    public Page<SavedPostDTO> getSavedPost(Pageable pageable, String email){
-        IndividualMem individualMem = individualMemRepository.findByEmail(email);
-        Long id = individualMem.getId();
-
-        return savedPostRepositoryCustom.getSavedPost(pageable, id);
+        return list;
     }
 
 }
