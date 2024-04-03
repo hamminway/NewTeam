@@ -35,6 +35,8 @@ public class IndividualService {
     public IndividualPageDTO getUserPage(String userName){
 //        log.info("IndividualService.getUserPage");
         IndividualMem individualMem = individualMemRepository.findByEmail(userName);
+        System.err.println(individualMem);
+        System.err.println(userName);
         log.info("userName : " , userName);
         IndividualPageDTO individualPageDTO = IndividualPageDTO.createIndividualPageDTO(individualMem);
         return individualPageDTO;

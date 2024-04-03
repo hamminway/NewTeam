@@ -11,6 +11,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -24,6 +25,11 @@ public class MainRepositoryCustomImpl implements MainRepositoryCustom {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
+    //검색어가 공백이면 null, 아니면 검색어가 포함되는 상품을 조회
+    private BooleanExpression nameByLike(String searchQuery){
+        return StringUtils.isEmpty(searchQuery)? null :
+                QPartnerMem.partnerMem.storeName.like("%" + searchQuery + "%");
+    }
 
     @Override
     public Page<MainViewDTO> getMainPage(Pageable pageable) {

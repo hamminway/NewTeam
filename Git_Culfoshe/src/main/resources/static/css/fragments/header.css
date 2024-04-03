@@ -193,7 +193,6 @@
 	right: 50%;
 	background-color: green;
 	transition: width 0.6s;
-	
 }
 
 .top-bar .menu-box>ul>li>a::before {
