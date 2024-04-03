@@ -2,7 +2,11 @@
 
 
 /* header */
-
+.myPageHeader_wrap{
+	position: fixed;
+	top: 0;
+	z-index: 100;
+}
 
 .header_column{
 	display: flex;
@@ -17,7 +21,7 @@
 	justify-content: space-between;
 }
 .myPageHeader_wrap{
-	position: sticky;
+	position: fixed;
 	top: 0px;
 	width: 100%;
 	box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.2);

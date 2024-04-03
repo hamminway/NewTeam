@@ -39,7 +39,9 @@ body{
     width: 100%;
 }
 .main_container{
-
+    display: flex;
+    position :relative;
+    top: 165px;
 }
 .container_all{
     display: flex;
