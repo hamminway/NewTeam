@@ -12,10 +12,8 @@ import javax.validation.constraints.Email;
 @Getter @Setter @ToString
 public class PartnerMem{
 
-
     @EmbeddedId
     private PartnerMemPK partnerMemPK;
-
 
     @Email
     @Column(unique = true)
@@ -42,7 +40,7 @@ public class PartnerMem{
 
     private String businessHours;
 
-    private String signatureMenu; //이미지
+    private String signatureMenu;
     private String partnerNotice;
 
     private String storeImage;

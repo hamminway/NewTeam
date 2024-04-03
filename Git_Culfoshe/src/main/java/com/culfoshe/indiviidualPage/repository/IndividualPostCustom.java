@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface IndividualPostCustom {
 
-    List<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String domain);
+    List<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String userName);
     List<IndividualPost> getIndividualPostPreviewRe(Pageable pageable, String domain);
 
 }

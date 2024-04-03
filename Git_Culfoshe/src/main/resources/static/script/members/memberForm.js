@@ -125,15 +125,15 @@ $(document).ready(function() {
     $("#interestInfor").show();
     $("#indicJoinBtn").show();
     $("#partJoinBtn").hide();
-    $(".footer").css({"marginTop": "650px"})
+    $(".footer").css({"marginTop": "770px"})
 
     $("#partnerInfor").css({"position":"relative", "right":"501px", "width": "490px"});
-    $("#interestInfor").css({"position":"relative", "top":"350px"});
+    $("#interestInfor").css({"position":"relative", "top":"420px"});
 
     $(".indexbox1").hide();
     $(".indexbox2").show();
-    $(".indexbox2").css({"width":"500px", "height":"790px"});
-    $("#allInfor").css({"width":"1500px", "height":"1400px"});
+    $(".indexbox2").css({"width":"500px", "height":"875px"});
+    $("#allInfor").css({"width":"1500px", "height":"1450px"});
 
   });
 
@@ -142,7 +142,7 @@ $(document).ready(function() {
     $("#interestInfor").hide();
     $("#indicJoinBtn").hide();
     $("#partJoinBtn").show();
-    $(".footer").css({"margin": "0px"})
+    $(".footer").css({"marginTop": "250px"})
 
     $("#partJoinBtn").css({"display": "block", "position": "relative", "right": "764px", "top": "180px"});
 
@@ -152,7 +152,7 @@ $(document).ready(function() {
     $(".indexbox1").show();
     $(".indexbox2").hide();
     $(".indexbox1").css({"width":"500px", "height":"550px"});
-    $("#allInfor").css({"width":"1500px", "height":"1400px"});
+    $("#allInfor").css({"width":"1500px", "height":"1450px"});
 
   });
 })
@@ -192,7 +192,7 @@ function checkId(){
 
 let indicemail1 = document.getElementById('indicemail1')
 let indicemail2 = document.getElementById('indicemail2')
-let emailResult = document.getElementById('indicEmailchk')
+let indicEmailchk = document.getElementById('indicEmailchk')
 
 indicemail1.addEventListener("blur", function(){
   checklndicemail();
@@ -202,11 +202,11 @@ function checklndicemail(){
   let emailexp=/^[a-zA-Z0-9+-\_.]/
 
   if(indicemail1.value.length == 0){
-    emailResult.innerHTML = "* 필수 입력입니다"
+    indicEmailchk.innerHTML = "* 필수 입력입니다"
   }else if(emailexp.test(indicemail1.value)){
-    emailResult.innerHTML = " "
+    indicEmailchk.innerHTML = " "
   }else{
-    emailResult.innerHTML = "* 이메일 주소를 입력하세요"
+    indicEmailchk.innerHTML = "* 이메일 주소를 입력하세요"
   }
 }
 
@@ -218,11 +218,11 @@ function checklndicemail1(){
   let emailexp2=/^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]/
 
   if(indicemail2.value.length == 0){
-    emailResult.innerHTML = "* 필수 입력입니다"
+    indicEmailchk.innerHTML = "* 필수 입력입니다"
   }else if(emailexp2.test(indicemail2.value)){
-    emailResult.innerHTML = " "
+    indicEmailchk.innerHTML = " "
   }else{
-    emailResult.innerHTML = "* 이메일 주소를 양식에 맞춰 입력하세요"
+    indicEmailchk.innerHTML = "* 이메일 주소를 양식에 맞춰 입력하세요"
   }
 }
 
@@ -454,10 +454,16 @@ let indicEmailBox = document.getElementById("indicEmailBox");
 
 indicemail1.addEventListener("blur", function(){
   indicEmailBox.value = indicemail1.value + "@" + indicemail2.value;
+
+  let indicUrl = "/members/checkUser?email=" + indicEmailBox.value;
+  validateCheckEmail(indicEmailchk, indicUrl);
 })
 
 indicemail2.addEventListener("blur", function(){
   indicEmailBox.value = indicemail1.value + "@" + indicemail2.value;
+
+  let indicUrl = "/members/checkUser?email=" + indicEmailBox.value;
+  validateCheckEmail(indicEmailchk, indicUrl);
 })
 
 /*
@@ -468,93 +474,245 @@ indicemail2.addEventListener("blur", function(){
 let partEmailBox = document.getElementById("partEmailBox");
 let emailaArr = [];
 
+let emailCheckMsg = "";
+
 for(let i = 1; i < 3 ; i++){
   emailaArr.push(document.getElementById('partemail'+i))
 }
 
 for(let i = 0 ; i < emailaArr.length ; i++){
-  emailaArr[i].addEventListener("blur", function (){
+  emailaArr[i].addEventListener("blur", (e) => {
     partEmailBox.value = emailaArr[0].value + "@" + emailaArr[1].value;
+
+    let PartnerUrl = "/members/checkUser?email=" + partEmailBox.value;
+    validateCheckEmail(partEmailchk, PartnerUrl);
   })
 }
 
+function validateCheckEmail(target, url){
+
+  fetch(url)
+      .then(resp => {
+
+        if(resp.status == 200){ //가입이 가능한 상태
+
+          target.style.color = "green";
+          emailCheckMsg = "* 사용 가능한 이메일입니다."
+        } else {
+
+          target.style.color = "red";
+          emailCheckMsg = "* 중복된 이메일입니다. 다른 값을 입력해주세요."
+        }
+
+        target.innerHTML = emailCheckMsg;
+      })
+
+}
+
 /*
-5. 사업장 소재지의 주소 입력창 후, 가져오기
+4. 사업장 도로명 주소 + 상세 주소 합치기
+*/
+
+let storePlace = document.getElementById("storePlace");
+let storePlaceDetails = document.getElementById("storePlaceDetails");
+let storePlaceBox = document.getElementById("storePlaceBox");
+
+storePlace.addEventListener("blur", () => {
+  storePlaceBox.value = storePlace.value + " " + storePlaceDetails.value;
+})
+
+storePlaceDetails.addEventListener("blur", () => {
+  storePlaceBox.value = storePlace.value + " " + storePlaceDetails.value;
+})
+
+/*
+5. 중복확인 버튼 누르면 중복 검사
+- 개인(도메인)
 */
 
 
+let indicDomain = document.getElementById("indicDomain");
+let indicDomainBtn = document.getElementById("indicDomainBtn");
+let indicDomainChk = document.getElementById("indicDomainChk");
+
+let domainCheckMsg = "";
+
+indicDomainBtn.addEventListener("click", function (e){
+  e.preventDefault();
+
+  let indicDomainUrl = "/members/checkDomain?domain=" + indicDomain.value;
+
+  validateCheckDomain(indicDomainChk, indicDomainUrl);
+})
+
 /*
-6. 선택 css 변화 및 제한 두기
+5. 중복확인 버튼 누르면 중복 검사
+- 파트너(도메인)
 */
+
+let partDomain = document.getElementById("partDomain");
+let partDomainBtn = document.getElementById("partDomainBtn");
+let partDomainChk = document.getElementById("partDomainChk");
+
+partDomainBtn.addEventListener("click", function (e){
+  e.preventDefault();
+
+  let partDomainUrl = "/members/checkDomain?domain=" + partDomain.value;
+
+  validateCheckDomain(partDomainChk, partDomainUrl);
+})
+
+function validateCheckDomain(target, domain) {
+
+  fetch(domain)
+      .then(resp => {
+
+        if (resp.status == 200) { //가입이 가능한 상태
+
+          target.style.color = "green";
+          domainCheckMsg = "* 사용 가능한 도메인입니다."
+        } else {
+
+          target.style.color = "red";
+          domainCheckMsg = "* 중복된 도메인입니다. 다른 값을 입력해주세요."
+        }
+
+        target.innerHTML = domainCheckMsg;
+      })
+
+  /*
+  5. 중복확인 버튼 누르면 중복 검사
+  - 파트너(사업자 등록 번호)
+  */
+
+  let storeNum = document.getElementById("storeNum");
+  let storeNumChkBtn = document.getElementById("storeNumChkBtn");
+  let storeNumChk = document.getElementById("storeNumChk");
+
+  let storeNumCheckMsg = "";
+
+  storeNumChkBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let partStoreNum = "/members/chec" +
+        "kStoreNum?storeNum=" + storeNum.value;
+
+    validateCheckStoreNum(storeNumChk, partStoreNum);
+  })
+
+
+  function validateCheckStoreNum(target, num) {
+
+    fetch(num)
+        .then(resp => {
+
+          if (resp.status == 200) { //가입이 가능한 상태
+
+            target.style.color = "green";
+            storeNumCheckMsg = "* 가입 이력이 없는 사업자 번호입니다."
+          } else {
+
+            target.style.color = "red";
+            storeNumCheckMsg = "* 이미 가입된 사업자 번호입니다. 재확인 부탁드립니다."
+          }
+
+          target.innerHTML = storeNumCheckMsg;
+        })
+  }
+
+
+    /*
+    6. 사업장 소재지 버튼 클릭하면 카카오 주소 검색창 API 가져오기(-> 뿌려주기까지)
+    */
+
+  /*let storePlaceChk = document.getElementById("storePlaceChk");
+
+  storePlaceChk.addEventListener("click", ()=> {
+    storeAddressPopup();
+  })
+
+  function storeAddressPopup(){
+    let name = "사업장 소재지 찾기";
+    let option = "width = 500, height = 500, top = 100, left = 200, location = no"
+
+    window.open(name, option);
+  }*/
+
+    /*
+    7. 선택할 때 css 변화 및 개수 제한 두기
+    */
 
 // 변수 선언
 // let interest1 = document.getElementById('interest1')
 
-let maxCheck = 3;
-let interestList = document.getElementsByClassName("InterestChkBox"); // input태그(체크박스) class명으로 검사(name값 안됨..)
-let checkNum = 0;
-for(let i = 0 ; i < 20 ; i++){
-  let eventAdd = document.getElementById('interest'+i);
+    let checkNum = 0;
+    let maxCheck = 3;
+    let inputArr = document.getElementsByClassName("InterestChkBox");
 
-  interestList[i].addEventListener('change', ()=>{
+    for (let i = 1; i < 19; i++) {
+      let eventAdd = document.getElementById('interest' + i);
 
-    if(interestList[i-1].checked){          // input태그의 체크박스가 체크 여부 검사
-      checkNum--;             //체크 개수 --
-      cssChange(e.target, true)             //cssChange(해당label태그, 체크해제요청) - cssChange(e.target, true(checkDeleteAction))
-      return true;// 함수 (조기)종료(여기서는 return값 무의미)         //함수 조기 종료 : 코드의 가독성을 높이기 위하여 함수를 조건부에서 종료 시키는 행위.
+      eventAdd.addEventListener('click', (e) => {
+
+        if (inputArr[i - 1].checked) { // 체크박스가 체크 되어 있을 시
+          cssChange(e.target, true)
+
+          return true;
+        }
+
+        if (checkNum >= maxCheck) { //3개 이상 체크 되었을때
+          alert("나의 관심사는 3개까지 선택 가능합니다.");
+          e.preventDefault();
+
+          return false;
+        }
+
+        //체크된 것이 3개 이상이 아닐 경우
+        cssChange(e.target, false);
+
+      })
+
+
     }
-
-
-    if(checkNum >= maxCheck){       //checkNum값 검사
-      alert("3개라고");
-      e.preventDefault();           //체크박스의 체크 이벤트 해제
-      return false;                 //함수 조기 종료 (여기서는 return값 무의미)
-
-    }
-    checkNum++;             //체크 개수 ++
-                                    //3개 이상이 아니면(함수가 조기 종료 되지 않았으면)
-    cssChange(e.target, false);     //cssChange, 녹색으로
-
-  })
-
-}
-
-
 
 // 클릭 시, 컬러 변화
 // interest1.addEventListener("click", function(){
 //   cssChange(interest1);
 // })
 
-function cssChange(target, action) { //action이 true 일 때 체크 해제요청, false 일 때 체크 요청
+    function cssChange(target, action) { //action 으로 하얀색으로 바꿀지 초록색으로 바꿀지 선택
 
-    if(action){               //체크 해제 요청이 들어올 시 (action이 true로 들어올 시)
-                            // 선택된 것을 해제할 때 클릭(하얀 배걍 + 검정 글자로 바뀜)
+      if (action) { //action이 true로 들어올 시
+        // 선택된 것을 해제할 때 클릭함을 의미함. (하얀 배걍 + 검정 글자로 바뀜)
 
         target.style.color = "black";
         target.style.backgroundColor = "white";
-        console.log("aaaaa");
+        checkNum--;
 
-    }else{                    //체크 요청이 들어올 시 - 선택 시, 초록 배경 + 하얀 글자로 바뀜
+      } else { //action이 false,로 들어올 시, 선택하겠다는 것을 의미함. (초록 배경 + 하얀 글자로 바뀜)
 
         target.style.color = "white";
         target.style.backgroundColor = "rgb(16, 104, 63)";
+        checkNum++;
 
-     }
-}
+      }
+    }
+
+
 // 3개로 클릭 제한(관심지역 선택 최대 3곳)
-let areaCheckNum = 0;
+    let areaCheckNum = 0;
 
-function selectLimitArea() {
-  if (target.checked) {
-    areaCheckNum++;
-  } else {
-    areaCheckNum--;
-  }
+    function selectLimitArea(target) {
+      if (target.checked) {
+        areaCheckNum++;
+      } else {
+        areaCheckNum--;
+      }
 
-  if (areaCheckNum > maxCheck) {
-    alert("관심 지역은 최대 3곳까지 선택이 가능합니다.");
-    target.checked = false;
-    areaCheckNum--;
+      if (areaCheckNum > maxCheck) {
+        alert("관심 지역은 최대 3곳까지 선택이 가능합니다.");
+        target.checked = false;
+        areaCheckNum--;
+      }
+    }
   }
-}

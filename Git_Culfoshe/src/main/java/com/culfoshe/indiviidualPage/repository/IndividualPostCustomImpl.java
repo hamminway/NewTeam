@@ -5,10 +5,7 @@ import com.culfoshe.entity.QIndividualPost;
 import com.culfoshe.indiviidualPage.dto.IndividualPostPreviewDTO;
 import com.culfoshe.indiviidualPage.dto.QIndividualPostPreviewDTO;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +25,7 @@ public class IndividualPostCustomImpl implements IndividualPostCustom{
         return QIndividualPost.individualPost.individualMem.individualDomain.like("%"+domain+"%");
     }
 
-    public List<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String domain) {
+    public List<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String userName) {
 
         QIndividualPost individualPost = QIndividualPost.individualPost;
 
@@ -40,7 +37,7 @@ public class IndividualPostCustomImpl implements IndividualPostCustom{
                         individualPost.postComment)
                 )
                 .from(individualPost)
-                .where(searchByLike(domain))
+                .where(searchByLike(userName))
                 .orderBy(QIndividualPost.individualPost.postCode.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

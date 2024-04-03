@@ -2,8 +2,6 @@ package com.culfoshe.indiviidualPage.service;
 
 
 import com.culfoshe.entity.IndividualMem;
-import com.culfoshe.entity.IndividualPhoto;
-import com.culfoshe.entity.IndividualPost;
 import com.culfoshe.indiviidualPage.dto.IndividualPageDTO;
 import com.culfoshe.indiviidualPage.dto.IndividualPostPreviewDTO;
 import com.culfoshe.indiviidualPage.dto.SavedPostDTO;
@@ -17,12 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,18 +30,20 @@ public class IndividualService {
     private final IndividualPhotoRepository individualPhotoRepository;
     private final IndividualPostRepository individualPostRepository;
     private final SavedPostRepositoryCustom savedPostRepositoryCustom;
+
     @Transactional(readOnly = true)
-    public IndividualPageDTO getUserPage(String domain){
+    public IndividualPageDTO getUserPage(String userName){
 //        log.info("IndividualService.getUserPage");
-        IndividualMem individualMem = individualMemRepository.findByIndividualDomain(domain);
+        IndividualMem individualMem = individualMemRepository.findByEmail(userName);
+        log.info("userName : " , userName);
         IndividualPageDTO individualPageDTO = IndividualPageDTO.createIndividualPageDTO(individualMem);
         return individualPageDTO;
     }
 
-    public Page<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String domain){
+    public Page<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String userName){
         log.info("IndividualService.getIndividualPostPreview");
-        List<IndividualPostPreviewDTO> list = individualPostCustom.getIndividualPostPreview(pageable, domain);
-        long totalCount = individualPostRepository.countPost(domain);
+        List<IndividualPostPreviewDTO> list = individualPostCustom.getIndividualPostPreview(pageable, userName);
+        long totalCount = individualPostRepository.countPost(userName);
 
         for(int i = 0 ; i < list.size() ; i++){
             IndividualPostPreviewDTO postPreviewDTO =  list.get(i);
@@ -57,8 +54,8 @@ public class IndividualService {
 
         return new PageImpl<>(list, pageable, totalCount);
     }
-    public Page<SavedPostDTO> getSavedPost(Pageable pageable, String domain){
-        IndividualMem individualMem = individualMemRepository.findByIndividualDomain(domain);
+    public Page<SavedPostDTO> getSavedPost(Pageable pageable, String email){
+        IndividualMem individualMem = individualMemRepository.findByEmail(email);
         Long id = individualMem.getId();
 
         return savedPostRepositoryCustom.getSavedPost(pageable, id);

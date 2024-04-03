@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/individual/individualPage.css}" />
+</th:block>
+
+<th:block layout:fragment="content">
+
+
+    <div class="total_user_container">
+        <div class="user_container">
+            <div class="mainbox">
+                <div class="storebox"><br>
+                    <label class="shopname">네스토</label>
+                    <label>(일반음식점 / 일식)</label>
+                    <button class="storage1_1"><img src=Image/저장.png class="storage2"></button>
+
+                    <br><label>: 라멘 위에 올라가는 차슈가 굉장히 부드럽고 깔끔하면서도 진한 육수가 매력적이었음.</label>
+                </div>
+                <br>
+
+                <div class="photobox">
+                    <img src= Image/네스토1.jpeg class="storepic1">
+                    <img src= Image/네스토2.jpeg class="storepic">
+                    <img src= Image/네스토3.jpeg class="storepic">
+                </div>
+
+                <br><br><input type="button" value="더보기" class="btn">
+            </div>
+        </div><br><br>
+
+        <div class="user_container">
+            <div class="mainbox">
+                <div class="storebox"><br>
+                    <label class="shopname">셔셔</label>
+                    <label>(일반음식점 / 중식)</label>
+                    <button class="storage1_2"><img src=Image/저장.png class="storage2"></button>
+
+                    <br><label>: 먹는 순간 홍콩에 여행을 온 것 같은 착각이 들 정도로 현지 느낌이 물씬했으며 전반적으로 맛있었습니다.</label>
+                </div>
+                <br>
+
+                <div class="photobox">
+                    <img src= Image/셔셔1.jpeg class="storepic">
+                    <img src= Image/셔셔2.jpeg class="storepic">
+                    <img src= Image/셔셔3.jpeg class="storepic">
+                </div>
+
+                <br><br><input type="button" value="더보기" class="btn">
+            </div>
+        </div><br><br>
+
+        <div class="user_container">
+            <div class="mainbox">
+                <div class="storebox"><br>
+                    <label class="shopname">Pretzely 프레즐리</label>
+                    <label>(카페)</label>
+                    <button class="storage1_3"><img src=Image/저장.png class="storage2"></button>
+
+                    <br><label class="coment">: 요즘 유행하는 프레즐을 다양하게 만나볼 수 있었고 매장이 넓어 이용에 어려움이 없었어요! :-)</label>
+                </div>
+                <br>
+
+                <div class="photobox">
+                    <img src= Image/프레즐리1.jpeg class="storepic">
+                    <img src= Image/프레즐리2.jpeg class="storepic">
+                    <img src= Image/프레즐리3.jpeg class="storepic">
+                </div>
+
+                <br><br><input type="button" value="더보기" class="btn">
+            </div>
+        </div>
+    </div>
+
+    <hr class="line1">
+
+
+
+</th:block>
+
+</html>

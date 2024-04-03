@@ -18,6 +18,10 @@ public class MainViewDTO {
     private String postReview;
     private String imgUrl;
 
+    public MainViewDTO() {
+
+    }
+//    private
     @QueryProjection
     public MainViewDTO(String storeName, String signatureMenu, String postReview,
                        String imgUrl) {

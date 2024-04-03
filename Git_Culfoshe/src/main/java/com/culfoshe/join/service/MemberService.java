@@ -1,5 +1,8 @@
 package com.culfoshe.join.service;
 
+import com.culfoshe.entity.SecurityIndividualMember;
+import com.culfoshe.entity.SecurityPartnerMem;
+import com.culfoshe.indiviidualPage.dto.LoginSessionDTO;
 import com.culfoshe.join.dto.IndividualMemFormDTO;
 import com.culfoshe.join.dto.PartnerMemFormDTO;
 import com.culfoshe.entity.IndividualMem;
@@ -7,6 +10,7 @@ import com.culfoshe.entity.PartnerMem;
 import com.culfoshe.join.repository.IndividualMemRepository;
 import com.culfoshe.join.repository.PartnerMemRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +25,8 @@ import javax.validation.Valid;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class MemberService implements UserDetailsService {
+@Slf4j
+public class    MemberService implements UserDetailsService {
 
     private final IndividualMemRepository individualMemRepository;
     private final PartnerMemRepository partnerMemRepository;
@@ -29,14 +34,18 @@ public class MemberService implements UserDetailsService {
     private static long partnerMemberId = 100000000;
 
     public static long makePartnerMemberId(){
-//        if()
+
         return partnerMemberId;
     }
 
     public IndividualMem saveIndividualMem(@Valid IndividualMemFormDTO individualMemFormDTO) {
-        System.err.println("memberService 동작");
         IndividualMem individualMem = IndividualMemFormDTO.createIndividualMem(individualMemFormDTO, passwordEncoder);
 
+        validateDulicateMember(individualMem.getEmail());
+        return individualMemRepository.save(individualMem);
+    }
+
+    public IndividualMem saveIndividualMem(@Valid IndividualMem individualMem) {
         validateDulicateMember(individualMem.getEmail());
         return individualMemRepository.save(individualMem);
     }
@@ -60,21 +69,65 @@ public class MemberService implements UserDetailsService {
         }
     }
 
+    public boolean validateDulicate(String email) {
+        IndividualMem findIndividualMem = individualMemRepository.findByEmail(email);
+        PartnerMem findPartnerMem = partnerMemRepository.findByEmail(email);
+
+        if(findIndividualMem != null) {
+            /*throw new IllegalStateException("이미 가입된 회원입니다.");*/
+            return false;
+        } else if(findPartnerMem != null){
+            /*throw new IllegalStateException("이미 가입된 회원입니다.");*/
+            return false;
+        }
+
+        return true; // 중복 가입한 이메일이 아닌 새로운 이메일일 경우
+    }
+
+    public boolean validateDulicateDomain(String email){
+        IndividualMem findIndividualMem = individualMemRepository.findByEmail(email);
+        PartnerMem findPartnerMem = partnerMemRepository.findByEmail(email);
+
+        if(findIndividualMem != null) {
+            return false;
+        } else if(findPartnerMem != null){
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean validateDulicateStoreNum(String storeNum){
+        PartnerMem findPartnerMem = partnerMemRepository.findByStoreNum(storeNum);
+
+        if(findPartnerMem != null){
+            return false;
+        }
+
+        return true;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email)
                                     throws UsernameNotFoundException {
-        IndividualMem individualMem = individualMemRepository.findByEmail(email);
         PartnerMem partnerMem = partnerMemRepository.findByEmail(email);
+        IndividualMem individualMem = individualMemRepository.findByEmail(email);
 
-       if(individualMem == null){
-           throw new UsernameNotFoundException(email);
-       } else if(partnerMem == null) {
-           throw new UsernameNotFoundException(email);
-       }
+        if(individualMem == null && partnerMem == null){
+            throw new UsernameNotFoundException(email);
+        }
+
+        UserDetails securityUser = individualMem != null ?
+                new SecurityIndividualMember(individualMem)
+                : new SecurityPartnerMem(partnerMem);
 
        return User.builder()
-               .username(individualMem.getEmail())
-               .password(individualMem.getPassword())
+               .username(securityUser.getUsername())
+               .password(securityUser.getPassword())
+               .roles(securityUser.getAuthorities().toString())
                .build();
     }
+
+
+
 }

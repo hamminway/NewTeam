@@ -162,10 +162,7 @@
                                 <tr>
                                     <td class="td1">휴대폰 번호</td>
                                     <td class="td2_2">
-                                        <div class="checkitem">
-                                            <input th:field="*{phoneNum}" type="text" class="phonecheck" id="indicPhone" value="010-" />
-                                            <button class="btn">인증하기</button><br />
-                                        </div>
+                                        <input th:field="*{phoneNum}" type="text" class="pwd" id="indicPhone" value="010-" /><br>
                                         <label class="pwdchk1" id="indicPhoneChk">* 010 - 0000 - 0000 양식에 맞춰 입력</label>
                                     </td>
                                 </tr>
@@ -177,7 +174,7 @@
                                             <label class="culfosheDomain">http://www.culfoshe.com/</label>
                                             <div class="checkitem1">
                                                 <input th:field="*{individualDomain}" type="text" class="domain" id="indicDomain" />
-                                                <button class="domainBtn">중복확인</button><br />
+                                                <button class="domainBtn" id="indicDomainBtn">중복확인</button><br />
                                             </div>
                                         </div>
                                         <label class="pwdchk" id="indicDomainChk"></label>
@@ -387,22 +384,31 @@
                                     <td class="td4_2">
                                         <div class="checkitem">
                                             <input th:field="*{storeNum}" type="text" maxlength="12" class="id" id="storeNum" />
-                                            <button class="btn" id="storeNumChk">중복확인</button>
+                                            <button type="button" class="btn" id="storeNumChkBtn">중복확인</button>
                                         </div>
-                                        <label class="numchk" id="numchk">* 000 - 00 - 0000 양식에 맞춰 입력</label>
+                                        <label class="numchk" id="storeNumChk">* 000 - 00 - 0000 양식에 맞춰 입력</label>
                                     </td>
                                 </tr>
+                            </table>
 
+                            <table class="partnerInformini1">
                                 <tr>
                                     <td class="td3">사업장 소재지</td>
-                                    <td class="td4">
-                                        <div class="checkitem">
-                                            <input th:field="*{storeLocation}" type="text" class="id" id="storePlace" />
-                                            <button class="btn" id="storePlaceChk">주소찾기</button>
-                                        </div>
+                                    <td class="td4_4">
+                                        <div class="checkitem2">
+                                            <input type="text" class="id" id="storePlace" />
+                                            <button type="button" class="btn" id="storePlaceChk" onclick="execDaumPostcode()">주소찾기</button>
+                                        </div><br>
+
+                                        <input type="text" class="managerphone" id="storePlaceDetails" placeholder="상세주소 입력">
+
+                                        <input th:field="*{storeLocation}" type="hidden" id="storePlaceBox">
+                                        <span id="guide" style="color:#999;display:none"></span>
                                     </td>
                                 </tr>
+                            </table>
 
+                            <table class="partnerInformini">
                                 <tr>
                                     <td class="td3">대표자명</td>
                                     <td class="td4">
@@ -432,7 +438,7 @@
                                             <label class="culfosheDomain">http://www.culfoshe.com/</label>
                                             <div class="checkitem1">
                                                 <input th:field="*{partnerDomain}" type="text" class="domain" id="partDomain" />
-                                                <button class="domainBtn">중복확인</button><br />
+                                                <button class="domainBtn" id="partDomainBtn">중복확인</button><br />
                                             </div>
                                         </div>
                                         <label class="pwdchk" id="partDomainChk"></label>
@@ -459,6 +465,44 @@
 
 <th:block layout:fragment="script">
     <script type="text/javascript" th:src="@{/script/members/memberForm.js}"></script>
+    <script th:inline="javascript">
+        let test = null;
+        let test_text = null;
+        var data = {
+            "b_no": ["8921301484"] // 사업자번호 "xxxxxxx" 로 조회 시,
+        };
+
+        document.addEventListener("DOMContentLoaded", function(){
+            fetch("https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=uKPbZloC9gAvd0Q7bZT6YbeFoc3coVy1AOuez5RdZ2pCuGdGeM/KKGW5kwbhddw/l1xTBVU7F9kwGydMPRn9aA==", {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                },
+
+                body: JSON.stringify(data), // json 을 string으로 변환하여 전송
+            })
+
+                .then((response) => {
+                    test = response;
+                    console.log(response);
+                    return response.json()
+
+                })
+                .then((dataa) => {
+                    test_text = dataa;
+                    console.log(dataa)
+                    console.log(dataa["data"][0]["b_stt_cd"])
+
+                })
+
+
+
+        });
+
+    </script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript" th:src="@{/script/members/postcode.v2.js}"></script>
 </th:block>
 
 </html>

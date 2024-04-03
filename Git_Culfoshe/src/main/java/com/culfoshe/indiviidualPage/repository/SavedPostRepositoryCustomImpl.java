@@ -48,7 +48,7 @@ public class SavedPostRepositoryCustomImpl implements SavedPostRepositoryCustom 
                         individualPost.location )
                 )
                 .from(savedPost)
-                .join(savedPost.individualPost)
+                .join(savedPost.individualPost, individualPost)
                 .where(savedPost.individualMem.id.eq(id))
                 .orderBy(individualPost.regTime.desc())
                 .offset(pageable.getOffset())

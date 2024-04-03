@@ -1,0 +1,20 @@
+#side_wrap h2{
+    display: inline;
+}
+#side_wrap{
+    margin: 25px;
+    position: sticky;
+    top: 210px;
+    transition: top 0.5s;
+}
+div{
+    display: block;
+}
+.side_container{
+    position: relative;
+    top:10px;
+    transition: 0.3s;
+}
+.sideHoverAction{
+	top: 375px !important;
+}
