@@ -1,7 +1,7 @@
     @charset "UTF-8";
     
 .content_wrap{
-
+    left : -100px;
 }
 
 	.profile_text{display: flex;}
@@ -81,3 +81,6 @@
     .d{margin-left: 15px; background-color: white; border: none;}
 
     .pagenum{margin: 30px 0px 0px 555px;}
+
+
+

@@ -20,6 +20,11 @@
                     <h2>카테고리</h2>
                     <span>category</span>
                 </div>
+                <ul>
+                    <li th:if="${cateList != null}" th:each="each, state : ${cateList}">
+                        
+                    </li>
+                </ul>
             </div>
         </div>
         <script src="/script/individual/myPageSide.js"></script>
