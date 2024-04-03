@@ -16,6 +16,7 @@ public class IndividualMem {
 
     @Id
     @Column(name = "individualmem_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Email

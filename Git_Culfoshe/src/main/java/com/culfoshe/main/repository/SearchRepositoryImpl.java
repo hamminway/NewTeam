@@ -251,38 +251,33 @@ public class SearchRepositoryImpl implements SearchRepository {
         QPartnerMem partnerMem = QPartnerMem.partnerMem;
         QIndividualPost individualPost = QIndividualPost.individualPost;
         QIndividualPhoto individualPhoto = QIndividualPhoto.individualPhoto;
+        QIndividualMem individualMem = QIndividualMem.individualMem;
+        QPartnerMemPK partnerMemPK = QPartnerMemPK.partnerMemPK;
 
         List<SearchPreviewDTO> content = queryFactory
                 .select(new QSearchPreviewDTO(
-                        partnerMem.partnerMemPK.partnermem_id,
-                        partnerMem.storeName,
+                        individualMem.pageName,
                         individualPost.postTitle,
+                        individualMem.characterName,
                         individualPost.postReview,
                         individualPhoto.imgUrl,
-                        individualPost.individualMem.pageName,
-                        individualPost.individualMem.characterName)
+                        individualPost.location)
                 )
                 .from(individualPhoto)
                 .join(individualPhoto.individualPost, individualPost)
-                .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
-//                .where(storePhoto.repImgYn.eq("Y"))   //대표 이미지
+                .leftJoin(individualPost.individualMem, individualMem)
                 .offset(pageable.getOffset())   //데이터를 가지고 올 시작인덱스 지정
                 .limit(pageable.getPageSize())  //최대갯수 지정
                 .fetch();
 
         content.addAll(queryFactory
                 .select(new QSearchPreviewDTO(
-                        partnerMem.partnerMemPK.partnermem_id,
                         partnerMem.storeName,
-                        individualPost.postTitle,
-                        individualPost.postReview,
-                        individualPhoto.imgUrl,
-                        individualPost.individualMem.pageName,
-                        individualPost.individualMem.characterName)
+                        partnerMem.signatureMenu,
+                        partnerMem.storeImage,
+                        partnerMemPK.store_location)
                 )
-                .from(individualPhoto)
-                .join(individualPhoto.individualPost, individualPost)
-                .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
+                .from(partnerMem)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch());
@@ -290,14 +285,17 @@ public class SearchRepositoryImpl implements SearchRepository {
         long total = queryFactory.select(Wildcard.count)
                 .from(individualPhoto)
                 .join(individualPhoto.individualPost, individualPost)
-                .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
+                .join(individualPost.individualMem, individualMem)
                 .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()
                 ), searchByLike(searchDTO.getSearchBy(),
                                 searchDTO.getSearchQuery()))
                 .fetchOne();
 
+        total += queryFactory.select(Wildcard.count)
+                .from(partnerMem)
+                .fetchOne();
 
         return new PageImpl<>(content, pageable, total);
-    }
 
+    }
 }

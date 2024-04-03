@@ -6,13 +6,13 @@
 <!--header-->
 <div th:fragment="header">
     <div class="top-bar">
-        <div class="con row">
-            <a th:href="@{/}" class="logo block cell img-box">
+        <div class="con sort">
+            <a th:href="@{/}" class="logo block cell">
                 <img th:src="@{/img/main_logo.jpg}" alt="로고">
             </a>
 
             <div>
-                <div class="navbar">
+                <div class="bar">
                     <a href="#">
                         <img th:src="@{/img/weather.png}" alt="날씨아이콘">25.2&#176;</a>
                     &#124;
@@ -22,7 +22,7 @@
 
                     <a sec:authorize="isAuthenticated()" th:href="@{/}">로그아웃</a>
 
-                    <a sec:authorize="isAuthenticated()" href="#">회원 정보 수정</a>
+                    <a sec:authorize="isAuthenticated()" href="#">나의 페이지</a>
                 </div>
                 <form class="icon" th:action="@{/}" method="get">
                     <input name="searchQuery" type="search"  placeholder="검색" class="mini-Search">
@@ -33,16 +33,16 @@
             </div>
 
             <nav class="menu-box cell-right">
-                <ul class="row" id = "target">
+                <ul class="r" id = "target">
                     <li class="cell dum">
                         <span class="block"></span>
                     </li>
                     <li class="cell">
-                        <a href="#" class="block">컬처</a>
+                        <a href="#" class="header-text block">컬처</a>
                         <div class="relative">
                             <ul>
-                                <li><a href="#" class="block">예술</a></li>
-                                <li><a href="#" class="block">원데이 클래스</a></li>
+                                <li><a href="#" class="block disable">예술</a></li>
+                                <li><a href="#" class="block disable">원데이 클래스</a></li>
                             </ul>
                         </div>
                         <div class="menu-text blind">
@@ -51,12 +51,12 @@
                         </div>
                     </li>
                     <li class="cell">
-                        <a href="#" class="block">푸드</a>
+                        <a href="#" class="header-text block">푸드</a>
                         <div class="relative">
                             <ul>
-                                <li><a href="#" class="block">카페</a></li>
-                                <li><a href="#" class="block">휴게 음식점</a></li>
-                                <li><a href="#" class="block">일반 음식점</a></li>
+                                <li><a href="#" class="block disable">카페</a></li>
+                                <li><a href="#" class="block disable">휴게 음식점</a></li>
+                                <li><a href="#" class="block disable">일반 음식점</a></li>
                             </ul>
                         </div>
                         <div class="menu-text blind">
@@ -65,14 +65,14 @@
                         </div>
                     </li>
                     <li class="cell">
-                        <a href="#" class="block">쉘터</a>
+                        <a href="#" class="header-text block">쉘터</a>
                         <div class="relative">
                             <ul>
-                                <li><a href="#" class="block">모텔</a></li>
-                                <li><a href="#" class="block">호텔/리조트</a></li>
-                                <li><a href="#" class="block">펜션/풀빌라</a></li>
-                                <li><a href="#" class="block">글램핑/캠핑장</a></li>
-                                <li><a href="#" class="block">게스트 하우스</a></li>
+                                <li><a href="#" class="block disable">모텔</a></li>
+                                <li><a href="#" class="block disable">호텔/리조트</a></li>
+                                <li><a href="#" class="block disable">펜션/풀빌라</a></li>
+                                <li><a href="#" class="block disable">글램핑/캠핑장</a></li>
+                                <li><a href="#" class="block disable">게스트 하우스</a></li>
                             </ul>
                         </div>
                         <div class="menu-text blind">
@@ -81,11 +81,11 @@
                         </div>
                     </li>
                     <li class="cell">
-                        <a href="#" class="block">그 외</a>
+                        <a href="#" class="header-text block">그 외</a>
                         <div class="relative">
                             <ul>
-                                <li><a href="#" class="block">액티비티</a></li>
-                                <li><a href="#" class="block">공지사항</a></li>
+                                <li><a href="#" class="block disable">액티비티</a></li>
+                                <li><a href="#" class="block disable">공지사항</a></li>
                             </ul>
                         </div>
                         <div class="menu-text blind">

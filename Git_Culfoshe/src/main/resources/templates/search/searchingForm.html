@@ -9,45 +9,79 @@
     <th:block layout:fragment="css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-        <link th:href="@{/css/search/searchingForm.css}" rel="stylesheet" type="text/css" />
+        <link th:href="@{/css/search/searchingForm.css}" rel="stylesheet" type="text/css">
     </th:block>
 <body>
-    <div layout:fragment="content">
+    <div class="border-search" layout:fragment="content">
         <form>
+        <div style="margin-top: 350px;"></div>
         <!--검색창 검색카테고리 시간 작성자/제목 -->
-            <div class="p-3 m-0 border-0 bd-example m-0 border-0">
+            <div class="p-3 m-0 border-0 bd-example m-0 border-0" >
                 <!--검색창-->
-                <div>
+                <div class="flex">
                     <div class="form-inline justify-content-center" th:object="${searchDTO}">
-                        <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
-                        <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
-                        <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
-                            <option value="all">전체기간</option>
-                            <option value="1d">1일</option>
-                            <option value="1w">1주</option>
-                            <option value="1m">1개월</option>
-                            <option value="6m">6개월</option>
-                        </select>
-                        <select th:field="*{headerCategory}" class="form-control" style="width:auto;">
-                            <option value="">전체</option>
-                            <option value="CULTURE">문화</option>
-                            <option value="FOOD">음식</option>
-                            <option value="SHELTER">숙소</option>
-                            <option value="ETC">그 외</option>
-                        </select>
-                        <select th:field="*{searchBy}" class="form-control" style="width:auto;">
-                            <option value="">전체</option>
-                            <option value="storeName">상호명</option>
-                            <option value="pageName">페이지</option>
-                            <option value="characterName">등록자</option>
-                            <option value="postTitle">포스트</option>
-                        </select>
+                        <div class="search-row">
+                            <input th:field="*{searchQuery}" type="text" name="keyword" class="form-set form-control" placeholder="검색어를 입력해주세요.">
+                            <button id="searchBtn" type="submit" class="btn btn-primary">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #fff;"></i>
+                            </button>
+                            <select th:field="*{searchDateType}" class="search-cate form-control">
+                                <option value="all">전체기간</option>
+                                <option value="1d">1일</option>
+                                <option value="1w">1주</option>
+                                <option value="1m">1개월</option>
+                                <option value="6m">6개월</option>
+                            </select>
+                            <select th:field="*{headerCategory}" class="search-cate form-control">
+                                <option value="">카테고리</option>
+                                <option value="CULTURE">문화</option>
+                                <option value="FOOD">음식</option>
+                                <option value="SHELTER">숙소</option>
+                                <option value="ETC">그 외</option>
+                            </select>
+                            <select th:field="*{searchBy}" class="search-cate form-control">
+                                <option value="">전체</option>
+                                <option value="storeName">상호명</option>
+                                <option value="pageName">페이지</option>
+                                <option value="characterName">등록자</option>
+                                <option value="postTitle">포스트</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
                 <!--검색결과-->
                 <div>
-                    <div th:each="search, status:${searches.getContent()}" class="card mb-3" style="max-width: 540px;">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="..." class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="..." class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div th:each="search, status:${searches.getContent()}" class="card mb-3">
                         <div class="row g-0">
                         <div class="col-md-4">
                             <img th:src="${individualPhoto.imgUrl}" class="img-fluid rounded-start" alt="...">
@@ -67,24 +101,28 @@
                     </div>
                 </div>
 
+                <div style="height:400px;"></div>
+
                 <!--검색 페이지-->
-                <nav aria-label="Page navigation example">
+                <div th:if="${!searches.isEmpty()}">
                     <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
+
+                    <li class="page-item" th:classappend="${!searches.hasPrevious} ? 'disabled'">
+                        <a class="page-link" th:href="@{|?page=${searches.number-1}|}" aria-label="Previous">
                         <span aria-hidden="true">«</span>
                         </a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
+                    <li class="page-item" th:each="page : ${number.sequence(0, searches.totalPages-1)}"
+                    th:classappend="${page == searches.number} ? 'active'">
+                        <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|">1</a>
+                    </li>
+                    <li class="page-item" th:classappend="${!searches.hasNext} ? 'disabled'">
+                        <a class="page-link" th:href="@{|?page=${searches.number+1|}" aria-label="Next">
                         <span aria-hidden="true">»</span>
                         </a>
                     </li>
                     </ul>
-                </nav>
+                </div>
 
             </div>
         </form>

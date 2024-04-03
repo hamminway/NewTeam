@@ -19,12 +19,12 @@ public class MainViewDTO {
     private String imgUrl;
 
     @QueryProjection
-    public MainViewDTO(PartnerMem partnerMem,
-                   IndividualPost individualPost) {
-        this.storeName = partnerMem.getStoreName();
-        this.signatureMenu = partnerMem.getSignatureMenu();
-        this.postReview = individualPost.getPostReview();
-        this.imgUrl = partnerMem.getStoreImage();
+    public MainViewDTO(String storeName, String signatureMenu, String postReview,
+                       String imgUrl) {
+        this.storeName = storeName;
+        this.signatureMenu = signatureMenu;
+        this.postReview = postReview;
+        this.imgUrl = imgUrl;
     }
 
 }

@@ -5,7 +5,7 @@ function backTop() {
     if(position) {
         window.requestAnimationFrame(()=> {
             window.scrollTo(0, position - position / 10);
-            t.classList.remove("blind");
+            t.classList.remove("scrolled");
             backTop();
         });
     }

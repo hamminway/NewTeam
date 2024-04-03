@@ -7,49 +7,44 @@ import com.culfoshe.entity.PartnerMemPK;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter @Setter
+@Getter @Setter @ToString
 public class SearchPreviewDTO {
 
-    private Long id;
-    private String storeName;    //상호명
+    private String pageName;
     private String postTitle;
+    private String characterName;
     private String postReview;   //한줄평
     private String imgUrl;
-
-    private String pageName;
-    private String characterName;
     private String location;
+
+    private String storeName;    //상호명
+    private String signatureMenu;
+    private String storeImage;
+    private String store_location;
 
 
     //individualPost 조회할 필드
-    public SearchPreviewDTO(IndividualMem individualMem, IndividualPost individualPost) {
-        this.pageName = individualMem.getPageName();
-        this.characterName = individualMem.getCharacterName();
-        this.postTitle = individualPost.getPostTitle();
-        this.postReview = individualPost.getPostReview();
+    @QueryProjection
+    public SearchPreviewDTO(String pageName, String postTitle, String characterName,
+                            String postReview, String imgUrl, String location) {
+        this.pageName = pageName;
+        this.postTitle = postTitle;
+        this.characterName = characterName;
+        this.postReview = postReview;
+        this.imgUrl = imgUrl;
+        this.location = location;
     }
 
     //PartnerMem 조회할 필드
-    public SearchPreviewDTO(PartnerMem partnerMem, PartnerMemPK partnerMemPK) {
-        this.storeName = partnerMem.getStoreName();
-        this.location = partnerMemPK.getStore_location();
-    }
-
     @QueryProjection
-    public SearchPreviewDTO(Long id, String storeName, String postTitle,
-                            String postReview, String imgUrl, String pageName,
-                            String characterName) {
-        this.id = id;
+    public SearchPreviewDTO(String storeName, String signatureMenu, String storeImage,
+                            String store_location) {
         this.storeName = storeName;
-        this.postTitle = postTitle;
-        this.postReview = postReview;
-        this.imgUrl = imgUrl;
-
-        this.pageName = pageName;
-        this.characterName = characterName;
+        this.signatureMenu = signatureMenu;
+        this.storeImage = storeImage;
+        this.store_location = store_location;
     }
-
-
 
 }

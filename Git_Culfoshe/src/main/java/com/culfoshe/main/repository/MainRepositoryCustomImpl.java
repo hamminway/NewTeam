@@ -34,24 +34,25 @@ public class MainRepositoryCustomImpl implements MainRepositoryCustom {
 
         List<MainViewDTO> content = queryFactory
                 .select(new QMainViewDTO(
-                        partnerMem,
-                        individualPost)
+                        partnerMem.storeName,
+                        partnerMem.signatureMenu,
+                        partnerMem.storeImage,
+                        individualPost.postReview)
                 )
-                .from(storePhoto)
-                .join(storePhoto.partnerMem, partnerMem)
-                .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
-                .where(storePhoto.repImgYn.eq("Y"))
+                .from(individualPost)
+                .join(individualPost.partnerMem, partnerMem)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
       long total = queryFactory.select(Wildcard.count)
-              .from(storePhoto)
-              .join(storePhoto.partnerMem, partnerMem)
-              .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
-              .where()
+              .from(individualPost)
+              .join(individualPost.partnerMem, partnerMem)
+              .orderBy(partnerMem.storeNum.desc())
               .fetchOne();
 
         return new PageImpl<>(content, pageable, total);
+
+//        return null;
     }
 }

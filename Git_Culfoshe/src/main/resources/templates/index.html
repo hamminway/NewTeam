@@ -15,7 +15,7 @@
     <body>
     <!-- main -->
     <div layout:fragment="content" class="main con border">
-        <form class="main-1">
+        <form class="main-1" action="/search/searchList" method="GET" role="search">
             <div class="main-section" th:object="${searchDTO}">
 
                 <div class="main-search">
@@ -99,20 +99,23 @@
                 <div class="commend-box" id="reg-box">
                     <i class="fa-solid fa-angle-left commend-box-left-btn" style="color: #247b29;"></i>
 
-                    <div th:each="viewDTO, status: ${mainViewDTOs.getContent()}" id="slider-div">
+                    <th:block th:if="${mainViewDTOs != null}">
+                        <div th:each="viewDTO, status: ${mainViewDTOs.getContent()}" id="slider-div">
 
-                        <div>
-                            <ul class="commend-box-in commend-box-in-margin">
-                                <a href="#"><img th:src="@{/img/food_1.jpg}">
-                                    <li th:text="${viewDTO.storeName}">📍 가게이름 : 난포
-                                        <i class="fa-regular fa-bookmark bMark-icon-1" style="color: #000000;"></i>
-                                    </li></a>
-                                <li th:text="${viewDTO.signatureMenu}">📍 대표메뉴 : 강된장쌈밥, 곰탕</li>
-                                <li th:text="${viewDTO.postReview}">📍 한줄평 : 곰탕 제발 먹어주세요....</li>
-                            </ul>
+                            <div>
+                                <ul class="commend-box-in commend-box-in-margin">
+                                    <a href="#"><img th:src="@{/img/food_1.jpg}">
+                                        <li th:text="${viewDTO.storeName}">📍 가게이름 : 난포
+                                            <i class="fa-regular fa-bookmark bMark-icon-1" style="color: #000000;"></i>
+                                        </li></a>
+                                    <li th:text="${viewDTO.signatureMenu}">📍 대표메뉴 : 강된장쌈밥, 곰탕</li>
+                                    <li th:text="${viewDTO.postReview}">📍 한줄평 : 곰탕 제발 먹어주세요....</li>
+                                </ul>
+                            </div>
+                            <i class="fa-solid fa-angle-right commend-box-right-btn" style="color: #247b29;"></i>
                         </div>
-                    <i class="fa-solid fa-angle-right commend-box-right-btn" style="color: #247b29;"></i>
-                </div>
+                    </th:block>
+
             </div>
         </div> <!-- main-2 -->
 
