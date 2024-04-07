@@ -9,7 +9,7 @@
         <div class="scroll-btn-group active">
             <div class="myPage-btn">
                <button class="user-page" title="나의 페이지로 들어가기">
-                   <a sec:authorize="isAuthenticated()" th:href="@{session.loginSessionDTO.individualDomain}">
+                   <a sec:authorize="isAuthenticated()" href="/">
                        <p><strong>나의 페이지</strong></p>
                        <span class="user-page-i">
                            <i class="fa-regular fa-circle-user" style="color: #ffffff;"></i>
@@ -19,7 +19,7 @@
            </div>
             <div class="write-btn">
                 <button class="user-write" title="글쓰기">
-                    <a sec:authorize="isAuthenticated()" th:href="">
+                    <a sec:authorize="isAuthenticated()" href="/">
                         <p id="write"><strong>글쓰기</strong></p>
                         <span class="user-write-i">
                             <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
@@ -29,7 +29,7 @@
             </div>
             <div class="save-btn">
                 <button class="user-save" title="북마크로 들어가기">
-                    <a sec:authorize="isAuthenticated()" th:href="@{}">
+                    <a sec:authorize="isAuthenticated()" href="/">
                         <p><strong>북마크</strong></p>
                         <span class="user-save-i">
                             <i class="fa-solid fa-bookmark" style="color: #ffffff;"></i>

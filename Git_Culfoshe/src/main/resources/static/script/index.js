@@ -50,11 +50,8 @@ $('#slider-div').slick({
 
 //지역 선택 시 해당 게시글로
 const reg = document.getElementsByClassName('commend-header');
-const commend = document.getElementById('reg-box')
+const commend = document.getElementById('reg-box');
 
-reg.addEventListener('click', (e)=> {
-
-})
 
 //지도
 

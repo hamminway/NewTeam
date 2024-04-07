@@ -1,12 +1,12 @@
 package com.culfoshe.join.service;
 
+import com.culfoshe.entity.IndividualMem;
+import com.culfoshe.entity.PartnerMem;
 import com.culfoshe.entity.SecurityIndividualMember;
 import com.culfoshe.entity.SecurityPartnerMem;
 import com.culfoshe.join.dto.IndividualMemFormDTO;
 import com.culfoshe.join.dto.OAuthMemFormDTO;
 import com.culfoshe.join.dto.PartnerMemFormDTO;
-import com.culfoshe.entity.IndividualMem;
-import com.culfoshe.entity.PartnerMem;
 import com.culfoshe.join.repository.IndividualMemRepository;
 import com.culfoshe.join.repository.PartnerMemRepository;
 import lombok.RequiredArgsConstructor;
@@ -141,7 +141,7 @@ public class MemberService implements UserDetailsService {
 
         UserDetails securityUser = individualMem != null ?
                 new SecurityIndividualMember(individualMem)
-                : new SecurityPartnerMem(partnerMem);
+                : new SecurityPartnerMem(partnerMem);;
 
        return User.builder()
                .username(securityUser.getUsername())

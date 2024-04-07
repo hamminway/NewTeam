@@ -4,12 +4,13 @@
 1-1. 하나라도 체크박스를 해제하면 전체 해제
 */
 
+const allcheck = document.getElementById('indickall');
+const evtBtn1 = document.getElementById('indick_a');
+const evtBtn2 = document.getElementById('indick_b');
+const evtBtn3 = document.getElementById('indick_c');
+const evtBtn4 = document.getElementById('indick_d');
+
 document.addEventListener('DOMContentLoaded', () => {
-  const allcheck = document.getElementById('indickall');
-  const evtBtn1 = document.getElementById('indick_a');
-  const evtBtn2 = document.getElementById('indick_b');
-  const evtBtn3 = document.getElementById('indick_c');
-  const evtBtn4 = document.getElementById('indick_d');
 
   allcheck.addEventListener('click', (event)  => {
 
@@ -44,6 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
       allcheck.checked = false;
     }
   })
+
+
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -185,25 +188,28 @@ function checkId(){
 */
 
 
-/*
-3. 정규식
-- 이메일 정규식(개인)
-*/
-
 let indicemail1 = document.getElementById('indicemail1')
 let indicemail2 = document.getElementById('indicemail2')
 let indicEmailchk = document.getElementById('indicEmailchk')
+
+let partemail1 = document.getElementById('partemail1')
+let partemail2 = document.getElementById('partemail2')
+let partEmailchk = document.getElementById('partEmailchk')
+
+/*
+3. 정규식
+- 이메일 정규식(개인)
 
 indicemail1.addEventListener("blur", function(){
   checklndicemail();
 })
 
 function checklndicemail(){
-  let emailexp=/^[a-zA-Z0-9+-\_.]/
+  let emailexp=/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 
-  if(indicemail1.value.length == 0){
+  if(indicEmailBox.value.length == 0){
     indicEmailchk.innerHTML = "* 필수 입력입니다"
-  }else if(emailexp.test(indicemail1.value)){
+  }else if(emailexp.test(indicEmailBox.value)){
     indicEmailchk.innerHTML = " "
   }else{
     indicEmailchk.innerHTML = "* 이메일 주소를 입력하세요"
@@ -226,14 +232,8 @@ function checklndicemail1(){
   }
 }
 
-/*
 3. 정규식
 - 이메일 정규식(파트너)
-*/
-
-let partemail1 = document.getElementById('partemail1')
-let partemail2 = document.getElementById('partemail2')
-let partEmailchk = document.getElementById('partEmailchk')
 
 partemail1.addEventListener("blur", function(){
   checkPartemail2();
@@ -266,7 +266,7 @@ function checkPartemail3(){
     partEmailchk.innerHTML = "* 이메일 주소를 양식에 맞춰 입력하세요"
   }
 }
-
+*/
 
 
 /*
@@ -286,10 +286,12 @@ function checkpassword(){
 
   if(indicPwInput.value.length == 0){
     indicPwdChk.innerHTML = "* 필수 입력입니다"
+    indicPwInput.focus();
   }else if(pwdexp.test(indicPwInput.value)){
     indicPwdChk.innerHTML = " "
   }else{
     indicPwdChk.innerHTML = "* 양식에 맞게 입력하세요"
+    indicPwInput.focus();
   }
 }
 
@@ -310,10 +312,12 @@ function checkpassword1(){
 
   if(partPwInput.value.length == 0){
     partPwdChk.innerHTML = "* 필수 입력입니다"
+    partPwInput.focus();
   }else if(pwdexp.test(partPwInput.value)){
     partPwdChk.innerHTML = " "
   }else{
     partPwdChk.innerHTML = "* 양식에 맞게 입력하세요"
+    partPwInput.focus();
   }
 }
 
@@ -336,12 +340,12 @@ function passwordCheck(){
 
   if(indicPwInputCheck.value.length == 0){
     indicPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
-  }else if(pwdchkexp.test(indicPwInputCheck.value)){
+    indicPwInputCheck.focus();
+  }else if(pwdchkexp.test(indicPwInputCheck.value) && indicPwInput.value == indicPwInputCheck.value){
     indicPwdDoubleChk.innerHTML= " "
-  }else if(indicPwInput.value == indicPwInputCheck.value){
-    indicPwdDoubleChk.innerHTML = " "
   }else{
     indicPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
+    indicPwInputCheck.focus();
   }
 }
 
@@ -362,12 +366,12 @@ function passwordCheck1(){
 
   if(partPwInputCheck.value.length == 0){
     partPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
-  }else if(pwdchkexp.test(partPwInputCheck.value)){
+    partPwInputCheck.focus();
+  }else if(pwdchkexp.test(partPwInputCheck.value) && partPwInput.value == partPwInputCheck.value){
     partPwdDoubleChk.innerHTML= " "
-  }else if(partPwInput.value == partPwInputCheck.value){
-    partPwdDoubleChk.innerHTML = " "
   }else{
     partPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
+    partPwInputCheck.focus();
   }
 }
 
@@ -375,7 +379,7 @@ function passwordCheck1(){
 
 /*
 3. 정규식
-- 개인 휴대폰 번호 정규식(개인)
+- 휴대폰 번호 정규식(개인)
 */
 
 let indicPhone = document.getElementById('indicPhone')
@@ -398,7 +402,7 @@ function checkNumber(){
 
 /*
 3. 정규식
-- 개인 휴대폰 번호 정규식(파트너)
+- 휴대폰 번호 정규식(파트너)
 */
 
 let partnerPhone = document.getElementById('partnerPhone')
@@ -420,31 +424,6 @@ function checkNumber1(){
 }
 
 
-
-/*
-3. 정규식
-- 사업자 등록번호 정규식
-*/
-
-let storeNum = document.getElementById('storeNum')
-let storeNumResult = document.getElementById('numchk')
-
-storeNum.addEventListener("blur", function(){
-  checkStoreNum();
-})
-
-function checkStoreNum(){
-  let partemailexp = /^[0-9]+-[0-9]+-[0-9]/
-
-  if(storeNum.value.length == 0){
-    storeNumResult.innerHTML = "* 필수 입력입니다"
-  }else if(partemailexp.test(storeNum.value)){
-    storeNumResult.innerHTML = " "
-  }else{
-    storeNumResult.innerHTML = "* 000 - 00 - 0000 양식에 맞춰 입력하세요"
-  }
-}
-
 /*
 4. 이메일 합치기
 - 개인
@@ -456,14 +435,32 @@ indicemail1.addEventListener("blur", function(){
   indicEmailBox.value = indicemail1.value + "@" + indicemail2.value;
 
   let indicUrl = "/members/checkUser?email=" + indicEmailBox.value;
-  validateCheckEmail(indicEmailchk, indicUrl);
+
+  let emailexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if(emailexp.test(indicEmailBox.value)) {
+    validateCheckEmail(indicEmailchk, indicUrl, indicemail1, indicEmailchk);
+
+  } else {
+    indicEmailchk.innerHTML = "* 이메일 양식에 맞춰 입력해주세요"
+  }
+
 })
 
 indicemail2.addEventListener("blur", function(){
   indicEmailBox.value = indicemail1.value + "@" + indicemail2.value;
 
   let indicUrl = "/members/checkUser?email=" + indicEmailBox.value;
-  validateCheckEmail(indicEmailchk, indicUrl);
+
+  let emailexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if(emailexp.test(indicEmailBox.value)) {
+    validateCheckEmail(indicEmailchk, indicUrl);
+
+  } else {
+    indicEmailchk.innerHTML = "* 이메일 양식에 맞춰 입력해주세요"
+  }
+
 })
 
 /*
@@ -485,11 +482,22 @@ for(let i = 0 ; i < emailaArr.length ; i++){
     partEmailBox.value = emailaArr[0].value + "@" + emailaArr[1].value;
 
     let PartnerUrl = "/members/checkUser?email=" + partEmailBox.value;
-    validateCheckEmail(partEmailchk, PartnerUrl);
+
+    let emailexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if(emailexp.test(partEmailBox.value)) {
+      validateCheckEmail(partEmailchk, PartnerUrl);
+
+      partDomain.value = document.getElementById("partemail1").value;
+
+    } else {
+      indicEmailchk.innerHTML = "* 이메일 양식에 맞춰 입력해주세요"
+    }
+
   })
 }
 
-function validateCheckEmail(target, url){
+function validateCheckEmail(target, url, element1, element2){
 
   fetch(url)
       .then(resp => {
@@ -498,6 +506,8 @@ function validateCheckEmail(target, url){
 
           target.style.color = "green";
           emailCheckMsg = "* 사용 가능한 이메일입니다."
+
+          element1.value = element2.value;
         } else {
 
           target.style.color = "red";
@@ -579,33 +589,54 @@ function validateCheckDomain(target, domain) {
 
         target.innerHTML = domainCheckMsg;
       })
-
-  /*
-  5. 중복확인 버튼 누르면 중복 검사
-  - 파트너(사업자 등록 번호)
-  */
-
-  let firstStoreNum = document.getElementById("storeNum1");
-  let secondStoreNum = document.getElementById("storeNum2");
-  let thirdStoreNum = document.getElementById("storeNum3");
-
-  storeNum.value = firstStoreNum.value + secondStoreNum.value + thirdStoreNum.value;
-
-  let storeNumChkBtn = document.getElementById("storeNumChkBtn");
-  let storeNumChk = document.getElementById("storeNumChk");
-
-  let storeNumCheckMsg = "";
-
-  storeNumChkBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    let partStoreNum = "/members/check" + "kStoreNum?storeNum=" + storeNum.value;
-
-    validateCheckStoreNum(storeNumChk, partStoreNum);
-  })
+  }
 
 
-  function validateCheckStoreNum(target, num) {
+/*
+5. 정규식 + API를 통한 유효성 검사 + 중복확인 버튼 누르면 중복 검사
+- 파트너(사업자 등록 번호)
+*/
+
+let storeNum = document.getElementById('storeNum')
+let storeNumResult = document.getElementById('storeNumChk')
+
+storeNum.addEventListener("change", function(){
+  checkStoreNum();
+})
+
+function checkStoreNum(){
+  let partemailexp = /^[0-9]{10}/
+
+  console.log(storeNum);
+
+  if(storeNum.value.length == 0){
+    storeNumResult.innerHTML = "* 필수 입력입니다"
+  } else if(partemailexp.test(storeNum.value)){
+    storeNumResult.innerHTML = " "
+  } else if(storeNum.value.length != 10 && storeNum.value != null){
+    storeNumResult.innerHTML = "* 양식에 맞춰 10개의 숫자를 입력하세요"
+  } else {
+    storeNumResult.innerHTML = "* 양식에 맞춰 10개의 숫자를 입력하세요"
+  }
+}
+
+let storeNumChkBtn = document.getElementById("storeNumChkBtn");
+let storeNumCheckMsg = "";
+
+storeNumChkBtn.addEventListener("click", function (e) {
+
+  let storeNumUrl = "/members/checkDomain?storeNum=" + storeNum.value;;
+
+  let data = {
+    "b_no": [storeNum.value] // 사업자번호 "xxxxxxx" 로 조회 시,
+  };
+
+  duplicateCheckStoreNum(storeNumUrl, data);
+
+})
+
+
+  function duplicateCheckStoreNum(target, num) {
 
     fetch(num)
         .then(resp => {
@@ -624,40 +655,11 @@ function validateCheckDomain(target, domain) {
         })
   }
 
-
-    /*
-    6. 사업장 소재지 버튼 클릭하면 카카오 주소 검색창 API 가져오기(뿌려주기까지 작성하기)
-    */
-
-    let validationNum = document.getElementsByClassName("storeNum3")[0];
-
-    validationNum.addEventListener("keyup", function (){
-
-      if(this.value.length == 5){
-
-      }
-
-    })
-
-    /*let storePlaceChk = document.getElementById("storePlaceChk");
-
-    storePlaceChk.addEventListener("click", ()=> {
-      storeAddressPopup();
-    })
-
-    function storeAddressPopup(){
-      let name = "사업장 소재지 찾기";
-      let option = "width = 500, height = 500, top = 100, left = 200, location = no"
-
-      window.open(name, option);
-    }*/
-
     /*
     7. 선택할 때 css 변화 및 개수 제한 두기
     */
 
-// 변수 선언
-// let interest1 = document.getElementById('interest1')
+// 변수 선언) let interest1 = document.getElementById('interest1')
 
     let checkNum = 0;
     let maxCheck = 3;
@@ -729,4 +731,147 @@ function validateCheckDomain(target, domain) {
         areaCheckNum--;
       }
     }
-  }
+
+    /*
+    8. 회원가입 버튼을 클릭했을 때
+    중복확인 등이 이뤄지지 않거나 빈칸이 존재할 때 넘어가지 않게 하도록 검사하기(개인)
+    */
+
+    let indicJoinBtn = document.getElementById("indicJoinBtn");
+
+    let indicInputList = document.getElementsByClassName("checkIndicInput");
+    // inputList는 이미 배열 형태로 만들어짐.
+
+    indicJoinBtn.addEventListener("click", function (e) {
+
+      e.preventDefault();
+
+      if(!(evtBtn1.checked && evtBtn2.checked && evtBtn3.checked)) {
+
+        e.preventDefault();
+        alert("개인) 필수 동의항목을 모두 체크해주세요")
+
+      } else {
+
+        let inputNum = checkNullInput(indicInputList);
+
+        console.log(inputNum);
+
+        switch (inputNum) {
+
+          case 0 :
+            e.preventDefault();
+            alert("개인 정보) 성명을 입력해주세요");
+            break;
+
+          case 1 :
+            e.preventDefault();
+            alert("개인 정보) 이메일을 입력해주세요");
+            break;
+
+          case 2 :
+            e.preventDefault();
+            alert("개인 정보) 비밀번호를 입력해주세요");
+            break;
+
+          case 3 :
+            e.preventDefault();
+            alert("개인 정보) 비밀번호 확인란을 입력해주세요");
+            break;
+
+          case 4 :
+            e.preventDefault();
+            alert("개인 정보) 통신사를 선택해주세요");
+            break;
+
+          case 5 :
+            e.preventDefault();
+            alert("개인 정보) 휴대폰 번호를 입력해주세요");
+            break;
+
+          case 6 :
+            e.preventDefault();
+            alert("개인 정보) 홈페이지 주소를 입력해주세요");
+            break;
+        }
+      }
+    })
+
+      function checkNullInput(target){
+
+        for(let i= 0; i<target.length; i++){
+
+          if(target[i].value === ''){
+            return i;
+          }
+
+        }
+
+        return -1;
+      }
+
+    /*
+    8. 회원가입 버튼을 클릭했을 때
+    중복확인 등이 이뤄지지 않거나 빈칸이 존재할 때 넘어가지 않게 하도록 검사하기(파트너)
+    */
+
+    let partJoinBtn = document.getElementById("partJoinBtn");
+    let partInputList = document.getElementsByClassName("checkpartInput");
+
+    partJoinBtn.addEventListener("click", function (e) {
+
+      let inputNum = checkNullInput(partInputList);
+
+      switch (inputNum){
+
+        case 0 :
+          e.preventDefault();
+          alert("파트너 정보) 이메일을 입력해주세요");
+          break;
+
+        case 1 :
+          e.preventDefault();
+          alert("파트너 정보) 비밀번호를 입력해주세요");
+          break;
+
+        case 2 :
+          e.preventDefault();
+          alert("파트너 정보) 비밀번호 확인란을 입력해주세요");
+          break;
+
+        case 3 :
+          e.preventDefault();
+          alert("파트너 정보) 가게명(법인명)을 입력해주세요");
+          break;
+
+        case 4 :
+          e.preventDefault();
+          alert("파트너 정보) 사업자 등록번호를 선택해주세요");
+          break;
+
+        case 5 :
+          e.preventDefault();
+          alert("파트너 정보) 사업장 소재지를 입력해주세요");
+          break;
+
+        case 6 :
+          e.preventDefault();
+          alert("파트너 정보) 대표자명을 입력해주세요");
+          break;
+
+        case 7 :
+          e.preventDefault();
+          alert("파트너 정보) 담당자명 입력해주세요");
+          break;
+
+        case 8 :
+          e.preventDefault();
+          alert("파트너 정보) 담당자 전화번호를 입력해주세요");
+          break;
+
+        case 9 :
+          e.preventDefault();
+          alert("파트너 정보) 홈페이지 주소를 입력해주세요");
+          break;
+      }
+    })

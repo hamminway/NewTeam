@@ -32,10 +32,12 @@ public class MemberController {
     @GetMapping(value = "/login")
     public String loginMember(Principal principal, HttpServletResponse response) throws IOException {
 
-        if(principal == null){
+        if(principal != null){
+            // 로그인이 되면(Principal 객체가 생성되면) 로그인 화면에 접근이 불가해야하기 때문에
             response.sendError(403, "잘못된 접근입니다.");
             return "index";
         } else {
+            // 로그인을 하기 전이면 로그인 화면을 띄워줌.
             return "members/memberLoginForm";
         }
     }
@@ -43,31 +45,27 @@ public class MemberController {
     @GetMapping(value = "/login/error")
     public String loginError(Model model){
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
+
         return "members/memberLoginForm";
     }
 
     @GetMapping(value = "/new")
     public String individualMemForm(Model model, Principal principal, HttpServletResponse response) throws IOException {
 
-        if(principal == null){
+        if(principal != null){
+            // 로그인이 되면(Principal 객체가 생성되면) 회원가입 화면에 접근이 불가해야하기 때문에
             response.sendError(403, "잘못된 접근입니다.");
             return "index";
 
         } else {
-
+            // 로그인을 하기 전이면 회원가입 화면을 띄워줌.
+            // 회원가입은 개인, 파트너로 나뉘어져 있으므로 그에 맞게 view에 전달할 객체의 key와 value 값 형식에 맞게 작성함.
             model.addAttribute("individualMemFormDTO", new IndividualMemFormDTO());
             model.addAttribute("partnerMemFormDTO", new PartnerMemFormDTO());
 
             return "members/memberForm";
-
         }
     }
-
-    /*@GetMapping(value = "/login/oauth")
-    public String individualMemAddInform(@Valid IndividualMemFormDTO individualMemFormDTO, BindingResult bindingResult, Model model){
-        //페이지 확인용(나중에 삭제 필요)
-        return "members/OAuthAddForm";
-    }*/
 
     @PostMapping(value = "/newIndividual")
     public String individualMemForm(@Valid IndividualMemFormDTO individualMemFormDTO, BindingResult bindingResult, Model model) {
@@ -79,7 +77,7 @@ public class MemberController {
         IndividualMem individualSavedMem =  null;
 
         if(bindingResult.hasErrors()){
-            return "members/memberForm";
+            return "index";
         }
 
         try {
@@ -90,11 +88,11 @@ public class MemberController {
 
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "members/memberForm";
+
+            return "index";
         }
 
         /*if(oAuthType == OAuthType.KAKAO || oAuthType == OAuthType.GOOGLE){
-
             // 원래 IndividualMemFormDTO는 회원가입을 진행할 때 넣은 값들로 구성되나
             // google 및 kakao와 같이 외부 API를 이용할 경우에는 값을 외부 API를 통해 받아
             // 위와 같은 상황에 해당되지 않기에 외부 API 값들을 담는 DTO를 만들어줌(넣어줌).
@@ -106,7 +104,7 @@ public class MemberController {
             return "members/OAuthAddForm";
         }*/
 
-        return "redirect:/";
+        return "index";
     }
 
     @PostMapping(value = "/newIndividual/oauth")
@@ -122,7 +120,7 @@ public class MemberController {
             System.err.println("google");
         }
 
-        return "redirect:/";
+        return "index";
     }
 
     @PostMapping(value = "/newPartner")
