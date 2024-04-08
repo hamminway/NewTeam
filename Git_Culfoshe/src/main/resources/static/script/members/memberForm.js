@@ -4,90 +4,90 @@
 1-1. 하나라도 체크박스를 해제하면 전체 해제
 */
 
-const allcheck = document.getElementById('indickall');
-const evtBtn1 = document.getElementById('indick_a');
-const evtBtn2 = document.getElementById('indick_b');
-const evtBtn3 = document.getElementById('indick_c');
-const evtBtn4 = document.getElementById('indick_d');
+const allIndiccheck = document.getElementById('indickall');
+const indicBtn1 = document.getElementById('indick_a');
+const indicBtn2 = document.getElementById('indick_b');
+const indicBtn3 = document.getElementById('indick_c');
+const indicBtn4 = document.getElementById('indick_d');
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  allcheck.addEventListener('click', (event)  => {
+  allIndiccheck.addEventListener('click', (event)  => {
 
-    const chckValue = event.currentTarget.checked;
-    evtBtn1.checked = chckValue
-    evtBtn2.checked = chckValue
-    evtBtn3.checked = chckValue
-    evtBtn4.checked = chckValue
+    const chkValue = event.currentTarget.checked;
+    indicBtn1.checked = chkValue
+    indicBtn2.checked = chkValue
+    indicBtn3.checked = chkValue
+    indicBtn4.checked = chkValue
 
   })
 
-  evtBtn1.addEventListener('click', (event) => {
+  indicBtn1.addEventListener('click', (event) => {
     if(event.currentTarget.checked == false){
-      allcheck.checked = false;
+      allIndiccheck.checked = false;
     }
   })
 
-  evtBtn2.addEventListener('click', (event) => {
+  indicBtn2.addEventListener('click', (event) => {
     if(event.currentTarget.checked == false){
-      allcheck.checked = false;
+      allIndiccheck.checked = false;
     }
   })
 
-  evtBtn3.addEventListener('click', (event) => {
+  indicBtn3.addEventListener('click', (event) => {
     if(event.currentTarget.checked == false){
-      allcheck.checked = false;
+      allIndiccheck.checked = false;
     }
   })
 
-  evtBtn4.addEventListener('click', (event) => {
+  indicBtn4.addEventListener('click', (event) => {
     if(event.currentTarget.checked == false){
-      allcheck.checked = false;
+      allIndiccheck.checked = false;
     }
   })
-
 
 });
 
+
+const allPartcheck = document.getElementById('partckall');
+const partBtn1 = document.getElementById('partner_a');
+const partBtn2 = document.getElementById('partner_b');
+const partBtn3 = document.getElementById('partner_c');
+const partBtn4 = document.getElementById('partner_d');
+
 document.addEventListener('DOMContentLoaded', () => {
-  const allcheck = document.getElementById('partckall');
-  const evtBtn1 = document.getElementById('partner_a');
-  const evtBtn2 = document.getElementById('partner_b');
-  const evtBtn3 = document.getElementById('partner_c');
-  const evtBtn4 = document.getElementById('partner_d');
 
+  allPartcheck.addEventListener('click', (event)  => {
 
-  allcheck.addEventListener('click', (event)  => {
-
-    const chckValue = event.currentTarget.checked;
-    evtBtn1.checked = chckValue
-    evtBtn2.checked = chckValue
-    evtBtn3.checked = chckValue
-    evtBtn4.checked = chckValue
+    const chkValue = event.currentTarget.checked;
+    partBtn1.checked = chkValue
+    partBtn2.checked = chkValue
+    partBtn3.checked = chkValue
+    partBtn4.checked = chkValue
 
   })
 
-  evtBtn1.addEventListener('click', (event) => {
+  partBtn1.addEventListener('click', (event) => {
     if(event.currentTarget.checked == false){
-      allcheck.checked = false;
+      allPartcheck.checked = false;
     }
   })
 
-  evtBtn2.addEventListener('click', (event) => {
+  partBtn2.addEventListener('click', (event) => {
     if(event.currentTarget.checked == false){
-      allcheck.checked = false;
+      allPartcheck.checked = false;
     }
   })
 
-  evtBtn3.addEventListener('click', (event) => {
+  partBtn3.addEventListener('click', (event) => {
     if(event.currentTarget.checked == false){
-      allcheck.checked = false;
+      allPartcheck.checked = false;
     }
   })
 
-  evtBtn4.addEventListener('click', (event) => {
+  partBtn4.addEventListener('click', (event) => {
     if(event.currentTarget.checked == false){
-      allcheck.checked = false;
+      allPartcheck.checked = false;
     }
   })
 });
@@ -340,12 +340,10 @@ function passwordCheck(){
 
   if(indicPwInputCheck.value.length == 0){
     indicPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
-    indicPwInputCheck.focus();
   }else if(pwdchkexp.test(indicPwInputCheck.value) && indicPwInput.value == indicPwInputCheck.value){
     indicPwdDoubleChk.innerHTML= " "
   }else{
     indicPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
-    indicPwInputCheck.focus();
   }
 }
 
@@ -366,12 +364,10 @@ function passwordCheck1(){
 
   if(partPwInputCheck.value.length == 0){
     partPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
-    partPwInputCheck.focus();
   }else if(pwdchkexp.test(partPwInputCheck.value) && partPwInput.value == partPwInputCheck.value){
     partPwdDoubleChk.innerHTML= " "
   }else{
     partPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
-    partPwInputCheck.focus();
   }
 }
 
@@ -439,10 +435,11 @@ indicemail1.addEventListener("blur", function(){
   let emailexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if(emailexp.test(indicEmailBox.value)) {
-    validateCheckEmail(indicEmailchk, indicUrl, indicemail1, indicEmailchk);
+    validateCheckEmail(indicEmailchk, indicUrl, indicDomain, indicemail1);
 
   } else {
     indicEmailchk.innerHTML = "* 이메일 양식에 맞춰 입력해주세요"
+    indicEmailchk.style.color = "red"
   }
 
 })
@@ -455,10 +452,11 @@ indicemail2.addEventListener("blur", function(){
   let emailexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if(emailexp.test(indicEmailBox.value)) {
-    validateCheckEmail(indicEmailchk, indicUrl);
+    validateCheckEmail(indicEmailchk, indicUrl, indicDomain, indicemail1);
 
   } else {
     indicEmailchk.innerHTML = "* 이메일 양식에 맞춰 입력해주세요"
+    indicEmailchk.style.color = "red"
   }
 
 })
@@ -486,16 +484,16 @@ for(let i = 0 ; i < emailaArr.length ; i++){
     let emailexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if(emailexp.test(partEmailBox.value)) {
-      validateCheckEmail(partEmailchk, PartnerUrl);
-
-      partDomain.value = document.getElementById("partemail1").value;
+      validateCheckEmail(partEmailchk, PartnerUrl, partDomain, partemail1);
 
     } else {
-      indicEmailchk.innerHTML = "* 이메일 양식에 맞춰 입력해주세요"
+      partEmailchk.innerHTML = "* 이메일 양식에 맞춰 입력해주세요"
+      partEmailchk.style.color = "red"
     }
 
   })
 }
+
 
 function validateCheckEmail(target, url, element1, element2){
 
@@ -518,6 +516,7 @@ function validateCheckEmail(target, url, element1, element2){
       })
 
 }
+
 
 /*
 4. 사업장 도로명 주소 + 상세 주소 합치기
@@ -597,10 +596,9 @@ function validateCheckDomain(target, domain) {
 - 파트너(사업자 등록 번호)
 */
 
-let storeNum = document.getElementById('storeNum')
 let storeNumResult = document.getElementById('storeNumChk')
 
-storeNum.addEventListener("change", function(){
+storeNum.addEventListener("blur", function(){
   checkStoreNum();
 })
 
@@ -625,13 +623,13 @@ let storeNumCheckMsg = "";
 
 storeNumChkBtn.addEventListener("click", function (e) {
 
-  let storeNumUrl = "/members/checkDomain?storeNum=" + storeNum.value;;
-
   let data = {
     "b_no": [storeNum.value] // 사업자번호 "xxxxxxx" 로 조회 시,
   };
 
-  duplicateCheckStoreNum(storeNumUrl, data);
+  let storeNumUrl = "/members/checkDomain?storeNum=" + data;
+
+  duplicateCheckStoreNum(storeNumResult, storeNumUrl);
 
 })
 
@@ -744,9 +742,7 @@ storeNumChkBtn.addEventListener("click", function (e) {
 
     indicJoinBtn.addEventListener("click", function (e) {
 
-      e.preventDefault();
-
-      if(!(evtBtn1.checked && evtBtn2.checked && evtBtn3.checked)) {
+      if(!(indicBtn1.checked && indicBtn2.checked && indicBtn3.checked)) {
 
         e.preventDefault();
         alert("개인) 필수 동의항목을 모두 체크해주세요")
@@ -820,58 +816,66 @@ storeNumChkBtn.addEventListener("click", function (e) {
 
     partJoinBtn.addEventListener("click", function (e) {
 
-      let inputNum = checkNullInput(partInputList);
+      if(!(partBtn1.checked && partBtn2.checked && partBtn3.checked)) {
 
-      switch (inputNum){
+        e.preventDefault();
+        alert("파트너) 필수 동의항목을 모두 체크해주세요")
 
-        case 0 :
-          e.preventDefault();
-          alert("파트너 정보) 이메일을 입력해주세요");
-          break;
+      } else {
 
-        case 1 :
-          e.preventDefault();
-          alert("파트너 정보) 비밀번호를 입력해주세요");
-          break;
+        let inputNum = checkNullInput(partInputList);
 
-        case 2 :
-          e.preventDefault();
-          alert("파트너 정보) 비밀번호 확인란을 입력해주세요");
-          break;
+        switch (inputNum) {
 
-        case 3 :
-          e.preventDefault();
-          alert("파트너 정보) 가게명(법인명)을 입력해주세요");
-          break;
+          case 0 :
+            e.preventDefault();
+            alert("파트너 정보) 이메일을 입력해주세요");
+            break;
 
-        case 4 :
-          e.preventDefault();
-          alert("파트너 정보) 사업자 등록번호를 선택해주세요");
-          break;
+          case 1 :
+            e.preventDefault();
+            alert("파트너 정보) 비밀번호를 입력해주세요");
+            break;
 
-        case 5 :
-          e.preventDefault();
-          alert("파트너 정보) 사업장 소재지를 입력해주세요");
-          break;
+          case 2 :
+            e.preventDefault();
+            alert("파트너 정보) 비밀번호 확인란을 입력해주세요");
+            break;
 
-        case 6 :
-          e.preventDefault();
-          alert("파트너 정보) 대표자명을 입력해주세요");
-          break;
+          case 3 :
+            e.preventDefault();
+            alert("파트너 정보) 가게명(법인명)을 입력해주세요");
+            break;
 
-        case 7 :
-          e.preventDefault();
-          alert("파트너 정보) 담당자명 입력해주세요");
-          break;
+          case 4 :
+            e.preventDefault();
+            alert("파트너 정보) 사업자 등록번호를 선택해주세요");
+            break;
 
-        case 8 :
-          e.preventDefault();
-          alert("파트너 정보) 담당자 전화번호를 입력해주세요");
-          break;
+          case 5 :
+            e.preventDefault();
+            alert("파트너 정보) 사업장 소재지를 입력해주세요");
+            break;
 
-        case 9 :
-          e.preventDefault();
-          alert("파트너 정보) 홈페이지 주소를 입력해주세요");
-          break;
+          case 6 :
+            e.preventDefault();
+            alert("파트너 정보) 대표자명을 입력해주세요");
+            break;
+
+          case 7 :
+            e.preventDefault();
+            alert("파트너 정보) 담당자명 입력해주세요");
+            break;
+
+          case 8 :
+            e.preventDefault();
+            alert("파트너 정보) 담당자 전화번호를 입력해주세요");
+            break;
+
+          case 9 :
+            e.preventDefault();
+            alert("파트너 정보) 홈페이지 주소를 입력해주세요");
+            break;
+        }
       }
     })
