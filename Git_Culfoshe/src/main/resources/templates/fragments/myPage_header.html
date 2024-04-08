@@ -18,15 +18,14 @@
           
           <div class="userUI">
             <a href="#">
+
               <img id="ico_weather" th:src="@{/img/weather.png}" alt="날씨아이콘">25.2&#176;</a>
-            &#124;
             <a sec:authorize="isAnonymous()" href="/members/login">로그인</a>
-            <a sec:authorize="isAnonymous()" th:href="@{/members/new}" class="join">회원가입</a>
-            &#124;
             <a sec:authorize="isAuthenticated()" href="/members/logout">로그아웃</a>
-            <a sec:authorize="isAuthenticated()" href="#">회원 정보 수정</a>
+            <a sec:authorize="isAnonymous()" th:href="@{/members/new}" class="join">회원가입</a>
+            <a sec:authorize="isAuthenticated()" href="#">나의 페이지</a>
           </div>
-          <form class="icon header_search" th:action="@{/}" method="get">
+          <form class="icon header_search" th:action="@{/search/searchList}" method="get">
             <input name="searchQuery" type="search"  placeholder="검색" class="mini-Search">
             <button class="icon-search-btn" type="submit">
               <i class="fa-solid fa-magnifying-glass" style="color: #7eff38;"></i>
@@ -55,7 +54,6 @@
                 <span class="menu-title-text">문화</span>
               </div>
             </div>
-
 
             <div class="cell">
               <a href="#" class="cell_title">푸드</a>

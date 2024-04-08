@@ -22,7 +22,7 @@
                     <a sec:authorize="isAnonymous()" th:href="@{/members/new}" class="join">회원가입</a>
                     <a sec:authorize="isAuthenticated()" href="#">나의 페이지</a>
                 </div>
-                <form class="icon" th:action="@{/}" method="get">
+                <form class="icon" th:action="@{/search/searchList}" method="get">
                     <input name="searchQuery" type="search"  placeholder="검색" class="mini-Search">
                     <button class="icon-search-btn" type="submit">
                         <i class="fa-solid fa-magnifying-glass" style="color: #7eff38;"></i>

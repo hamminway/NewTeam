@@ -8,22 +8,15 @@
 .flex {
     display: flex;
     flex-flow: row;
+    align-items: center;
 }
-
-.justify-content-center {
-    justify-content : center;
-}
-
-/* .form-inline {
-
-} */
 
 .search-row {
     display: flex;
 }
 
 .form-set {
-    width: 800px;
+    width: 890px;
     height: 60px;
     margin-left : 20px;
     margin-right : 20px;
@@ -55,15 +48,38 @@
     text-align : center;
 }
 
-.card {
-    width: 1000px;
-    height: 250px;
-    max-width:800px;
-    
-    margin-top: 50px;
-
-    display: inline-flex;
+.center {
+    display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    align-items: center;
+}
+
+.col-md-4 {
+    overflow: hidden;
+}
+
+.col-md-4 img {
+    height: 330px;
+    object-fit : cover;
+    border-radius : 5px;
+}
+
+
+.card {
+    width: 1200px;
+    height: 350px;
+
+    min-width: 800px;
+    margin-top: 50px;
+    padding : 10px;
+}
+
+.col-md-8 {
+    display: inline-flex;
     justify-content: center;
+}
+
+.end {
+    text-align: end;
 }

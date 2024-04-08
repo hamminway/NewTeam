@@ -1,45 +1,70 @@
 @charset "UTF-8";
 
-
 /* header */
-.myPageHeader_wrap{
+.myPageHeader_wrap {
 	position: fixed;
 	top: 0;
 	z-index: 100;
 }
 
-.header_column{
+.menu-box.scrolled {
+    height: 30px;
+    transition: 0.6s;
+}
+
+.header_column {
 	display: flex;
 	flex-flow: column;
 }
-.row{
+
+.row {
 	display: flex;
 	flex-flow: row;
 }
-.header_fist_column{
+
+.header_fist_column {
 	display: flex;
 	justify-content: space-between;
 }
-.myPageHeader_wrap{
+
+.myPageHeader_wrap {
 	position: fixed;
 	top: 0px;
 	width: 100%;
 	box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
 }
-.header_container{
+
+.header_container {
 	padding-top: 20px;
 	margin: 0 auto;
 	max-width: 1300px;
 	min-width: 1300px;
 	background-color: white;
 }
-#ico_weather{
+
+#ico_weather {
 	height: 27px;
 }
-.userUI>a:hover{
+
+.userUI a {
+    padding : 0;
+}
+
+.userUI>a::after {
+    content : "|";
+    color : black;
+    margin : 0 10px 0 14px;
+}
+
+.userUI>a:last-child::after {
+    content : "";
+}
+
+.userUI>a:hover {
 	color: #9acd32;
 }
+
 .mini-Search {
     float : right;
 	width: 245px;
@@ -47,7 +72,8 @@
 	border: 1px solid #C3C3C3;
 	border-radius: 5px;
 }
-.icon-search-btn{
+
+.icon-search-btn {
 	height: 25px;
 	position: relative;
 	top : 3px;
@@ -56,14 +82,16 @@
 	background-color: #fff;
 	border-radius: 5px;
 }
-.menu-box{
+
+.menu-box {
 	justify-content: space-between;
 	width: 100%;
 	height: 85px;
 	overflow: hidden;
-	transition: height 0.5s;
+	transition: height 0.7s;
 }
-.menu-box>.cell>a{
+
+.menu-box>.cell>a {
     font-size: 22px;
     font-weight: 500;
     font-style: normal;
@@ -72,39 +100,45 @@
 	display: inline-block;
 	overflow: hidden;
 }
-.menu-box>.cell>a::after{
+
+.menu-box>.cell>a::after {
 	justify-content: center;
 	content: '';
-	margin-top: 22px;
+	margin-top: 23px;
 	display: block;
 	position: relative;
-	left: 50%;
+	left: 46%;
 	width: 0;
 	height: 5px;
 	background-color: green;
 	transition: width 0.7s, left 0.7s;
 	transform: translateX(-50%)
 }
-.menu-box>.cell:hover>a::after{
-	width: 230px;
+
+.menu-box>.cell:hover>a::after {
+	width: 240px;
 }
-.menu-box>.cell>a:hover{
+
+.menu-box>.cell>a:hover {
 	color: green;
 }
-.menu-box:hover{
+
+.menu-box:hover {
 	height: 340px;
 }
 
-.cell{
+.cell {
 	text-align: center;
 	width: 25%;
 	height: 60px;
 	/* overflow: hidden; */
 }
-.cell_title{
-	margin: 30px 0 20px 0;
+
+.cell_title {
+	margin: 30px 0 18px 0;
 }
-.block{
+
+.block {
 	display: inline-block;
 }
 
@@ -121,7 +155,7 @@
 
 .myPageHeader_wrap .menu-box>div>div>ul {
     width : 100%;
-    height: 200px;
+    height: 210px;
     border-left: 1px solid #e8e8e8;
     z-index : 1;
 }
@@ -152,17 +186,72 @@
 }
 */
 
+.myPageHeader_wrap .menu-box>div>div>ul>li>a {
+    font-size : 18px;
+    display : inline-block;
+    font-weight : 400;
+    position: relative;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+.myPageHeader_wrap .menu-box>div>div>ul>li>a::after {
+    content : ".";
+	position: absolute;
+	left: 4px;
+	top: -11px;
+	font-size: 2.5rem;
+	color: green;
+	opacity: 0;
+	transform: translateX(5px) translateY(-35%);
+	transition: opacity 0.1s, transform 0.3s;
+}
+
+.myPageHeader_wrap .menu-box>div>div>ul>li:hover>a::after {
+	transform: translateX(0) translateY(-35%);
+	opacity: 1;
+}
+
+.myPageHeader_wrap .menu-box>div>div>ul>li:hover>a {
+	color: green;
+}
+
 .cell>.menu-text {
     position: absolute;
-    top: 250px;
-    left: 15%;
+    top: 235px;
+    left: 52%;
+
+    transform: translateX(-610px);
     opacity: 0;
+    transform: opacity 6s;
 }
 
 .cell:hover>.menu-text {
     opacity: 1;
 }
 
+.cell>.menu-text>.menu-title {
+    font-size: 35px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -1px;
+    color: green;
+    border-bottom: 2px solid green;
+}
+
+.cell>.menu-text>.menu-title-text {
+    display: block;
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.22;
+    letter-spacing: -2px;
+    color: #222222;
+}
 
 
 
