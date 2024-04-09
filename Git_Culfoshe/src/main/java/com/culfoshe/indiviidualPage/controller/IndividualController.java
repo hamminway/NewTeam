@@ -38,15 +38,14 @@ public class IndividualController {
     private final IndividualService individualService;
     private final IndividualMemRepository individualMemRepository;
 
-    @GetMapping(value = {"/myPage"})
-    public String userPage( Optional<IndividualPageSearchDTO> individualPageSearchDTO,
+    @GetMapping(value = {"/myPage","/{url}"})
+    public String userPage( Optional<String> url,
                            Model model, HttpServletRequest request, Principal principal){
 
-        String userName = principal.getName();
-        individualService.getUserPage(userName);
-        if(individualPageSearchDTO.isEmpty()){
-            model.addAttribute("individualPageSearchDTO",new IndividualPageSearchDTO());
-        }
+
+        String userName = principal != null ? principal.getName() : url.toString();
+        IndividualPageDTO individualPageDTO = individualService.getUserPage(userName);
+        model.addAttribute("individualPageDTO", individualPageDTO);
 
         return "personalPage/individualPage";
     }
@@ -64,11 +63,29 @@ public class IndividualController {
 
     @PostMapping(value = "/newPost")
     public String newPost(Principal principal, Model model, NewPostDTO newPostDTO){
-
         System.err.println(newPostDTO);
-
         log.info("userName : ", principal.getName());
         return "personalPage/individualPage";
     }
 
+    @GetMapping(value = "/myPage/edit")
+    public String editPage(Principal principal, IndividualPageDTO individualPageDTO, Model model){
+        individualPageDTO = individualService.getUserPage(principal.getName());
+        model.addAttribute("individualPageDTO", individualPageDTO);
+        return "personalPage/profile_replaceInput";
+    }
+    @PostMapping(value = "/myPage/edit")
+    public String editSubmit(Principal principal, IndividualPageDTO individualPageDTO, Model model){
+        String user = principal.getName();
+        System.err.println("editComplete");
+        individualPageDTO = individualService.updateUser(individualPageDTO, user);
+        model.addAttribute("individualPageDTO", individualPageDTO);
+        return "personalPage/profile_replaceInput";
+    }
+    @GetMapping(value = "/myPage/edit/close")
+    public String closeEdit(Principal principal, IndividualPageDTO individualPageDTO, Model model){
+        individualPageDTO = individualService.getUserPage(principal.getName());
+        model.addAttribute("individualPageDTO", individualPageDTO);
+        return "personalPage/profile_replace";
+    }
 }

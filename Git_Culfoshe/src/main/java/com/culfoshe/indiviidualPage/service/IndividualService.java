@@ -46,4 +46,9 @@ public class IndividualService {
         return list;
     }
 
+    public IndividualPageDTO updateUser(IndividualPageDTO individualPageDTO, String user){
+
+        IndividualMem individualMem = individualMemRepository.findByEmail(user);
+        return individualPageDTO;
+    }
 }

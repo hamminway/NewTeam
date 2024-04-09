@@ -16,7 +16,7 @@ public class Transfer {
         List list = new ArrayList();
         while(resource.contains("$")){
             int index = resource.indexOf("$");
-            list.add(resource.substring());
+//            list.add(resource.substring());
         }
 
         return list;

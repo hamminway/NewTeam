@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 
@@ -51,6 +52,8 @@
 <script type="text/javascript" th:src="@{/script/fragments/sideBar.js}"></script>
 <script type="text/javascript" th:src="@{/script/individual/myPage.js}"></script>
 <script type="text/javascript" th:src="@{/script/fragments/myPage_header.js}"></script>
+<script type="text/javascript" th:src="@{/script/individual/profile_replaceInput.js}"></script>
+
 <th:block layout:fragment="content_js"></th:block>
 </body>
 
