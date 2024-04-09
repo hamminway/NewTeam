@@ -68,16 +68,17 @@ public class IndividualController {
         return "personalPage/individualPage";
     }
 
+    //수정할때 url
     @GetMapping(value = "/myPage/edit")
     public String editPage(Principal principal, IndividualPageDTO individualPageDTO, Model model){
         individualPageDTO = individualService.getUserPage(principal.getName());
         model.addAttribute("individualPageDTO", individualPageDTO);
         return "personalPage/profile_replaceInput";
     }
+    //수정완료 btn
     @PostMapping(value = "/myPage/edit")
     public String editSubmit(Principal principal, IndividualPageDTO individualPageDTO, Model model){
         String user = principal.getName();
-        System.err.println("editComplete");
         individualPageDTO = individualService.updateUser(individualPageDTO, user);
         model.addAttribute("individualPageDTO", individualPageDTO);
         return "personalPage/profile_replaceInput";

@@ -25,9 +25,9 @@ function submitBtn(){
     let data = {
         method : "POST",
         cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
-        },
+        // headers: {
+        //     'Content-Type': 'application/json'
+        // },
         body : formData
         
 

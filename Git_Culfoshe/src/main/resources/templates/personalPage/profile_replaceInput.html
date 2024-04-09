@@ -10,13 +10,13 @@
         </div>
         <div class="profile_content">
             <div class="profile_page_inform">
-                <input class="nickname"  th:value="*{characterName}!=null ? *{characterName} : '닉네임'">
+                <input class="nickname"  th:field="*{characterName}">
                 <hr class="profile_divide">
-                <input class="pagename" th:value="*{pageName} != null ? *{pageName} : '페이지 이름'">
+                <input class="pagename" th:field="*{pageName}">
             </div>
             <div class="profile_intro">
                 <div class="profile_intro_container">
-                    <textarea th:value="*{introduction} != null ? *{introduction} : '페이지 소개'" class="pagetext"></textarea>
+                    <textarea th:field="*{introduction}" class="pagetext"></textarea>
                 </div>
             </div>
         </div><!--profile_text-->
