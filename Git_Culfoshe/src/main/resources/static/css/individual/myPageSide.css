@@ -28,9 +28,9 @@ div{
 .cateAddBox{
     cursor: pointer;
     padding: 4px;
-    width: 20px;
+    width: 100px;
     position: relative;
-    left: 88%;
+    left: 55%;
 }
 .cateAddBox:hover{
     opacity: 0.8;
@@ -55,6 +55,7 @@ div{
     border:none;
     background:none;
     outline: none;
+    color: rgb(236, 226, 226);
 }
 .eachList{
     margin:0 0 3px 0;
@@ -63,7 +64,29 @@ div{
 .focusCate{
     background-color: rgba(153, 153, 153, 0.63);
 }
-
+.side_bottom{
+    display: flex;
+    flex-flow: row;
+}
+.cateAddBox{
+    display: flex;
+    flex-flow: row;
+}
+.side_cateSubmit{
+    margin-right: 30px;
+    cursor: pointer;
+    opacity: 0.9;
+    background-color: rgb(187, 255, 198);
+    border: none;
+    border-radius: 10px;
+}
+.minusBox{
+    cursor: pointer;
+    display: inline-block;
+}
+.minusBox:hover>svg{
+    fill: rgb(99, 69, 69);
+}
 
 
 
