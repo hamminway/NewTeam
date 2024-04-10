@@ -25,7 +25,44 @@ div{
 .addCate:hover{
     color: aquamarine;
 }
-
+.cateAddBox{
+    cursor: pointer;
+    padding: 4px;
+    width: 20px;
+    position: relative;
+    left: 88%;
+}
+.cateAddBox:hover{
+    opacity: 0.8;
+}
+.side_editBox{
+    cursor: pointer;
+    width: 20px;
+    padding: 4px;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}
+.eachList_content.focusCate{
+    border:none;
+    background:none;
+}
+.eachList_content{
+    border:none;
+    background:none;
+}
+.eachList_content:focus{
+    border:none;
+    background:none;
+    outline: none;
+}
+.eachList{
+    margin:0 0 3px 0;
+    
+}
+.focusCate{
+    background-color: rgba(153, 153, 153, 0.63);
+}
 
 
 
