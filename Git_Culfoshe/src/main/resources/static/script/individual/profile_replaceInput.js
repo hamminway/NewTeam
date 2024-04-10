@@ -25,12 +25,7 @@ function submitBtn(){
     let data = {
         method : "POST",
         cache: 'no-cache',
-        // headers: {
-        //     'Content-Type': 'application/json'
-        // },
         body : formData
-        
-
     }
     fetch(submitURL, data)
     .then((resp)=>{
@@ -38,6 +33,6 @@ function submitBtn(){
         return resp.text();
     })
     .then((data)=>{
-        console.log(data);
+        profileWrap.innerHTML=data;
     })
 }

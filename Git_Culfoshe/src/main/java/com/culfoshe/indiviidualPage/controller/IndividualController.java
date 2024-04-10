@@ -14,6 +14,8 @@ import org.apache.coyote.http11.upgrade.UpgradeProcessorInternal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -77,16 +79,26 @@ public class IndividualController {
     }
     //수정완료 btn
     @PostMapping(value = "/myPage/edit")
-    public String editSubmit(Principal principal, IndividualPageDTO individualPageDTO, Model model){
+    public String editSubmit(Principal principal, IndividualPageDTO individualPageDTO, Model model, HttpServletResponse response){
         String user = principal.getName();
-        individualPageDTO = individualService.updateUser(individualPageDTO, user);
-        model.addAttribute("individualPageDTO", individualPageDTO);
-        return "personalPage/profile_replaceInput";
+        if(individualService.updateUser(individualPageDTO, user)){
+            model.addAttribute("individualPageDTO", individualPageDTO);
+        }else{
+            response.setStatus(403);
+        }
+        return "personalPage/profile_replace";
     }
     @GetMapping(value = "/myPage/edit/close")
     public String closeEdit(Principal principal, IndividualPageDTO individualPageDTO, Model model){
         individualPageDTO = individualService.getUserPage(principal.getName());
         model.addAttribute("individualPageDTO", individualPageDTO);
         return "personalPage/profile_replace";
+    }
+
+
+    @PostMapping(value = "/myPage/editCate")
+    public ResponseEntity<String> editCate(){
+
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }

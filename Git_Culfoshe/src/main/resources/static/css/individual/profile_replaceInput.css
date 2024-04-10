@@ -59,7 +59,7 @@
     fill:rgb(94, 136, 103) ;
 }
 .profile_edit_box{
-    left: 540px;
+    /* left: 40%; */
     position: relative;
     top: -30px;
     text-align: center;

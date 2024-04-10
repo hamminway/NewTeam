@@ -32,4 +32,11 @@ public class IndividualPageDTO { // 개인페이지 메인 DTO
 
         return this;
     }
+    public IndividualMem updateUserByPageEdit(IndividualMem individualMem){
+        individualMem.setPageName(this.getPageName());
+        individualMem.setIntroduction(this.getIntroduction());
+        individualMem.setCharacterName(this.getCharacterName());
+        individualMem.setProfilePicUrl(this.getProfilePicUrl());
+        return individualMem;
+    }
 }

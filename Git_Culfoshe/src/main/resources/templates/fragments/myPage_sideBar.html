@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
+
     <meta charset="UTF-8">
     <title></title>
 
@@ -20,11 +20,16 @@
                     <h2>카테고리</h2>
                     <span>category</span>
                 </div>
-                <ul>
-                    <li th:if="${cateList != null}" th:each="each, state : ${cateList}">
+                <div class="myPageSide cateList">
+                    <hr>
+                    <p th:if="${cateList != null}" th:each="each, state : ${cateList}">
                         
-                    </li>
-                </ul>
+                    </p>
+                    <p sec:authorize="isAuthenticated()" class="myPage side addCate" onclick="addCate(this)" th:if="${cateList == null}">
+                        카테고리 등록
+                    </p>
+                    <div></div>
+                </div>
             </div>
         </div>
         <script src="/script/individual/myPageSide.js"></script>
