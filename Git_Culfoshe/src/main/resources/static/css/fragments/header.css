@@ -1,25 +1,34 @@
 @charset "UTF-8";
 
-
 /* header */
+.sort a {
+    z-index : 300;
+}
 
-.navbar {
+.top-bar .logo {
+	position: relative;
+    top: 20px;
+    width: 290px;
+    height : 70px;
+}
+
+.bar {
 	margin: 10px;
 	margin-top: 10px;
 	text-align : center;
 	position : relative;
-    right : 66px;
+    right : 145px;
     top : 10px;
 }
 
-.navbar a {
+.bar a {
 	margin-right: 20px;
 	position: relative;
 	bottom: -2.5px;
 	z-index : 39;
 }
 
-.navbar a:hover {
+.bar a:hover {
 	color: #9acd32;
 }
 
@@ -29,7 +38,7 @@
 	bottom: -2px;
 }
 
-.navbar img {
+.bar img {
 	height: 28px;
 	position: relative;
 	bottom: -6px;
@@ -48,6 +57,7 @@
 .icon {
     position: relative;
     bottom: 21px;
+    z-index: 1;
 }
 
 .icon input:focus {
@@ -82,7 +92,7 @@
 	min-width: 200px;
 }
 
-.row::after {
+.sort::after {
 	content: "";
 	display: block;
 	clear: both;
@@ -114,12 +124,13 @@
 .relative {
 	position: relative;
 	height:0;
-	transition:0.7s ;
+	transition: 0.7s ;
 }
 
 .menu-box {
     overflow: hidden;
     margin-top : 53px;
+    transition: height 0.9s;
 }
 
 /*탑바메뉴 시작*/
@@ -131,10 +142,10 @@
 	width: 100%;
 	height: 183px;
 
-	transition: height 0.7s;
+	transition: height 1s;
 	z-index: 200;
-	-webkit-transition: 0.7s;
-	-moz-transition: 0.7s;
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
 
 	background-color: #fff;
 	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
@@ -150,17 +161,12 @@
 	background-color: rgba(0, 0, 0, 0.1);
 	z-index: 10;
 
-	transition : 0.7s;
+	transition : 0.9s;
 }
 
 /*마우스올릴 시 2차메뉴 높이조절*/
-.top-bar:hover {
+.addHeight {
 	height: 470px;
-}
-
-.top-bar .logo {
-	margin-top: 20px;
-	width: 147px;
 }
 
 /* list 가짜 공간 높이*/
@@ -187,7 +193,6 @@
 	right: 50%;
 	background-color: green;
 	transition: width 0.6s;
-	
 }
 
 .top-bar .menu-box>ul>li>a::before {
@@ -229,8 +234,9 @@
 /* 2차 메뉴 왼쪽 오른쪽 선 높이*/
 .top-bar .menu-box>ul>li>div>ul {
 	width: 100%;
-	height: 245px;
+	height: 240px;
 	border-left: 1px solid #e8e8e8;
+	z-index : 1;
 }
 
 .top-bar .menu-box>ul>li:last-child>div>ul {
@@ -244,7 +250,7 @@
 }
 
 .top-bar .menu-box>ul>li>div>ul>li:first-child {
-	margin-top: 50px;
+	margin-top: 56px;
 }
 
 /* nth-child(2) : 2번째 요소를 선택하게 하는 것*/
@@ -337,21 +343,21 @@
 
 /* cell 너비*/
 
-.main-grid .row .cell {
+.main-grid .sort .cell {
 	width: 283px;
 }
 
-/* row 높이*/
+/* sort 높이*/
 
-.main-grid>.row:first-child .cell {
+.main-grid>.sort:first-child .cell {
 	height: 400px;
 }
 
-.main-grid>.row:nth-child(2) .cell {
+.main-grid>.sort:nth-child(2) .cell {
 	height: 300px;
 }
 
-.main-grid .row .cell>nav {
+.main-grid .sort .cell>nav {
 	height: 50%;
 }
 

@@ -20,11 +20,12 @@ public class RestController {
     private MainService mainService;
     private SearchService searchService;
 
-    @GetMapping(value = "/search/searchResult")
+    @GetMapping(value = "/searches/searchingForm")
     public Page<SearchPreviewDTO> getSearchPrevPage(Optional<Integer> page) {
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0 , 8);
         return searchService.getSearchPrevPage(new SearchDTO(), pageable);
     }
 
     //원하는 몇개를 담을지
+    //지역별 추천에서 사용
 }

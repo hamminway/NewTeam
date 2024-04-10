@@ -52,13 +52,13 @@ $('#slider-div').slick({
 const reg = document.getElementsByClassName('commend-header');
 const commend = document.getElementById('reg-box')
 
-reg.addEventListener('click', (e)=> {
 
-})
 
 //지도
 
+/*reg.addEventListener('click', (e)=> {
 
+})*/
 
 
 
