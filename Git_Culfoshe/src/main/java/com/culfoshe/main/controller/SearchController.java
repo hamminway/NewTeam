@@ -39,4 +39,5 @@ public class SearchController {
 
         return "search/searchingForm";
     }
+
 }
