@@ -269,6 +269,7 @@ public class SearchRepositoryImpl implements SearchRepository {
                 .offset(pageable.getOffset())   //데이터를 가지고 올 시작인덱스 지정
                 .limit(pageable.getPageSize())  //최대갯수 지정
                 .fetch();
+        System.err.println(content.get(0));
 
         content.addAll(queryFactory
                 .select(new QSearchPreviewDTO(
@@ -281,6 +282,7 @@ public class SearchRepositoryImpl implements SearchRepository {
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch());
+        System.err.println(content.get(0));
 
         long total = queryFactory.select(Wildcard.count)
                 .from(individualPhoto)

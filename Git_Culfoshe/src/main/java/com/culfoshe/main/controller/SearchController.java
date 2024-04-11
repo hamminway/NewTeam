@@ -33,9 +33,18 @@ public class SearchController {
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0 , 5);
         Page<SearchPreviewDTO> searches = searchService.getSearchPrevPage(searchDTO, pageable);
 
+        for(int i = 0 ; i < searches.getContent().size() ; i++){
+            System.err.println(searches.getContent().get(i));
+        }
+
+        System.err.println("getTotalElements : " + searches.getTotalElements());
+        System.err.println("getTotalPages : " + searches.getTotalPages());
+        System.err.println("contentSize : " + searches.getContent().size());
+
         model.addAttribute("searches", searches);
         model.addAttribute("searchDTO", searchDTO);
         model.addAttribute("maxPage" , 6);
+
 
         return "search/searchingForm";
     }
