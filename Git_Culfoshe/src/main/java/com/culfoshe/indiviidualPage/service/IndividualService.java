@@ -1,6 +1,7 @@
 package com.culfoshe.indiviidualPage.service;
 
 
+import com.culfoshe.config.Transfer;
 import com.culfoshe.entity.IndividualMem;
 import com.culfoshe.indiviidualPage.dto.IndividualPageDTO;
 import com.culfoshe.indiviidualPage.dto.IndividualPostPreviewDTO;
@@ -39,10 +40,8 @@ public class IndividualService {
         return individualPageDTO;
     }
 
-    private List<String> getCateList(){
-        List<String> list = new ArrayList<>();
-
-
+    public List<String> getCateList(IndividualMem user){
+        List<String> list = Transfer.asList(user.getIndividualCategory(),"//$");
         return list;
     }
 

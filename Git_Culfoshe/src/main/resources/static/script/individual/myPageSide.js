@@ -1,17 +1,16 @@
 
-const cateList = document.querySelector('.cateList');
-const action = document.querySelector('.action');
-const plus = document.querySelector('.cateAddBox');
-const minusSample = document.querySelector('.minusBox');
-const side_bottom = document.querySelector('.side_bottom');
+
+const cateList = document.querySelector('.cateList');//사용자의 카테고리 리스트가 나올 div
+const action = document.querySelector('.action');//사용자의 카테고리 삭제의 경고창
+const plus = document.querySelector('.cateAddBox');//사용자의 카테고리를 추가할 아이콘박스
+const minusSample = document.querySelector('.minusBox');//사용자의 카테고리를 제거할 아이콘 박스
+const side_bottom = document.querySelector('.side_bottom');//카테고리의 바텀 - 완료버튼과 +아이콘이 있음
+
+var eventNode = null;
 
 function sideEdit(element){
-    side_bottom.classList.remove('blind');
-    element.classList.add('blind');
-    let minusBoxList = document.querySelectorAll('.minusBox');
-    toggleClassListByNodeList(minusBoxList, 'blind', true);
-    minusBoxList[0].classList.add('blind');
-    minusBoxList[1].classList.add('blind');
+    const sideInputUrl = '';
+
 }
 function resetFocus(){
     let eachLists = document.querySelectorAll('.eachList');
@@ -48,8 +47,16 @@ function addCate(element){
         // }
     })
 }
-function deleteYes(element){
-
+function deleteTag(this){
+    eventNode = this;
+}
+function deleteTagConfirm(element, bool){
+    let alertScreen = element.closest('.alertDelete');
+    if(bool){
+        eventNode.remove();
+    }
+    alertScreen.classList.add('blind');
+    eventNode = null;
 }
 function cancelAction(){
 

@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.http.HttpResponse;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -45,8 +46,13 @@ public class IndividualController {
                            Model model, HttpServletRequest request, Principal principal){
 
 
-        String userName = principal != null ? principal.getName() : url.toString();
+        String userName = url.isPresent()? url.toString() : principal.getName();
         IndividualPageDTO individualPageDTO = individualService.getUserPage(userName);
+        boolean isMyPage = false;
+        if(principal!=null){
+            isMyPage = principal.getName().equals(userName)? true : false;
+        }
+        model.addAttribute("isMyPage", isMyPage);
         model.addAttribute("individualPageDTO", individualPageDTO);
 
         return "personalPage/individualPage";
@@ -70,14 +76,14 @@ public class IndividualController {
         return "personalPage/individualPage";
     }
 
-    //수정할때 url
+    //프로필 수정할때 url
     @GetMapping(value = "/myPage/edit")
     public String editPage(Principal principal, IndividualPageDTO individualPageDTO, Model model){
         individualPageDTO = individualService.getUserPage(principal.getName());
         model.addAttribute("individualPageDTO", individualPageDTO);
         return "personalPage/profile_replaceInput";
     }
-    //수정완료 btn
+    //프로필 수정완료 btn
     @PostMapping(value = "/myPage/edit")
     public String editSubmit(Principal principal, IndividualPageDTO individualPageDTO, Model model, HttpServletResponse response){
         String user = principal.getName();
@@ -88,11 +94,19 @@ public class IndividualController {
         }
         return "personalPage/profile_replace";
     }
+    //프로필 수정 취소
     @GetMapping(value = "/myPage/edit/close")
     public String closeEdit(Principal principal, IndividualPageDTO individualPageDTO, Model model){
         individualPageDTO = individualService.getUserPage(principal.getName());
         model.addAttribute("individualPageDTO", individualPageDTO);
         return "personalPage/profile_replace";
+    }
+    //side 수정
+    @GetMapping(value = "/myPage/editCate")
+    public String editCate(Principal principal, Model model, LoginSessionDTO loginSessionDTO){
+        List cateList = individualService.getCateList(loginSessionDTO.getIndividualMem());
+        model.addAttribute("cateList", cateList);
+        return "personalPage/replace/myPage_sideReplaceInput";
     }
 
 

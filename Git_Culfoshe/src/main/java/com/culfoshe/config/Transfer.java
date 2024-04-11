@@ -12,13 +12,19 @@ public class Transfer {
     public ModelMapper getModelMapper(){
         return modelMapper;
     }
-    public static List<String> asList(String resource){
+    public static List<String> asList(String resource,String regex){
         List list = new ArrayList();
-        while(resource.contains("$")){
-            int index = resource.indexOf("$");
-//            list.add(resource.substring());
+        String[] resourceArr = resource.split(regex);
+        for (int i = 1 ; i<resourceArr.length ; i++) {
+            list.add(resourceArr[i]);
         }
-
         return list;
+    }
+    public static String asString(List<String> resource){
+        String result = "";
+        for (String each: resource) {
+            result +="$" + each;
+        }
+        return result;
     }
 }
