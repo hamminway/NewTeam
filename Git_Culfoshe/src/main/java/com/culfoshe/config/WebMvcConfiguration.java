@@ -14,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WebMvcConfiguration implements WebMvcConfigurer {
     private final InterceptorChkMember checkLoginInterceptor;
+    private final InterceptorAll interceptorAll;
     @Value("${uploadPath}")
     String uploadPath;
 
@@ -24,7 +25,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         //예외 등록(이 요청에는 인터셉터 동작 안함, 불필요한 동작 막음)
         List<String> exceptionPath = new ArrayList<>();
         exceptionPath.add("/css/**");
-        exceptionPath.add("/js/**");
+        exceptionPath.add("/script/**");
         exceptionPath.add("/img/**");
 //        exceptionPath.add("/**"); // -인터셉터 꺼놓기 힐요할때 확장
 
@@ -33,6 +34,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(checkLoginInterceptor) // 해당 인터셉터 적용
                 .excludePathPatterns(exceptionPath) //list로 등록한 예외 적용
                 .addPathPatterns("/personalPage/**"); //
+        registry.addInterceptor(interceptorAll) // 해당 인터셉터 적용
+                .excludePathPatterns(exceptionPath) //list로 등록한 예외 적용
+                .addPathPatterns("/**"); //
     }
     @Override
     //정적리소스(css, js, img)에 대한 요청을 처리

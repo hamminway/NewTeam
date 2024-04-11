@@ -14,6 +14,8 @@ import org.apache.coyote.http11.upgrade.UpgradeProcessorInternal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.http.HttpResponse;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -38,27 +41,19 @@ public class IndividualController {
     private final IndividualService individualService;
     private final IndividualMemRepository individualMemRepository;
 
-    @GetMapping(value = {"/myPage/first={firstPage}&&second={secondPage}","/myPage"})
-    public String userPage( Optional<IndividualPageSearchDTO> individualPageSearchDTO,
-                           @PathVariable Optional<Integer> firstPage, @PathVariable Optional<Integer> secondPage,
+    @GetMapping(value = {"/myPage","/{url}"})
+    public String userPage( Optional<String> url,
                            Model model, HttpServletRequest request, Principal principal){
 
-        String userName = principal.getName();
 
-        Pageable individualPageable = PageRequest.of(firstPage.isPresent()? firstPage.get() : 0,3);
-        Pageable savedPageable = PageRequest.of(secondPage.isPresent() ? secondPage.get() : 0, 5);
-
-        IndividualPageDTO individualPageDTO = individualService.getUserPage(userName); // 페이지 전체의 dtㅐ
-        Page individualPostPreviewPage = individualService.getIndividualPostPreview(individualPageable, userName);//previewDTO의 page객체
-
-        Page savedPost = individualService.getSavedPost(savedPageable, userName);//savedPost의 page객체
-
-        model.addAttribute("individualPageDTO", individualPageDTO);
-        model.addAttribute("individualPostPreviewPage",individualPostPreviewPage);
-        model.addAttribute("savedPost", savedPost);
-        if(individualPageSearchDTO.isEmpty()){
-            model.addAttribute("individualPageSearchDTO",new IndividualPageSearchDTO());
+        String userName = url.isPresent()? url.toString() : principal.getName();
+        IndividualPageDTO individualPageDTO = individualService.getUserPage(userName);
+        boolean isMyPage = false;
+        if(principal!=null){
+            isMyPage = principal.getName().equals(userName)? true : false;
         }
+        model.addAttribute("isMyPage", isMyPage);
+        model.addAttribute("individualPageDTO", individualPageDTO);
 
         return "personalPage/individualPage";
     }
@@ -76,11 +71,48 @@ public class IndividualController {
 
     @PostMapping(value = "/newPost")
     public String newPost(Principal principal, Model model, NewPostDTO newPostDTO){
-
         System.err.println(newPostDTO);
-
         log.info("userName : ", principal.getName());
         return "personalPage/individualPage";
     }
 
+    //프로필 수정할때 url
+    @GetMapping(value = "/myPage/edit")
+    public String editPage(Principal principal, IndividualPageDTO individualPageDTO, Model model){
+        individualPageDTO = individualService.getUserPage(principal.getName());
+        model.addAttribute("individualPageDTO", individualPageDTO);
+        return "personalPage/profile_replaceInput";
+    }
+    //프로필 수정완료 btn
+    @PostMapping(value = "/myPage/edit")
+    public String editSubmit(Principal principal, IndividualPageDTO individualPageDTO, Model model, HttpServletResponse response){
+        String user = principal.getName();
+        if(individualService.updateUser(individualPageDTO, user)){
+            model.addAttribute("individualPageDTO", individualPageDTO);
+        }else{
+            response.setStatus(403);
+        }
+        return "personalPage/profile_replace";
+    }
+    //프로필 수정 취소
+    @GetMapping(value = "/myPage/edit/close")
+    public String closeEdit(Principal principal, IndividualPageDTO individualPageDTO, Model model){
+        individualPageDTO = individualService.getUserPage(principal.getName());
+        model.addAttribute("individualPageDTO", individualPageDTO);
+        return "personalPage/profile_replace";
+    }
+    //side 수정
+    @GetMapping(value = "/myPage/editCate")
+    public String editCate(Principal principal, Model model, LoginSessionDTO loginSessionDTO){
+        List cateList = individualService.getCateList(loginSessionDTO.getIndividualMem());
+        model.addAttribute("cateList", cateList);
+        return "personalPage/replace/myPage_sideReplaceInput";
+    }
+
+
+    @PostMapping(value = "/myPage/editCate")
+    public ResponseEntity<String> editCate(){
+
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
 }

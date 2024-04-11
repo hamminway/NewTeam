@@ -1,6 +1,7 @@
 package com.culfoshe.indiviidualPage.service;
 
 
+import com.culfoshe.config.Transfer;
 import com.culfoshe.entity.IndividualMem;
 import com.culfoshe.indiviidualPage.dto.IndividualPageDTO;
 import com.culfoshe.indiviidualPage.dto.IndividualPostPreviewDTO;
@@ -18,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,34 +35,24 @@ public class IndividualService {
 
     @Transactional(readOnly = true)
     public IndividualPageDTO getUserPage(String userName){
-//        log.info("IndividualService.getUserPage");
         IndividualMem individualMem = individualMemRepository.findByEmail(userName);
-        System.err.println(individualMem);
-        System.err.println(userName);
-        log.info("userName : " , userName);
-        IndividualPageDTO individualPageDTO = IndividualPageDTO.createIndividualPageDTO(individualMem);
+        IndividualPageDTO individualPageDTO = new IndividualPageDTO().createIndividualPageDTO(individualMem);
         return individualPageDTO;
     }
 
-    public Page<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String userName){
-        log.info("IndividualService.getIndividualPostPreview");
-        List<IndividualPostPreviewDTO> list = individualPostCustom.getIndividualPostPreview(pageable, userName);
-        long totalCount = individualPostRepository.countPost(userName);
+    public List<String> getCateList(IndividualMem user){
+        List<String> list = Transfer.asList(user.getIndividualCategory(),"//$");
+        return list;
+    }
 
-        for(int i = 0 ; i < list.size() ; i++){
-            IndividualPostPreviewDTO postPreviewDTO =  list.get(i);
-            List<String> individualPhotoList = individualPhotoRepository.findPhoto(postPreviewDTO.getPostCode());
-            postPreviewDTO.setImgUrlList(individualPhotoList);
-            list.set(i, postPreviewDTO);
+    public boolean updateUser(IndividualPageDTO individualPageDTO, String user){
+
+        try {
+            IndividualMem individualMem = individualMemRepository.findByEmail(user);
+            individualMemRepository.save(individualPageDTO.updateUserByPageEdit(individualMem));
+        }catch (Exception e){
+            return false;
         }
-
-        return new PageImpl<>(list, pageable, totalCount);
+        return true;
     }
-    public Page<SavedPostDTO> getSavedPost(Pageable pageable, String email){
-        IndividualMem individualMem = individualMemRepository.findByEmail(email);
-        Long id = individualMem.getId();
-
-        return savedPostRepositoryCustom.getSavedPost(pageable, id);
-    }
-
 }

@@ -16,6 +16,7 @@ public class LoginSessionDTO {
     private String name;
     private String individualDomain;
     private String partnerDomain;
+    private IndividualMem individualMem;
 
     private static ModelMapper modelMapper = new ModelMapper();
 

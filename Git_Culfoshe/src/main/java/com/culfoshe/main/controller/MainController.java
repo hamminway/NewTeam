@@ -34,7 +34,7 @@ public class MainController {
 //        Page<MainViewDTO> mainViewDTOS = getPage(pageable);
 
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-        Page<MainViewDTO> mainViewDTOS = mainService.getMainPage(pageable);
+//        Page<MainViewDTO> mainViewDTOS = mainService.getMainPage(pageable);
 
         model.addAttribute("mainViewDTOs", null);   //임시로 null을 넣어줌 (원래는 mainViewDTOS)
         model.addAttribute("searchDTO", searchDTO);
