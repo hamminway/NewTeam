@@ -596,38 +596,58 @@ function validateCheckDomain(target, domain) {
 - 파트너(사업자 등록 번호)
 */
 
+let storeNum = document.getElementById('storeNum');
 let storeNumResult = document.getElementById('storeNumChk')
 
-storeNum.addEventListener("blur", function(){
-  checkStoreNum();
-})
 
-function checkStoreNum(){
+storeNum.addEventListener("blur", function () {
+
   let partemailexp = /^[0-9]{10}/
 
-  console.log(storeNum);
+  if(partemailexp.test(storeNum.value)){
 
-  if(storeNum.value.length == 0){
-    storeNumResult.innerHTML = "* 필수 입력입니다"
-  } else if(partemailexp.test(storeNum.value)){
-    storeNumResult.innerHTML = " "
-  } else if(storeNum.value.length != 10 && storeNum.value != null){
-    storeNumResult.innerHTML = "* 양식에 맞춰 10개의 숫자를 입력하세요"
+    let data = {
+      "b_no": [storeNum.value] // 사업자번호 "xxxxxxx" 로 조회 시,
+    };
+
+    fetch("https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=uKPbZloC9gAvd0Q7bZT6YbeFoc3coVy1AOuez5RdZ2pCuGdGeM%2FKKGW5kwbhddw%2Fl1xTBVU7F9kwGydMPRn9aA%3D%3D", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data)
+    })
+        .then((resp) => resp.json())
+        .then(data => {
+
+          if(data.data[0].b_stt_cd == ''){
+            storeNumResult.innerHTML = "국세청에 등록되지 않은 사업자입니다.";
+            storeNumResult.style.color = "red";
+
+          } else {
+
+            if(data.data[0].b_stt_cd == '01'){
+              storeNumResult.innerHTML = "가입 가능합니다. 중복확인을 눌러주세요.";
+              storeNumResult.style.color = "green";
+            } else if(data.data[0].b_stt_cd === '02' || data.data[0].b_stt_cd === '03') {
+              storeNumResult.innerHTML = "현재 휴업하거나 폐업한 사업자입니다.";
+              storeNumResult.style.color = "red";
+            }
+          }
+        })
+
   } else {
     storeNumResult.innerHTML = "* 양식에 맞춰 10개의 숫자를 입력하세요"
   }
-}
+})
+
 
 let storeNumChkBtn = document.getElementById("storeNumChkBtn");
 let storeNumCheckMsg = "";
 
 storeNumChkBtn.addEventListener("click", function (e) {
 
-  let data = {
-    "b_no": [storeNum.value] // 사업자번호 "xxxxxxx" 로 조회 시,
-  };
-
-  let storeNumUrl = "/members/checkDomain?storeNum=" + data;
+  let storeNumUrl = "/members/checkStoreNum?storeNum=" + storeNum.value;
 
   duplicateCheckStoreNum(storeNumResult, storeNumUrl);
 
