@@ -8,6 +8,5 @@ import java.util.List;
 
 public interface MainRepository extends JpaRepository<IndividualPost, Long>,
         QueryByExampleExecutor<IndividualPost>, MainRepositoryCustom, SearchRepository {
-
     IndividualPost findByPostCode(Long postCode);
 }
