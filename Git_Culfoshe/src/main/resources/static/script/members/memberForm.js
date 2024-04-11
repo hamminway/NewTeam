@@ -130,7 +130,7 @@ $(document).ready(function() {
     $("#partJoinBtn").hide();
     $(".footer").css({"marginTop": "770px"})
 
-    $("#partnerInfor").css({"position":"relative", "right":"501px", "width": "490px"});
+    $("#partnerInfor").css({"position":"relative",  "right":"562px", "width": "490px"});
     $("#interestInfor").css({"position":"relative", "top":"420px"});
 
     $(".indexbox1").hide();
@@ -150,11 +150,11 @@ $(document).ready(function() {
     $("#partJoinBtn").css({"display": "block", "position": "relative", "right": "764px", "top": "180px"});
 
     $("#inficInfor").css({"width": "520px"});
-    $("#partnerInfor").css({"position":"relative", "right":"1px"});
+    $("#partnerInfor").css({"position":"relative", "right":"62px"});
 
     $(".indexbox1").show();
     $(".indexbox2").hide();
-    $(".indexbox1").css({"width":"500px", "height":"550px"});
+    $(".indexbox1").css({"width":"500px", "height":"485px"});
     $("#allInfor").css({"width":"1500px", "height":"1450px"});
 
   });

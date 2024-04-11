@@ -28,7 +28,6 @@ public class IndividualMem {
 
     private String name;
 
-    private String telecommunicationCompany;
     private String phoneNum;
 
     private String profilePicUrl;

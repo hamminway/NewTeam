@@ -106,7 +106,7 @@
                         <div class="inficInfor" id="inficInfor">
                             <h2 class="indicment">개인회원 정보 💁🏻</h2>
 
-                            <table>
+                            <table class="inforInput">
                                 <tr>
                                     <td class="td1">성명</td>
                                     <td class="td2">
@@ -139,25 +139,6 @@
                                     <td class="td2_2">
                                         <input type="password" minlength="8" maxlength="20" class="pwd checkIndicInput" id="indicPwInputCheck" /><br />
                                         <label class="pwdchk" id="indicPwdDoubleChk"></label>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="td1">통신사</td>
-                                    <td class="td2_3">
-                                        <div th:field="*{telecommunicationCompany}">
-                                            <div class="phonereplacebox">
-                                                <input type="radio" class="phonereplace" th:field="*{telecommunicationCompany}" th:name="telecommunicationCompany" value="SKT"/><label class="phonereplace2">SKT</label>
-                                                <input type="radio" class="phonereplac" th:field="*{telecommunicationCompany}" th:name="telecommunicationCompany" value="KT"/><label class="phonereplace2">KT</label>
-                                                <input type="radio" class="phonereplac" th:field="*{telecommunicationCompany}" th:name="telecommunicationCompany" value="LG U+"/><label class="phonereplace2">LG U+</label>
-                                            </div>
-
-                                            <div class="phonereplacebox">
-                                                <input type="radio" class="phonereplace" th:field="*{telecommunicationCompany}" th:name="telecommunicationCompany" value="SKT 알뜰폰"/><label class="phonereplace2">SKT 알뜰폰</label>
-                                                <input type="radio" class="phonereplac" th:field="*{telecommunicationCompany}" th:name="telecommunicationCompany" value="KT 알뜰폰"/><label class="phonereplace2">KT 알뜰폰</label>
-                                                <input type="radio" class="phonereplac" th:field="*{telecommunicationCompany}" th:name="telecommunicationCompany" value="LG U+ 알뜰폰"/><label class="phonereplace2">LG U+ 알뜰폰</label>
-                                            </div>
-                                        </div>
                                     </td>
                                 </tr>
 

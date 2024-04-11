@@ -27,8 +27,9 @@
     .Allcheckbox2{padding-left: 5px;}
 
     .inforInputBox{display: flex; padding-bottom: 90px;}
+    .inforInput{margin-top: 10px;}
     .inficInfor{margin-left: 240px;}
-    .partnerInfor{margin-left: 50px; z-index: 0;}
+    .partnerInfor{margin-left: 100px; z-index: 0;}
     .td1{width: 150px; height: 40px;}
     .td2{width: 300px; height: 40px;}
 
@@ -85,12 +86,12 @@
     .indicment, .partnerment, .interestlocal{padding-bottom: 20px;}
     .indicment, .partnerment{margin-top: 100px;}
     .interestlocal{margin-top: 100px;}
-    .interestInfor{margin-top: 120px; padding-bottom: 120px; display: none;}
+    .interestInfor{margin-top: 180px; padding-bottom: 120px; display: none;}
     .interestment{padding-bottom: 15px;}
 
     .indexbox1{position: relative; bottom: 1050px; left: 219px;
         background-color: #bbb; opacity:0.5; display: none; z-index: 1;}
-    .indexbox2{position: relative; bottom: 1415px; left: 795px;
+    .indexbox2{position: relative; bottom: 1415px; left: 780px;
         background-color: #bbb; opacity:0.5; display: none; z-index: 1;}
     .box{display: none;}
 

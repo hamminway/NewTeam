@@ -26,8 +26,6 @@ public class IndividualMemFormDTO {
     @Length(min = 8, max = 20)
     private String password;
 
-    private String telecommunicationCompany;
-
     @NotBlank
     private String phoneNum;
 
@@ -49,7 +47,6 @@ public class IndividualMemFormDTO {
         individualMem.setPassword(password);
 
         individualMem.setName(individualMemFormDTO.getName());
-        individualMem.setTelecommunicationCompany(individualMemFormDTO.getTelecommunicationCompany());
         individualMem.setPhoneNum(individualMemFormDTO.getPhoneNum());
 
         individualMem.setInterest(individualMemFormDTO.getInterest());
