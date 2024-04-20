@@ -158,6 +158,8 @@
                                             <div class="checkitem1">
                                                 <input th:field="*{individualDomain}" type="text" class="domain checkIndicInput" id="indicDomain" />
                                                 <button class="domainBtn" id="indicDomainBtn">중복확인</button><br />
+
+                                                <input type="hidden" id="checkIndicDuplication">
                                             </div>
                                         </div>
                                         <label class="pwdchk" id="indicDomainChk"></label>
@@ -369,6 +371,8 @@
                                         </div>
 
                                         <label class="numchk" id="storeNumChk">* 양식에 맞춰 10개의 숫자를 입력</label>
+
+                                        <input type="hidden" id="checkDuplication">
                                     </td>
                                 </tr>
                             </table>
@@ -424,6 +428,7 @@
                                             </div>
                                         </div>
                                         <label class="pwdchk" id="partDomainChk"></label>
+                                        <input type="hidden" id="checkPartnerDuplication">
                                     </td>
                                 </tr>
                             </table>

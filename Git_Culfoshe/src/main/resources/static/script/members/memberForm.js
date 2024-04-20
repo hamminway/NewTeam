@@ -286,11 +286,13 @@ function checkpassword(){
 
   if(indicPwInput.value.length == 0){
     indicPwdChk.innerHTML = "* 필수 입력입니다"
+    indicPwdChk.style.color = "red";
     indicPwInput.focus();
   }else if(pwdexp.test(indicPwInput.value)){
     indicPwdChk.innerHTML = " "
   }else{
     indicPwdChk.innerHTML = "* 양식에 맞게 입력하세요"
+    indicPwdChk.style.color = "red";
     indicPwInput.focus();
   }
 }
@@ -312,11 +314,13 @@ function checkpassword1(){
 
   if(partPwInput.value.length == 0){
     partPwdChk.innerHTML = "* 필수 입력입니다"
+    partPwdChk.style.color = "red";
     partPwInput.focus();
   }else if(pwdexp.test(partPwInput.value)){
     partPwdChk.innerHTML = " "
   }else{
     partPwdChk.innerHTML = "* 양식에 맞게 입력하세요"
+    partPwdChk.style.color = "red";
     partPwInput.focus();
   }
 }
@@ -340,10 +344,12 @@ function passwordCheck(){
 
   if(indicPwInputCheck.value.length == 0){
     indicPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
+    indicPwdDoubleChk.style.color = "red"
   }else if(pwdchkexp.test(indicPwInputCheck.value) && indicPwInput.value == indicPwInputCheck.value){
     indicPwdDoubleChk.innerHTML= " "
   }else{
     indicPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
+    indicPwdDoubleChk.style.color = "red"
   }
 }
 
@@ -364,10 +370,12 @@ function passwordCheck1(){
 
   if(partPwInputCheck.value.length == 0){
     partPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
+    partPwdDoubleChk.style.color = "red"
   }else if(pwdchkexp.test(partPwInputCheck.value) && partPwInput.value == partPwInputCheck.value){
     partPwdDoubleChk.innerHTML= " "
   }else{
     partPwdDoubleChk.innerHTML = "* 동일한 비밀번호를 입력해주세요"
+    partPwdDoubleChk.style.color = "red"
   }
 }
 
@@ -382,17 +390,23 @@ let indicPhone = document.getElementById('indicPhone')
 let indicPhoneChk = document.getElementById('indicPhoneChk')
 
 indicPhone.addEventListener("blur", function(){
-  checkNumber();
+  checkIndicNumber();
 })
-function checkNumber(){
-  let phoneexp =/^[0-1]+-[0-9]+-[0-9]/
+
+let phoneexp =/^[0-1]+-[0-9]+-[0-9]/
+
+function checkIndicNumber(){
 
   if(indicPhone.value.length == 0){
     indicPhoneChk.innerHTML = "* 필수 입력입니다"
+    indicPhoneChk.style.color = "red";
+    indicPhone.focus();
   }else if(phoneexp.test(indicPhone.value)){
     indicPhoneChk.innerHTML = " "
   }else{
     indicPhoneChk.innerHTML = "* 010 - 0000 - 0000 양식에 맞춰 입력하세요"
+    indicPhoneChk.style.color = "red";
+    indicPhone.focus();
   }
 }
 
@@ -405,17 +419,21 @@ let partnerPhone = document.getElementById('partnerPhone')
 let partnerPhoneChk = document.getElementById('partnerPhoneChk')
 
 partnerPhone.addEventListener("blur", function(){
-  checkNumber1();
+  checkPartnerNumber();
 })
-function checkNumber1(){
-  let phoneexp =/^[0-1]+-[0-9]+-[0-9]/
+
+function checkPartnerNumber(){
 
   if(partnerPhone.value.length == 0){
     partnerPhoneChk.innerHTML = "* 필수 입력입니다"
+    partnerPhoneChk.style.color = "red";
+    partnerPhone.focus();
   }else if(phoneexp.test(partnerPhone.value)){
     partnerPhoneChk.innerHTML = " "
   }else{
     partnerPhoneChk.innerHTML = "* 010 - 0000 - 0000 양식에 맞춰 입력하세요"
+    partnerPhoneChk.style.color = "red";
+    partnerPhone.focus();
   }
 }
 
@@ -435,7 +453,7 @@ indicemail1.addEventListener("blur", function(){
   let emailexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if(emailexp.test(indicEmailBox.value)) {
-    validateCheckEmail(indicEmailchk, indicUrl, indicDomain, indicemail1);
+    validateCheckEmail(indicEmailchk, indicUrl, indicDomain, indicemail1, indicDomainChk);
 
   } else {
     indicEmailchk.innerHTML = "* 이메일 양식에 맞춰 입력해주세요"
@@ -452,7 +470,7 @@ indicemail2.addEventListener("blur", function(){
   let emailexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if(emailexp.test(indicEmailBox.value)) {
-    validateCheckEmail(indicEmailchk, indicUrl, indicDomain, indicemail1);
+    validateCheckEmail(indicEmailchk, indicUrl, indicDomain, indicemail1, indicDomainChk);
 
   } else {
     indicEmailchk.innerHTML = "* 이메일 양식에 맞춰 입력해주세요"
@@ -484,7 +502,7 @@ for(let i = 0 ; i < emailaArr.length ; i++){
     let emailexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if(emailexp.test(partEmailBox.value)) {
-      validateCheckEmail(partEmailchk, PartnerUrl, partDomain, partemail1);
+      validateCheckEmail(partEmailchk, PartnerUrl, partDomain, partemail1, partDomainChk);
 
     } else {
       partEmailchk.innerHTML = "* 이메일 양식에 맞춰 입력해주세요"
@@ -495,7 +513,7 @@ for(let i = 0 ; i < emailaArr.length ; i++){
 }
 
 
-function validateCheckEmail(target, url, element1, element2){
+function validateCheckEmail(target, url, element1, element2, element3){
 
   fetch(url)
       .then(resp => {
@@ -506,6 +524,7 @@ function validateCheckEmail(target, url, element1, element2){
           emailCheckMsg = "* 사용 가능한 이메일입니다."
 
           element1.value = element2.value;
+          element3.innerHTML = "* 중복확인 버튼을 눌러 확인해주세요";
         } else {
 
           target.style.color = "red";
@@ -543,6 +562,7 @@ storePlaceDetails.addEventListener("blur", () => {
 let indicDomain = document.getElementById("indicDomain");
 let indicDomainBtn = document.getElementById("indicDomainBtn");
 let indicDomainChk = document.getElementById("indicDomainChk");
+let checkIndicDuplication = document.getElementById("checkIndicDuplication");
 
 let domainCheckMsg = "";
 
@@ -552,6 +572,7 @@ indicDomainBtn.addEventListener("click", function (e){
   let indicDomainUrl = "/members/checkDomain?domain=" + indicDomain.value;
 
   validateCheckDomain(indicDomainChk, indicDomainUrl);
+  checkIndicDuplication.value = "buttonClickSuccess";
 })
 
 /*
@@ -562,6 +583,8 @@ indicDomainBtn.addEventListener("click", function (e){
 let partDomain = document.getElementById("partDomain");
 let partDomainBtn = document.getElementById("partDomainBtn");
 let partDomainChk = document.getElementById("partDomainChk");
+let checkPartnerDuplication = document.getElementById("checkPartnerDuplication");
+
 
 partDomainBtn.addEventListener("click", function (e){
   e.preventDefault();
@@ -569,6 +592,7 @@ partDomainBtn.addEventListener("click", function (e){
   let partDomainUrl = "/members/checkDomain?domain=" + partDomain.value;
 
   validateCheckDomain(partDomainChk, partDomainUrl);
+  checkPartnerDuplication.value = "buttonClickSuccess";
 })
 
 function validateCheckDomain(target, domain) {
@@ -771,8 +795,6 @@ storeNumChkBtn.addEventListener("click", function (e) {
 
         let inputNum = checkNullInput(indicInputList);
 
-        console.log(inputNum);
-
         switch (inputNum) {
 
           case 0 :
@@ -797,20 +819,34 @@ storeNumChkBtn.addEventListener("click", function (e) {
 
           case 4 :
             e.preventDefault();
-            alert("개인 정보) 통신사를 선택해주세요");
+            alert("개인 정보) 휴대폰 번호를 입력해주세요");
             break;
 
           case 5 :
             e.preventDefault();
-            alert("개인 정보) 휴대폰 번호를 입력해주세요");
-            break;
-
-          case 6 :
-            e.preventDefault();
             alert("개인 정보) 홈페이지 주소를 입력해주세요");
             break;
         }
+
       }
+
+      if(indicPwInput.value !== indicPwInputCheck.value){
+
+        e.preventDefault();
+        alert("개인 정보) 비밀번호와 비밀번호 확인란이 일치하지 않습니다")
+      }
+
+      if(!phoneexp.test(indicPhone.value)){
+
+        e.preventDefault();
+        alert("개인 정보) 입력하신 휴대폰 번호가 양식에 맞지 않습니다")
+      }
+
+      if(checkIndicDuplication.value !== "buttonClickSuccess"){
+        e.preventDefault();
+        alert("개인 정보) 도메인 중복 확인 버튼을 눌러주세요")
+      }
+
     })
 
       function checkNullInput(target){
@@ -820,11 +856,11 @@ storeNumChkBtn.addEventListener("click", function (e) {
           if(target[i].value === ''){
             return i;
           }
-
         }
 
         return -1;
       }
+
 
     /*
     8. 회원가입 버튼을 클릭했을 때
@@ -898,4 +934,22 @@ storeNumChkBtn.addEventListener("click", function (e) {
             break;
         }
       }
+
+      if(partPwInput.value !== partPwInputCheck.value){
+
+        e.preventDefault();
+        alert("파트너 정보) 비밀번호와 비밀번호 확인란이 일치하지 않습니다")
+      }
+
+      if(!phoneexp.test(partnerPhone.value)){
+
+        e.preventDefault();
+        alert("파트너 정보) 입력하신 휴대폰 번호가 양식에 맞지 않습니다")
+      }
+
+      if(checkPartnerDuplication.value !== "buttonClickSuccess"){
+        e.preventDefault();
+        alert("파트너 정보) 도메인 중복 확인 버튼을 눌러주세요")
+      }
+
     })
