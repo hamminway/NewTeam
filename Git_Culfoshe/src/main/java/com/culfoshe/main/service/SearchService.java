@@ -24,21 +24,6 @@ public class SearchService {
 
     //검색페이지 보여줄 상품 데이터 조회
     @Transactional(readOnly = true)
-    public Page<PartnerMem> getPartnerSearchPage(SearchDTO searchDTO, Pageable pageable) {
-        return searchRepository.getPartnerSearchPage(searchDTO, pageable);
-    }
-
-    @Transactional(readOnly = true)
-    public Page<IndividualMem> getIndivMemSearchPage(SearchDTO searchDTO, Pageable pageable) {
-        return searchRepository.getIndivMemSearchPage(searchDTO, pageable);
-    }
-
-    @Transactional(readOnly = true)
-    public Page<IndividualPost> getIndivPostSearchPage(SearchDTO searchDTO, Pageable pageable) {
-        return searchRepository.getIndivPostSearchPage(searchDTO, pageable);
-    }
-
-    @Transactional(readOnly = true)
     public Page<SearchPreviewDTO> getSearchPrevPage(SearchDTO searchDTO, Pageable pageable) {
         return searchRepository.getSearchPrevPage(searchDTO, pageable);
     }

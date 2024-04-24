@@ -13,9 +13,5 @@ import org.springframework.stereotype.Repository;
 
 public interface SearchRepository  {
 
-    Page<PartnerMem> getPartnerSearchPage(SearchDTO searchDTO, Pageable pageable);
-    Page<IndividualMem> getIndivMemSearchPage(SearchDTO searchDTO, Pageable pageable);
-    Page<IndividualPost> getIndivPostSearchPage(SearchDTO searchDTO, Pageable pageable);
-
     Page<SearchPreviewDTO> getSearchPrevPage(SearchDTO searchDTO, Pageable pageable);
 }

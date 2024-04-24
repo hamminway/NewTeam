@@ -6,6 +6,8 @@ import com.culfoshe.main.dto.QSearchPreviewDTO;
 import com.culfoshe.main.dto.SearchDTO;
 import com.culfoshe.main.dto.SearchPreviewDTO;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.EntityPathBase;
+import com.querydsl.core.types.dsl.StringPath;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.context.annotation.Primary;
@@ -31,9 +33,9 @@ public class SearchRepositoryImpl implements SearchRepository {
     }
 
     //검색어가 공백이면 null, 아니면 검색어가 포함되는 상품을 조회
-    private BooleanExpression storeNmLike(String searchQuery){
+    private BooleanExpression searchQueryLike(String searchQuery, StringPath property){
         return StringUtils.isEmpty(searchQuery)? null :
-                QPartnerMem.partnerMem.storeName.like("%" + searchQuery + "%");
+                property.like("%" + searchQuery + "%");
     }
 
     //headerCategory
@@ -42,83 +44,42 @@ public class SearchRepositoryImpl implements SearchRepository {
                 null : QIndividualPost.individualPost.postCategory.eq(headerCategory);
     }
 
-    private BooleanExpression searchByLikeSearch(String searchBy, String searchQuery) {
+    private BooleanExpression searchByLikeSearch(String searchBy, String searchQuery, boolean individual) {
 
-        QPartnerMem partnerMem = QPartnerMem.partnerMem;
-        QIndividualMem individualMem = QIndividualMem.individualMem;
-        QIndividualPost individualPost = QIndividualPost.individualPost;
+        //전체를 보여주게 하는 JAVA 정규표현식
+        if(searchQuery.equals("")){
+            return null;
+        } else if(individual) {
+            QIndividualMem individualMem = QIndividualMem.individualMem;
+            QIndividualPost individualPost = QIndividualPost.individualPost;
+            QPartnerMem partnerMem = QIndividualPost.individualPost.partnerMem;
 
-        if(StringUtils.equals("storeName", searchBy)) {
-            return partnerMem.storeName.like("%" + searchQuery + "%");
-        } else if(StringUtils.equals("pageName", searchBy)) {
-            return individualMem.pageName.like("%" + searchQuery + "%");
-        } else if(StringUtils.equals("characterName", searchBy)) {
-            return individualMem.characterName.like("%" + searchQuery + "%");
-        } else if(StringUtils.equals("postTitle", searchBy)) {
-            return individualPost.postTitle.like("%" + searchQuery + "%");
+            if(StringUtils.equals("storeName", searchBy)) {
+                return partnerMem.storeName.like("%" + searchQuery + "%");
+            } else if(StringUtils.equals("pageName", searchBy)) {
+                return individualMem.pageName.like("%" + searchQuery + "%");
+            } else if(StringUtils.equals("characterName", searchBy)) {
+                System.err.println("characterName");
+                System.err.println(searchQuery);
+                System.err.println(individualMem.characterName.like("%" + searchQuery + "%"));
+                return individualMem.characterName.like("%" + searchQuery + "%");
+            } else if(StringUtils.equals("postTitle", searchBy)) {
+                return individualPost.postTitle.like("%" + searchQuery + "%");
+            }
+        } else {
+            QPartnerMem partnerMem = QPartnerMem.partnerMem;
+
+            if(StringUtils.equals("storeName", searchBy)) {
+                return partnerMem.storeName.like("%" + searchQuery + "%");
+            }
         }
         return null;
     }
 
-    private BooleanExpression searchByLike(String searchBy, String searchQuery){
-
-        QPartnerMemPK partnerMemPK = QPartnerMemPK.partnerMemPK;
-        QIndividualPost individualPost = QIndividualPost.individualPost;
+    private BooleanExpression searchByLike(String searchBy, String searchQuery, StringPath element ){
 
         if(StringUtils.equals("seoul", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("gyeonggi", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("incheon", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("gangwon", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("chungcheong", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("daejeon", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("daegu", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("busan", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("ulsan", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("gyeongsang", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("gwangju", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("jeonla", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("jeju", searchBy)) {
-            return partnerMemPK.store_location.like("%" + searchQuery + "%");
-        }
-
-        if(StringUtils.equals("seoul", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("gyeonggi", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("incheon", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("gangwon", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("chungcheong", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("daejeon", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("daegu", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("busan", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("ulsan", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("gyeongsang", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("gwangju", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("jeonla", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
-        } else if (StringUtils.equals("jeju", searchBy)) {
-            return individualPost.location.like("%" + searchQuery + "%");
+            return element.like("%" + searchQuery + "%");
         }
         return null;
     }
@@ -147,113 +108,14 @@ public class SearchRepositoryImpl implements SearchRepository {
     //쿼리프로젝션 어노테이션 Q클래스가 만들어준다.
     //쿼리를 생성
     @Override
-    public Page<PartnerMem> getPartnerSearchPage(SearchDTO searchDTO, Pageable pageable) {
-
-        List<PartnerMem> content = queryFactory
-                .selectFrom(QPartnerMem.partnerMem)
-                .where(regDtsAfter(searchDTO.getSearchDateType()),
-                        searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                        searchByLikeSearch(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
-                .orderBy(QPartnerMemPK.partnerMemPK.partnermem_id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();   //리스트 반환
-
-        content.addAll(queryFactory
-                        .select(QPartnerMem.partnerMem)
-                        .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                                searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
-                        .orderBy(QPartnerMemPK.partnerMemPK.partnermem_id.desc())
-                        .offset(pageable.getOffset())
-                        .limit(pageable.getPageSize())
-                        .fetch()
-                );
-
-        long total = queryFactory.select(Wildcard.count)
-                .from(QPartnerMem.partnerMem)
-                .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                        searchByLike(searchDTO.getSearchBy(),
-                                searchDTO.getSearchQuery()))
-                .fetchOne();
-
-        return new PageImpl<>(content, pageable, total);
-    }
-
-    @Override
-    public Page<IndividualMem> getIndivMemSearchPage(SearchDTO searchDTO, Pageable pageable) {
-
-        List<IndividualMem> content = queryFactory
-                .selectFrom(QIndividualMem.individualMem)
-                .where(regDtsAfter(searchDTO.getSearchDateType()),
-                        searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                        searchByLikeSearch(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
-                .orderBy(QIndividualMem.individualMem.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        content.addAll(queryFactory
-                .select(QIndividualMem.individualMem)
-                .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                        searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
-                .orderBy(QIndividualMem.individualMem.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch());
-
-        long total = queryFactory.select(Wildcard.count)
-                .from(QIndividualMem.individualMem)
-                .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                        searchByLike(searchDTO.getSearchBy(),
-                                searchDTO.getSearchQuery()))
-                .fetchOne();
-
-        return new PageImpl<>(content, pageable, total);
-    }
-
-    @Override
-    public Page<IndividualPost> getIndivPostSearchPage(SearchDTO searchDTO, Pageable pageable) {
-
-        List<IndividualPost> content = queryFactory
-                .selectFrom(QIndividualPost.individualPost)
-                .where(regDtsAfter(searchDTO.getSearchDateType()),
-                        searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                        searchByLikeSearch(searchDTO.getSearchBy(),
-                                searchDTO.getSearchQuery()))
-                .orderBy(QIndividualPost.individualPost.postCode.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        content.addAll(queryFactory
-                .select(QIndividualPost.individualPost)
-                .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                        searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery()))
-                .orderBy(QIndividualPost.individualPost.postCode.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch());
-
-        long total = queryFactory.select(Wildcard.count)
-                .from(QIndividualPost.individualPost)
-                .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()),
-                        searchByLike(searchDTO.getSearchBy(),
-                                searchDTO.getSearchQuery()))
-                .fetchOne();
-
-        return new PageImpl<>(content, pageable, total);
-    }
-
-
-    @Override
     public Page<SearchPreviewDTO> getSearchPrevPage(SearchDTO searchDTO, Pageable pageable) {
 
+        System.err.println(searchDTO);
         QPartnerMem partnerMem = QPartnerMem.partnerMem;
         QIndividualPost individualPost = QIndividualPost.individualPost;
         QIndividualPhoto individualPhoto = QIndividualPhoto.individualPhoto;
         QIndividualMem individualMem = QIndividualMem.individualMem;
         QPartnerMemPK partnerMemPK = QPartnerMemPK.partnerMemPK;
-
         List<SearchPreviewDTO> content = queryFactory
                 .select(new QSearchPreviewDTO(
                         individualMem.pageName,
@@ -266,10 +128,14 @@ public class SearchRepositoryImpl implements SearchRepository {
                 .from(individualPhoto)
                 .join(individualPhoto.individualPost, individualPost)
                 .leftJoin(individualPost.individualMem, individualMem)
+                .where(searchQueryLike(searchDTO.getSearchQuery(), individualPost.createdBy),
+                        regDtsAfter(searchDTO.getSearchDateType()),
+                        searchHeaderCategoryEq(searchDTO.getHeaderCategory())
+                        ,searchByLikeSearch(searchDTO.getSearchBy(), searchDTO.getSearchQuery(),true)
+                        ,searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery(),individualPost.location))
                 .offset(pageable.getOffset())   //데이터를 가지고 올 시작인덱스 지정
                 .limit(pageable.getPageSize())  //최대갯수 지정
                 .fetch();
-        System.err.println(content.get(0));
 
         content.addAll(queryFactory
                 .select(new QSearchPreviewDTO(
@@ -279,22 +145,30 @@ public class SearchRepositoryImpl implements SearchRepository {
                         partnerMemPK.store_location)
                 )
                 .from(partnerMem)
+                .where(regDtsAfter(searchDTO.getSearchDateType()),
+                        searchHeaderCategoryEq(searchDTO.getHeaderCategory())
+                        ,searchByLikeSearch(searchDTO.getSearchBy(), searchDTO.getSearchQuery(), false)
+                        ,searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery(),partnerMemPK.store_location))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch());
-        System.err.println(content.get(0));
 
         long total = queryFactory.select(Wildcard.count)
                 .from(individualPhoto)
                 .join(individualPhoto.individualPost, individualPost)
                 .join(individualPost.individualMem, individualMem)
-                .where(searchHeaderCategoryEq(searchDTO.getHeaderCategory()
-                ), searchByLike(searchDTO.getSearchBy(),
-                                searchDTO.getSearchQuery()))
+                .where(regDtsAfter(searchDTO.getSearchDateType()),
+                        searchHeaderCategoryEq(searchDTO.getHeaderCategory())
+//                        ,searchByLikeSearch(searchDTO.getSearchBy(), searchDTO.getSearchQuery())
+                        ,searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery(),individualPost.location))
                 .fetchOne();
 
         total += queryFactory.select(Wildcard.count)
                 .from(partnerMem)
+                .where(regDtsAfter(searchDTO.getSearchDateType()),
+                        searchHeaderCategoryEq(searchDTO.getHeaderCategory())
+//                        ,searchByLikeSearch(searchDTO.getSearchBy(), searchDTO.getSearchQuery())
+                        ,searchByLike(searchDTO.getSearchBy(), searchDTO.getSearchQuery(),partnerMemPK.store_location))
                 .fetchOne();
 
         return new PageImpl<>(content, pageable, total);

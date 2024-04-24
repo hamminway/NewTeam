@@ -37,9 +37,9 @@ public class SearchController {
             System.err.println(searches.getContent().get(i));
         }
 
-        System.err.println("getTotalElements : " + searches.getTotalElements());
+/*        System.err.println("getTotalElements : " + searches.getTotalElements());
         System.err.println("getTotalPages : " + searches.getTotalPages());
-        System.err.println("contentSize : " + searches.getContent().size());
+        System.err.println("contentSize : " + searches.getContent().size());*/
 
         model.addAttribute("searches", searches);
         model.addAttribute("searchDTO", searchDTO);

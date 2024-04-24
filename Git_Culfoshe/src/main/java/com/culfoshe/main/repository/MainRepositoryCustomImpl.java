@@ -34,6 +34,7 @@ public class MainRepositoryCustomImpl implements MainRepositoryCustom {
     @Override
     public Page<MainViewDTO> getMainPage(Pageable pageable) {
 
+        System.err.println("main.getMainPage");
         QPartnerMem partnerMem = QPartnerMem.partnerMem;
         QIndividualPost individualPost = QIndividualPost.individualPost;
         QStorePhoto storePhoto = QStorePhoto.storePhoto;
