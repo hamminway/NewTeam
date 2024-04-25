@@ -669,11 +669,14 @@ storeNum.addEventListener("blur", function () {
 let storeNumChkBtn = document.getElementById("storeNumChkBtn");
 let storeNumCheckMsg = "";
 
+let checkDuplication = document.getElementById("checkDuplication");
+
 storeNumChkBtn.addEventListener("click", function (e) {
 
   let storeNumUrl = "/members/checkStoreNum?storeNum=" + storeNum.value;
 
   duplicateCheckStoreNum(storeNumResult, storeNumUrl);
+  checkDuplication.value = "buttonClickSuccess";
 
 })
 
@@ -839,7 +842,7 @@ storeNumChkBtn.addEventListener("click", function (e) {
       if(!phoneexp.test(indicPhone.value)){
 
         e.preventDefault();
-        alert("개인 정보) 입력하신 휴대폰 번호가 양식에 맞지 않습니다")
+        alert("개인 정보) 휴대폰 번호를 양식에 맞춰 입력해주세요")
       }
 
       if(checkIndicDuplication.value !== "buttonClickSuccess"){
@@ -905,7 +908,7 @@ storeNumChkBtn.addEventListener("click", function (e) {
 
           case 4 :
             e.preventDefault();
-            alert("파트너 정보) 사업자 등록번호를 선택해주세요");
+            alert("파트너 정보) 사업자 등록번호를 입력해주세요");
             break;
 
           case 5 :
@@ -944,7 +947,12 @@ storeNumChkBtn.addEventListener("click", function (e) {
       if(!phoneexp.test(partnerPhone.value)){
 
         e.preventDefault();
-        alert("파트너 정보) 입력하신 휴대폰 번호가 양식에 맞지 않습니다")
+        alert("파트너 정보) 휴대폰 번호를 양식에 맞춰 입력해주세요")
+      }
+
+      if(checkDuplication.value !== "buttonClickSuccess"){
+        e.preventDefault();
+        alert("파트너 정보) 사업자 등록번호 중복 확인 버튼을 눌러주세요")
       }
 
       if(checkPartnerDuplication.value !== "buttonClickSuccess"){
