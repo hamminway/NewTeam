@@ -5,11 +5,23 @@ const action = document.querySelector('.action');//사용자의 카테고리 삭
 const plus = document.querySelector('.cateAddBox');//사용자의 카테고리를 추가할 아이콘박스
 const minusSample = document.querySelector('.minusBox');//사용자의 카테고리를 제거할 아이콘 박스
 const side_bottom = document.querySelector('.side_bottom');//카테고리의 바텀 - 완료버튼과 +아이콘이 있음
+var listBox = null;
+const body = document.querySelector('body');
 
 var eventNode = null;
 
 function sideEdit(element){
-    const sideInputUrl = '';
+    const sideInputUrl = '/personalPage/myPage/editCate';
+
+    fetch(sideInputUrl)
+    .then((resp)=>{
+        console.log(resp)
+        return resp.text();
+    })  
+    .then((data)=>{
+        cateList.innerHTML=data;
+        element.classList.add('blind');
+    })
 
 }
 function resetFocus(){
@@ -24,6 +36,7 @@ function resetFocus(){
 }
 
 function addCate(element){
+    listBox = listBox != null ? listBox : document.querySelector('.cate_listBox');
     resetFocus();
     let newP = document.createElement('p');
     let newInput = document.createElement('input');
@@ -36,7 +49,7 @@ function addCate(element){
     minusClone.classList.remove('blind');
     
 
-    let createdP = cateList.appendChild(newP);
+    let createdP = listBox.appendChild(newP);
     createdP.appendChild(newInput);
     createdP.appendChild(minusClone);
     createdP.addEventListener('click',(e)=>{
@@ -47,16 +60,25 @@ function addCate(element){
         // }
     })
 }
-function deleteTag(this){
-    eventNode = this;
+function deleteTag(element){
+    eventNode = element.closest('p');
+    let screenBlock = document.querySelector('.screenBlock');
+    let alertScreen = document.querySelector('.alertDelete');
+
+    body.classList.add('stopScrolling');
+    screenBlock.classList.remove('blind');
+    alertScreen.classList.remove('blind');
 }
 function deleteTagConfirm(element, bool){
-    let alertScreen = element.closest('.alertDelete');
+    let alertScreen = document.querySelector('.alertDelete');
+    let screenBlock = document.querySelector('.screenBlock');
     if(bool){
         eventNode.remove();
     }
     alertScreen.classList.add('blind');
+    screenBlock.classList.add('blind');
     eventNode = null;
+    body.classList.remove('stopScrolling');
 }
 function cancelAction(){
 
@@ -81,7 +103,12 @@ function toggleClassListByNodeList(list, className, boolean){
     }
 }
 
+function sideSubmit(){
+    const submitUrl = '/personalPage/myPage/editCate'
 
+    let cateData = new FormData(document.querySelector('.myPageSide'))
+    fetch(submitUrl,)
+}
 
 
 

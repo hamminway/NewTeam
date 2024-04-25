@@ -120,18 +120,18 @@ public class SearchQuery {
 
     @Test
     public void searchQueryTest() {
-//        saveIndividualMem(2);
-//        savePartnerMem(2);
-//
-//        Pageable pageable = PageRequest.of(0,6);
-//        Page page = searchRepository.getSearchPrevPage(new SearchDTO(), pageable);
+        saveIndividualMem(2);
+        savePartnerMem(2);
+
+        Pageable pageable = PageRequest.of(0,6);
+        Page page = searchRepository.getSearchPrevPage(new SearchDTO(), pageable);
 
 
         System.err.println(saveIndividualMem(0));
-//        System.err.println();
-//
-//        IndividualMem individualMem = new IndividualMem();
-//        individualMem.setEmail("123");
+        System.err.println();
+
+        IndividualMem individualMem = new IndividualMem();
+        individualMem.setEmail("123");
 
         System.err.println(saveIndividualMem(saveIndividualPost(saveIndividualMem(9),0)).getIntroduction());
     }

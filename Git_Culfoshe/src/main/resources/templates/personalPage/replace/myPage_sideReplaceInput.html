@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <body>
     <link rel="stylesheet" href="/css/individual/myPageSide.css">
-    <div class="minusBox blind" onclick="deleteTag(this)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"/>
-        </svg>
-    </div>
-    <div class="side_bottom blind">  
-        <button type="button" class="side_cateSubmit" onclick="cateSubmit()">완료</button>
-        <div sec:authorize="isAuthenticated()" class="cateAddBox" onclick="addCate()">
+    
+    <div class="side_bottom"> 
+        <div class="cate_listBox">
+
+        </div> 
+        <button type="button" class="side_cateSubmit" onclick="sideSubmit()">완료</button>
+        <div class="cateAddBox" onclick="addCate()">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
             </svg>
         </div>
     </div>
-    <div class="screenBlock blind"></div>
-    <div class="blind alertDelete action">
-        <p class="alertContent">
-            정말 삭제하시겠습니까?
-        </p>
-        <div class="buttonBox">
-            <button class="alertBtn yesBtn" onclick="deleteTagConfirm(this,true)">네</button>
-            <button class="alertBtn noBtn" onclick="deleteTagConfirm(this,false)">아니요</button>
-        </div>
-    </div>
+
     <script src="/script/individual/myPageSide.js"></script>
 </body>
 

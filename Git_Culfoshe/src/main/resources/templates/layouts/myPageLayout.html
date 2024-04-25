@@ -28,6 +28,16 @@
 
 <body>
 <div class="container_all">
+    <div class="screenBlock blind"></div>
+    <div class="blind alertDelete action">
+        <p class="alertContent">
+            정말 삭제하시겠습니까?
+        </p>
+        <div class="buttonBox">
+            <button class="alertBtn yesBtn" onclick="deleteTagConfirm(this,true)">네</button>
+            <button class="alertBtn noBtn" onclick="deleteTagConfirm(this,false)">아니요</button>
+        </div>
+    </div>
     <!-- 헤더 영역 -->
     <th:block th:replace="~{fragments/myPage_header :: header}"></th:block>
     <div class="main_container">

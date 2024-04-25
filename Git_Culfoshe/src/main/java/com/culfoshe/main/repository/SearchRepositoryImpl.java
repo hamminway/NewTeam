@@ -60,7 +60,7 @@ public class SearchRepositoryImpl implements SearchRepository {
         return null;
     }
 
-    private BooleanExpression searchByLike(String searchBy, String searchQuery){
+    private BooleanExpression searchByLike(String searchBy, String searchQuery ){
 
         QPartnerMemPK partnerMemPK = QPartnerMemPK.partnerMemPK;
         QIndividualPost individualPost = QIndividualPost.individualPost;

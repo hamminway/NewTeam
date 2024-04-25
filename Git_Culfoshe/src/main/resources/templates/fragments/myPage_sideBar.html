@@ -14,11 +14,11 @@
 <body>
     <th:block th:fragment="myPageSide">
         <link rel="stylesheet" href="/css/individual/myPageSide.css">
-        <div class="minusBox blind" onclick="deleteTag(this)">
+        <!-- <div class="minusBox blind" onclick="deleteTag(this)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"/>
             </svg>
-        </div>
+        </div> -->
         <div id="side_wrap">
             <div class="side_container">
                 <div class="in_side_title">
@@ -32,6 +32,11 @@
                     </svg>
                 </div>
                 <form class="myPageSide cateList">
+                    <div class="minusBox blind" onclick="deleteTag(this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"/>
+                        </svg>
+                    </div>
                     <hr>
                     <p th:if="${cateList != null}" th:each="each, state : ${cateList}">
                         <span th:text="${each}"></span>

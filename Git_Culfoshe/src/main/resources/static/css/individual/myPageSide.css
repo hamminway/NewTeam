@@ -7,6 +7,12 @@
     top: 210px;
     transition: top 0.5s;
 }
+button{
+    cursor: pointer;
+}
+button:hover{
+    opacity: 0.8;
+}
 div{
     display: block;
 }
@@ -28,9 +34,10 @@ div{
 .cateAddBox{
     cursor: pointer;
     padding: 4px;
-    width: 100px;
+    width: 20px;
     position: relative;
-    left: 55%;
+    left: 85%;
+    bottom: 20px;
 }
 .cateAddBox:hover{
     opacity: 0.8;
@@ -66,7 +73,7 @@ div{
 }
 .side_bottom{
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
 }
 .cateAddBox{
     display: flex;
@@ -87,9 +94,31 @@ div{
 .minusBox:hover>svg{
     fill: rgb(99, 69, 69);
 }
-
-
-
+.stopScrolling{
+    overflow: hidden;
+    height: 100%;
+}
+.screenBlock{
+    position : absolute;
+    top:0%;
+    left:0%;
+    height: 2000px;
+    width:2000px;
+    z-index: 101;
+    background-color: grey;
+    opacity : 0.7;
+}
+.alertDelete{
+    position:absolute;
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    padding: 20px;
+    top: 30%;
+    left: 40%;
+    z-index: 102;
+    background-color: wheat;
+}
 
 
 

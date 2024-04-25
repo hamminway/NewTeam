@@ -40,8 +40,9 @@ public class IndividualService {
         return individualPageDTO;
     }
 
-    public List<String> getCateList(IndividualMem user){
-        List<String> list = Transfer.asList(user.getIndividualCategory(),"//$");
+    public List<String> getCateList(String user){
+        IndividualMem individualMem = individualMemRepository.findByEmail(user);
+        List<String> list = Transfer.asList(individualMem.getIndividualCategory(),"//$");
         return list;
     }
 

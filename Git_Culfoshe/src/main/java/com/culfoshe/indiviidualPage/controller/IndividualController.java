@@ -103,8 +103,8 @@ public class IndividualController {
     }
     //side 수정
     @GetMapping(value = "/myPage/editCate")
-    public String editCate(Principal principal, Model model, LoginSessionDTO loginSessionDTO){
-        List cateList = individualService.getCateList(loginSessionDTO.getIndividualMem());
+    public String editCate(Principal principal, Model model){
+        List cateList = individualService.getCateList(principal.getName());
         model.addAttribute("cateList", cateList);
         return "personalPage/replace/myPage_sideReplaceInput";
     }
@@ -113,6 +113,7 @@ public class IndividualController {
     @PostMapping(value = "/myPage/editCate")
     public ResponseEntity<String> editCate(){
 
+        System.err.println("일단 confirm");
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }

@@ -13,6 +13,9 @@ public class Transfer {
         return modelMapper;
     }
     public static List<String> asList(String resource,String regex){
+        if(resource == null){
+            return null;
+        }
         List list = new ArrayList();
         String[] resourceArr = resource.split(regex);
         for (int i = 1 ; i<resourceArr.length ; i++) {

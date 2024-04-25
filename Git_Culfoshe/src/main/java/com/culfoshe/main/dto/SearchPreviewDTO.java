@@ -1,16 +1,13 @@
 package com.culfoshe.main.dto;
 
-import com.culfoshe.entity.IndividualMem;
-import com.culfoshe.entity.IndividualPost;
-import com.culfoshe.entity.PartnerMem;
-import com.culfoshe.entity.PartnerMemPK;
+import com.culfoshe.entity.*;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
-public class SearchPreviewDTO {
+public class SearchPreviewDTO extends BaseEntity {
 
     private String pageName;
     private String postTitle;

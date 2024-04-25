@@ -24,8 +24,10 @@ body{
 }
 
 .myPage_sideBar{
+    margin-right: 50px;
     flex-grow: 1;
     min-width: 100px;
+    margin-left: -120px;
 }
 
 .individual_content{
@@ -41,7 +43,7 @@ body{
 .main_container{
     display: flex;
     position :relative;
-    top: 165px;
+    top: 265px;
 }
 .container_all{
     display: flex;

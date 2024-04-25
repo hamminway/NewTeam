@@ -461,6 +461,7 @@
         </div>
         <!--.joinbox-->
     </div>
+             
 </th:block>
 
 <th:block layout:fragment="script">
@@ -486,8 +487,7 @@
                 .then((response) => {
                     test = response;
                     console.log(response);
-                    return response.json()
-
+                    return response.json();
                 })
                 .then((dataa) => {
                     test_text = dataa;
