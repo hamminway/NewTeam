@@ -1,13 +1,6 @@
 package com.culfoshe.main.service;
 
-import com.culfoshe.entity.IndividualPost;
-import com.culfoshe.entity.PartnerMem;
-import com.culfoshe.entity.PartnerMemPK;
-import com.culfoshe.main.dto.MainDTO;
-import com.culfoshe.main.dto.MainViewDTO;
-import com.culfoshe.main.repository.DummyRepository;
-import com.culfoshe.main.repository.ImgRepository;
-import com.culfoshe.main.repository.MainRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,9 +15,6 @@ import java.util.List;
 @Transactional
 public class MainService {
 
-    private final MainRepository mainRepository;
-    private final DummyRepository dummyRepository;
-    private final ImgRepository imgRepository;
     private final ImgService imgService;
 
 //    public Long updateMain(MainDTO mainDTO, List<MultipartFile> mainImgFileList) {
@@ -34,10 +24,5 @@ public class MainService {
 //
 //        return null;
 //    }
-
-    @Transactional(readOnly = true)
-    public Page<MainViewDTO> getMainPage(Pageable pageable) {
-        return mainRepository.getMainPage(pageable);
-    }
 
 }

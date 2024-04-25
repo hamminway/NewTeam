@@ -25,7 +25,7 @@ public class IndividualPostCustomImpl implements IndividualPostCustom{
         return QIndividualPost.individualPost.individualMem.individualDomain.like("%"+domain+"%");
     }
 
-    public List<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String domain) {
+    public List<IndividualPostPreviewDTO> getIndividualPostPreview(Pageable pageable, String userName) {
 
         QIndividualPost individualPost = QIndividualPost.individualPost;
 
@@ -37,7 +37,7 @@ public class IndividualPostCustomImpl implements IndividualPostCustom{
                         individualPost.postComment)
                 )
                 .from(individualPost)
-                .where(searchByLike(domain))
+                .where(searchByLike(userName))
                 .orderBy(QIndividualPost.individualPost.postCode.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

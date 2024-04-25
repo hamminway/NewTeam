@@ -9,109 +9,127 @@
     <th:block layout:fragment="css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-        <link th:href="@{/css/search/searchingForm.css}" rel="stylesheet" type="text/css" />
+        <link th:href="@{/css/search/searchingForm.css}" rel="stylesheet" type="text/css">
     </th:block>
 <body>
-    <div layout:fragment="content">
-        <form>
+    <div class="border-search" layout:fragment="content">
+        <div style="margin-top: 300px;"></div>
+        <form action="/search/searchList" method="GET" role="search" th:object="${searchDTO}">
         <!--검색창 검색카테고리 시간 작성자/제목 -->
             <div class="p-3 m-0 border-0 bd-example m-0 border-0">
                 <!--검색창-->
-                <div>
-                    <div class="form-inline justify-content-center" th:object="${searchDTO}">
-                        <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
-                        <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
-                        <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
-                            <option value="all">전체기간</option>
-                            <option value="1d">1일</option>
-                            <option value="1w">1주</option>
-                            <option value="1m">1개월</option>
-                            <option value="6m">6개월</option>
-                        </select>
-                        <select th:field="*{headerCategory}" class="form-control" style="width:auto;">
-                            <option value="">전체</option>
-                            <option value="CULTURE">문화</option>
-                            <option value="FOOD">음식</option>
-                            <option value="SHELTER">숙소</option>
-                            <option value="ETC">그 외</option>
-                        </select>
-                        <select th:field="*{searchBy}" class="form-control" style="width:auto;">
-                            <option value="">전체</option>
-                            <option value="storeName">상호명</option>
-                            <option value="pageName">페이지</option>
-                            <option value="characterName">등록자</option>
-                            <option value="postTitle">포스트</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!--검색결과-->
-                <div>
-                    <div th:each="search, status:${searches.getContent()}" class="card mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
-                        <div class="col-md-4">
-                            <img th:src="${individualPhoto.imgUrl}" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                            <h5 th:text="${search.postTitle}" class="card-title">포스팅 제목</h5>
-                                <p th:href="" th:text="${search.characterName}" class="card-text">작성자</p>
-                                <p th:href="" th:text="${search.characterName}" class="card-text">페이지 이름</p>
-                                <p th:text="${search.postReview}" class="card-text">작성자 내용</p>
-                                <p th:text="${search.regTime}" class="card-text">
-                                    <small class="text-body-secondary"></small>
-                                </p>
-                            </div>
-                        </div>
+                <div class="flex">
+                    <div class="form-inline justify-content-center">
+                        <div class="search-row">
+                            <input th:field="*{searchQuery}" type="search" name="searchQuery" class="form-set form-control" placeholder="검색어를 입력해주세요.">
+                            <button id="searchBtn" type="submit" class="btn btn-primary">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #fff;"></i>
+                            </button>
+                            <select th:field="${searchDTO.searchDateType}" class="search-cate form-control">
+                                <option th:value="all">전체기간</option>
+                                <option th:value="1d">1일</option>
+                                <option th:value="1w">1주</option>
+                                <option th:value="1m">1개월</option>
+                                <option th:value="6m">6개월</option>
+                            </select>
+                            <select th:name="${searchDTO.headerCategory}" class="search-cate form-control">
+                                <option value="ALL">카테고리</option>
+                                <option value="CULTURE">문화</option>
+                                <option value="FOOD">음식</option>
+                                <option value="SHELTER">숙소</option>
+                                <option value="ETC">그 외</option>
+                            </select>
+                            <select th:name="*{searchBy}" class="search-cate form-control">
+                                <option value="">전체</option>
+                                <option value="storeName">상호명</option>
+                                <option value="pageName">페이지</option>
+                                <option value="characterName">등록자</option>
+                                <option value="postTitle">포스트</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-
-                <!--검색 페이지-->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">«</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">»</span>
-                        </a>
-                    </li>
-                    </ul>
-                </nav>
-
             </div>
         </form>
+
+                <!--검색결과-->
+                <div class="center">
+                    <div th:each="search, status:${searches.getContent()}" class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img th:src="${search.storeImage}" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 th:text="${search.postTitle}" class="card-title"><a href="#"></a></h5>
+                                    작성자 :
+                                    <p th:text="${search.characterName}" class="card-text"><a href="#"></a></p>
+                                    페이지 :
+                                    <p th:text="${search.pageName}" class="card-text"><a href="#"></a></p>
+                                    <p th:text="${search.postReview}" class="card-text"><a href="#"></a></p>
+                                </div>
+                                <div class="svg-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-plus-square" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                                    </svg>
+                                </div>
+                                <p th:text="${search.regTime}" class="end card-text"><small class="text-body-secondary"></small></p>
+                            </div>
+                        </div>
+                    </div>
+                
+
+                </div>
+
+                <div style="height:400px;"></div>
+
+                <!--검색 페이지-->
+<!--                <div th:if="${!searches.isEmpty()}">-->
+<!--                    <ul class="pagination">-->
+
+<!--                    <li class="page-item" th:classappend="${!searches.hasPrevious} ? 'disabled'">-->
+<!--                        <a class="page-link" th:href="@{|?page=${searches.number-1}|}" aria-label="Previous">-->
+<!--                        <span aria-hidden="true">«</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item" th:each="page : ${number.sequence(0, searches.totalPages-1)}"-->
+<!--                    th:classappend="${page == searches.number} ? 'active'">-->
+<!--                        <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|">1</a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item" th:classappend="${!searches.hasNext} ? 'disabled'">-->
+<!--                        <a class="page-link" th:href="@{|?page=${searches.number+1|}" aria-label="Next">-->
+<!--                        <span aria-hidden="true">»</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+
+
     </div>
     <th:block layout:fragment="script">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
         <script th:inline="javascript">
 
-            $(document).ready(function() {
-                $("#searchBtn").on("click",function(e) {
-                    e.preventDefault();
-                    page(0);
-                });
-            });
+<!--            $(document).ready(function() {-->
+<!--                $("#searchBtn").on("click",function(e) {-->
+<!--                    e.preventDefault();-->
+<!--                    page(0);-->
+<!--                });-->
+<!--            });-->
 
-            function page(page) {
-                var searchDateType = $("#searchDateType").val();
-                var headerCategory = $("headerCategory").val();
-                var searchBy = $("#searchBy").val();
-                var searchQuery = $("#searchQuery").val();
+<!--            function page(page) {-->
+<!--                var searchDateType = $("#searchDateType").val();-->
+<!--                var headerCategory = $("headerCategory").val();-->
+<!--                var searchBy = $("#searchBy").val();-->
+<!--                var searchQuery = $("#searchQuery").val();-->
 
-                location.href="/search/searchList/" + page + "?searchDateType=" + searchDateType
-                + "&headerCategory=" + headerCategory
-                + "&searchBy=" + searchBy
-                + "&searchQuery=" +searchQuery;
+<!--                location.href="/search/searchList" + page + "?searchDateType=" + searchDateType-->
+<!--                + "&headerCategory=" + headerCategory-->
+<!--                + "&searchBy=" + searchBy-->
+<!--                + "&searchQuery=" +searchQuery;-->
 
-            }
+<!--            }-->
         </script>
     </th:block>
 

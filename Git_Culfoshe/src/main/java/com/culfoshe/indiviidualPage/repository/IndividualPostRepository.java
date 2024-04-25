@@ -13,7 +13,7 @@ public interface IndividualPostRepository extends JpaRepository<IndividualPost,L
     @Query("select i from IndividualPost i where i.individualMem.individualDomain =:domain order by i.regTime desc")
     List<IndividualPost> findIndividualPost(@Param("domain") String domain, Pageable pageable);
 
-    @Query("select count(i) from IndividualPost i where i.individualMem.individualDomain = :domain")
-    Long countPost(@Param("domain") String domain);
+    @Query("select count(i) from IndividualPost i where i.individualMem.email = :email")
+    Long countPost(@Param("email") String email);
 
 }

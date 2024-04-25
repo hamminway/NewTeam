@@ -1,4 +1,4 @@
-@charset "UTF-8";
+    @charset "UTF-8";
 
 /* 기본셋팅, 공통값 */
 body,
@@ -8,7 +8,11 @@ input {
     line-height: 1.5;
     color: #121212;
 }
-
+form{
+    display : flex;
+    flex-flow : column;
+    align-items : center;
+}
 img,
 input,
 button {
@@ -41,27 +45,27 @@ textarea {
     height: 0;
     overflow: hidden;
 }
-#csc_wrap{
+#individual_wrap{
     width: 1000px;
 }
-.csc_title{
+.individual_title{
     display: -webkit-inline-box;
     position: relative;
-    margin: -10px 0 20px 20px;
+    margin: -25px 0 -63px 41px;
 }
-.csc_title1{
+.individual_title1{
     color: #000;
     font-size: 27px;
     font-weight: 700;
 }
-.csc_title2{
+.individual_title2{
     margin-top: 10px;
     margin-left: 3px;
     font-size: 21px;
     font-weight: 700;
-    color: #f3c053;
+    color: #37a137;
 }
-.csc_inner{
+.individual_inner{
     width: 900px;
     height: auto;
     box-sizing: border-box;
@@ -89,7 +93,7 @@ textarea {
     padding: 20px 0;
     border-right: 1px solid #dadada;
 }
-.inputBox.annTitle{
+.inputBox.newPostTitle{
     border-bottom: 0;
 }
 select{
@@ -103,7 +107,7 @@ select{
     outline: 0;
 }
 select:focus, select:hover{
-    border: 1px solid #f3c053;
+    border: 1px solid #37a137;
 }
 .inputBox input{
     border: 0;
@@ -121,7 +125,7 @@ select:focus, select:hover{
 .subBtn{
     border: 1px solid #f4f4f4;
     border-radius: 5px;
-    background-color: #ffa43b;
+    background-color: #37a137;
     width: 200px;
     height: 45px;
     color: #fff;
@@ -129,6 +133,10 @@ select:focus, select:hover{
     transition: background-color 0.5s ease;
 }
 .subBtn:hover{
-    background-color: #f08509;
+    background-color: #37a137;
     transition: background-color 0.5s ease;
+}
+
+.individual_wrap{
+    z-index : 0;
 }

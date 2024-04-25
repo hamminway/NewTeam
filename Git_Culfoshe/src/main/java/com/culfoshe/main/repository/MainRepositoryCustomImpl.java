@@ -4,12 +4,14 @@ import com.culfoshe.entity.*;
 import com.culfoshe.main.dto.MainDTO;
 import com.culfoshe.main.dto.MainViewDTO;
 import com.culfoshe.main.dto.QMainViewDTO;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -23,6 +25,12 @@ public class MainRepositoryCustomImpl implements MainRepositoryCustom {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
+    //검색어가 공백이면 null, 아니면 검색어가 포함되는 상품을 조회
+    private BooleanExpression nameByLike(String searchQuery){
+        return StringUtils.isEmpty(searchQuery)? null :
+                QPartnerMem.partnerMem.storeName.like("%" + searchQuery + "%");
+    }
+
     @Override
     public Page<MainViewDTO> getMainPage(Pageable pageable) {
 
@@ -32,19 +40,25 @@ public class MainRepositoryCustomImpl implements MainRepositoryCustom {
 
         List<MainViewDTO> content = queryFactory
                 .select(new QMainViewDTO(
-                        partnerMem,
-                        individualPost)
+                        partnerMem.storeName,
+                        partnerMem.signatureMenu,
+                        partnerMem.storeImage,
+                        individualPost.postReview)
                 )
-                .from(partnerMem)
-                .leftJoin(partnerMem).on(individualPost.location.eq(partnerMem.partnerMemPK.store_location))
-                .where(storePhoto.repImgYn.eq("Y"))
+                .from(individualPost)
+                .join(individualPost.partnerMem, partnerMem)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
-      /*long total = queryFactory.select(Wildcard.count)
-              .from(partnerMem)*/
+      long total = queryFactory.select(Wildcard.count)
+              .from(individualPost)
+              .join(individualPost.partnerMem, partnerMem)
+              .orderBy(partnerMem.storeNum.desc())
+              .fetchOne();
 
-        return null;
+        return new PageImpl<>(content, pageable, total);
+
+//        return null;
     }
 }

@@ -18,9 +18,11 @@ public class LoginSessionService {
 
     public LoginSessionDTO getSessionValue(String email){
         IndividualMem individualMem = individualMemRepository.findByEmail(email);
+        individualMem.setPassword(null);
         LoginSessionDTO loginSessionDTO = individualMem != null?
                 LoginSessionDTO.transfer(individualMem) :
                 LoginSessionDTO.transfer(partnerMemRepository.findByEmail(email));
+        loginSessionDTO.setIndividualMem(individualMem);
         return loginSessionDTO;
     }
 

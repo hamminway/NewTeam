@@ -1,0 +1,129 @@
+#side_wrap h2{
+    display: inline;
+}
+#side_wrap{
+    margin: 25px;
+    position: sticky;
+    top: 210px;
+    transition: top 0.5s;
+}
+button{
+    cursor: pointer;
+}
+button:hover{
+    opacity: 0.8;
+}
+div{
+    display: block;
+}
+.side_container{
+    width: 200px;
+    position: relative;
+    top:10px;
+    transition: 0.3s;
+}
+.sideHoverAction{
+	top: 375px !important;
+}
+.myPage.side.addCate{
+    cursor:pointer;
+}
+.addCate:hover{
+    color: aquamarine;
+}
+.cateAddBox{
+    cursor: pointer;
+    padding: 4px;
+    width: 20px;
+    position: relative;
+    left: 85%;
+    bottom: 20px;
+}
+.cateAddBox:hover{
+    opacity: 0.8;
+}
+.side_editBox{
+    cursor: pointer;
+    width: 20px;
+    padding: 4px;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}
+.eachList_content.focusCate{
+    border:none;
+    background:none;
+}
+.eachList_content{
+    border:none;
+    background:none;
+}
+.eachList_content:focus{
+    border:none;
+    background:none;
+    outline: none;
+    color: rgb(236, 226, 226);
+}
+.eachList{
+    margin:0 0 3px 0;
+    
+}
+.focusCate{
+    background-color: rgba(153, 153, 153, 0.63);
+}
+.side_bottom{
+    display: flex;
+    flex-flow: column;
+}
+.cateAddBox{
+    display: flex;
+    flex-flow: row;
+}
+.side_cateSubmit{
+    margin-right: 30px;
+    cursor: pointer;
+    opacity: 0.9;
+    background-color: rgb(187, 255, 198);
+    border: none;
+    border-radius: 10px;
+}
+.minusBox{
+    cursor: pointer;
+    display: inline-block;
+}
+.minusBox:hover>svg{
+    fill: rgb(99, 69, 69);
+}
+.stopScrolling{
+    overflow: hidden;
+    height: 100%;
+}
+.screenBlock{
+    position : absolute;
+    top:0%;
+    left:0%;
+    height: 2000px;
+    width:2000px;
+    z-index: 101;
+    background-color: grey;
+    opacity : 0.7;
+}
+.alertDelete{
+    position:absolute;
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    padding: 20px;
+    top: 30%;
+    left: 40%;
+    z-index: 102;
+    background-color: wheat;
+}
+
+
+
+
+
+
+
+

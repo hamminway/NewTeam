@@ -15,35 +15,45 @@
 
 <body>
     <th:block layout:fragment="content">
-        <form action="/" method="post">
-            <div class="csc_wrap">
-                <div class="csc_title">
-                    <p class="csc_title1">개인 포스트</p>
-                    <p class="csc_title2">POST WRITE</p>
+        <form action="/personalPage/newPost" method="post">
+            <div class="individual_wrap">
+                <div class="individual_title">
+                    <h1 class="individual_title1">개인 포스트</h1>
                 </div>
-                <div class="csc_inner">
+                <div class="individual_inner">
                     <div class="inqBlock">
                         <div class="box">
                             <div class="inputBox">
                                 <div class="label">카테고리</div>
-                                <select class="cateCode" name="annCate" id="">
-                                    <option value="CATE_000">선택</option>
-                                    <option value="CATE_001">이벤트</option>
-                                    <option value="CATE_002">서비스</option>
-                                    <option value="CATE_002">당첨자 발표</option>
-                                    <option value="CATE_004">점검</option>
+                                <select class="cateCode" id="." name="postCategory">
+                                    <option value="">선택</option>
+                                    <option value="FOOD">맛집</option>
+                                    <option value="CULTURE">여행지</option>
+                                    <option value="SHELTER">숙소</option>
+                                    <option value="ETC">그 외</option>
                                 </select>
                             </div>
-                            <div class="inputBox annTitle">
+                            <div class="inputBox">
+                                <div class="label">폴더</div>
+                                <select class="cateCode" id="" name="menuCategory">
+                                    <option value="">폴더 선택</option>
+                                </select>
+                            </div>
+                            <div class="inputBox newPostTitle">
                                 <div class="label">제목</div>
-                                <input type="text" name="annTitle">
+                                <input type="text" name="postTitle">
                             </div>
                             <div class="inputBoxContent">
-                                <textarea id="summernote" name="annContent"></textarea>
+                                <textarea id="summernote" name="postReview"></textarea>
+                            </div>
+                            <div class="inputBox">
+                                <div class="label">한줄평</div>
+                                <input type="text" name="postComment">
                             </div>
                         </div>
                     </div>
                     <div class="btnBox">
+                        <input type="hidden" th:name="${_csrf.parameterName}"  th:value="${_csrf.token}"/>
                         <input class="subBtn" type="submit" value="작성완료">
                     </div>
                 </div>
@@ -80,6 +90,7 @@
             </script>
 
         </form>
+
         <script src="/script/individual/newIndividualPost.js"></script>
     </th:block>
     <th:block layout:fragment="content_js">

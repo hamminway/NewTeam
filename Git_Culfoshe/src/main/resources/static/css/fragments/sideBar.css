@@ -39,7 +39,7 @@
 .user-page{
 	width: 65px;
     height: 65px;
-	background: gold;
+	background: salmon;
 
     position: absolute;
     right: 0;
@@ -100,7 +100,7 @@
 .user-write {
 	width: 65px;
 	height: 65px;
-	background: salmon;
+	background: gold;
 
 	position: absolute;
 	right: 0;

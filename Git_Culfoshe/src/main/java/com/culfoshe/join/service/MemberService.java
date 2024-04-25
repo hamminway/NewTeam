@@ -26,7 +26,7 @@ import javax.validation.Valid;
 @Transactional
 @RequiredArgsConstructor
 @Slf4j
-public class MemberService implements UserDetailsService {
+public class    MemberService implements UserDetailsService {
 
     private final IndividualMemRepository individualMemRepository;
     private final PartnerMemRepository partnerMemRepository;
@@ -105,9 +105,9 @@ public class MemberService implements UserDetailsService {
         return true; // 중복 가입한 이메일이 아닌 새로운 이메일일 경우
     }
 
-    public boolean validateDulicateDomain(String domain){
-        IndividualMem findIndividualMem = individualMemRepository.findByIndividualDomain(domain);
-        PartnerMem findPartnerMem = partnerMemRepository.findByPartnerDomain(domain);
+    public boolean validateDulicateDomain(String email){
+        IndividualMem findIndividualMem = individualMemRepository.findByEmail(email);
+        PartnerMem findPartnerMem = partnerMemRepository.findByEmail(email);
 
         if(findIndividualMem != null) {
             return false;
