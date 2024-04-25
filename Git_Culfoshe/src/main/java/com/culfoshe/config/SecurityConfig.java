@@ -41,6 +41,7 @@ public class SecurityConfig {
                 .mvcMatchers("/css/**", "/js/**", "/img/**", "/**").permitAll()
                 .mvcMatchers("/**","/members/**").permitAll()
                 .anyRequest().permitAll(); // 나머지는 모두 인증을 요청하기 위한 코드
+
         http.oauth2Login()
                 .loginPage("/members/login")
                 .defaultSuccessUrl("/")
