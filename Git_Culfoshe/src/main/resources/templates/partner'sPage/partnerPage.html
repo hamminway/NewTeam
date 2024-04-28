@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/layout1}">
+
+<th:block layout:fragment="css">
+  <link rel="stylesheet" href="/css/partner/partnerPage.css\"/>
+</th:block>
+
+<th:block layout:fragment="content">
+
+  <div class="allContainer">
+    <div class="partnerInfor">
+      <div class="miniInfor">
+
+        <div class="storeInfor">
+          <label class="storeName"></label><br>
+
+          <p class="comment">위치</p><label class="Location"></label><br>
+          <p class="comment">영업시간</p><label class="businessHour"></label><br>
+
+          <a href=""><p class="comment">자체 홈페이지로 바로가기</p></a><br>
+          <p class="comment">가게 특이사항</p><label class="feature"></label><br>
+        </div>
+
+        <div class="storeNotice">
+          <label>사장님의 한마디</label>
+
+          <div class="noticeBox">
+            <button class="modificationBtn"></button>
+            <div class="noticeComment"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menuBox">
+        <div class="menuPhoto"></div>
+
+        <div class="storePostBtn">
+          <button class="PostBtn"></button>
+        </div>
+      </div><!--.menuBox-->
+    </div><!--partnerInfor-->
+
+    <div class="photoContainer">
+      <label class="storePhotoLabel"></label><label class="storePhotoLabel"> 사진</label>
+      <div class="storePhoto"></div>
+    </div><!--.photoContainer-->
+
+    <div class="reviewContainer">
+      <label class="storeReviewLabel"></label><label class="storeReviewLabel"> 후기</label>
+      <div class="storeReview"></div>
+    </div><!--.reviewContainer-->
+
+    <div class="pageInfor">
+
+    </div>
+  </div><!--.allContainer-->
+</th:block>
+
+</html>
