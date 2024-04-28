@@ -36,7 +36,7 @@
                         <option value="SHELTER">쉘터</option>
                         <option value="ETC">그 외</option>
                     </select>
-                    <select th:field="*{searchBy}">
+                    <select th:field="*{location}">
                         <option value="">지역</option>
                         <option value="seoul">서울</option>
                         <option value="gyeonggi">경기</option>
@@ -101,17 +101,16 @@
 
                     <th:block th:if="${mainViewDTOs != null}">
                         <div th:each="viewDTO, status: ${mainViewDTOs.getContent()}" id="slider-div">
-
                             <div>
                                 <ul class="commend-box-in commend-box-in-margin">
                                     <a href="#"><img th:src="@{/img/food_1.jpg}">
-                                        <li th:text="${viewDTO.storeName}">📍 가게이름 : 난포
-                                            <i class="fa-regular fa-bookmark bMark-icon-1" style="color: #000000;"></i>
-                                        </li></a>
-                                    <li th:text="${viewDTO.signatureMenu}">📍 대표메뉴 : 강된장쌈밥, 곰탕</li>
-                                    <li th:text="${viewDTO.postReview}">📍 한줄평 : 곰탕 제발 먹어주세요....</li>
+                                        📍 가게이름 :<li th:text="${viewDTO.storeName}"></li></a>
+                                    📍 대표메뉴 :<li th:text="${viewDTO.signatureMenu}"></li>
+                                    📍 한줄평 :<li th:text="${viewDTO.postReview}"></li>
                                 </ul>
                             </div>
+                            <i class="fa-regular fa-bookmark bMark-icon-1" style="color: #000000;"></i>
+
                             <i class="fa-solid fa-angle-right commend-box-right-btn" style="color: #247b29;"></i>
                         </div>
                     </th:block>

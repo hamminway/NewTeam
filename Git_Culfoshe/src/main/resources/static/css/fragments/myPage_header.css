@@ -17,7 +17,7 @@
 	flex-flow: column;
 }
 
-.row {
+.row-w {
 	display: flex;
 	flex-flow: row;
 }

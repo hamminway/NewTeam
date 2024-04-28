@@ -83,7 +83,7 @@
 /*나의 페이지 버튼 hover 효과*/
 .user-page:hover{
 	width: 200px;
-	background-color:gold;
+	background-color:salmon;
 }
 
 .user-page:hover p{
@@ -145,7 +145,7 @@
 /*글쓰기 버튼 hover효과*/
 .user-write:hover {
 	width: 200px;
-	background-color: salmon;
+	background-color: gold;
 }
 
 .user-write:hover p {

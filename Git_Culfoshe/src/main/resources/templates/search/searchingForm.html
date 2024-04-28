@@ -25,13 +25,6 @@
                             <button id="searchBtn" type="submit" class="btn btn-primary">
                                 <i class="fa-solid fa-magnifying-glass" style="color: #fff;"></i>
                             </button>
-                            <select th:name="${searchDTO.searchDateType}" class="search-cate form-control">
-                                <option th:value="all">전체기간</option>
-                                <option th:value="1d">1일</option>
-                                <option th:value="1w">1주</option>
-                                <option th:value="1m">1개월</option>
-                                <option th:value="6m">6개월</option>
-                            </select>
                             <select th:field="*{headerCategory}" class="search-cate form-control">
                                 <option value="">카테고리</option>
                                 <option value="CULTURE">문화</option>
@@ -46,6 +39,29 @@
                                 <option value="characterName">등록자</option>
                                 <option value="postTitle">포스트</option>
                             </select>
+                            <select th:name="${searchDTO.searchDateType}" class="search-cate form-control">
+                                <option th:value="all">전체기간</option>
+                                <option th:value="1d">1일</option>
+                                <option th:value="1w">1주</option>
+                                <option th:value="1m">1개월</option>
+                                <option th:value="6m">6개월</option>
+                            </select>
+                            <!--<select th:field="*{location}">
+                                <option value="">지역</option>
+                                <option value="seoul">서울</option>
+                                <option value="gyeonggi">경기</option>
+                                <option value="incheon">인천</option>
+                                <option value="gangwon">강원</option>
+                                <option value="chungcheong">충정</option>
+                                <option value="daejeon">대전</option>
+                                <option value="daegu">대구</option>
+                                <option value="busan">부산</option>
+                                <option value="ulsan">울산</option>
+                                <option value="gyeongsang">경상</option>
+                                <option value="gwangju">광주</option>
+                                <option value="jeonla">전라</option>
+                                <option value="jeju">제주</option>
+                            </select>-->
                         </div>
                     </div>
                 </div>
@@ -55,17 +71,18 @@
                 <!--search Page안에 속해있는 SearchPreviewDTO의 타입이다.-->
                 <div class="center">
                     <div th:each="search, status:${searches.getContent()}" class="card mb-3">
-                        <div class="row g-0">
+                        <div class="row-w g-0">
                             <div class="col-md-4">
                                 <img th:src="${search.imgUrl}" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 th:text="${search.postTitle}" class="card-title"><a href="#"></a></h5>
-                                    작성자 :
-                                    <p th:text="${search.characterName}" class="card-text"><a href="#"></a></p>
-                                    페이지 :
-                                    <p th:text="${search.pageName}" class="card-text"><a href="#"></a></p>
+                                    작성자 : <p th:text="${search.characterName}" class="card-text"><a href="#"></a></p>
+                                    페이지 : <p th:text="${search.pageName}" class="card-text"><a href="#"></a></p>
+                                    상호명 : <p th:text="${search.storeName}" class="card-text"><a href="#"></a></p>
+                                    주소 : <p th:text="${search.location}" class="card-text"><a href="#"></a></p>
+
                                     <p th:text="${search.postReview}" class="card-text"><a href="#"></a></p>
                                 </div>
                                 <div class="svg-icon">
@@ -82,34 +99,46 @@
 
                 <div style="height:400px;"></div>
 
-                <!--검색 페이지-->
- <!--               <th:block th:each="pageNum : ${#numbers.sequence(dto.beginPage, dto.endPage)}">
-                    <a class="page_numBtn"
-                       th:href="@{/url(nowPage=${pageNum}, queryString=${queryString}, kind=${kind}, filed=${field}, field2=${field2})}"><span
-                            th:text="${pageNum}"></span></a>
-                </th:block>
-                &lt;!&ndash; th:href="@{/search/seachList(nowPage=${pageNum}, searchQuery=${searchQuery}, searchDateType=${searchDateType}, headerCategory=${headerCategory}, searchBy=${searchBy})}" &ndash;&gt;
-
-                <div th:if="${!searches.isEmpty()}">
-                    <ul class="pagination">
-
-                    <li class="page-item" th:classappend="${!searches.hasPrevious} ? 'disabled'">
-                        <a class="page-link" th:href="@{|?page=${searches.number-1}|}" aria-label="Previous">
-                        <span aria-hidden="true">«</span>
-                        </a>
-                    </li>
-                    <li class="page-item" th:each="page : ${number.sequence(0, searches.totalPages-1)}"
-                    th:classappend="${page == searches.number} ? 'active'">
-                        <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|">1</a>
-                    </li>
-                    <li class="page-item" th:classappend="${!searches.hasNext} ? 'disabled'">
-                        <a class="page-link" th:href="@{|?page=${searches.number+1|}" aria-label="Next">
-                        <span aria-hidden="true">»</span>
-                        </a>
-                    </li>
+                <!--페이징-->
+                <input type="hidden" class="totalPage" th:value="${searches.getTotalPages()}">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination paging">
+                        <li class="page-item">
+                            <a class="page-link prevPage" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link nowPage" href="/search/searchingForm?page=1">1</a></li>
+                        <li class="page-item">
+                            <a class="page-link nextPage" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
                     </ul>
-                </div> &lt;!&ndash; 검색 페이지&ndash;&gt;-->
+                </nav>
 
+
+
+                <script>
+                    const page = document.querySelector('.paging');
+                    const totalPage = document.querySelector('.totalPage').value;
+
+                    const now = document.querySelector('.nowPage');
+                    const prev = document.querySelector('.prevPage');
+                    const next = document.querySelector('.nextPage');
+
+                    const createA = document.createElement('a');
+                    createA.classList.add('new');
+
+                    for(let i=0; i<totalPage; i++) {
+                        target = paging.appendChild(createA);
+                        target.href = 'search/searchingForm?page='+i;
+                        target.text = i;
+                    }
+
+                    //key과 value값을 할당해야함
+
+                </script>
 
             </div>
         </form>

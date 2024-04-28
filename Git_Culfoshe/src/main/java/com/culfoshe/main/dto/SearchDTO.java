@@ -13,6 +13,9 @@ public class SearchDTO {
     private String searchBy;    //조회 유형
     private String searchQuery="";  //검색어 저장
     private String location;
-    private String nowPage;
+
+   /* private String prevPage;    //이전페이지
+    private String nowPage;     //현재페이지
+    private String nextPage;    //다음페이지*/
 
 }

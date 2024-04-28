@@ -18,7 +18,6 @@
           
           <div class="userUI">
             <a href="#">
-
               <img id="ico_weather" th:src="@{/img/weather.png}" alt="날씨아이콘">25.2&#176;</a>
             <a sec:authorize="isAnonymous()" href="/members/login">로그인</a>
             <a sec:authorize="isAuthenticated()" href="/members/logout">로그아웃</a>
