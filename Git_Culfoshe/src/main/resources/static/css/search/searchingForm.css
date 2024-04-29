@@ -9,10 +9,16 @@
     display: flex;
     flex-flow: row;
     align-items: center;
+    width: 50%;
 }
 
 .search-row {
     display: flex;
+}
+
+.space-evenly {
+    margin-top : 20px;
+    justify-content: space-evenly;
 }
 
 .form-set {

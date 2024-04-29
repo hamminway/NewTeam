@@ -1,6 +1,7 @@
 package com.culfoshe.main.controller;
 
 import com.culfoshe.entity.IndividualPost;
+import com.culfoshe.main.dto.Paging;
 import com.culfoshe.main.dto.SearchDTO;
 import com.culfoshe.main.dto.SearchPreviewDTO;
 import com.culfoshe.main.service.SearchService;
@@ -28,7 +29,7 @@ public class SearchController {
 //    }
 
     @GetMapping(value = "/searchList")
-    public String SearchPage(SearchDTO searchDTO, Optional<Integer> page, Model model) {
+    public String SearchPage(SearchDTO searchDTO, @RequestParam("page") Optional<Integer> page, Model model) {
 
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0 , 5);
         Page<SearchPreviewDTO> searches = searchService.getSearchPrevPage(searchDTO, pageable);
@@ -36,16 +37,8 @@ public class SearchController {
         model.addAttribute("searches", searches);
         model.addAttribute("searchDTO", searchDTO);
         model.addAttribute("maxPage" , 6);
-        System.err.println(searches.getTotalPages());
-/*
-        for(int i = 0 ; i < searches.getContent().size() ; i++){
-            System.err.println(searches.getContent().get(i));
-        }
+        model.addAttribute("paging",new Paging().withMaxPage(5, searches.getTotalPages(),pageable.getPageNumber()));
 
-        System.err.println("getTotalElements : " + searches.getTotalElements());
-        System.err.println("getTotalPages : " + searches.getTotalPages());
-        System.err.println("contentSize : " + searches.getContent().size());
-*/
         return "search/searchingForm";
     }
 

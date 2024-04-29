@@ -103,7 +103,7 @@ public class SearchRepositoryImpl implements SearchRepository {
     @Override
     public Page<SearchPreviewDTO> getSearchPrevPage(SearchDTO searchDTO, Pageable pageable) {
 
-        System.err.println(searchDTO);
+//        System.err.println(searchDTO);
         QPartnerMem partnerMem = QPartnerMem.partnerMem;
         QIndividualPost individualPost = QIndividualPost.individualPost;
         QIndividualPhoto individualPhoto = QIndividualPhoto.individualPhoto;
