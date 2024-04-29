@@ -40,6 +40,8 @@ public class PartnerMemFormDTO {
     @NotBlank
     private String partnerDomain;
 
+    private String specificDetails;
+
     public static PartnerMem createPartnerMem(PartnerMemFormDTO partnerMemFormDTO, PasswordEncoder passwordEncoder) {
 
         PartnerMem partnerMem = new PartnerMem();
@@ -58,14 +60,8 @@ public class PartnerMemFormDTO {
         partnerMem.setPresidentName(partnerMemFormDTO.getPresidentName());
 
         partnerMem.setPartnerMemPK(partnerMemPK);
-
-//        //값이 어떻게 들어가는지 확일을 위한 메서드
-//        System.err.println(partnerMem.getPartnerMemPK().getStore_location());
-//        System.err.println(partnerMem.getPartnerMemPK().getPartnermem_id());
-        System.err.println("PartnerMemFormDTO.createEntity.partnerMem : " + partnerMem);
-        System.err.println("PartnerMemFormDTO.createEntity.partnerMem.pkkey : " + partnerMem.getPartnerMemPK());
-
         partnerMem.setPartnerDomain(createPartnerDomain(partnerMemFormDTO));
+        partnerMem.setSpecificDetails(partnerMemFormDTO.getSpecificDetails());
 
         return partnerMem;
     }

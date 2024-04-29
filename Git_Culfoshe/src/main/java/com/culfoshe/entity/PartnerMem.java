@@ -39,6 +39,7 @@ public class PartnerMem{
     private String partnerDomain;
 
     private String businessHours;
+    private String specificDetails;
 
     private String signatureMenu;
     private String partnerNotice;
