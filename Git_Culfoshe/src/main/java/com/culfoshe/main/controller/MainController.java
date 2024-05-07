@@ -28,19 +28,22 @@ public class MainController {
     private final SearchService searchService;
 
     @GetMapping(value = "/")
-    public String main(SearchDTO searchDTO, MainDTO mainDTO, Model model, Optional<Integer> page, PartnerMem partnerMem, IndividualPost individualPost) {
-        // main컨트롤러에 main commend를 띄어주는 것을 넣어줘야하는데 아직 넣어주지 않아서 오류가 뜬다
-//        Pageable pageable = PageRequest.of( 0, 6);
-//        Page<MainViewDTO> mainViewDTOS = getPage(pageable);
+    public String main(SearchDTO searchDTO, String location, Model model, Optional<Integer> page) {
 
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-//        Page<MainViewDTO> mainViewDTOS = mainService.getMainPage(pageable);
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+        Page<MainViewDTO> mainViewDTOS = mainService.getMainViewDTOPage(location, pageable);
 
-        model.addAttribute("mainViewDTOs", null);   //임시로 null을 넣어줌 (원래는 mainViewDTOS)
         model.addAttribute("searchDTO", searchDTO);
+        model.addAttribute("location", location);
+        model.addAttribute("mainViewDTOs", null);   //임시로 null을 넣어줌 (원래는 mainViewDTOS)
 
         return "index";
     }
+
+
+    // main컨트롤러에 main commend를 띄어주는 것을 넣어줘야하는데 아직 넣어주지 않아서 오류가 뜬다
+//        Pageable pageable = PageRequest.of( 0, 6);
+//        Page<MainViewDTO> mainViewDTOS = getPage(pageable);
 //    private Page<MainViewDTO> getPage(Pageable pageable) {
 //        List<MainViewDTO> content = new ArrayList<>();
 //        PartnerMem partnerMem = new PartnerMem();

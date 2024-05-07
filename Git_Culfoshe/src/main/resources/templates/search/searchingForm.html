@@ -75,9 +75,10 @@
                 <!--검색결과-->
                 <!--search Page안에 속해있는 SearchPreviewDTO의 타입이다.-->
 
-                <div class="center">
+                <div class="align-items-center">
                     <div th:each="search, status:${searches.getContent()}" class="card mb-3">
-                        <div class="row-w g-0">
+
+                        <div th:if="${search.postTitle==null}" class="row-w g-0">
                             <div class="col-md-4">
                                 <img th:src="${search.storeImage}" class="img-fluid rounded-start" alt="...">
                             </div>
@@ -97,13 +98,8 @@
                                 <p th:text="${search.regTime}" class="end card-text"><small class="text-body-secondary"></small></p>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-
-                <div class="center">
-                    <div th:each="search, status:${searches.getContent()}" class="card mb-3">
-                        <div class="row-w g-0">
+                        <div th:if="${search.postTitle != null}" class="row-w g-0">
                             <div class="col-md-4">
                                 <img th:src="${search.imgUrl}" class="img-fluid rounded-start" alt="...">
                             </div>
@@ -126,6 +122,7 @@
                                 <p th:text="${search.regTime}" class="end card-text"><small class="text-body-secondary"></small></p>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -137,15 +134,15 @@
                 <nav aria-label="Page navigation example" th:with="start=${paging.getStart()}, end=${paging.getEnd()}">
                     <ul class="pagination paging">
                         <li class="page-item" th:if="${searches.getNumber()+1 > 1}">
-                            <a class="page-link prevPage" th:href="@{/search/searchList?page=${searches.getNumber()-1}}" aria-label="Previous">
+                            <a class="page-link prevPage" th:href="@{/search/searchList(page=${searches.getNumber()-1},searchQuery=${searchDTO.searchQuery}, headerCategory=${searchDTO.headerCategory}, location=${searchDTO.location})}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
                         <li class="page-item" th:each="num : ${#numbers.sequence(start, end)}">
-                            <a class="page-link nowPage" th:href="@{/search/searchList( page=${num} ) }" th:text="${num}"></a>
+                            <a class="page-link nowPage" th:href="@{/search/searchList(page=${num-1},searchQuery=${searchDTO.searchQuery}, headerCategory=${searchDTO.headerCategory}, location=${searchDTO.location})}" th:text="${num}"></a>
                         </li>
-                        <li class="page-item" th:if="${searches.getNumber()+1 < searches.getTotalPages()}">
-                            <a class="page-link nextPage" th:href="@{/search/searchingForm?page=${searches.getNumber()+1}}" aria-label="Next">
+                        <li class="page-item" th:if="${searches.getNumber() + 1 < searches.getTotalPages()}">
+                            <a class="page-link nextPage" th:href="@{/search/searchList(page=${searches.getNumber()+1},searchQuery=${searchDTO.searchQuery}, headerCategory=${searchDTO.headerCategory}, location=${searchDTO.location})}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>

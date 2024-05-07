@@ -71,7 +71,7 @@
                 <br>
                 <div class="commend-header">
                     <ul class="commend-li">
-                        <li><button id="seoul" onclick="setDir(seoul)">서울</button></li>
+                        <li><button id="seoul" onclick="setDir(seoul), location(seoul)">서울</button></li>
                     </ul>
                     <ul class="commend-li">
                         <li><button id="busan" onclick="setDir(busan)">부산</button></li>
@@ -114,6 +114,8 @@
                             <i class="fa-solid fa-angle-right commend-box-right-btn" style="color: #247b29;"></i>
                         </div>
                     </th:block>
+
+                    <!--비동기 방식으로 처리 -->
 
             </div>
         </div> <!-- main-2 -->
@@ -170,7 +172,18 @@
                     // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
                     map.panTo(moveLatLon);  //우리가 정의 해준 것이 아니라 카카오 측에서 만든 메서드라 이름을 같게 하는 것이 아니었다.
             }
-            
+
+           <!-- function location(area){
+                fetch("/members/login")
+                .then((resp)=>{
+                    console.log(resp);
+                    return resp.text();
+                })
+                .then((data)=>{
+                    console.log(data);
+                    document.querySelector('.commend-box').innerHTML=data
+                })
+            }-->
            
 
         </script>

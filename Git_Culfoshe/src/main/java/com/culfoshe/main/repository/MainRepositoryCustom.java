@@ -11,5 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface MainRepositoryCustom {
-    Page<MainViewDTO> getMainPage(Pageable pageable);
+    Page<MainViewDTO> getMainPage(String location, Pageable pageable);
+    //location을 이욯해서 받아야함
 }

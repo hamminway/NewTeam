@@ -124,7 +124,7 @@ public class SearchRepositoryImpl implements SearchRepository {
                 .leftJoin(individualPost.individualMem, individualMem)
                 .where(regDtsAfter(searchDTO.getSearchDateType()),
                         searchHeaderCategoryEq(searchDTO.getHeaderCategory())
-                        ,searchByLikeSearch(searchDTO.getSearchBy(), searchDTO.getSearchQuery(), true)
+                        ,searchByLikeSearch(searchDTO.getSearchBy(), searchDTO.getSearchQuery(), true)  //individual이면
                         ,searchByLocationLike(searchDTO.getLocation(),individualPost.location))
                 .offset(pageable.getOffset())   //데이터를 가지고 올 시작인덱스 지정
                 .limit(pageable.getPageSize())  //최대갯수 지정

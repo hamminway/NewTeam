@@ -156,7 +156,6 @@
     font-size: 21px;
     padding-left: 17px;
     border:none;
-
 }
 
 /*지역 선택 언더바*/
@@ -167,7 +166,6 @@
 .commend .commend-li li>button {
 	position: relative;
 }
-
 
 .commend .commend-li li>button::after {
 	content: "";

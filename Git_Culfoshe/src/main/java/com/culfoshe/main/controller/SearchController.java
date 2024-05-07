@@ -28,7 +28,7 @@ public class SearchController {
 //        return searchService.getSearchPrevPage(searchPreviewDTO);
 //    }
 
-    @GetMapping(value = "/searchList")
+    @GetMapping(value = {"/searchList", "/searchList/{page}"})
     public String SearchPage(SearchDTO searchDTO, @RequestParam("page") Optional<Integer> page, Model model) {
 
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0 , 5);

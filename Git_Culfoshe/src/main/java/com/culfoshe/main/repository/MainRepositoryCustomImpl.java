@@ -25,16 +25,15 @@ public class MainRepositoryCustomImpl implements MainRepositoryCustom {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
-    //검색어가 공백이면 null, 아니면 검색어가 포함되는 상품을 조회
-    private BooleanExpression nameByLike(String searchQuery){
-        return StringUtils.isEmpty(searchQuery)? null :
-                QPartnerMem.partnerMem.storeName.like("%" + searchQuery + "%");
+    private BooleanExpression location(String locaiton){
+        return StringUtils.isEmpty(locaiton)? null :
+                QPartnerMem.partnerMem.partnerMemPK.store_location.like("%" + locaiton + "%");
     }
 
     @Override
-    public Page<MainViewDTO> getMainPage(Pageable pageable) {
+    public Page<MainViewDTO> getMainPage(String location, Pageable pageable) {
 
-        System.err.println("main.getMainPage");
+ /*       System.err.println("main.getMainPage");*/
         QPartnerMem partnerMem = QPartnerMem.partnerMem;
         QIndividualPost individualPost = QIndividualPost.individualPost;
         QStorePhoto storePhoto = QStorePhoto.storePhoto;
@@ -48,6 +47,8 @@ public class MainRepositoryCustomImpl implements MainRepositoryCustom {
                 )
                 .from(individualPost)
                 .join(individualPost.partnerMem, partnerMem)
+                .where(location(location))
+                .orderBy(partnerMem.storeNum.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -55,7 +56,6 @@ public class MainRepositoryCustomImpl implements MainRepositoryCustom {
       long total = queryFactory.select(Wildcard.count)
               .from(individualPost)
               .join(individualPost.partnerMem, partnerMem)
-              .orderBy(partnerMem.storeNum.desc())
               .fetchOne();
 
         return new PageImpl<>(content, pageable, total);
