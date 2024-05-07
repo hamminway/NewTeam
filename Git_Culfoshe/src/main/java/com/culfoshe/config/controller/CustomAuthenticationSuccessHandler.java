@@ -39,8 +39,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         session.setAttribute("loginSessionDTO", loginSessionDTO);
 
+        System.err.println(loginSessionDTO);
+
         session.setAttribute("Test", "test");
         /*System.err.println("test : "+ request.getSession().getAttribute("test"));*/
         response.sendRedirect("/");
     }
+
+
 }

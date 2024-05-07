@@ -15,10 +15,10 @@
       <div class="miniInfor">
 
         <div class="storeInfor">
-          <label class="storeName"></label><br>
+          <label th:text="${partnerPageDTO.storeName}" class="storeName"></label><br>
 
-          <p class="comment">위치</p><label class="Location"></label><br>
-          <p class="comment">영업시간</p><label class="businessHour"></label><br>
+          <p class="comment">위치</p><label th:text="${partnerPageDTO.store_location}" class="Location"></label><br>
+          <p class="comment">영업시간</p><label th:text="${partnerPageDTO.businessHours}" class="businessHour"></label><br>
 
           <a href=""><p class="comment">자체 홈페이지로 바로가기</p></a><br>
           <p class="comment">가게 특이사항</p><label class="feature"></label><br>

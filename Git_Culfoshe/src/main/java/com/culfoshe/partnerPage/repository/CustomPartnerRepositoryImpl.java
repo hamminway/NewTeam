@@ -41,6 +41,7 @@ public class CustomPartnerRepositoryImpl implements CustomPartnerRepository{
                 .where(searchByLike(url))
                 .fetchOne();
 
+        System.err.println("content : " + partnerPageDTO);
         return partnerPageDTO;
     }
 }
