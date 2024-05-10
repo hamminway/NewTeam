@@ -40,6 +40,8 @@ public class PartnerController {
         System.err.println(partnerPageDTO);
 
         model.addAttribute("partnerPageDTO", partnerPageDTO);
+
         return "partner'sPage/partnerPage";
     }
+
 }

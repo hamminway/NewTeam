@@ -31,7 +31,7 @@ public class LoginSessionDTO implements Serializable {
     }
     public static LoginSessionDTO transfer(PartnerMem partnerMem){
         LoginSessionDTO loginSessionDTO = modelMapper.map(partnerMem, LoginSessionDTO.class);
-        loginSessionDTO.setPartnerDomain("partnerPage/" + loginSessionDTO.getPartnerDomain());
+        loginSessionDTO.setPartnerDomain(loginSessionDTO.getPartnerDomain());
 
         return loginSessionDTO;
     }

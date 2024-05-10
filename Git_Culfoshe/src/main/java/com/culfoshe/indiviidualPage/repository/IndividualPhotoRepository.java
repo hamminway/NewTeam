@@ -14,5 +14,4 @@ public interface IndividualPhotoRepository extends JpaRepository<IndividualPhoto
     @Query("select i.imgUrl from IndividualPhoto i where i.individualPost.postCode =:postCode")
     List<String> findPhoto(@Param("postCode") Long postCode);
 
-
 }

@@ -54,6 +54,7 @@ public class SavedPostRepositoryCustomImpl implements SavedPostRepositoryCustom 
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
+
         long totalCount = queryFactory.select(Wildcard.count)
                 .from(savedPost)
                 .join(savedPost.individualPost)
