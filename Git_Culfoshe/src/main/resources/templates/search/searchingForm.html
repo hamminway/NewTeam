@@ -7,7 +7,6 @@
 
     <!-- css 연결 -->
     <th:block layout:fragment="css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
         <link th:href="@{/css/search/searchingForm.css}" rel="stylesheet" type="text/css">
     </th:block>
@@ -84,10 +83,10 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 th:text="${search.storeName}" class="card-text"><a href="#"></a></h5>
-                                    주소 : <p th:text="${search.location}" class="card-text"><a href="#"></a></p>
-                                    대표메뉴 :  <p th:text="${search.signatureMenu}" class="card-text"><a href="#"></a></p>
-                                    <p th:text="${search.postReview}" class="card-text"><a href="#"></a></p>
+                                    <h4 th:text="${search.storeName}" class="card-text"><a href="#"></a></h4>
+                                    <p>주소 : <span th:text="${search.location}" class="card-text"><a href="#"></a></span></p>
+                                    <p>대표메뉴 :  <span th:text="${search.signatureMenu}" class="card-text"><a href="#"></a></span></p>
+                                    <p><span th:text="${search.postReview}" class="card-text"><a href="#"></a></span></p>
                                 </div>
                                 <div class="svg-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-plus-square" viewBox="0 0 16 16">
@@ -95,7 +94,7 @@
                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
                                     </svg>
                                 </div>
-                                <p th:text="${search.regTime}" class="end card-text"><small class="text-body-secondary"></small></p>
+                                <p class="end card-text"><small th:text="${search.string_regTime}" class="text-body-secondary"></small></p>
                             </div>
                         </div>
 
@@ -105,13 +104,12 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 th:text="${search.postTitle}" class="card-title"><a href="#"></a></h5>
-                                    작성자 : <p th:text="${search.characterName}" class="card-text"><a href="#"></a></p>
-                                    페이지 : <p th:text="${search.pageName}" class="card-text"><a href="#"></a></p>
-                                    상호명 : <p th:text="${search.storeName}" class="card-text"><a href="#"></a></p>
-                                    주소 : <p th:text="${search.location}" class="card-text"><a href="#"></a></p>
-
-                                    <p th:text="${search.postReview}" class="card-text"><a href="#"></a></p>
+                                    <h4 th:text="${search.postTitle}" class="card-title"><a href="#"></a></h4>
+                                    <p>작성자 : <span th:text="${search.characterName}" class="card-text"><a href="#"></a></span></p>
+                                    <p>페이지 : <span th:text="${search.pageName}" class="card-text"><a href="#"></a></span></p>
+                                    <p>상호명 : <span th:text="${search.storeName}" class="card-text"><a href="#"></a></span></p>
+                                    <p>주소 : <span th:text="${search.location}" class="card-text"><a href="#"></a></span></p>
+                                    <p><span th:text="${search.postReview}" class="card-text"><a href="#"></a></span></p>
                                 </div>
                                 <div class="svg-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-plus-square" viewBox="0 0 16 16">
@@ -119,7 +117,7 @@
                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
                                     </svg>
                                 </div>
-                                <p th:text="${search.regTime}" class="end card-text"><small class="text-body-secondary"></small></p>
+                                <p class="end card-text"><small th:text="${search.string_regTime}" class="text-body-secondary"></small></p>
                             </div>
                         </div>
 

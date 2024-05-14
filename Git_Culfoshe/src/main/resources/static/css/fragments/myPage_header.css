@@ -12,6 +12,12 @@
     transition: 0.6s;
 }
 
+.menu-box.scrolled.myPageHeader_wrap::after {
+    position: absolute;
+    top: 110px;
+    transition : 0.7s;
+}
+
 .header_column {
 	display: flex;
 	flex-flow: column;

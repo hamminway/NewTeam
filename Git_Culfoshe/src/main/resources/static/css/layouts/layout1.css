@@ -16,10 +16,10 @@ li {
    padding-left: 20px;
 }
 
-.top-bar a{
+.header_wrap-bar a{
    color: inherit;
    text-decoration: none;
-   padding-left: 20px;
+/*   padding-left: 20px;*/
 }
 
 .footer-top a{
@@ -36,8 +36,8 @@ li {
 
 .con {
    margin: 0 auto;
-   width: 1500px;
-   /*max-width: 1500px;
+   /*width: 1500px;
+   max-width: 1500px;
    min-width: 200px;*/
 }
 

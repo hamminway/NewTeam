@@ -2,6 +2,14 @@
 $(document).ready(function() {
 
     $('.center').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      fade: true,
+      cssEase: 'linear'
+    });
+
+    /*$('.center').slick({
         dots: true,
         centerMode: true,
         centerPadding: '60px',
@@ -26,7 +34,7 @@ $(document).ready(function() {
             }
           }
         ]
-      })
+      })*/
 
 
 //delete 검색창 내용 삭제

@@ -1,15 +1,13 @@
 @charset "UTF-8";
 
 /* main */
-.border {
+.border-wrap {
 	width: 1500px;
 	height: 100%;
 	margin-left:auto;
 	margin-right:auto; /*여백 자동으로 맞추기*/
-}
 
-.border hr {
-	width: 95%;
+	border : none;
 }
 
 /* main 1 시작 */
@@ -19,12 +17,32 @@
 }
 
 .main-1{
-	margin-top: 170px;
-	margin-bottom: 100px;
+	margin-top: 200px;
+}
+
+.center {
+	font-family:Arial;
+	width: 100%;
+	height : 700px;
+	display:block;
+	margin:0 auto;
+}
+
+.center img {
+	width: 100%;
+	height : 700px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+}
+
+.main-section {
+    position : relative
 }
 
 .main-search{
-	position:relative;
+	position: absolute;
+	left : 31%;
 	z-index: 2;
 }
 
@@ -41,9 +59,8 @@
 	font-size: 17px;
 	text-align: center;
 
-	position: relative;
-	left: 33.4%;
-	top:563px;
+	position: absolute;
+	bottom : 130px;
 }
 
 .main-section input:focus{
@@ -61,21 +78,24 @@
 .main-search button{
 	width:52px;
 	height: 50px;
-	background: #fff;
-
+	background: transparent;
 	border: none;
-
-	position: relative;
-	left:26.4%;
-	top: 566px;
+	position: absolute;
+	bottom: 132px;
 	margin-left: -5.5px;
 }
 
+#deleteBtn {
+    position: absolute;
+    left: 400px;
+}
 
-/* .main-search-btn{
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-} */
+.main-search-btn {
+    position: absolute;
+    left : 450px;
+}
+
+
 
 .main-search i{
 	font-size: 25px;
@@ -96,8 +116,9 @@
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	position:relative;
-	z-index: 2;
+
+	position : absolute;
+	bottom: 124px;
 }
 
 .main-category select{
@@ -106,26 +127,22 @@
 	border: 2px solid #c3c3c3;
 	font-size: 15px;
 	text-align: center;
-	position: relative;
-	top: 563px;
+
 	margin-top: 7px;
 	margin-right: 2px;
+	z-index : 3;
 }
 
-.center {
-	font-family:Arial;
-	width: 100%;
-	display:block;
-	margin:0 auto;
+.cate-header {
+    position : absolute;
+    left : 403px;
 }
 
-.center img {
-	width: 98%;
-	height : 600px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 30px;
+.cate-location {
+    position : absolute;
+    left : 655px;
 }
+
 /* main 1 끝 */
 
 
@@ -144,10 +161,9 @@
 }
 
 .commend-li {
-  display: inline-flex;
-  margin-bottom: 21px;
-  margin-left: 80px;
-  margin-right: 20px;
+    display: inline-flex;
+    margin-bottom: 21px;
+    margin-left: 50px;
 }
 
 .commend-li button{
@@ -335,7 +351,7 @@
 }
 
 #map1 {
-    width:1200px;
+    width:1100px;
     height:550px;
 
     background-color: #fff;
@@ -346,7 +362,4 @@
     margin-bottom: 100px;
     margin-left: auto;
     margin-right: auto;
-
-
-
 }

@@ -1,53 +1,72 @@
 @charset "UTF-8";
 
 /* header */
-.sort a {
-    z-index : 300;
+.header_wrap {
+    position: fixed;
+    top: 0;
+    z-index: 100;
 }
 
-.top-bar .logo {
-	position: relative;
-    top: 20px;
-    width: 290px;
-    height : 70px;
+.header_wrap a {
+    color: inherit;
+    text-decoration: none;
 }
 
-.bar {
-	margin: 10px;
-	margin-top: 10px;
-	text-align : center;
-	position : relative;
-    right : 145px;
-    top : 10px;
+.column {
+    display: flex;
+    flex-flow: column;
 }
 
-.bar a {
-	margin-right: 20px;
-	position: relative;
-	bottom: -2.5px;
-	z-index : 39;
+.flex-row {
+    display: flex;
+    flex-flow: row;
 }
 
-.bar a:hover {
+.first_column {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_wrap {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+.con {
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 1300px;
+    min-width: 1300px;
+    background-color: white;
+}
+
+#header_weather {
+    height: 27px;
+}
+
+.user a {
+    padding : 0;
+}
+
+.user>a:hover {
 	color: #9acd32;
 }
 
-.join {
-	margin-right: 0px;
-	position: relative;
-	bottom: -2px;
+.user>a::after {
+    content : "|";
+    color : black;
+    margin : 0 10px 0 14px;
 }
 
-.bar img {
-	height: 28px;
-	position: relative;
-	bottom: -6px;
-	margin-right: 6px;
+.user>a:last-child::after {
+    content : "";
 }
 
-.mini-Search {
+.mini-search {
     float : right;
-
 	width: 245px;
 	height: 30px;
 	border: 1px solid #C3C3C3;
@@ -55,9 +74,11 @@
 }
 
 .icon {
-    position: relative;
-    bottom: 21px;
-    z-index: 1;
+    position : relative;
+}
+
+.icon a{
+	padding: 0;
 }
 
 .icon input:focus {
@@ -65,137 +86,45 @@
 	border-radius: 5px;
 }
 
-.icon a{
-	padding: 0;
-}
-
 .icon-search-btn{
 	height: 25px;
-	position: relative;
-	top : 3px;
-	left: 88%;
+	position: absolute;
+	top : 1px;
+	left: 85.8%;
 	border: none;
 	background-color: #fff;
 	border-radius: 5px;
 }
 
-.blind {
-    display:none !important;
-}
-
 /* 라이브러리 */
 /* 메뉴 시작*/
-.con {
-	margin: 0 auto;
-	width: 1500px;
-	max-width: 1500px;
-	min-width: 200px;
-}
-
-.sort::after {
-	content: "";
-	display: block;
-	clear: both;
-}
-
-.cell {
-	float: left;
-	box-sizing: border-box;
-}
-
-.cell-right {
-	box-sizing: border-box;
-	display : flex;
-	flex-flow : column;
-}
-
-.margin-0-auto {
-	margin: 0 auto;
-}
-
-.block {
-	display: block;
-}
-
-.inline-block {
-	display: inline-block;
-}
-
-.relative {
-	position: relative;
-	height:0;
-	transition: 0.7s ;
-}
-
 .menu-box {
+    justify-content: space-between;
+    width: 100%;
+    height: 85px;
     overflow: hidden;
-    margin-top : 53px;
-    transition: height 0.9s;
+    transition: height 0.7s;
 }
 
-/*탑바메뉴 시작*/
-.top-bar {
-    display : flex;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 183px;
-
-	transition: height 1s;
-	z-index: 200;
-	-webkit-transition: 1s;
-	-moz-transition: 1s;
-
-	background-color: #fff;
-	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+/*탑바 전체를 고정하여 스크롤 내릴 시 크기를 변경*/
+.menu-box.scrolled {
+	height : 30px;
+    transition: 0.7s;
 }
 
-/*1차메뉴 회색밑줄 조절*/
-.top-bar::after {
-	content: "";
-	position: absolute;
-	top: 183px;
-	width: 100%;
-	height: 1px;
-	background-color: rgba(0, 0, 0, 0.1);
-	z-index: 10;
-
-	transition : 0.9s;
-}
-
-/*마우스올릴 시 2차메뉴 높이조절*/
-.addHeight {
-	height: 470px;
-}
-
-/* list 가짜 공간 높이*/
-.dum {
-    height : 78px;
-}
-
-.top-bar .menu-box>ul>li {
-	width: 20%;
-}
-
-/* 1차 메뉴선택효과 시작 */
-.top-bar .menu-box>ul>li>a {
+.menu-box>.cell>a {
+    font-size: 22px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 4px;
+	display: inline-block;
+	/*overflow: hidden;*/
 	position: relative;
 }
 
 /*마우스 올릴 시 underbar 표시*/
-.top-bar .menu-box>ul>li>a::after {
-	content: "";
-	position: absolute;
-	width: 0;
-	height: 5px;
-	bottom: -27px;
-	right: 50%;
-	background-color: green;
-	transition: width 0.6s;
-}
-
-.top-bar .menu-box>ul>li>a::before {
+.menu-box>.cell>a::after {
 	content: "";
 	position: absolute;
 	width: 0;
@@ -206,176 +135,163 @@
 	transition: width 0.6s;
 }
 
-.top-bar .menu-box>ul>li:hover>a::after {
-	width: 50%;
+.menu-box>.cell>a::before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	bottom: -27px;
+	right: 50%;
+	background-color: green;
+	transition: width 0.6s;
 }
 
-.top-bar .menu-box>ul>li:hover>a::before {
-	width: 50%;
+.menu-box>.cell:hover>a::after {
+	width: 130px;
 }
 
-/* 1차메뉴 선택효과 끝 */
-
-/*1차메뉴 선 효과*/
-.top-bar .menu-box>ul>li>a {
-	text-align: center;
-	padding: 0 10px;
-	font-size: 22px;
-	font-weight: 500;
-	font-style: normal;
-	font-stretch: normal;
-	letter-spacing: 4px;
+.menu-box>.cell:hover>a::before {
+	width: 130px;
 }
 
-.top-bar .menu-box>ul>li:hover>a {
+.menu-box>.cell:hover>a {
 	color: green;
 }
 
-/* 2차 메뉴 왼쪽 오른쪽 선 높이*/
-.top-bar .menu-box>ul>li>div>ul {
-	width: 100%;
-	height: 240px;
-	border-left: 1px solid #e8e8e8;
-	z-index : 1;
+.menu-box:hover {
+	height: 340px;
 }
 
-.top-bar .menu-box>ul>li:last-child>div>ul {
-	border-right: 1px solid #e8e8e8;
+.cell {
+    text-align: center;
+	width: 25%;
+	height: 60px;
 }
 
-/*2차 메뉴 안에 글자 마진*/
-.top-bar .menu-box>ul>li>div>ul>li {
-	text-align: left;
-	margin-left: 20%;
+.header-text {
+    margin: 30px 0 18px 0;
 }
 
-.top-bar .menu-box>ul>li>div>ul>li:first-child {
-	margin-top: 56px;
-}
-
-/* nth-child(2) : 2번째 요소를 선택하게 하는 것*/
-.top-bar .menu-box>ul>li:nth-child(2)>div>ul>li {
-	margin-left: 20%;
-}
-
-.top-bar .menu-box>ul>li:nth-child(3)>div>ul>li {
-	margin-left: 20%;
-}
-
-.top-bar .menu-box>ul>li:nth-child(4)>div>ul>li {
-	margin-left: 20%;
-}
-
-.top-bar .menu-box>ul>li>div>ul>li>a {
-	font-size: 18px;
-	padding: 10px 0;
+.block {
 	display: inline-block;
-	font-weight: 400;
-	position: relative;
-	font-style: normal;
- 	font-stretch: normal;
 }
 
-/* 2차메뉴클릭효과 시작*/
-/* 2차 메뉴 클릭 시 점표시*/
-.top-bar .menu-box>ul>li>div>ul>li>a::after {
-	content: ".";
-	position: absolute;
-	top: 26%;
-	transform: translatey(-50%);	/*정렬*/
-	left: -13px;
-	font-size: 1.7rem;
-	color: green;
-	opacity: 0;
-	transform: translateX(5px);
-	transition: opacity 0.1s, transform 0.2s;
+.blind {
+    display:none !important;
 }
 
-.top-bar .menu-box>ul>li>div>ul>li:hover>a::after {
-	transform: translateX(0) translatey(-50%);
-	opacity: 1;
+.relative {
+    padding-top : 20px;
 }
 
-/* 2차메뉴클릭효과 끝 */
-.top-bar .menu-box>ul>li>div>ul>li:hover>a {
-	color: green;
+.relative ul {
+    text-align : left;
+
 }
 
-/*2차 메뉴 안에 제목 위치 조절*/
-.top-bar .menu-box>ul>li>.menu-text {
-	position: absolute;
-	top: 267px;
-	left: 52%;
-	transform: translateX(-670px);
-	opacity: 0;
-	transform: opacity 6s;
+.relative li {
+    margin-bottom : 15px;
 }
 
-.top-bar .menu-box>ul>li:hover>.menu-text {
-	opacity: 1;
-}
-
-/*2차 메뉴 안에 제목(영어)*/
-.top-bar .menu-box>ul>li>.menu-text>.menu-title {
-	font-size: 35px;
-	font-weight: 500;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: -1px;
-	color: green;
-	border-bottom: 2px solid green;
-}
-
-.top-bar .menu-box>ul>li>.menu-text>.menu-title-text {
-	display: block;
-	margin-top: 20px;
-	font-size: 25px;
-	font-weight: 300;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: 1.22;
-	letter-spacing: -2px;
-	color: #222222;
-}
-
-/*탑바 메뉴 끝*/
-
-/* cell 너비*/
-
-.main-grid .sort .cell {
-	width: 283px;
-}
-
-/* sort 높이*/
-
-.main-grid>.sort:first-child .cell {
-	height: 400px;
-}
-
-.main-grid>.sort:nth-child(2) .cell {
-	height: 300px;
-}
-
-.main-grid .sort .cell>nav {
-	height: 50%;
-}
-
-/*탑바 전체를 고정하여 스크롤 내릴 시 크기를 변경*/
-.top-bar.scrolled {
-    height : 110px;
-	transition : 0.7s;
-}*
-
-/* menu-box 사라졌다가 뜨게하기*/
-.top-bar.scrolled nav {
-    height : 0px;
+/*회색 밑줄*/
+.header_wrap::after {
+    content: "";
+    position : absolute;
+    top : 164px;
+    width : 100%;
+    height : 1px;
+    background-color : rgba(0, 0, 0, 0.1);
+    z-index : 10;
+    transition : 0.7s;
 }
 
 /*회색 밑줄 스크롤 시 높이 변경*/
-.top-bar.scrolled.top-bar::after {
+.scrolled.header_wrap::after {
     position: absolute;
     top: 110px;
     transition : 0.7s;
 }
 
+.header_wrap .menu-box>div>div>ul {
+    width : 100%;
+    height: 210px;
+    border-left: 1px solid #e8e8e8;
+    z-index : 1;
+}
+
+.header_wrap .menu-box>div>div>ul>li:first-child {
+    margin-top: 10px;
+}
+
+.header_wrap .menu-box>div>div>ul>li {
+    margin-left : 10%;
+}
+
+.header_wrap .menu-box>div>div>ul>li>a {
+    font-size : 18px;
+    display : inline-block;
+    font-weight : 400;
+    position: relative;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+/* 2차메뉴 선택 시 점 표시*/
+.menu-box>.cell>div>ul>li>a::before {
+    content : ".";
+	position: absolute;
+	top: -10px;
+	left:-17px;
+	font-size: 2.5rem;
+	color: green;
+	opacity: 0;
+	transform: translateX(5px) translateY(-35%);
+	transition: opacity 0.1s, transform 0.3s;
+}
+
+.header_wrap .menu-box>div>div>ul>li:hover>a::before {
+	transform: translateX(0) translateY(-35%);
+	opacity: 1;
+}
+
+.header_wrap .menu-box>div>div>ul>li:hover>a {
+	color: green;
+}
+
+/*menu-text 띄우기*/
+.cell>.menu-text {
+    position: absolute;
+    top: 235px;
+    left: 52%;
+
+    transform: translateX(-610px);
+    opacity: 0;
+    transform: opacity 6s;
+}
+
+.cell:hover>.menu-text {
+    opacity: 1;
+}
+
+.cell>.menu-text>.menu-title {
+    font-size: 35px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -1px;
+    color: green;
+    border-bottom: 2px solid green;
+}
+
+.cell>.menu-text>.menu-title-text {
+    display: block;
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.22;
+    letter-spacing: -2px;
+    color: #222222;
+}

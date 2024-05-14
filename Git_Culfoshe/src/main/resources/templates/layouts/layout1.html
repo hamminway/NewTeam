@@ -4,7 +4,6 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
     <head>
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <meta name="_csrf" th:content="${_csrf.token}"/>
@@ -15,15 +14,13 @@
         <!-- 링크 써야 아이콘이 들어감!! -->
         <link th:href="@{/css/layouts/layout1.css}" rel="stylesheet">
         <link th:href="@{/css/fragments/header.css}" rel="stylesheet" type="text/css" />
-        <link th:href="@{/css/fragments/myPage_header.css}" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link th:href="@{/css/fragments/footer.css}" rel="stylesheet" type="text/css" />
         <link th:href="@{/css/fragments/sideBar.css}" rel="stylesheet" type="text/css" />
-
 
         <!-- JS, Popper.js, and jQuery -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="https://kit.fontawesome.com/2c827c8cca.js" crossorigin="anonymous"></script>
-
 
         <th:block layout:fragment="css"></th:block>
     </head>
@@ -41,7 +38,6 @@
 
         <th:block layout:fragment="script"></th:block>
         <script type="text/javascript" th:src="@{/script/fragments/header.js}"></script>
-        <script type="text/javascript" th:src="@{/script/fragments/myPage_header.js}"></script>
         <script type="text/javascript" th:src="@{/script/fragments/sideBar.js}"></script>
     </body>
 

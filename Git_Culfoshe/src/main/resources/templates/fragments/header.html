@@ -4,52 +4,55 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <!--header-->
-<div th:fragment="header">
-    <div class="top-bar">
+<th:block th:fragment="header">
+    <div class="header_wrap">
         <div class="con sort">
-            <a th:href="@{/}" class="logo block cell">
-                <img th:src="@{/img/main_logo.jpg}" alt="로고">
-            </a>
+            <div class="column">
 
-            <div>
-                <div class="bar">
+            <div class="first_column flex-row">
+                <div class="header_logo">
+                    <a th:href="@{/}" class="logo block cell">
+                        <img th:src="@{/img/main_logo.jpg}" alt="로고">
+                    </a>
+                </div>
+
+                <div class="user">
                     <a href="#">
-                        <img th:src="@{/img/weather.png}" alt="날씨아이콘">25.2&#176;</a>
-                    &#124;
+                        <img id="header_weather" th:src="@{/img/weather.png}" alt="날씨아이콘">25.2&#176;</a>
                     <a sec:authorize="isAnonymous()" href="/members/login">로그인</a>
                     <a sec:authorize="isAuthenticated()" href="/members/logout">로그아웃</a>
-                    &#124;
                     <a sec:authorize="isAnonymous()" th:href="@{/members/new}" class="join">회원가입</a>
                     <a sec:authorize="isAuthenticated()" href="#">나의 페이지</a>
                 </div>
                 <form class="icon" th:action="@{/search/searchList}" method="get">
-                    <input name="searchQuery" type="search"  placeholder="검색" class="mini-Search">
+                    <input name="searchQuery" type="search"  placeholder="검색" class="mini-search">
                     <button class="icon-search-btn" type="submit">
                         <i class="fa-solid fa-magnifying-glass" style="color: #7eff38;"></i>
                     </button>
                 </form>
             </div>
 
-            <nav class="menu-box cell-right">
-                <ul class="r" id = "target">
-                    <li class="cell dum">
+            <nav class="second_column cell-right flex-row">
+                <div class="flex-row menu-box" id="target">
+                    <div class="cell dum">
                         <span class="block"></span>
-                    </li>
-                    <li class="cell">
-                        <a href="#" class="header-text block">컬처</a>
+                    </div>
+
+                    <div class="cell">
+                        <a href="#" class="header-text">컬처</a>
                         <div class="relative">
                             <ul>
                                 <li><a href="#" class="block disable">예술</a></li>
                                 <li><a href="#" class="block disable">원데이 클래스</a></li>
                             </ul>
                         </div>
-                        <div class="menu-text blind">
+                        <div class="menu-text">
                             <span class="menu-title">Culture</span>
                             <span class="menu-title-text">문화</span>
                         </div>
-                    </li>
-                    <li class="cell">
-                        <a href="#" class="header-text block">푸드</a>
+                    </div>
+                    <div class="cell">
+                        <a href="#" class="header-text">푸드</a>
                         <div class="relative">
                             <ul>
                                 <li><a href="#" class="block disable">카페</a></li>
@@ -61,9 +64,9 @@
                             <span class="menu-title">Food</span>
                             <span class="menu-title-text">음식</span>
                         </div>
-                    </li>
-                    <li class="cell">
-                        <a href="#" class="header-text block">쉘터</a>
+                    </div>
+                    <div class="cell">
+                        <a href="#" class="header-text">쉘터</a>
                         <div class="relative">
                             <ul>
                                 <li><a href="#" class="block disable">모텔</a></li>
@@ -77,9 +80,9 @@
                             <span class="menu-title">Shelter</span>
                             <span class="menu-title-text">숙소</span>
                         </div>
-                    </li>
-                    <li class="cell">
-                        <a href="#" class="header-text block">그 외</a>
+                    </div>
+                    <div class="cell">
+                        <a href="#" class="header-text">그 외</a>
                         <div class="relative">
                             <ul>
                                 <li><a href="#" class="block disable">액티비티</a></li>
@@ -90,11 +93,14 @@
                             <span class="menu-title">ETC</span>
                             <span class="menu-title-text">그 외(기타)</span>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </nav>
+
+
+            </div>
         </div>
     </div>
 
-</div><!-- header -->
+</th:block><!-- header -->
 </html>

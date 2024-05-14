@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter @Setter @ToString
 public class SearchPreviewDTO extends BaseEntity {
 
@@ -15,6 +17,7 @@ public class SearchPreviewDTO extends BaseEntity {
     private String postReview;   //한줄평
     private String imgUrl;
     private String location;
+    private String string_regTime;
 
     private String storeName;    //상호명
     private String signatureMenu;
@@ -24,13 +27,14 @@ public class SearchPreviewDTO extends BaseEntity {
     //individualPost 조회할 필드
     @QueryProjection
     public SearchPreviewDTO(String pageName, String postTitle, String characterName,
-                            String postReview, String imgUrl, String location) {
+                            String postReview, String imgUrl, String location, LocalDateTime regTime) {
         this.pageName = pageName;
         this.postTitle = postTitle;
         this.characterName = characterName;
         this.postReview = postReview;
         this.imgUrl = imgUrl;
         this.location = location;
+        this.setRegTime(regTime);
     }
 
     //PartnerMem 조회할 필드
@@ -42,5 +46,7 @@ public class SearchPreviewDTO extends BaseEntity {
         this.storeImage = storeImage;
         this.store_location = store_location;
     }
+
+
 
 }

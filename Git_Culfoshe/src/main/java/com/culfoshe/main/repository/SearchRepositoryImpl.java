@@ -117,7 +117,8 @@ public class SearchRepositoryImpl implements SearchRepository {
                         individualMem.characterName,
                         individualPost.postReview,
                         individualPhoto.imgUrl,
-                        individualPost.location)
+                        individualPost.location,
+                        individualPost.regTime)
                 )
                 .from(individualPhoto)
                 .join(individualPhoto.individualPost, individualPost)

@@ -9,7 +9,10 @@
     display: flex;
     flex-flow: row;
     align-items: center;
-    width: 50%;
+}
+
+.form-inline {
+    margin : 0 auto;
 }
 
 .search-row {
@@ -18,11 +21,11 @@
 
 .space-evenly {
     margin-top : 20px;
-    justify-content: space-evenly;
+    justify-content: flex-end;
 }
 
 .form-set {
-    width: 890px;
+    width: 983px;
     height: 60px;
     margin-left : 20px;
     margin-right : 20px;
@@ -68,6 +71,10 @@
     min-width: 800px;
     margin-top: 50px;
     padding : 24px;
+}
+
+.row-w {
+    display: flex;
 }
 
 .col-md-4 {

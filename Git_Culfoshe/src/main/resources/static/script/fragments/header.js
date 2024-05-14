@@ -1,42 +1,33 @@
-//스크롤 내릴 시 top-bar 설정 하기
-const t = document.querySelector(".top-bar");
+//스크롤 내릴 시 설정
+const wrap = document.querySelector(".header_wrap");
+const box = document.querySelector(".menu-box");
 
 window.addEventListener('wheel',(e)=>{
-    if(e.deltaY >= 0){
-       t.classList.add("scrolled");
-    }else{
-       t.classList.remove("scrolled");
+    if(e.deltaY >= 0) {
+        wrap.classList.add("scrolled");
+        box.classList.add("scrolled");
+    } else {
+        wrap.classList.remove("scrolled");
+        box.classList.remove("scrolled");
     }
 })
 
 //세부 카테고리 나오게 하기
-const targetRow = document.querySelector("#target");
-const relativeList = document.querySelectorAll(".relative");
-const text = document.querySelectorAll(".menu-text");
+const getRow = document.querySelector("#target");
+const reList = document.querySelectorAll(".relative");
+const menuText = document.querySelectorAll(".menu-text");
 
-for(let i = 0 ; i < relativeList.length ; i++){
-    targetRow.addEventListener('mouseover', ()=>{
-        relativeList[i].style.height = "260px"
-        text[i].classList.remove("blind");
-        relativeList[i].setTimeout(() => {
-            relativeList[i].classList.add("disable");
-        }, 700);
+for(let i=0; i<reList.length; i++) {
+     getRow.addEventListener('mouseover', ()=>{
+        reList[i].style.height = "260px";
+        menuText[i].classList.remove("blind");
+        reList[i].classList.add("disable");
     })
-    targetRow.addEventListener('mouseout', ()=>{
-        relativeList[i].style.height = "0px";
-        text[i].classList.add("blind");
-        relativeList[i].classList.remove("disable");
+    getRow.addEventListener('mouseout', ()=>{
+        reList[i].style.height = "0px";
+        menuText[i].classList.add("blind");
+        reList[i].classList.remove("disable");
     })
 }
 
-const menu = document.querySelectorAll(".menu-box")
 
-// for문인데 배열을 안 추가해줘서 안댐
-for(let i=0; i<menu.length; i++) {
-    menu[i].addEventListener('mouseover', ()=>{
-        t.classList.add("addHeight");
-    })
-    menu[i].addEventListener('mouseout', ()=>{
-        t.classList.remove("addHeight");
-    })
-}

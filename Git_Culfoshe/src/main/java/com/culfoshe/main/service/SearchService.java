@@ -1,5 +1,6 @@
 package com.culfoshe.main.service;
 
+import com.culfoshe.config.Transfer;
 import com.culfoshe.entity.IndividualMem;
 import com.culfoshe.entity.IndividualPost;
 import com.culfoshe.entity.PartnerMem;
@@ -25,7 +26,7 @@ public class SearchService {
     //검색페이지 보여줄 상품 데이터 조회
     @Transactional(readOnly = true)
     public Page<SearchPreviewDTO> getSearchPrevPage(SearchDTO searchDTO, Pageable pageable) {
-        return searchRepository.getSearchPrevPage(searchDTO, pageable);
+        return Transfer.transferRegTime(searchRepository.getSearchPrevPage(searchDTO, pageable));
     }
 
 
