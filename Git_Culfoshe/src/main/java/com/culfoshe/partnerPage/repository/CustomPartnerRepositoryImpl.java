@@ -25,9 +25,7 @@ public class CustomPartnerRepositoryImpl implements CustomPartnerRepository{
     @Override
     public PartnerPageDTO getPartnerPageDTO(String url) {
 
-
         QPartnerMem partnerMem = QPartnerMem.partnerMem;
-        System.err.println(url);
 
         PartnerPageDTO partnerPageDTO = queryFactory.select(
                 new QPartnerPageDTO(

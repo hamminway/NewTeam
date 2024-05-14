@@ -8,12 +8,13 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface IndividualPostRepository extends JpaRepository<IndividualPost,Long> {
+public interface IndividualPostRepository extends JpaRepository<IndividualPost,Long>, IndividualPostCustom {
 
     @Query("select i from IndividualPost i where i.individualMem.individualDomain =:domain order by i.regTime desc")
     List<IndividualPost> findIndividualPost(@Param("domain") String domain, Pageable pageable);
 
     @Query("select count(i) from IndividualPost i where i.individualMem.email = :email")
     Long countPost(@Param("email") String email);
+
 
 }

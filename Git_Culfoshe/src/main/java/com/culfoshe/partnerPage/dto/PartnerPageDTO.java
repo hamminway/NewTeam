@@ -28,7 +28,7 @@ public class PartnerPageDTO {
 
     private List<StorePhoto> storePhoto;
 
-    private IndividualPostPreviewDTO storeReview;
+    private List<IndividualPostPreviewDTO> storeReview;
 
     @QueryProjection
     public PartnerPageDTO(String storeName, String store_location, String phoneNum, String businessHours, String specificDetails, String partnerNotice, String storeImage){

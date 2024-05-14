@@ -20,6 +20,8 @@ public class IndividualPhoto {
 
     private String imgUrl;
 
+    private String repImgYn;
+
     @ManyToOne
     @JoinColumn(name = "post_code")
     private IndividualPost individualPost;
