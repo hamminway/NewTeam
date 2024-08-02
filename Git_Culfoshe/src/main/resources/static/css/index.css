@@ -78,7 +78,7 @@
 .main-search button{
 	width:52px;
 	height: 50px;
-	background: transparent;
+	background-color : transparent;
 	border: none;
 	position: absolute;
 	bottom: 132px;
@@ -94,8 +94,6 @@
     position: absolute;
     left : 450px;
 }
-
-
 
 .main-search i{
 	font-size: 25px;
